@@ -1,0 +1,10 @@
+Line 29: Bad keyword initial
+Line 31: begin without always/case
+Line 45: Bad keyword posedge
+Line 45: Always without case(x)
+Line 54: Bad keyword negedge
+Line 62: Bad keyword if
+Line 64: Bad keyword if
+Line 66: Bad keyword if
+Line 68: Bad keyword if
+End of file /afs/cs.wisc.edu/u/j/m/jmei/ece552/hw1/hw1_1/mux4_1_4b_bench.v. Hash = 452574317

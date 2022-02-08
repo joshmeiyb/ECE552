@@ -1,0 +1,27 @@
+# vsim -c mux4_1_4b_bench -lib __work 
+# Start time: 14:44:10 on Feb 06,2022
+# //  ModelSim DE 10.7c Aug 17 2018Linux 5.4.0-97-generic
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim DE and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading __work.mux4_1_4b_bench
+# Loading __work.clkrst
+# Loading __work.mux4_1_4b
+# Loading __work.mux4_1
+# Loading __work.mux2_1
+# Loading __work.not1
+# Loading __work.nand2
+run -all
+# ** Note: $finish    : mux4_1_4b_bench.v(40)
+#    Time: 3200 ns  Iteration: 0  Instance: /mux4_1_4b_bench
+# End time: 14:44:11 on Feb 06,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
