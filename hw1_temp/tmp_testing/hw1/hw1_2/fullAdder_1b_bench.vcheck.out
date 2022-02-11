@@ -1,8 +1,0 @@
-Line 14: Bad keyword initial
-Line 15: begin without always/case
-Line 21: Bad keyword posedge
-Line 21: Always without case(x)
-Line 27: Bad keyword negedge
-Line 29: Bad keyword if
-Line 27: Always without case(x)
-End of file /afs/cs.wisc.edu/u/j/m/jmei/ece552/hw1/hw1_2/fullAdder_1b_bench.v. Hash = 1113902184
