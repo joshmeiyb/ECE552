@@ -1,0 +1,22 @@
+Line 26: Bad keyword integer
+Line 33: Bad keyword initial
+Line 34: begin without always/case
+Line 40: Bad keyword if
+Line 43: Bad keyword else
+Line 47: Bad keyword posedge
+Line 47: Always without case(x)
+Line 54: Bad keyword negedge
+Line 57: appears to be shifting by non-constant value: ShAmt
+Line 59: Bad keyword if
+Line 66: Bad keyword else
+Line 75: appears to be shifting by non-constant value: ShAmt
+Line 77: Bad keyword if
+Line 84: Bad keyword else
+Line 93: Bad keyword for
+Line 97: appears to be shifting by non-constant value: ShAmt
+Line 98: Bad keyword if
+Line 105: Bad keyword else
+Line 114: appears to be shifting by non-constant value: ShAmt
+Line 116: Bad keyword if
+Line 123: Bad keyword else
+End of file /afs/cs.wisc.edu/u/j/m/jmei/ece552/hw2/hw2_1/shifter_hier_bench.v. Hash = 1873919161

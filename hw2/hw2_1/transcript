@@ -1,0 +1,127 @@
+# vsim -c shifter_hier_bench -lib __work -voptargs="+acc" -wlf dump.wlf -do "log -howmany -rec /* ; run -all" 
+# Start time: 18:48:54 on Feb 13,2022
+# //  ModelSim DE 10.7c Aug 17 2018Linux 5.4.0-99-generic
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim DE and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading __work.shifter_hier_bench
+# Loading __work.shifter_hier
+# Loading __work.shifter
+# Loading __work.clkrst
+# log -howmany -rec /* 
+# 32
+#  run -all
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  1, In = 0x3524 ; Expected : 0x6a48, Got 0x6a48
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 13, In = 0x5663 ; Expected : 0x6000, Got 0x6000
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  2, In = 0x8465 ; Expected : 0x1194, Got 0x1194
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  6, In = 0xcd0d ; Expected : 0x4340, Got 0x4340
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 12, In = 0x57ed ; Expected : 0xd000, Got 0xd000
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  5, In = 0x24c6 ; Expected : 0x0126, Got 0x0126
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  7, In = 0xf7e5 ; Expected : 0xffef, Got 0xffef
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  2, In = 0xdb8f ; Expected : 0xf6e3, Got 0xf6e3
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  5, In = 0x7ae8 ; Expected : 0x5d0f, Got 0x5d0f
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 13, In = 0x28bd ; Expected : 0xa000, Got 0xa000
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt : 10, In = 0x6263 ; Expected : 0x8d89, Got 0x8d89
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 10, In = 0x2120 ; Expected : 0x8000, Got 0x8000
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  3, In = 0x3e96 ; Expected : 0xf4b0, Got 0xf4b0
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 11, In = 0xd653 ; Expected : 0x9800, Got 0x9800
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 14, In = 0x4a02 ; Expected : 0x8000, Got 0x8000
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  3, In = 0x72cf ; Expected : 0x0e59, Got 0x0e59
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 12, In = 0x0aca ; Expected : 0x0000, Got 0x0000
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  1, In = 0x618a ; Expected : 0xc314, Got 0xc314
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  9, In = 0xf378 ; Expected : 0x0079, Got 0x0079
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  6, In = 0x65b6 ; Expected : 0x0196, Got 0x0196
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt : 10, In = 0x02bc ; Expected : 0x0000, Got 0x0000
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  5, In = 0xbe71 ; Expected : 0x05f3, Got 0x05f3
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 10, In = 0x603b ; Expected : 0x0018, Got 0x0018
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  1, In = 0x4b15 ; Expected : 0x962a, Got 0x962a
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt : 12, In = 0x0762 ; Expected : 0x0000, Got 0x0000
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  8, In = 0xa18f ; Expected : 0x00a1, Got 0x00a1
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt : 12, In = 0x569f ; Expected : 0x0005, Got 0x0005
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  9, In = 0x3789 ; Expected : 0x126f, Got 0x126f
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  1, In = 0xc0d7 ; Expected : 0xe06b, Got 0xe06b
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  2, In = 0x7f0c ; Expected : 0xfc31, Got 0xfc31
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 13, In = 0x5a77 ; Expected : 0x0002, Got 0x0002
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 13, In = 0x007e ; Expected : 0xc000, Got 0xc000
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  3, In = 0x8f1f ; Expected : 0x78f8, Got 0x78f8
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 11, In = 0x8878 ; Expected : 0xc000, Got 0xc000
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt : 10, In = 0xae3f ; Expected : 0xfeb8, Got 0xfeb8
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt : 14, In = 0x3886 ; Expected : 0x8e21, Got 0x8e21
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  6, In = 0x99fa ; Expected : 0x0267, Got 0x0267
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt : 15, In = 0xb4a3 ; Expected : 0x0001, Got 0x0001
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  4, In = 0x565f ; Expected : 0x0565, Got 0x0565
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  6, In = 0x36cb ; Expected : 0x00db, Got 0x00db
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 13, In = 0xc129 ; Expected : 0xfffe, Got 0xfffe
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  5, In = 0xb665 ; Expected : 0x05b3, Got 0x05b3
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  4, In = 0x1979 ; Expected : 0x9791, Got 0x9791
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 11, In = 0x0b2a ; Expected : 0x0001, Got 0x0001
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 10, In = 0xaddc ; Expected : 0x7000, Got 0x7000
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  6, In = 0x02c3 ; Expected : 0x000b, Got 0x000b
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 10, In = 0x7667 ; Expected : 0x001d, Got 0x001d
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  9, In = 0x8a38 ; Expected : 0x7114, Got 0x7114
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  3, In = 0xbf94 ; Expected : 0xfca5, Got 0xfca5
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 11, In = 0xca59 ; Expected : 0xc800, Got 0xc800
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 13, In = 0xb7d9 ; Expected : 0xfffd, Got 0xfffd
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  6, In = 0x49ca ; Expected : 0x7280, Got 0x7280
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  4, In = 0x1a46 ; Expected : 0x01a4, Got 0x01a4
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  4, In = 0x0769 ; Expected : 0x7690, Got 0x7690
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt : 13, In = 0xd928 ; Expected : 0x0006, Got 0x0006
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  8, In = 0x9c2e ; Expected : 0x2e9c, Got 0x2e9c
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  9, In = 0xa6fd ; Expected : 0xfb4d, Got 0xfb4d
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 10, In = 0x6786 ; Expected : 0x1800, Got 0x1800
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  0, In = 0xa766 ; Expected : 0xa766, Got 0xa766
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 14, In = 0x99ba ; Expected : 0xfffe, Got 0xfffe
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 10, In = 0x05d5 ; Expected : 0x5400, Got 0x5400
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  6, In = 0x6137 ; Expected : 0x4dd8, Got 0x4dd8
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  6, In = 0x9f26 ; Expected : 0xc980, Got 0xc980
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  6, In = 0x0fdc ; Expected : 0xf703, Got 0xf703
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt : 11, In = 0x9b7e ; Expected : 0x0013, Got 0x0013
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 10, In = 0x2b79 ; Expected : 0xe400, Got 0xe400
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  1, In = 0x0917 ; Expected : 0x048b, Got 0x048b
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  5, In = 0x9650 ; Expected : 0xca00, Got 0xca00
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  1, In = 0x8a29 ; Expected : 0x1452, Got 0x1452
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt : 11, In = 0xb498 ; Expected : 0x0016, Got 0x0016
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 10, In = 0xe6ec ; Expected : 0xfff9, Got 0xfff9
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  9, In = 0x80a8 ; Expected : 0x5000, Got 0x5000
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  6, In = 0xb90e ; Expected : 0x02e4, Got 0x02e4
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 10, In = 0xb52a ; Expected : 0xa800, Got 0xa800
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  8, In = 0xff9e ; Expected : 0x9e00, Got 0x9e00
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt : 10, In = 0xe3c8 ; Expected : 0x0038, Got 0x0038
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  7, In = 0xc96b ; Expected : 0xff92, Got 0xff92
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  4, In = 0x9dba ; Expected : 0xdba0, Got 0xdba0
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  4, In = 0xd392 ; Expected : 0x0d39, Got 0x0d39
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 10, In = 0x9086 ; Expected : 0xffe4, Got 0xffe4
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt : 13, In = 0x2132 ; Expected : 0x4426, Got 0x4426
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 10, In = 0xa4e4 ; Expected : 0x9000, Got 0x9000
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt : 14, In = 0xa8a1 ; Expected : 0x0002, Got 0x0002
+# LOG :: BarrelShifter :: Shift Left        : ShAmt : 15, In = 0x1e0b ; Expected : 0x8000, Got 0x8000
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  5, In = 0xe536 ; Expected : 0x0729, Got 0x0729
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  8, In = 0xbf6b ; Expected : 0xffbf, Got 0xffbf
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  2, In = 0x819b ; Expected : 0x066e, Got 0x066e
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt : 11, In = 0xe02d ; Expected : 0xfffc, Got 0xfffc
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt : 13, In = 0xf61e ; Expected : 0xdec3, Got 0xdec3
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  1, In = 0x9d18 ; Expected : 0xce8c, Got 0xce8c
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt : 11, In = 0x2441 ; Expected : 0x0922, Got 0x0922
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  6, In = 0xe953 ; Expected : 0x03a5, Got 0x03a5
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  4, In = 0xfae2 ; Expected : 0x0fae, Got 0x0fae
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  2, In = 0xb4d8 ; Expected : 0xd362, Got 0xd362
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  5, In = 0x1239 ; Expected : 0x4720, Got 0x4720
+# LOG :: BarrelShifter :: Rotate Left       : ShAmt :  1, In = 0x0f2b ; Expected : 0x1e56, Got 0x1e56
+# LOG :: BarrelShifter :: Shift Right Logic : ShAmt :  1, In = 0x5527 ; Expected : 0x2a93, Got 0x2a93
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  8, In = 0x3a04 ; Expected : 0x003a, Got 0x003a
+# LOG :: BarrelShifter :: Shift Right Arith : ShAmt :  2, In = 0x9314 ; Expected : 0xe4c5, Got 0xe4c5
+# LOG :: BarrelShifter :: Shift Left        : ShAmt :  5, In = 0xe2b1 ; Expected : 0x5620, Got 0x5620
+# TEST PASSED
+# ** Note: $finish    : shifter_hier_bench.v(44)
+#    Time: 10 us  Iteration: 0  Instance: /shifter_hier_bench
+# End time: 18:48:54 on Feb 13,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
