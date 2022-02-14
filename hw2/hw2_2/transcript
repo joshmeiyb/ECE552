@@ -1,5 +1,5 @@
 # vsim -c alu_hier_bench -lib __work -voptargs="+acc" -wlf dump.wlf -do "log -howmany -rec /* ; run -all" 
-# Start time: 00:54:37 on Feb 14,2022
+# Start time: 01:20:49 on Feb 14,2022
 # //  ModelSim DE 10.7c Aug 17 2018Linux 5.4.0-99-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -24,10 +24,10 @@
 # Loading __work.nand2
 # Loading __work.clkrst
 # log -howmany -rec /* 
-# 491
+# 489
 #  run -all
 # TEST PASSED
 # ** Note: $finish    : alu_hier_bench.v(58)
 #    Time: 20 us  Iteration: 0  Instance: /alu_hier_bench
-# End time: 00:54:37 on Feb 14,2022, Elapsed time: 0:00:00
+# End time: 01:20:50 on Feb 14,2022, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

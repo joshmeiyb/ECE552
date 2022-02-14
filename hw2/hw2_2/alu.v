@@ -49,12 +49,12 @@ module alu (InA, InB, Cin, Oper, invA, invB, sign, Out, Zero, Ofl);
     shifter shifter(.In(InAA), .ShAmt(InBB[3:0]), .Oper(Oper[1:0]), .Out(shifter_out));
     cla_16b cla_16b(.sum(cla_16b_out), .c_out(c_out), .a(InAA), .b(InBB), .c_in(Cin));
 
-    wire Ofl_signed;
-    wire Ofl_unsigned;
-    assign Ofl_signed = ( (sign == 1'b1) & ( (InAA[15] == InBB[15]) & (InAA[15] != cla_16b_out[15]) ) );
-    assign Ofl_unsigned = ( (c_out == 1'b1) & (sign == 1'b0) );
-    assign Ofl = Ofl_signed ^ Ofl_unsigned;
-    //assign Ofl =  ((sign == 1'b1) & ((InAA[15] == InBB[15]) & (InAA[15] != cla_16b_out[15]))) | ((c_out == 1'b1) & (sign == 1'b0));
+    // wire Ofl_signed;
+    // wire Ofl_unsigned;
+    // assign Ofl_signed = ( (sign == 1'b1) & ( (InAA[15] == InBB[15]) & (InAA[15] != cla_16b_out[15]) ) );
+    // assign Ofl_unsigned = ( (c_out == 1'b1) & (sign == 1'b0) );
+    // assign Ofl = Ofl_signed | Ofl_unsigned;
+    assign Ofl =  ((sign == 1'b1) & ((InAA[15] == InBB[15]) & (InAA[15] != cla_16b_out[15]))) | ((c_out == 1'b1) & (sign == 1'b0));
     assign Zero = ~(|Out);
 
     assign Out = 
