@@ -15,7 +15,7 @@ module cla_4b(sum, c_out, a, b, c_in);
     input          c_in;
 
     // YOUR CODE HERE
-    wire c0, c1, c2, c3;
+    wire c0, c1, c2, c3, c4;
     wire [3:0] g, p;
 
     fullAdder_1b fa1(.s(sum[0]), .c_out(), .a(a[0]), .b(b[0]), .c_in(c0));
