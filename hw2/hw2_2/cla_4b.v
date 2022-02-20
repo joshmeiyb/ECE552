@@ -44,7 +44,8 @@ module cla_4b(sum, c_out, a, b, c_in);
     assign c1    = g[0] | (p[0] & c0);
     assign c2    = g[1] | (p[1] & g[0]) | (p[1] & p[0] & c0);
     assign c3    = g[2] | (p[2] & g[1]) | (p[2] & p[1] & g[0]) | (p[2] & p[1] & p[0] & c0);
-    assign c_out = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]) | (p[3] & p[2] & p[1] & p[0] & c0);
+    assign c4    = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]) | (p[3] & p[2] & p[1] & p[0] & c0);
+    assign c_out = c4;
 
 
 endmodule
