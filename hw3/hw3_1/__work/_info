@@ -1,0 +1,145 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/afs/cs.wisc.edu/u/j/m/jmei/ece552/hw3/hw3_1
+vclkrst
+Z1 !s110 1645387207
+!i10b 1
+!s100 dXeZW6^GGFm3?LCRKVTVY1
+I^g8URLmY]FX6FcbPHfX5I1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1645043243
+8clkrst.v
+Fclkrst.v
+L0 12
+Z3 OP;L;10.7c;67
+r1
+!s85 0
+31
+Z4 !s108 1645387207.000000
+!s107 clkrst.v|dff.v|regFile_hier.v|regFile.v|reg16.v|tb_regFile_hier.v|
+Z5 !s90 +define+RANDSEED=3|-work|__work|tb_regFile_hier.v|reg16.v|regFile.v|regFile_hier.v|dff.v|clkrst.v|
+!i113 1
+Z6 o-work __work
+Z7 !s92 +define+RANDSEED=3 -work __work
+Z8 tCvgOpt 0
+vdff
+R1
+!i10b 1
+!s100 ViOz^Z62fjEjz6RVO<aaU3
+IYUN<5ALeB<V=AY6<nh]`H1
+R2
+R0
+w1645048272
+8dff.v
+Fdff.v
+Z9 L0 10
+R3
+r1
+!s85 0
+31
+R4
+Z10 !s107 clkrst.v|dff.v|regFile_hier.v|regFile.v|reg16.v|tb_regFile_hier.v|
+R5
+!i113 1
+R6
+R7
+R8
+vreg16
+R1
+!i10b 1
+!s100 =BYJOQVcgH^7nnNOo=m:J1
+INJB@PE:449S`aPnE`ko>a2
+R2
+R0
+w1645386089
+8reg16.v
+Freg16.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R10
+R5
+!i113 1
+R6
+R7
+R8
+vregFile
+R1
+!i10b 1
+!s100 :;7z^QCJSS5Gk@`zDZYdl1
+I8mO_MlC<:@b7i4]gP;8Hj2
+R2
+R0
+w1645387204
+8regFile.v
+FregFile.v
+R9
+R3
+r1
+!s85 0
+31
+R4
+R10
+R5
+!i113 1
+R6
+R7
+R8
+nreg@file
+vregFile_hier
+R1
+!i10b 1
+!s100 >`DJeVBV06k]L;]2LW0bU0
+Id9l_]NHZ9gfL`Fk2k<da81
+R2
+R0
+w1645048287
+8regFile_hier.v
+FregFile_hier.v
+R9
+R3
+r1
+!s85 0
+31
+R4
+R10
+R5
+!i113 1
+R6
+R7
+R8
+nreg@file_hier
+vtb_regFile_hier
+R1
+!i10b 1
+!s100 gDQ92T5d2Ib5V<Hk>]dPM3
+IiH:jz;P=;eK=PSz58VKfi1
+R2
+R0
+w1645048481
+8tb_regFile_hier.v
+Ftb_regFile_hier.v
+L0 7
+R3
+r1
+!s85 0
+31
+R4
+R10
+R5
+!i113 1
+R6
+R7
+R8
+ntb_reg@file_hier
