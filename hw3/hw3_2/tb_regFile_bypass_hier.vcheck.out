@@ -1,0 +1,14 @@
+Line 22: Bad keyword integer
+Line 23: Bad keyword integer
+Line 50: Bad keyword initial
+Line 51: begin without always/case
+Line 69: Bad keyword posedge
+Line 87: Bad keyword if
+Line 104: Bad keyword if
+Line 110: Bad keyword if
+Line 114: Bad keyword if
+Line 119: Bad keyword if
+Line 120: Bad keyword if
+Line 123: Bad keyword else
+Line 69: Always without case(x)
+End of file /afs/cs.wisc.edu/u/j/m/jmei/ece552/hw3/hw3_2/tb_regFile_bypass_hier.v. Hash = -1844463911
