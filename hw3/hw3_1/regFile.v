@@ -27,7 +27,7 @@ module regFile (
 
    /* YOUR CODE HERE */
    
-   //assign err = 1'b0;
+   assign err = 1'b0;
 
    wire [7:0] write;
    
