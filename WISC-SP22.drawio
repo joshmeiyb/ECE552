@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-03-02T19:14:49.803Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="ey2EOlc-mLpBsOiK_CMa" version="16.6.2" type="github">
+<mxfile host="app.diagrams.net" modified="2022-03-02T19:21:57.794Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="gp6meY4-4KuAZWfRMe1c" version="16.6.2" type="github">
   <diagram id="SkxraVbUGuq4kk6GJNFl" name="Page-1">
-    <mxGraphModel dx="285" dy="278" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+    <mxGraphModel dx="342" dy="334" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -265,8 +265,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="D2aL-8vGZF4OzInYIoLL-82" value="&lt;font color=&quot;#000000&quot;&gt;Zero&lt;br&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#3333FF;" parent="1" vertex="1">
-          <mxGeometry x="830" y="580" width="30" height="30" as="geometry" />
+        <mxCell id="D2aL-8vGZF4OzInYIoLL-82" value="&lt;font color=&quot;#000000&quot;&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;Branch_condition&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#3333FF;" parent="1" vertex="1">
+          <mxGeometry x="790" y="580" width="70" height="30" as="geometry" />
         </mxCell>
         <mxCell id="D2aL-8vGZF4OzInYIoLL-83" value="&lt;font color=&quot;#000000&quot;&gt;ALU&lt;br&gt;result&lt;br&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#3333FF;" parent="1" vertex="1">
           <mxGeometry x="810" y="635" width="60" height="30" as="geometry" />
