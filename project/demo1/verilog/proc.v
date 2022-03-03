@@ -70,7 +70,9 @@ module proc (/*AUTOARG*/
                .ALU_Out(ALU_Out),
                .PCSrc(PCSrc),
                .reg_to_pc(reg_to_pc),
-               .Halt(Halt)                            //CHECK IF HALT IS IMPLEMENTED CORRECT HERE!
+               .Halt(Halt)                            //Halt will stop PC incrementing
+                                                      //In this case, next instruction after "Halt instruction" 
+                                                      //would not be accessed by processor
    );
 
    decode decode(
@@ -91,7 +93,8 @@ module proc (/*AUTOARG*/
                .ALUSrc(ALUSrc),
                .ALU_invA(ALU_invA),
                .ALU_invB(ALU_invB),
-               .ALU_Cin(ALU_Cin),                     //CHECK IF Cin IMPLEMENTED CORRECT??
+               .ALU_Cin(ALU_Cin),                     //Cin will be adding 1 to ~InAA in SUBI, to operate 2's complement
+                                                      //
                .Halt(Halt),                           //CHECK IF HALT IS IMPLEMENTED CORRECT HERE!
                .SIIC(SIIC),
                .RTI(RTI),
@@ -108,6 +111,7 @@ module proc (/*AUTOARG*/
                .ALU_Out(ALU_Out),
                .PCSrc(PCSrc),
                .ALU_Zero(ALU_Zero),                   //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
+                                                      //Seems we do not need ALU_Zero, therefore let it float
                .ALU_Ofl(ALU_Ofl),                     //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
                //Inputs
                .instruction(instruction),
@@ -115,7 +119,7 @@ module proc (/*AUTOARG*/
                .read1Data(read1Data),
                .read2Data(read2Data),
                .ALUSrc(ALUSrc),
-               .ALU_Cin(ALU_Cin),                     //CHECK IF Cin IMPLEMENTED CORRECT??
+               .ALU_Cin(ALU_Cin),                     //When doing subtraction, Cin would be need to implement 2's complement
                .ALUOp(ALUOp),
                .ALU_invA(ALU_invA),
                .ALU_invB(ALU_invB),
@@ -135,7 +139,14 @@ module proc (/*AUTOARG*/
                .ALU_Out(ALU_Out),
                .MemRead(MemRead),
                .MemWrite(MemWrite),
-               .Halt(Halt)          //CHECK IF HALT IS IMPLEMENTED CORRECT HERE!
+               .Halt(Halt)          //createdump will write whatever in the datamemory into dumpfile(which is the file will be generated when Halt)
+                                    //if (createdump) begin
+                                    //    mcd = $fopen("dumpfile", "w");
+                                    //    for (i=0; i<=largest+1; i=i+1) begin
+                                    //       $fdisplay(mcd,"%4h %2h", i, mem[i]);
+                                    //    end
+                                    //    $fclose(mcd);
+                                    //end
    );
 
    wb wb(

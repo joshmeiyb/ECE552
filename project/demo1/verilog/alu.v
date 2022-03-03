@@ -45,8 +45,8 @@ module alu (InA, InB, Cin, Oper, invA, invB, sign, Out, Zero, Ofl);
 
     wire [15:0] InAA; 
     wire [15:0] InBB;
-    assign InAA = invA ? ~InA : InA;
-    assign InBB = invB ? ~InB : InB;
+    assign InAA = invA ? ~InA : InA;    //if invA is 1'b1, all the bits of InA would be flipped, which is 1's complement
+    assign InBB = invB ? ~InB : InB;    //if invB is 1'b1, all the bits of InB would be flipped, which is 1's complement
 
     //Implementing the BTR instruction
     wire [15:0] InAA_reversed;
@@ -94,8 +94,25 @@ module alu (InA, InB, Cin, Oper, invA, invB, sign, Out, Zero, Ofl);
     assign SEQ = ~|cla_16b_out;                     //every bit of cla_16b_out equals zero, then SEQ will be asserted
     
     //Not sure if SLT is correct?
-    assign SLT = cla_16b_out[15] ^ Ofl;         //when cla_16b_out is positive(sign bit is 0), has a overflow
+    //assign SLT = cla_16b_out[15] ^ Ofl;         //when cla_16b_out is positive(sign bit is 0), has a overflow
                                                 //when cla_16b_out is negative(sign bit is 1), has no overflow
+                                                //
+                                                //Subtraction
+                                                //RS         Rt             Result              Sign-bit        Overflow        Rs less than Rt?        SLT
+                                                //positive - positive   =   positive/negative                   0                                  
+                                                //small - large         =   negative            1               0               Yes                     1
+                                                //large - small         =   positive            0               0               No                      0
+                                                //
+                                                //
+                                                //positive - negative   =   positive            0               1               No                      0
+                                                //negative - positive   =   negative            1               1               Yes                     1
+                                                //
+                                                //negative - negative   =   positive/negative                   0                                  
+                                                //small - large         =   positive            0               0               No                      0
+                                                //large - small         =   negative            1               0               Yes                     1
+                                                //
+    assign SLT = cla_16b_out[15];               //Based on the above information, SLT is 1 when sign-bit of cla_out is 1
+
     assign SLE = SEQ | SLT;
     assign SCO = c_out;
 

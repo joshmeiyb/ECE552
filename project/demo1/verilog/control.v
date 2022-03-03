@@ -205,7 +205,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
 		    // R format Instructions 				                     //
 		    // ----------------------------------------------------------//
 		    // It is characteristic that these instructions		         //
-		    // have RegDst = 2'b10 to get the Dest Reg in instr[4:2]	 //
+		    // have RegDst = 2'b10 to get the Dest Reg in instr[4:2], Rd would be the write address of regFile	 //
             // have RegWrite = 1'b1 as they are always writing regFile   //
 		    // have ALUSrc = 1'b0 (except unary operation like BTR)      //
 		    ///////////////////////////////////////////////////////////////
@@ -231,8 +231,12 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUOp = shared_opcode;  //ADD, SUB, XOR, ANDN            
                 ALU_invA = alu_inva;
                 ALU_invB = alu_invb;
-                ALU_Cin = four_mode[0]; //If LSB of instr[1:0] is 1, there will be a Cin
+                ALU_Cin = four_mode[0]; //If instr[0] is 1, there will be a Cin
+                                        //When instr[0] is 1, instruction would be SUB or ANDN
                                         //Cin does not affect AND operation
+                                        //Therefore, only SUB will accept the Cin = 1
+                                        //When doing subtraction, Cin required to be 1 to implement 2's complement
+                                        //A - B = A + (-B) = A + ((~InB) + 1)
                 ALUSrc = 1'b0;
                 RegWrite = 1'b1;
             end
@@ -256,10 +260,11 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
             //SEQ 11100 sss ttt ddd xx | if (Rs == Rt) then Rd <- 1 else Rd <- 0
             5'b11100: begin
                 RegDst = 2'b10;
-                ALUOp = 4'b1001;
+                ALUOp = 4'b1001;        //ALU_Out would be SEQ = ~|cla_16b_out
                 ALUSrc = 1'b0;
-                ALU_invB = 1'b1;
-                ALU_Cin = 1'b1;         //don't know if need Cin?
+                ALU_invB = 1'b1;        //1's complement implementation
+                ALU_Cin = 1'b1;         //2's complement implementation, adding 1'b1 to ~InB
+                                        //A - B = A + (-B) = A + ((~InB) + 1)
                 RegWrite = 1'b1;
             end
 
@@ -268,8 +273,9 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 RegDst = 2'b10;
                 ALUOp = 4'b1010;
                 ALUSrc = 1'b0;
-                ALU_invB = 1'b1;
-                ALU_Cin = 1'b1;         //don't know if need Cin?
+                ALU_invB = 1'b1;        //1's complement implementation
+                ALU_Cin = 1'b1;         //2's complement implementation, adding 1'b1 to ~InB
+                                        //A - B = A + (-B) = A + ((~InB) + 1)
                 RegWrite = 1'b1;
             end
 
@@ -278,15 +284,16 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 RegDst = 2'b10;
                 ALUOp = 4'b1011;
                 ALUSrc = 1'b0;
-                ALU_invB = 1'b1;
-                ALU_Cin = 1'b1;         //don't know if need Cin?
+                ALU_invB = 1'b1;        //1's complement implementation
+                ALU_Cin = 1'b1;         //2's complement implementation, adding 1'b1 to ~InB
+                                        //A - B = A + (-B) = A + ((~InB) + 1)
                 RegWrite = 1'b1;
             end
 
             //SCO 11111 sss ttt ddd xx | if (Rs + Rt) generates carry out
             //                           then Rd <- 1 else Rd <- 0
             5'b11111: begin
-                RegDst = 2'b10;
+                RegDst = 2'b10;         //write address would be instr[4:2], which is Rd's address
                 ALUOp = 4'b1100;
                 ALUSrc = 1'b0;
                 RegWrite = 1'b1;
