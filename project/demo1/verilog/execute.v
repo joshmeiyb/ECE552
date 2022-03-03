@@ -4,7 +4,11 @@
    Filename        : execute.v
    Description     : This is the overall module for the execute stage of the processor.
 */
-module execute (/* TODO: Add appropriate inputs/outputs for your execute stage here*/);
+module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
+               instruction, next_pc1, read1Data, read2Data, 
+               ALUSrc, ALU_Cin, ALUOp, ALU_invA, ALU_invB,
+               ALU_sign, extend_output, Branch, Jump);
+   /* TODO: Add appropriate inputs/outputs for your execute stage here*/
 
    // TODO: Your code here
    output [15:0] next_pc2;

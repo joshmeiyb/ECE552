@@ -4,11 +4,10 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, rst, pc, instruction, next_pc1, next_pc2, err, reg_to_pc, PCSrc, Halt);
+module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc, PCSrc, Halt);
    /* TODO: Add appropriate inputs/outputs for your fetch stage here*/
    
    input clk,rst;
-   input [15:0] pc;
    input [15:0] ALU_Out;
    input [15:0] next_pc2                           //calculated in execute stage, next_pc2 = next_pc1 + extend_output
    input reg_to_pc;

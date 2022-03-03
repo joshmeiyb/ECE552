@@ -8,7 +8,7 @@
 module decode (instruction, writeback_data, RegDst, clk, rst,
                read1Data, read2Data, extend_output, Jump, Branch, 
                ext_select, MemtoReg, ALUOp, ALU_invA, ALU_invB, 
-               ALU_Cin, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
+               ALU_Cin, MemRead, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
                Halt, err, SIIC, RTI);
    /* TODO: Add appropriate inputs/outputs for your decode stage here*/
    // TODO: Your code here
@@ -26,6 +26,7 @@ module decode (instruction, writeback_data, RegDst, clk, rst,
    output wire Jump;
    output wire Branch;
    output wire MemtoReg;            //control signal in wb stage
+   output wire MemRead;
    output wire MemWrite;
    output wire reg_to_pc;           //MUX select signal in fetch stage
    output wire pc_to_reg;           //MUX select signal in writeback stage
@@ -92,7 +93,8 @@ module decode (instruction, writeback_data, RegDst, clk, rst,
                   .ALUOp(ALUOp), 
                   .ALU_invA(ALU_invA), 
                   .ALU_invB(ALU_invB), 
-                  .ALU_Cin(ALU_Cin), 
+                  .ALU_Cin(ALU_Cin),
+                  .MemRead(MemRead),
                   .MemWrite(MemWrite), 
                   .ALUSrc(ALUSrc), 
                   .RegWrite(RegWrite), 

@@ -24,115 +24,129 @@ module proc (/*AUTOARG*/
    
    /* your code here -- should include instantiations of fetch, decode, execute, mem and wb modules */
 
-   /*             Fetch          Decode			Execute			Memory			Writeback	*/
+   /*             Fetch          Decode            Execute			   Memory			Writeback	*/
 
-   wire [15:0]    instruction,          
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
-   wire
+   wire           err_fetch,     err_decode;
+   wire           Halt;          //Halt                                             //Halt
+   wire                          SIIC;
+   wire                          RTI;
+   wire [15:0]    instruction;   //instruction     //instruction 
+   wire           next_pc1;                        //next_pc1                       //next_pc1
+   wire           next_pc2;                        //next_pc2
+   wire           ALU_Out;                         //ALU_Out         //ALU_Out      //ALU_Out
+   wire           PCSrc;                           //PCSrc
+   wire           reg_to_pc;     //reg_to_pc
+   wire                          pc_to_reg;                                         //pc_to_reg
+   wire                          read1Data;        //read1Data
+   wire                          read2Data;        //read2Data       //read2Data                          
+   wire                          extend_output;    //extend_output
+   wire                          Jump;             //Jump
+   wire                          Branch;           //Branch
+   wire                          MemtoReg;                                          //MemtoReg
+   wire                          MemWrite;                           //MemWrite
+   wire                          ALUOp;            //ALUOp                          
+   wire                          ALUSrc;           //ALUSrc
+   wire                          ALU_invA;         //ALU_invA
+   wire                          ALU_invB;         //ALU_invB
+   wire                          ALU_Cin;          //ALU_Cin
+   wire                          writeback_data;                                    //writeback_data
+   wire                          MemRead;                            //MemRead 
+   wire                                            ALU_Zero;
+   wire                                            ALU_Ofl;
+   wire                                            ALU_sign;
+   wire                                                              mem_read_data; //mem_read_data                         
+
+   assign err = err_fetch | err_decode;
 
    fetch fetch(
                //Outputs
-               .next_pc1(),
+               .next_pc1(next_pc1),
                .instruction(instruction),
-               .err(),
+               .err(err_fetch),
                //Inputs
-               .clk(),
-               .rst(), 
-               .pc(),
-               .next_pc2(),
-               .reg_to_pc(),
-               .PCSrc(),
-               .Halt()
+               .clk(clk),
+               .rst(rst), 
+               .next_pc2(next_pc2),
+               .ALU_Out(ALU_Out),
+               .PCSrc(PCSrc),
+               .reg_to_pc(reg_to_pc),
+               .Halt(Halt)                            //CHECK IF HALT IS IMPLEMENTED CORRECT HERE!
    );
 
    decode decode(
                //Decode Outputs
-               .read1Data(),
-               .read2Data(),
-               .err(),
-               .extend_output(),
+               .read1Data(read1Data),
+               .read2Data(read2Data),
+               .err(err_decode),
+               .extend_output(extend_output),
                //Control Outputs
-               .Jump(),
-               .Branch(),
-               .MemtoReg(),
-               .MemWrite(),
-               .reg_to_pc(),
-               .pc_to_reg(),
-               .ALUOp(),
-               .ALUSrc(),
-               .ALU_invA(),
-               .ALU_invB(),
-               .ALU_Cin(),
-               .Halt(),
-               .SIIC(),
-               .RTI(),
+               .Jump(Jump),
+               .Branch(Branch),
+               .MemtoReg(MemtoReg),                   //MUX select signal decide whether "mem_read_data" or "ALU_Out" to pass through
+               .MemRead(MemRead),
+               .MemWrite(MemWrite),
+               .reg_to_pc(reg_to_pc),
+               .pc_to_reg(pc_to_reg),
+               .ALUOp(ALUOp),
+               .ALUSrc(ALUSrc),
+               .ALU_invA(ALU_invA),
+               .ALU_invB(ALU_invB),
+               .ALU_Cin(ALU_Cin),                     //CHECK IF Cin IMPLEMENTED CORRECT??
+               .Halt(Halt),                           //CHECK IF HALT IS IMPLEMENTED CORRECT HERE!
+               .SIIC(SIIC),
+               .RTI(RTI),
                //Inputs
-               .instruction(),
-               .writeback_data(),
-               .clk(),
-               .rst()
+               .instruction(instruction),
+               .writeback_data(writeback_data),
+               .clk(clk),
+               .rst(rst)
    );
 
    execute execute(
                //Outputs
-               .next_pc2(),
-               .ALU_Out(),
-               .PCSrc(),
-               .ALU_Zero(),         //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
-               .ALU_Ofl(),          //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
+               .next_pc2(next_pc2),
+               .ALU_Out(ALU_Out),
+               .PCSrc(PCSrc),
+               .ALU_Zero(ALU_Zero),                   //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
+               .ALU_Ofl(ALU_Ofl),                     //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
                //Inputs
-               .instruction(),
-               .next_pc1(),
-               .read1Data(),
-               .read2Data(),
-               .ALUSrc(),
-               .ALU_Cin(),          //HOW TO CONNECT WITH OTHER MODULE?
-               .ALUOp(),
-               .ALU_invA(),
-               .ALU_invB(),
-               .ALU_sign(),
-               .extend_output(),
-               .Branch(),
-               .Jump()
+               .instruction(instruction),
+               .next_pc1(next_pc1),
+               .read1Data(read1Data),
+               .read2Data(read2Data),
+               .ALUSrc(ALUSrc),
+               .ALU_Cin(ALU_Cin),                     //CHECK IF Cin IMPLEMENTED CORRECT??
+               .ALUOp(ALUOp),
+               .ALU_invA(ALU_invA),
+               .ALU_invB(ALU_invB),
+               .ALU_sign(ALU_sign),                   //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
+               .extend_output(extend_output),
+               .Branch(Branch),
+               .Jump(Jump)
    );
    
    memory memory(
                //Outputs
-               .mem_read_data(),
+               .mem_read_data(mem_read_data),
                //Inputs
-               .clk(),
-               .rst(),
-               .mem_write_data(),
-               .ALU_Out(),
-               .MemRead(),
-               .MemWrite(),
-               .Halt()
+               .clk(clk),
+               .rst(rst),
+               .mem_write_data(read2Data), //This is directly connected with regFile read2Data output
+               .ALU_Out(ALU_Out),
+               .MemRead(MemRead),
+               .MemWrite(MemWrite),
+               .Halt(Halt)          //CHECK IF HALT IS IMPLEMENTED CORRECT HERE!
    );
 
    wb wb(
                //Outputs
-               .writeback_data(),
+               .writeback_data(writeback_data),
                //Inputs
-               .mem_read_data(),
-               .next_pc1(),
-               .ALU_Out(),
-               .MemtoReg(),
-               .pc_to_reg()
+               .mem_read_data(mem_read_data),
+               .next_pc1(next_pc1),
+               .ALU_Out(ALU_Out),
+               .MemtoReg(MemtoReg),
+               .pc_to_reg(pc_to_reg)
    );
 endmodule // proc
 // DUMMY LINE FOR REV CONTROL :0:

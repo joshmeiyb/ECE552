@@ -1,5 +1,5 @@
 module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg, 
-                ALUOp, ALU_invA, ALU_invB, ALU_Cin, MemWrite, ALUSrc, RegWrite,
+                ALUOp, ALU_invA, ALU_invB, ALU_Cin, MemRead, MemWrite, ALUSrc, RegWrite,
                 reg_to_pc, pc_to_reg, Halt, err, SIIC, RTI);
 
     input [4:0] Opcode;
@@ -15,6 +15,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
     output reg ALU_invA;
     output reg ALU_invB;
     output reg ALU_Cin;
+    output reg MemRead;
     output reg MemWrite;
     output reg ALUSrc;
     output reg RegWrite;
@@ -62,11 +63,11 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
         Jump = 1'b0;
         Branch = 1'b0;
         ext_select = 3'b000;
-        MemRead = 1'b0;
         MemtoReg = 1'b0;
         ALUOp = 4'b0000;
         MemWrite = 1'b0;
         ALUSrc = 1'b0;
+        MemRead = 1'b0;
         RegWrite = 1'b0;
         reg_to_pc = 1'b0;
         pc_to_reg = 1'b0;
@@ -179,6 +180,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
             //LD 10001 sss ddd iiiii | Rd <- Mem[Rs + I(sign ext.)]
             5'b10001: begin
                 RegDst = 2'b01;
+                MemRead = 1'b1;
                 MemtoReg = 1'b1;        //Read data memory, then write back to regFile
                 ALUOp = 4'b0100;        //ALU add
                 ALUSrc = 1'b1;
@@ -215,6 +217,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUOp = 4'b1000;
                 //Rs is read from read1Data which is instr[10:8],
                 //we don't care about ALUSrc, since we don't need to read Rd in instr[7:5]
+                //MemtoReg is default set to 1'b0, therefore ALU_Out will be written back to regFile
                 RegWrite = 1'b1;
             end
 
