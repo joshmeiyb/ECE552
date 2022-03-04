@@ -5,10 +5,10 @@
    Description     : This is the module for the overall decode stage of the processor.
 */
 
-module decode (instruction, writeback_data, RegDst, clk, rst,
+module decode (instruction, writeback_data, clk, rst,
                read1Data, read2Data, extend_output, Jump, Branch, 
-               ext_select, MemtoReg, ALUOp, ALU_invA, ALU_invB, 
-               ALU_Cin, MemRead, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
+               MemtoReg, ALUOp, ALU_invA, ALU_invB, ALU_Cin, 
+               MemRead, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
                Halt, err, SIIC, RTI);
    /* TODO: Add appropriate inputs/outputs for your decode stage here*/
    // TODO: Your code here
@@ -43,8 +43,8 @@ module decode (instruction, writeback_data, RegDst, clk, rst,
    assign err = control_err | regFile_err;
 
    //------------4:1 MUX write address selecting write registers-----------------//
-   wire [2:0] write_reg_addr;       //select the write back address of regFile
-   wire [2:0] RegDst;               //2-bit control signal for write_reg_addr
+   wire [2:0] write_reg_addr;       //3-bit control signal select the write back address of regFile
+   wire [1:0] RegDst;               //2-bit control signal for write_reg_addr
    assign write_reg_addr =    (RegDst == 2'b11) ?  3'h7 :                //write to R7, hard coded 3'b111
                               (RegDst == 2'b10) ?  instruction[4:2] :    //write to Rd, xxxxx sss ttt ddd xx, bit[4:2]
                               (RegDst == 2'b01) ?  instruction[7:5] :    //write to Rd, xxxxx sss ddd iiiii, bit[7:5], 5-bit immediate number
@@ -53,12 +53,12 @@ module decode (instruction, writeback_data, RegDst, clk, rst,
 
    //-------------------------Register File--------------------------------------//
    wire RegWrite;            //regFile write enable signal
-   regFile rf( 
-               //Outputs
-               .read1Data(read1Data), .read2Data(read2Data), .err(regFile_err),
-               //Inputs
-               .clk(clk), .rst(rst), .read1RegSel(instruction[10:8]), .read2RegSel(instruction[7:5]), 
-               .writeRegSel(write_reg_addr), .writeData(writeback_data), .writeEn(RegWrite));
+   regFile regFile( 
+                  //Outputs
+                  .read1Data(read1Data), .read2Data(read2Data), .err(regFile_err),
+                  //Inputs
+                  .clk(clk), .rst(rst), .read1RegSel(instruction[10:8]), .read2RegSel(instruction[7:5]), 
+                  .writeRegSel(write_reg_addr), .writeData(writeback_data), .writeEn(RegWrite));
    ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -69,8 +69,8 @@ module decode (instruction, writeback_data, RegDst, clk, rst,
    assign sign_ext_11bit = { {5{instruction[10]}}, instruction[10:0] };
    assign sign_ext_8bit = { {8{instruction[7]}}, instruction[7:0] };
    assign sign_ext_5bit = { {11{instruction[4]}}, instruction[4:0] };
-   assign zero_ext_8bit = { {8{1'b0}, instruction[7:0] };
-   assign zero_ext_5bit = { {11{1'b0}, instruction[4:0] };
+   assign zero_ext_8bit = { {8{1'b0}}, instruction[7:0] };
+   assign zero_ext_5bit = { {11{1'b0}}, instruction[4:0] };
    
    wire [2:0] ext_select; //select sign extend or zero extend
    assign extend_output =  (ext_select == 3'b000) ? sign_ext_5bit  :

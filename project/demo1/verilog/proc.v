@@ -31,30 +31,30 @@ module proc (/*AUTOARG*/
    wire                          SIIC;
    wire                          RTI;
    wire [15:0]    instruction;   //instruction     //instruction 
-   wire           next_pc1;                        //next_pc1                       //next_pc1
-   wire           next_pc2;                        //next_pc2
-   wire           ALU_Out;                         //ALU_Out         //ALU_Out      //ALU_Out
+   wire [15:0]    next_pc1;                        //next_pc1                       //next_pc1
+   wire [15:0]    next_pc2;                        //next_pc2
+   wire [15:0]    ALU_Out;                         //ALU_Out         //ALU_Out      //ALU_Out
    wire           PCSrc;                           //PCSrc
    wire           reg_to_pc;     //reg_to_pc
    wire                          pc_to_reg;                                         //pc_to_reg
-   wire                          read1Data;        //read1Data
-   wire                          read2Data;        //read2Data       //read2Data                          
-   wire                          extend_output;    //extend_output
+   wire [15:0]                   read1Data;        //read1Data
+   wire [15:0]                   read2Data;        //read2Data       //read2Data                          
+   wire [15:0]                   extend_output;    //extend_output
    wire                          Jump;             //Jump
    wire                          Branch;           //Branch
    wire                          MemtoReg;                                          //MemtoReg
    wire                          MemWrite;                           //MemWrite
-   wire                          ALUOp;            //ALUOp                          
+   wire [3:0]                    ALUOp;            //ALUOp                          
    wire                          ALUSrc;           //ALUSrc
    wire                          ALU_invA;         //ALU_invA
    wire                          ALU_invB;         //ALU_invB
    wire                          ALU_Cin;          //ALU_Cin
-   wire                          writeback_data;                                    //writeback_data
+   wire [15:0]                   writeback_data;                                    //writeback_data
    wire                          MemRead;                            //MemRead 
    wire                                            ALU_Zero;
    wire                                            ALU_Ofl;
    wire                                            ALU_sign;
-   wire                                                              mem_read_data; //mem_read_data                         
+   wire [15:0]                                                       mem_read_data; //mem_read_data                         
 
    assign err = err_fetch | err_decode;
 

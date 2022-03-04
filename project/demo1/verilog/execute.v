@@ -23,7 +23,7 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    input [15:0] read2Data;
    input ALUSrc;
    input ALU_Cin;
-   input ALUOp;
+   input [3:0] ALUOp;
    input ALU_invA, ALU_invB;
    input ALU_sign;
    input [15:0] extend_output;      //5:1 extend MUX output at decode stage

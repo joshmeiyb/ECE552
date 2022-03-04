@@ -93,25 +93,34 @@ module alu (InA, InB, Cin, Oper, invA, invB, sign, Out, Zero, Ofl);
     
     assign SEQ = ~|cla_16b_out;                     //every bit of cla_16b_out equals zero, then SEQ will be asserted
     
-    //Not sure if SLT is correct?
-    //assign SLT = cla_16b_out[15] ^ Ofl;         //when cla_16b_out is positive(sign bit is 0), has a overflow
+    //SLT checked
+    wire Ofl_SLT;   
+    assign Ofl_SLT = ( (InAA[15] == InBB[15]) & (InAA[15] != cla_16b_out[15]) );
+    //NOT SURE WHY I NEED TO IMPLEMENT SPECIFIC "Ofl_SLT" FOR SLT INSTRUCTION AGAIN
+    //BUT THIS HELPED ME PASSED THE RANDOM TEST!!!
+
+    assign SLT = cla_16b_out[15] ^ Ofl_SLT;     //when cla_16b_out is positive(sign bit is 0), has a overflow
                                                 //when cla_16b_out is negative(sign bit is 1), has no overflow
                                                 //
                                                 //Subtraction
-                                                //RS         Rt             Result              Sign-bit        Overflow        Rs less than Rt?        SLT
-                                                //positive - positive   =   positive/negative                   0                                  
-                                                //small - large         =   negative            1               0               Yes                     1
-                                                //large - small         =   positive            0               0               No                      0
+                                                //Case              RS         Rt             Result              Sign-bit        Overflow        Rs less than Rt?        SLT
+                                                //1                 positive - positive   =   positive/negative                   0                                  
+                                                //1.1               small - large         =   negative            1               0               Yes                     1
+                                                //1.2               large - small         =   positive            0               0               No                      0
                                                 //
                                                 //
-                                                //positive - negative   =   positive            0               1               No                      0
-                                                //negative - positive   =   negative            1               1               Yes                     1
+                                                //2                 positive - negative   =   positive            0               1               No                      0
+                                                //3                 negative - positive   =   negative            1               1               Yes                     1
+                                                //                                                                (in random case, if we have an overflow, sign bit would flip,
+                                                //                                                                 if the no.15 bit is different from the MSB)
+                                                //                                                                                
                                                 //
-                                                //negative - negative   =   positive/negative                   0                                  
-                                                //small - large         =   positive            0               0               No                      0
-                                                //large - small         =   negative            1               0               Yes                     1
+                                                //4                 negative - negative   =   positive/negative                   0                                  
+                                                //4.1               small - large         =   positive            0               0               No                      0
+                                                //4.2               large - small         =   negative            1               0               Yes                     1
                                                 //
-    assign SLT = cla_16b_out[15];               //Based on the above information, SLT is 1 when sign-bit of cla_out is 1
+    //assign SLT = cla_16b_out[15];             //Proved to be wrong!
+    
 
     assign SLE = SEQ | SLT;
     assign SCO = c_out;
