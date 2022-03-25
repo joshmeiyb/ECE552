@@ -1,0 +1,8 @@
+          // Write your assembly program for Problem 2 (a) #2 here.
+          
+0000 c201         lbi r2, 1
+0002 c401         lbi r4, 1
+0004 4a21         subi r1, r2, 1
+0006 6902         bnez r1, 2
+0008 4c62         subi r3, r4, 2
+000a da66         xor  r1, r2, r3 //target

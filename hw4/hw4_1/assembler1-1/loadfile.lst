@@ -1,0 +1,11 @@
+          // Write your assembly program for Problem 1 (a) #1 here.
+          
+          //Test seq instruction
+          //11100 sss ttt ddd xx | SEQ Rd, Rs, Rt | if (Rs == Rt) then Rd <- 1 else Rd <- 0
+          
+0000 c101 lbi r1, 1
+0002 c201 lbi r2, 1
+0004 c302 lbi r3, 2
+0006 d950 add r4, r1, r2
+0008 e394 seq r5, r3, r4
+000a 0000 halt

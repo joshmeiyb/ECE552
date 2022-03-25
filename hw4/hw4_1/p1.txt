@@ -1,1 +1,19 @@
 // Write your answer to Problem 1 (b) here
+
+//create MEM-EX forwarding and EX-EX forwarding
+
+p1-1: 
+I create a RAW hazard for $r4, the forwarding take place in EX-EX.
+Since $r4 will be available at the execution stage of add instruction, 
+$r4 will be read at the execution stage of seq instruction.
+
+p1-2:
+I create a RAW hazard for $r2, the forwarding take place in MEM-EX.
+Since $r2 will be available at the memory stage of ld instruction,
+$r2 will be available at execution stage of seq instruction
+
+p1-3:
+I create RAW hazards for $r2 and $r3, the forwarding take place in both EX-EX and MEM-EX.
+Since $r3 will be available at the execution stage of sub instruction,
+$r2 will be available at the memory stage of ld instruction,
+$r2 and $r3 will be available at execution stage of seq instruction.

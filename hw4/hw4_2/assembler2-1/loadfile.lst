@@ -1,0 +1,9 @@
+          // Write your assembly program for Problem 2 (a) #1 here.
+          
+0000 c201         lbi r2, 1
+0002 c401         lbi r4, 1
+0004 4221         addi r1, r2, 1
+0006 6102         beqz r1, 2
+0008 4462         addi r3, r4, 2
+000a da66         xor  r1, r2, r3 //target
+          

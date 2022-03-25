@@ -1,1 +1,45 @@
 // Write your answer to Problem 2 (b) and (c) here
+
+b) Write an explanation of your programs and how branch prediction helps in p2.txt.
+
+In my program p2-1, when the first instruction addi executes, r1 gets the new data 2.
+In second instruction, beqz is a branch instruction, in this instruction:
+
+if r1 equals 0, 
+    branch taken, then we will jump to the address specified by target, 
+    where the instruction will be "xor  r1, r2, r3"
+else
+    branch is not taken, the next instruction "addi r3, r4, 2" will be executed
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+In my program p2-2, when the first instruction subi executes, r1 gets the new data 0.
+In second instruction, beqz is a branch instruction, in this instruction:
+
+if r1 equals 0, 
+    branch taken, then we will jump to the address specified by target, 
+    where the instruction will be "xor   r1, r2, r3"
+else
+    branch is not taken, the next instruction "subi r3, r4, 2" will be executed
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+When considering implementing the branch instruction in hardware, there are 3 cases
+    1. No branch prediction is considered
+        In this case, we have to wait until the branch is solved, there will be stalls in 
+        pipeline flops for the next instruction, which is bad for processor's CPI.
+    2. Use a branch-taken prediction
+        In this case, if we proceed the branch instruction and eventually it is taken,
+        we execute the target instruction. But if the branch is not taken, we have to flush
+        the pipeline and execute the instruction next to the branch instruction. But the tradeoff
+        is some clock cycles is wasted.
+    3. Use a branch-not-taken prediction
+        In this case, like the second case, we will have clock cycles wasted when branch is taken.
+
+In general speaking, the branch prediction, no matter it is taken or not-taken, helps optimize 
+the performance, although some clock cycles will be wasted.
+
+
+c) Will branch prediction always take only 1 cycle? Write your answer in p2.txt.
+
+No, it depends on specific hardware design and ISA design.

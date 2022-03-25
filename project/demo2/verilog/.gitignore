@@ -1,0 +1,13 @@
+clkrst.v
+Vcheck.class
+VerFile.class
+cla_4b.v
+cla_16b.v
+dff.v
+fullAdder_1b.v
+nand2.v
+reg16.v
+regFile.v
+shifter.v
+xor.v
+
