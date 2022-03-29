@@ -214,13 +214,13 @@
                 .Jump(Jump_p2)
     );
 
-    dff EXMEM[:0] ( .clk(clk), .rst(rst | PCSrc),
+    dff EXMEM[42:0] ( .clk(clk), .rst(rst | PCSrc),
         .d({
-            next_pc1_p2,
-            ALU_Out,
+            next_pc1_p2,        //16-bit
+            ALU_Out,            
             pc_to_reg_p2,
-            read2Data_p2,
-            write_reg_addr_p2,
+            read2Data_p2,       //16-bit
+            write_reg_addr_p2,  //3-bit
             MemtoReg_p2,
             MemWrite_p2,
             RegWrite_p2,
@@ -264,15 +264,15 @@
                                         //end
     );
 
-    dff MEMWB[:0] ( .clk(clk), .rst(rst | PCSrc),
+    dff MEMWB[39:0] ( .clk(clk), .rst(rst | PCSrc),
         .d({
-            next_pc1_p3,
+            next_pc1_p3,        //16-bit
             ALU_Out_p3,
             pc_to_reg_p3,
-            write_reg_addr_p3,
+            write_reg_addr_p3,  //3-bit
             MemtoReg_p3,
             RegWrite_p3,
-            mem_read_data,
+            mem_read_data,      //16-bit
             SIIC_p3
         }),   
         .q({
