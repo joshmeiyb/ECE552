@@ -420,6 +420,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
             //siic 00010                | produce IllegalOp exception. Must provide one source register.
             5'b00010: begin
             //extra credit, implement later
+            
             end
 
             //NOP/RTI 00011 xxxxxxxxxxx | PC <- EPC
