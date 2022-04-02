@@ -1,4 +1,4 @@
-//<<<<<<< HEAD
+<<<<<<< HEAD
         /* $Author: sinclair $ */
         /* $LastChangedDate: 2020-02-09 17:03:45 -0600 (Sun, 09 Feb 2020) $ */
         /* $Rev: 46 $ */
@@ -83,6 +83,11 @@
         
         //There will be a MEM/EX forwarding for mem_read_data, mem_read_data will be input to EX stage
         wire [15:0]                                                        mem_read_data,     mem_read_data_MEMWB;                         
+
+        //wire IFID_en;
+        //wire IDEX_en;
+        //wire EXMEM_en;
+        //wire MEMWB_en;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /*
         p1: IFID
@@ -93,16 +98,10 @@
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        //hazard_detection_unit & forwarding unit
+
+        //hazard_detection_unit
         wire stall;
-        wire writeEn;
-        wire R_format;
-        wire I_format;
-        
-        //-------------------------------------//
-
-
-
+        wire enablePC;
 
         assign err = err_fetch | err_decode;
 
@@ -118,6 +117,7 @@
                 .next_pc2(next_pc2),
                 .ALU_Out(ALU_Out),
                 .PCSrc(PCSrc),
+<<<<<<< HEAD
                 .reg_to_pc(reg_to_pc_IDEX),
                 .Halt(Halt_MEMWB),                             //Halt will stop PC incrementing
                                                                 //In this case, next instruction after "Halt instruction" 
@@ -139,8 +139,10 @@
                 .next_pc1_IFID(next_pc1_IFID)          
         );
 
-        
+        wire R_format;
+        wire I_format;
         decode decode(
+
                 //Decode Outputs
                 .read1Data(read1Data),
                 .read2Data(read2Data),
@@ -150,15 +152,23 @@
                 .RegisterRd_out(RegisterRd),
                 .RegisterRs_out(RegisterRs),
                 .RegisterRt_out(RegisterRt),
+
+                .write_reg_addr_out(write_reg_addr),
+
                 //Control Outputs
                 .Jump(Jump),
                 .Branch(Branch),
                 .MemtoReg(MemtoReg),                   //MUX select signal decide whether "mem_read_data" or "ALU_Out" to pass through
 
+                
                 .MemRead(MemRead),
 
                 .MemWrite(MemWrite),            
                 .RegWrite_out(RegWrite),        
+
+                //.MemRead(MemRead),
+                .MemWrite(MemWrite),
+                .RegWrite_out(RegWrite)
 
                 .reg_to_pc(reg_to_pc),
                 .pc_to_reg(pc_to_reg),
@@ -171,6 +181,7 @@
                 .Halt(Halt),                            //CHECK IF HALT IS IMPLEMENTED CORRECT HERE!
                 .SIIC(SIIC),
                 .RTI(RTI),
+
                 .R_format(R_format),
                 .I_format(I_format),
                 //Inputs
@@ -180,6 +191,21 @@
                 .rst(rst),
                 .RegWrite_in(RegWrite_MEMWB & (~PCSrc)),           //When branch-taken, PCSrc goes high, set RegWrite to zero, stop writing anything into regFile
                 .RegisterRd_in(RegisterRd_MEMWB)
+        );
+
+    
+        hazard_detection_unit HDU(
+                .R_format(R_format),
+                .I_format(I_format),
+                .writeRegSel_IDEX(RegisterRd_IDEX),
+                .writeRegSel_EXMEM(RegisterRd_EXMEM),
+                .read1RegSel_IFID(instruction_IFID[10:8]),
+                .read2RegSel_IFID(instruction_IFID[7:5]),
+                .RegWrite_IDEX(RegWrite_IDEX),
+                .RegWrite_EXMEM(RegWrite_EXMEM),
+                .branch_taken(PCSrc),
+                .stall(stall),
+                .writeEn(writeEn)
         );
 
         IDEX IDEX(
@@ -242,7 +268,12 @@
         );
         
 
-        execute execute(
+
+
+
+
+    execute execute(
+
                 //Outputs
                 .next_pc2(next_pc2),    //Don't need pipeline for this signal?
                 .ALU_Out(ALU_Out),
@@ -264,25 +295,18 @@
                 .extend_output(extend_output_IDEX),
                 .Branch(Branch_IDEX),
                 .Jump(Jump_IDEX),
-                //--------------hazard detection unit & forwarding -------//
-                .I_format(I_format),
-                .R_format(R_format),
-                .RegisterRd_IDEX(RegisterRd_IDEX),
-                .RegisterRd_EXMEM(RegisterRd_EXMEM),
-                .RegisterRs(RegisterRs),
-                .RegisterRt(RegisterRt),
-                .RegWrite_IDEX(RegWrite_IDEX),
-                .RegWrite_EXMEM(RegWrite_EXMEM),
-                //---------------------------------------------------------//
-                //.RegWrite_EXMEM(RegWrite_EXMEM),
+                //---------------forwarding-----------------//
                 .RegWrite_MEMWB(RegWrite_MEMWB), 
-                //.RegisterRd_EXMEM(RegisterRd_EXMEM),
+                .RegWrite_EXMEM(RegWrite_EXMEM),
+                .RegisterRd_EXMEM(RegisterRd_EXMEM), 
                 .RegisterRd_MEMWB(RegisterRd_MEMWB),
                 .RegisterRs_IDEX(RegisterRs_IDEX), 
                 .RegisterRt_IDEX(RegisterRt_IDEX),
+                .I_format(I_format),
+                .R_format(R_format),
                 .ALU_Out_EXMEM(ALU_Out_EXMEM),
                 .writeback_data(writeback_data)
-                //---------------------------------------------------------//
+                //---------------forwarding-----------------//
     );
 
     EXMEM EXMEM(
@@ -315,6 +339,10 @@
         .Halt_EXMEM(Halt_EXMEM),
         .SIIC_EXMEM(SIIC_EXMEM),
         .RTI_EXMEM(RTI_EXMEM)
+
+    );
+
+
     );
     
     memory memory(
@@ -330,7 +358,8 @@
                 
                 .MemWrite(MemWrite_EXMEM & (~PCSrc)),        //When branch-taken, PCSrc goes high, set MemWrite to zero, stop writing anything into data memory
                 
-                .Halt(Halt_EXMEM)       //createdump will write whatever in the datamemory into dumpfile(which is the file will be generated when Halt)
+                .Halt(Halt_EXMEM)          //createdump will write whatever in the datamemory into dumpfile(which is the file will be generated when Halt)
+
                                         //if (createdump) begin
                                         //    mcd = $fopen("dumpfile", "w");
                                         //    for (i=0; i<=largest+1; i=i+1) begin
@@ -339,6 +368,7 @@
                                         //    $fclose(mcd);
                                         //end
     );
+
 
     MEMWB MEMWB(
         //inputs
@@ -364,6 +394,7 @@
         .mem_read_data_MEMWB(mem_read_data_MEMWB),
         .Halt_MEMWB(Halt_MEMWB),
         .SIIC_MEMWB(SIIC_MEMWB)
+
     );
 
     wb wb(
@@ -375,6 +406,12 @@
                 .ALU_Out(ALU_Out_MEMWB),
                 .MemtoReg(MemtoReg_MEMWB),
                 .pc_to_reg(pc_to_reg_MEMWB)
+                .mem_read_data(mem_read_data),
+                .next_pc1(next_pc1_p4),
+                .ALU_Out(ALU_Out),
+                .MemtoReg(MemtoReg_p4),
+                .pc_to_reg(pc_to_reg)
+
     );
     endmodule // proc
     // DUMMY LINE FOR REV CONTROL :0:

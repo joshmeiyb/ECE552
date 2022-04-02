@@ -1,6 +1,7 @@
 module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg, 
                 ALUOp, ALU_invA, ALU_invB, ALU_Cin, MemRead, MemWrite, ALUSrc, RegWrite,
-                reg_to_pc, pc_to_reg, Halt, err, SIIC, RTI);
+                reg_to_pc, pc_to_reg, Halt, err, SIIC, RTI
+                R_format, I_format);
 
     input [4:0] Opcode;
     input [1:0] four_mode; //instruction[1:0], selecting mode
@@ -25,6 +26,8 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
     output reg err;
     output reg SIIC;
     output reg RTI;
+    output reg R_format;
+    output reg I_format;
 
     reg [3:0] shared_opcode; //ADD, SUB, XOR, ANDN
     reg alu_inva, alu_invb; //intermediate values for ALU_invA, ALU_invB
@@ -78,6 +81,8 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
         ALU_invA = 1'b0;
         ALU_invB = 1'b0;
         ALU_Cin = 1'b0;
+        R_format = 1'b0;
+        I_format = 1'b0;
 
         case (Opcode)
 
@@ -104,6 +109,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUSrc = 1'b1;          //use immediate as another operand in ALU
                 ext_select = 3'b000;    //sign_ext_5bit
                 RegWrite = 1'b1;        //RegisterFIle writing enable signal
+                I_format = 1'b1;
             end
 
             //SUBI 01001 sss ddd iiiii | Rd <- I(sign ext.) - Rs
@@ -115,6 +121,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUSrc = 1'b1;
                 ext_select = 3'b000;    //sign_ext_5bit
                 RegWrite = 1'b1;
+                I_format = 1'b1;
             end
 
             //XORI 01010 sss ddd iiiii | Rd <- Rs XOR I(zero ext.)
@@ -124,6 +131,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUSrc = 1'b1;
                 ext_select = 3'b011;    //zero_ext_5bit
                 RegWrite = 1'b1;
+                I_format = 1'b1;
             end
 
             //ANDNI 01011 sss ddd iiiii | Rd <- Rs AND ~I(zero ext.)
@@ -134,6 +142,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUSrc = 1'b1;
                 ext_select = 3'b011;    //zero_ext_5bit
                 RegWrite = 1'b1;
+                I_format = 1'b1;
             end
 
             //ROLI 10100 sss ddd iiiii | Rd <- Rs <<(rotate) I(lowest 4 bits)
@@ -143,6 +152,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUSrc = 1'b1;
                 ext_select = 3'b011;    //zero_ext_5bit, this will be the ShAmt into shifter, which is already set to lowest 4bit of ALU InB
                 RegWrite = 1'b1;
+                I_format = 1'b1;
             end
 
             //SLLI 10101 sss ddd iiiii | Rd <- Rs << I(lowest 4 bits)
@@ -152,6 +162,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUSrc = 1'b1;
                 ext_select = 3'b011;    //zero_ext_5bit
                 RegWrite = 1'b1;
+                I_format = 1'b1;
             end
 
             //RORI 10110 sss ddd iiiii | Rd <- Rs >>(rotate) I(lowest 4 bits)
@@ -160,7 +171,8 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUOp = 4'b0010;        //ALU rotate right
                 ALUSrc = 1'b1;
                 ext_select = 3'b011;    //zero_ext_5bit
-                RegWrite = 1'b1; 
+                RegWrite = 1'b1;
+                I_format = 1'b1; 
             end
             
             //SRLI 10111 sss ddd iiiii | Rd <- Rs >> I(lowest 4 bits)
@@ -169,7 +181,8 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUOp = 4'b0011;        //ALU shift right logical, ignore sign bit
                 ALUSrc = 1'b1;
                 ext_select = 3'b011;    //zero_ext_5bit
-                RegWrite = 1'b1; 
+                RegWrite = 1'b1;
+                I_format = 1'b1;
             end
 
             //ST 10000 sss ddd iiiii | Mem[Rs + I(sign ext.)] <- Rd
@@ -179,6 +192,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUSrc = 1'b1;
                 ext_select = 3'b000;    //sign_ext_5bit
                 MemWrite = 1'b1;
+                I_format = 1'b1;
             end
 
             //LD 10001 sss ddd iiiii | Rd <- Mem[Rs + I(sign ext.)]
@@ -190,6 +204,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUSrc = 1'b1;
                 ext_select = 3'b000;    //sign_ext_5bit
                 RegWrite = 1'b1;
+                I_format = 1'b1;
             end
 
             //STU 10011 sss ddd iiiii | Mem[Rs + I(sign ext.)] <- Rd
@@ -203,6 +218,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ext_select = 3'b000;    //sign_ext_5bit
                 MemWrite = 1'b1;
                 RegWrite = 1'b1;
+                I_format = 1'b1;
             end
 
             ///////////////////////////////////////////////////////////////
@@ -223,6 +239,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 //we don't care about ALUSrc, since we don't need to read Rd in instr[7:5]
                 //MemtoReg is default set to 1'b0, therefore ALU_Out will be written back to regFile
                 RegWrite = 1'b1;
+                R_format = 1'b1;
             end
 
             //ALU Control differentiates by instr[1:0]
@@ -249,6 +266,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                                         //A - B = A + (-B) = A + ((~InB) + 1)
                 ALUSrc = 1'b0;
                 RegWrite = 1'b1;
+                R_format = 1'b1;
             end
 
             //ROL 11010 sss ttt ddd 00 | Rd <- Rs << (rotate) Rt (lowest 4 bits)
@@ -265,6 +283,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 //0011    //Shift right logical
                 ALUSrc = 1'b0;
                 RegWrite = 1'b1;
+                R_format = 1'b1;
             end
 
             //SEQ 11100 sss ttt ddd xx | if (Rs == Rt) then Rd <- 1 else Rd <- 0
@@ -276,6 +295,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALU_Cin = 1'b1;         //2's complement implementation, adding 1'b1 to ~InB
                                         //A - B = A + (-B) = A + ((~InB) + 1)
                 RegWrite = 1'b1;
+                R_format = 1'b1;
             end
 
             //SLT 11101 sss ttt ddd xx | if (Rs < Rt) then Rd <- 1 else Rd <- 0
@@ -287,6 +307,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALU_Cin = 1'b1;         //2's complement implementation, adding 1'b1 to ~InB
                                         //A - B = A + (-B) = A + ((~InB) + 1)
                 RegWrite = 1'b1;
+                R_format = 1'b1;
             end
 
             //SLE 11110 sss ttt ddd xx | if (Rs <= Rt) then Rd <- 1 else Rd <- 0
@@ -298,6 +319,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALU_Cin = 1'b1;         //2's complement implementation, adding 1'b1 to ~InB
                                         //A - B = A + (-B) = A + ((~InB) + 1)
                 RegWrite = 1'b1;
+                R_format = 1'b1;
             end
 
             //SCO 11111 sss ttt ddd xx | if (Rs + Rt) generates carry out
@@ -307,6 +329,8 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ALUOp = 4'b1100;
                 ALUSrc = 1'b0;
                 RegWrite = 1'b1;
+                R_format = 1'b1;
+
             end
             
             ///////////////////////////////////////////////////////////////

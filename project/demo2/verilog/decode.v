@@ -6,8 +6,8 @@
 */
 
 module decode (instruction, writeback_data, clk, rst,
-               RegWrite_in, write_reg_addr_in,
-               RegWrite_out, write_reg_addr_out,
+               RegWrite_in, RegisterRd_in,
+               RegWrite_out, RegisterRd_out,
                read1Data, read2Data, extend_output, Jump, Branch, 
                MemtoReg, ALUOp, ALU_invA, ALU_invB, ALU_Cin, 
                MemRead, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
@@ -20,14 +20,17 @@ module decode (instruction, writeback_data, clk, rst,
    input [15:0] writeback_data;
    input clk, rst;
    input wire RegWrite_in;                //Edited at pipeline design
-   input wire [2:0] write_reg_addr_in;    //Edited at pipeline design
+   input wire [2:0] RegisterRd_in;    //Edited at pipeline design
 
    
    //Decode Outputs
    output wire [15:0] read1Data, read2Data;
    output wire err;
    output wire [15:0] extend_output;
-   output wire [2:0] write_reg_addr_out;     //Edited at pipeline design
+   output wire [2:0] RegisterRd_out;     //Edited at pipeline design
+   output wire [2:0] RegisterRs_out;
+   output wire [2:0] RegisterRt_out;
+
    //Control Outputs
    output wire Jump;
    output wire Branch;
@@ -50,16 +53,19 @@ module decode (instruction, writeback_data, clk, rst,
    assign err = control_err | regFile_err;
 
    //------------4:1 MUX write address selecting write registers-----------------//
-   //wire [2:0] write_reg_addr;       //3-bit control signal select the write back address of regFile
-   wire [1:0] RegDst;               //2-bit control signal for write_reg_addr
+   //wire [2:0] RegisterRd;       //3-bit control signal select the write back address of regFile
+   wire [1:0] RegDst;               //2-bit control signal for RegisterRd
    
    //Edited at pipeline design
-   assign write_reg_addr_out =      (RegDst == 2'b11) ?  3'h7 :                //write to R7, hard coded 3'b111
+   assign RegisterRd_out =      (RegDst == 2'b11) ?  3'h7 :                //write to R7, hard coded 3'b111
                                     (RegDst == 2'b10) ?  instruction[4:2] :    //write to Rd, xxxxx sss ttt ddd xx, bit[4:2]
                                     (RegDst == 2'b01) ?  instruction[7:5] :    //write to Rd, xxxxx sss ddd iiiii, bit[7:5], 5-bit immediate number
                                                          instruction[10:8];    //write to Rs, bit[10:8]
    ////////////////////////////////////////////////////////////////////////////////
 
+   assign RegisterRs_out = instruction[10:8];
+   assign RegisterRt_out = instruction[7:5];
+   
    //-------------------------Register File--------------------------------------//
    
    //wire RegWrite;            //regFile write enable signal
@@ -72,7 +78,7 @@ module decode (instruction, writeback_data, clk, rst,
                            .read1Data(read1Data), .read2Data(read2Data), .err(regFile_err),
                            //Inputs
                            .clk(clk), .rst(rst), .read1RegSel(instruction[10:8]), .read2RegSel(instruction[7:5]), 
-                           .writeRegSel(write_reg_addr_in), .writeData(writeback_data), .writeEn(RegWrite_in)); //Edited at pipeline design
+                           .writeRegSel(RegisterRd_in), .writeData(writeback_data), .writeEn(RegWrite_in)); //Edited at pipeline design
    ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -117,7 +123,10 @@ module decode (instruction, writeback_data, clk, rst,
                   .Halt(Halt), 
                   .err(control_err),
                   .SIIC(SIIC),
-                  .RTI(RTI)
+                  .RTI(RTI),
+                  
+                  .R_format(R_format), //update it in control!!!!!!!!!1
+                  .I_format(I_format),
                   );
 
 endmodule

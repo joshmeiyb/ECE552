@@ -4,7 +4,8 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc, PCSrc, Halt);
+module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc, PCSrc, Halt
+               stall, writeEn);
    /* TODO: Add appropriate inputs/outputs for your fetch stage here*/
    
    input clk,rst;
@@ -14,6 +15,9 @@ module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc
    input reg_to_pc;
    input PCSrc;
    input Halt;
+
+   input stall;
+   input writeEn;
 
    output [15:0] next_pc1;
    output [15:0] instruction;
@@ -33,9 +37,20 @@ module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc
    assign pc_Halt = Halt ? pcCurrent : new_pc;           //Halt signal decides if the instruction fetch need to stop
                                                          //pc_Halt is the input of PC_reg
 
-   dff PC_reg[15:0](.q(pcCurrent), .d(pc_Halt), .clk(clk), .rst(rst));
+   //dff PC_reg[15:0](.q(pcCurrent), .d(pc_Halt), .clk(clk), .rst(rst));
+   reg PC_reg (
+        .clk(clk), 
+        .rst(rst), 
+        .write(writeEn), 
+        .wdata(pc_Halt), 
+        .rdata(pcCurrent)
+   );
 
-   cla_16b PC_addr_adder1(.sum(next_pc1), .c_out(err), .a(pcCurrent), .b(16'h0002), .c_in(1'b0)); 
+   //if stall, stop PC from incrementing
+   wire PC_inc;
+   assign PC_inc = stall ? 16'h0000 : 16'h0002; 
+
+   cla_16b PC_addr_adder1(.sum(next_pc1), .c_out(err), .a(pcCurrent), .b(PC_inc), .c_in(1'b0)); 
    //c_out is overflow port, when there is an overflow error, an error will be output
 
    memory2c Instruction_Memory(.data_out(instruction), .data_in(16'h0000), .addr(pcCurrent), 

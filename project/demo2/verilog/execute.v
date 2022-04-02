@@ -7,7 +7,23 @@
 module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
                instruction, next_pc1, read1Data, read2Data, 
                ALUSrc, ALU_Cin, ALUOp, ALU_invA, ALU_invB,
-               ALU_sign, extend_output, Branch, Jump);
+               ALU_sign, extend_output, Branch, Jump, 
+               stall, writeEn,
+               //--------------hazard detection unit & forwarding -------//
+               I_format, R_format,
+               RegisterRd_IDEX, RegisterRd_EXMEM
+               RegisterRs, RegisterRt,
+               RegWrite_IDEX, RegWrite_EXMEM,
+               //---------------------------------------------------------//
+               //RegWrite_EXMEM, 
+               RegWrite_MEMWB, 
+               //RegisterRd_EXMEM, 
+               RegisterRd_MEMWB,
+               RegisterRs_IDEX, 
+               RegisterRt_IDEX,
+               ALU_Out_EXMEM, writeback_data
+               //---------------------------------------------------------//
+               );
    /* TODO: Add appropriate inputs/outputs for your execute stage here*/
 
    // TODO: Your code here
@@ -32,6 +48,39 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    input Branch;
    input Jump;
 
+
+   hazard_detection_unit HDU(
+      //inputs
+      .R_format(R_format),
+      .I_format(I_format),
+      .writeRegSel_IDEX(RegisterRd_IDEX),
+      .writeRegSel_EXMEM(RegisterRd_EXMEM),     
+      .read1RegSel_IFID(RegisterRs),      //RegisterRs_IFID
+      .read2RegSel_IFID(RegisterRt),      //RegisterRt_IFID
+      .RegWrite_IDEX(RegWrite_IDEX),
+      .RegWrite_EXMEM(RegWrite_EXMEM),
+      //.branch_taken(PCSrc),
+      //outputs
+      .stall(stall),
+      .writeEn(writeEn)
+   );
+
+   wire forward_EX_to_EX, forward_MEM_to_EX;
+
+   forwarding_unit FU(
+      //inputs
+      .RegWrite_EXMEM(RegWrite_EXMEM),
+      .RegWrite_MEMWB(RegWrite_MEMWB),
+      .RegisterRd_EXMEM(RegisterRd_EXMEM),
+      .RegisterRd_MEMWB(RegisterRd_MEMWB),
+      .RegisterRs_IDEX(RegisterRs_IDEX),
+      .RegisterRt_IDEX(RegisterRt_IDEX),
+      .I_format(I_format),
+      .R_format(R_format),
+      //outputs
+      .forwardA(forwardA),
+      .forwardB(forwardB)
+   );
 
    //wire [15:0]addr_offset;
    //assign addr_offset = {extend_output[14:0], 1'b0}; //shift left 1 bit
@@ -64,11 +113,30 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
       endcase
    end
 
+   wire [1:0] forwardA, forwardB;
+   wire [15:0] InA_forward, InB_forward;
+   assign InA_forward = (forwardA == 2'b10) ? ALU_Out_EXMEM :
+                        (forwardA == 2'b01) ? writeback_data :
+                        read1Data;
+                        
+   assign InB_forward = (forwardB == 2'b10) ? ALU_Out_EXMEM :
+                        (forwardB == 2'b01) ? writeback_data :
+                        read2Data;
+
+   alu alu(.InA(InA_forward), .InB(InB_forward), .Cin(ALU_Cin), 
+   .Oper(ALUOp), .invA(ALU_invA), .invB(ALU_invB), .sign(ALU_sign),
+   .Out(ALU_Out), .Zero(ALU_Zero), .Ofl(ALU_Ofl));
+   /*
    wire [15:0] alu_input_mux;
    assign alu_input_mux =  ALUSrc ? extend_output : read2Data; 
    
    alu alu(.InA(read1Data), .InB(alu_input_mux), .Cin(ALU_Cin), 
    .Oper(ALUOp), .invA(ALU_invA), .invB(ALU_invB), .sign(ALU_sign),
    .Out(ALU_Out), .Zero(ALU_Zero), .Ofl(ALU_Ofl));
+   */
    
+
+
+
+
 endmodule
