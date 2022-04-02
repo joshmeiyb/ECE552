@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-04-01T06:47:33.705Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="r8ii-Y_3cukUmUhDR6Bs" version="17.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-02T20:28:12.369Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="sA738GiVbxsTSa3bXMuw" version="17.4.0" type="github">
   <diagram id="SkxraVbUGuq4kk6GJNFl" name="Page-1">
-    <mxGraphModel dx="1014" dy="1122" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+    <mxGraphModel dx="1147" dy="886" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -339,8 +339,8 @@
         <mxCell id="LbNy0hjY0bx5_HIMweCS-19" value="&lt;font color=&quot;#3333ff&quot;&gt;Branch&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="515" y="265" width="60" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="LbNy0hjY0bx5_HIMweCS-21" value="&lt;font&gt;MemRead(Do not need this in pipelined version)&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#CC00CC;" parent="1" vertex="1">
-          <mxGeometry x="515" y="338" width="275" height="30" as="geometry" />
+        <mxCell id="LbNy0hjY0bx5_HIMweCS-21" value="&lt;font&gt;MemRead&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#CC00CC;" parent="1" vertex="1">
+          <mxGeometry x="515" y="338" width="65" height="30" as="geometry" />
         </mxCell>
         <mxCell id="LbNy0hjY0bx5_HIMweCS-24" value="&lt;font color=&quot;#3333ff&quot;&gt;ALUOp&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="515" y="374" width="60" height="30" as="geometry" />
