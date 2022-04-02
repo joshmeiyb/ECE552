@@ -64,10 +64,10 @@ module decode (instruction, writeback_data, clk, rst,
    wire [1:0] RegDst;               //2-bit control signal for RegisterRd
    
    //Edited at pipeline design
-   assign RegisterRd_out =      (RegDst == 2'b11) ?  3'h7 :                //write to R7, hard coded 3'b111
-                                    (RegDst == 2'b10) ?  instruction[4:2] :    //write to Rd, xxxxx sss ttt ddd xx, bit[4:2]
-                                    (RegDst == 2'b01) ?  instruction[7:5] :    //write to Rd, xxxxx sss ddd iiiii, bit[7:5], 5-bit immediate number
-                                                         instruction[10:8];    //write to Rs, bit[10:8]
+   assign RegisterRd_out =    (RegDst == 2'b11) ?  3'h7 :                //write to R7, hard coded 3'b111
+                              (RegDst == 2'b10) ?  instruction[4:2] :    //write to Rd, xxxxx sss ttt ddd xx, bit[4:2]
+                              (RegDst == 2'b01) ?  instruction[7:5] :    //write to Rd, xxxxx sss ddd iiiii, bit[7:5], 5-bit immediate number
+                                                   instruction[10:8];    //write to Rs, bit[10:8]
    ////////////////////////////////////////////////////////////////////////////////
 
    assign RegisterRs_out = instruction[10:8];

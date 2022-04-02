@@ -65,6 +65,8 @@ module IDEX(
     );
     
     */
+
+    
     reg16 reg_instruction_IFID (
         .clk(clk), 
         .rst(rst), 

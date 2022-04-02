@@ -135,7 +135,8 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
                         (forwardA == 2'b01) ? writeback_data :
                         read1Data;
                         
-   assign InB_forward = (forwardB == 2'b10) ? ALU_Out_EXMEM :
+   assign InB_forward = ALUSrc ? extend_output :
+                        (forwardB == 2'b10) ? ALU_Out_EXMEM :
                         (forwardB == 2'b01) ? writeback_data :
                         read2Data;
 

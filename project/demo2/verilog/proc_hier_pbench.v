@@ -130,10 +130,10 @@ module proc_hier_pbench();
    assign PC = DUT.p0.fetch.pcCurrent;
    assign Inst = DUT.p0.instruction;
    
-   assign RegWrite = DUT.p0.RegWrite;
+   assign RegWrite = DUT.p0.RegWrite_MEMWB; //
    // Is register file being written to, one bit signal (1 means yes, 0 means no)
    //    
-   assign WriteRegister = DUT.p0.RegisterRd;
+   assign WriteRegister = DUT.p0.RegisterRd_MEMWB;
    // The name of the register being written to. (3 bit signal)
    
    assign WriteData = DUT.p0.writeback_data;
@@ -173,7 +173,7 @@ module proc_hier_pbench();
    // new added 05/03
    */
    
-   assign Halt = DUT.p0.Halt;
+   assign Halt = DUT.p0.Halt_MEMWB;
    // Processor halted
    
    

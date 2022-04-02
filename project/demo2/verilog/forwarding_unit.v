@@ -14,33 +14,38 @@ module forwarding_unit(
     output [1:0] forwardB
 );
     
-    //wire [1:0] forwardA, forwardB;
+    wire forwardA_EXEX, forwardB_EXEX;
+    wire forwardA_MEMEX, forwardB_MEMEX;
     
     //EXEX forward
-    assign forwardA = (RegWrite_EXMEM
-                        & (RegisterRd_EXMEM != 0)
-                        & (RegisterRd_EXMEM == RegisterRs_IDEX)) ? 2'b10 : 2'b00;
+    assign forwardA_EXEX = (RegWrite_EXMEM
+                            & (RegisterRd_EXMEM != 0)
+                            & (RegisterRd_EXMEM == RegisterRs_IDEX)) ? 1'b1 : 1'b0;
 
-    assign forwardB = (RegWrite_EXMEM
-                        & (RegisterRd_EXMEM != 0)
-                        & (RegisterRd_EXMEM == RegisterRt_IDEX)) ? 2'b10 : 2'b00;
+    assign forwardB_EXEX = (RegWrite_EXMEM
+                            & (RegisterRd_EXMEM != 0)
+                            & (RegisterRd_EXMEM == RegisterRt_IDEX)) ? 1'b1 : 1'b0;
 
-    //assign forward_EX_to_EX = (forwardA == 2'b10) | (forwardB == 2'b10);
+    assign forwardA =   (forwardA_EXEX)  ?  2'b10 :
+                        (forwardA_MEMEX) ?  2'b01 :
+                                            2'b00;
 
     //MEMEX forward
-    assign forwardA =   (RegWrite_MEMWB
-                        & (RegisterRd_MEMWB != 0)
-                        & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
-                            & (RegisterRd_EXMEM == RegisterRs_IDEX)))
-                        & (RegisterRd_MEMWB == RegisterRs_IDEX)) ? 2'b01 : 2'b00;
+    assign forwardA_MEMEX =   (RegWrite_MEMWB
+                            & (RegisterRd_MEMWB != 0)
+                            & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
+                                & (RegisterRd_EXMEM == RegisterRs_IDEX)))
+                            & (RegisterRd_MEMWB == RegisterRs_IDEX)) ? 1'b1 : 1'b0;
 
-    assign forwardB =   (RegWrite_MEMWB
-                        & (RegisterRd_MEMWB != 0)
-                        & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
-                            & (RegisterRd_EXMEM == RegisterRt_IDEX)))
-                        & (RegisterRd_MEMWB == RegisterRt_IDEX)) ? 2'b01 : 2'b00;                  
+    assign forwardB_MEMEX =   (RegWrite_MEMWB
+                            & (RegisterRd_MEMWB != 0)
+                            & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
+                                & (RegisterRd_EXMEM == RegisterRt_IDEX)))
+                            & (RegisterRd_MEMWB == RegisterRt_IDEX)) ? 1'b1 : 1'b0;                 
     
-    //assign forward_MEM_to_EX = (forwardA == 2'b01) | (forwardB == 2'b01);
+    assign forwardB =   (forwardB_EXEX ) ?  2'b10 :
+                        (forwardB_MEMEX) ?  2'b01 :
+                                            2'b00;
 
 
 endmodule
