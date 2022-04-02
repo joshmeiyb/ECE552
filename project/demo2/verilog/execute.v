@@ -52,16 +52,16 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    input Jump;
 
    input I_format, R_format;
-   input RegisterRd_IDEX, RegisterRd_EXMEM;
-   input RegisterRs, RegisterRt;
+   input [2:0] RegisterRd_IDEX, RegisterRd_EXMEM;
+   input [2:0] RegisterRs, RegisterRt;
    input RegWrite_IDEX, RegWrite_EXMEM;
    input RegWrite_MEMWB;
 
-   input RegisterRd_MEMWB;
-   input RegisterRs_IDEX; 
-   input RegisterRt_IDEX;
-   input ALU_Out_EXMEM;
-   input writeback_data;
+   input [2:0] RegisterRd_MEMWB;
+   input [2:0] RegisterRs_IDEX; 
+   input [2:0] RegisterRt_IDEX;
+   input [15:0] ALU_Out_EXMEM;
+   input [15:0] writeback_data;
 
 
    hazard_detection_unit HDU(

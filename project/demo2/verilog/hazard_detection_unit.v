@@ -1,10 +1,10 @@
 module hazard_detection_unit(
     input R_format,
     input I_format,
-    input writeRegSel_IDEX,
-    input writeRegSel_EXMEM,
-    input read1RegSel_IFID, //instruction [10:8]
-    input read2RegSel_IFID, //instruction [7:5]
+    input [2:0] writeRegSel_IDEX,
+    input [2:0] writeRegSel_EXMEM,
+    input [2:0] read1RegSel_IFID, //instruction [10:8]
+    input [2:0] read2RegSel_IFID, //instruction [7:5]
     input RegWrite_IDEX,
     input RegWrite_EXMEM,
     //input branch_taken,

@@ -250,6 +250,10 @@
                 .ALU_Zero(ALU_Zero),                   //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
                                                         //Seems we do not need ALU_Zero, therefore let it float
                 .ALU_Ofl(ALU_Ofl),                     //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
+                
+                .stall(stall), 
+                .writeEn(writeEn),
+
                 //Inputs
                 .instruction(instruction_IDEX),
                 .next_pc1(next_pc1_IDEX),
@@ -264,6 +268,7 @@
                 .extend_output(extend_output_IDEX),
                 .Branch(Branch_IDEX),
                 .Jump(Jump_IDEX),
+                
                 //--------------hazard detection unit & forwarding -------//
                 .I_format(I_format),
                 .R_format(R_format),

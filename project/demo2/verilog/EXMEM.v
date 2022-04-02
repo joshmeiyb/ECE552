@@ -3,11 +3,11 @@ module EXMEM (
     input clk,
     input rst,
     input en,
-    input next_pc1_IDEX,  //16-bit
-    input ALU_Out,  //16-bit
+    input [15:0] next_pc1_IDEX,  //16-bit
+    input [15:0] ALU_Out,  //16-bit
     input pc_to_reg_IDEX,
-    input read2Data_IDEX,//16-bit
-    input RegisterRd_IDEX,  //3-bit
+    input [15:0] read2Data_IDEX,//16-bit
+    input [2:0] RegisterRd_IDEX,  //3-bit
     input MemtoReg_IDEX,
     input MemRead_IDEX,
     input MemWrite_IDEX,
@@ -16,11 +16,11 @@ module EXMEM (
     input SIIC_IDEX,
     input RTI_IDEX,
     //outputs
-    output next_pc1_EXMEM,
-    output ALU_Out_EXMEM,
+    output [15:0] next_pc1_EXMEM,
+    output [15:0] ALU_Out_EXMEM,
     output pc_to_reg_EXMEM,
-    output read2Data_EXMEM,
-    output RegisterRd_EXMEM,
+    output [15:0] read2Data_EXMEM,
+    output [2:0] RegisterRd_EXMEM,
     output MemtoReg_EXMEM,
     output MemRead_EXMEM,
     output MemWrite_EXMEM,

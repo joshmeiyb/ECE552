@@ -47,7 +47,7 @@ module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc
    );
 
    //if stall, stop PC from incrementing
-   wire PC_inc;
+   wire [15:0] PC_inc;
    assign PC_inc = stall ? 16'h0000 : 16'h0002; 
 
    cla_16b PC_addr_adder1(.sum(next_pc1), .c_out(err), .a(pcCurrent), .b(PC_inc), .c_in(1'b0)); 

@@ -3,23 +3,23 @@ module MEMWB(
     input clk,
     input rst,
     input en,
-    input next_pc1_EXMEM,      //16-bit
-    input ALU_Out_EXMEM,       //16-bit
+    input [15:0] next_pc1_EXMEM,      //16-bit
+    input [15:0] ALU_Out_EXMEM,       //16-bit
     input pc_to_reg_EXMEM,
-    input RegisterRd_EXMEM, //3-bit   
+    input [2:0] RegisterRd_EXMEM, //3-bit   
     input MemtoReg_EXMEM,
     input RegWrite_EXMEM,
-    input mem_read_data,    //16-bit
+    input [15:0] mem_read_data,    //16-bit
     input Halt_EXMEM,
     input SIIC_EXMEM,
     //outputs
-    output next_pc1_MEMWB,
-    output ALU_Out_MEMWB,
+    output [15:0] next_pc1_MEMWB,
+    output [15:0] ALU_Out_MEMWB,
     output pc_to_reg_MEMWB,
-    output RegisterRd_MEMWB,
+    output [2:0] RegisterRd_MEMWB,
     output MemtoReg_MEMWB,
     output RegWrite_MEMWB,
-    output mem_read_data_MEMWB,
+    output [15:0] mem_read_data_MEMWB,
     output Halt_MEMWB,
     output SIIC_MEMWB
 );
@@ -66,7 +66,7 @@ module MEMWB(
         .wdata(RegWrite_EXMEM), 
         .rdata(RegWrite_MEMWB)
     );
-    reg1 reg_mem_read_data (
+    reg16 reg_mem_read_data (
         .clk(clk), 
         .rst(rst), 
         .write(en), 

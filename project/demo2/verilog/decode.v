@@ -14,7 +14,8 @@ module decode (instruction, writeback_data, clk, rst,
                read1Data, read2Data, extend_output, Jump, Branch, 
                MemtoReg, ALUOp, ALU_invA, ALU_invB, ALU_Cin, 
                MemRead, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
-               Halt, err, SIIC, RTI);
+               Halt, err, SIIC, RTI,
+               R_format, I_format);
    /* TODO: Add appropriate inputs/outputs for your decode stage here*/
    // TODO: Your code here
 
@@ -50,6 +51,9 @@ module decode (instruction, writeback_data, clk, rst,
    output wire Halt;
    output wire SIIC;
    output wire RTI;
+
+   output wire R_format;
+   output wire I_format;
     
    
    wire control_err, regFile_err;

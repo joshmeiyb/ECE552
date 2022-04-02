@@ -3,14 +3,14 @@ module IDEX(
     input clk, 
     input rst,          //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
     input en,
-    input instruction_IFID,        //16-bit        
-    input next_pc1_IFID,              //16-bit 
-    input read1Data,                      //16-bit        
-    input read2Data,                      //16-bit
-    input extend_output,              //16-bit
-    input RegisterRd,     //3-bit
-    input RegisterRs,
-    input RegisterRt,
+    input [15:0] instruction_IFID,          //16-bit        
+    input [15:0] next_pc1_IFID,             //16-bit 
+    input [15:0] read1Data,                 //16-bit        
+    input [15:0] read2Data,                 //16-bit
+    input [15:0] extend_output,             //16-bit
+    input [2:0] RegisterRd,     //3-bit
+    input [2:0] RegisterRs,
+    input [2:0] RegisterRt,
     input Jump,
     input Branch,
     input MemtoReg,
@@ -19,7 +19,7 @@ module IDEX(
     input RegWrite,
     input reg_to_pc,
     input pc_to_reg,
-    input ALUOp,          //4-bit
+    input [3:0] ALUOp,          //4-bit
     input ALUSrc,
     input ALU_invA,
     input ALU_invB,
@@ -28,14 +28,14 @@ module IDEX(
     input SIIC,
     input RTI,
     //outputs
-    output instruction_IDEX,        //propogate the IDEX pipline stage  
-    output next_pc1_IDEX,              //propogate the IDEX pipline stage
-    output read1Data_IDEX,            
-    output read2Data_IDEX,
-    output extend_output_IDEX,
-    output RegisterRd_IDEX,
-    output RegisterRs_IDEX,
-    output RegisterRt_IDEX,
+    output [15:0] instruction_IDEX,        //propogate the IDEX pipline stage  
+    output [15:0] next_pc1_IDEX,              //propogate the IDEX pipline stage
+    output [15:0] read1Data_IDEX,            
+    output [15:0] read2Data_IDEX,
+    output [15:0] extend_output_IDEX,
+    output [2:0] RegisterRd_IDEX,
+    output [2:0] RegisterRs_IDEX,
+    output [2:0] RegisterRt_IDEX,
     output Jump_IDEX,
     output Branch_IDEX,
     output MemtoReg_IDEX,
@@ -44,7 +44,7 @@ module IDEX(
     output RegWrite_IDEX,
     output reg_to_pc_IDEX,
     output pc_to_reg_IDEX,
-    output ALUOp_IDEX,
+    output [3:0] ALUOp_IDEX,
     output ALUSrc_IDEX,
     output ALU_invA_IDEX,
     output ALU_invB_IDEX,
@@ -179,7 +179,7 @@ module IDEX(
         .wdata(pc_to_reg), 
         .rdata(pc_to_reg_IDEX)
     );
-    reg1 reg_ALUOp (
+    reg4 reg_ALUOp (
         .clk(clk), 
         .rst(rst), 
         .write(en), 
