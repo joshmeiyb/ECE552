@@ -18,8 +18,8 @@ module IFID(
         .rdata()
     );
     */
-    
-    assign instruction_temp = (stall) ? 16'b0800 : instruction; //NOP when stall
+    wire [15:0] instruction_temp;
+    assign instruction_temp = (stall) ? 16'h0800 : instruction; //NOP when stall
     reg16 reg_instruction(
         .clk(clk), 
         .rst(1'b0), 

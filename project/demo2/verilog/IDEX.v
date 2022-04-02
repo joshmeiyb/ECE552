@@ -104,13 +104,7 @@ module IDEX(
     reg3 reg_RegisterRd (
         .clk(clk), 
         .rst(rst), 
-        .write(ereg1 reg_ALUOp (
-        .clk(clk), 
-        .rst(rst), 
         .write(en), 
-        .wdata(ALUOp), 
-        .rdata(ALUOp_IDEX)
-    );n), 
         .wdata(RegisterRd), 
         .rdata(RegisterRd_IDEX)
     );

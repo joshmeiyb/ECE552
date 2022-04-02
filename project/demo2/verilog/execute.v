@@ -11,7 +11,7 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
                stall, writeEn,
                //--------------hazard detection unit & forwarding -------//
                I_format, R_format,
-               RegisterRd_IDEX, RegisterRd_EXMEM
+               RegisterRd_IDEX, RegisterRd_EXMEM,
                RegisterRs, RegisterRt,
                RegWrite_IDEX, RegWrite_EXMEM,
                //---------------------------------------------------------//
@@ -33,6 +33,9 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    output ALU_Zero;                 //DO WE NEED THIS SIGNAL?
    output ALU_Ofl;                  //DO WE NEED THIS SIGNAL?
    
+   output stall;
+   output writeEn;
+
    input [15:0] instruction;
    input [15:0] next_pc1;
    input [15:0] read1Data;
@@ -48,6 +51,18 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    input Branch;
    input Jump;
 
+   input I_format, R_format;
+   input RegisterRd_IDEX, RegisterRd_EXMEM;
+   input RegisterRs, RegisterRt;
+   input RegWrite_IDEX, RegWrite_EXMEM;
+   input RegWrite_MEMWB;
+
+   input RegisterRd_MEMWB;
+   input RegisterRs_IDEX; 
+   input RegisterRt_IDEX;
+   input ALU_Out_EXMEM;
+   input writeback_data;
+
 
    hazard_detection_unit HDU(
       //inputs
@@ -60,13 +75,15 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
       .RegWrite_IDEX(RegWrite_IDEX),
       .RegWrite_EXMEM(RegWrite_EXMEM),
       //.branch_taken(PCSrc),
+
       //outputs
       .stall(stall),
       .writeEn(writeEn)
    );
 
-   wire forward_EX_to_EX, forward_MEM_to_EX;
-
+   //wire forward_EX_to_EX, forward_MEM_to_EX;
+   wire [1:0] forwardA, forwardB;
+   
    forwarding_unit FU(
       //inputs
       .RegWrite_EXMEM(RegWrite_EXMEM),
@@ -77,7 +94,7 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
       .RegisterRt_IDEX(RegisterRt_IDEX),
       .I_format(I_format),
       .R_format(R_format),
-      //outputs
+      //outputs -- not output to top level
       .forwardA(forwardA),
       .forwardB(forwardB)
    );
@@ -113,7 +130,6 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
       endcase
    end
 
-   wire [1:0] forwardA, forwardB;
    wire [15:0] InA_forward, InB_forward;
    assign InA_forward = (forwardA == 2'b10) ? ALU_Out_EXMEM :
                         (forwardA == 2'b01) ? writeback_data :

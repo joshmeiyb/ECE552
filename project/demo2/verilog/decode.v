@@ -7,7 +7,10 @@
 
 module decode (instruction, writeback_data, clk, rst,
                RegWrite_in, RegisterRd_in,
-               RegWrite_out, RegisterRd_out,
+               RegWrite_out, 
+               RegisterRd_out,
+               RegisterRs_out,
+               RegisterRt_out,
                read1Data, read2Data, extend_output, Jump, Branch, 
                MemtoReg, ALUOp, ALU_invA, ALU_invB, ALU_Cin, 
                MemRead, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
@@ -126,7 +129,7 @@ module decode (instruction, writeback_data, clk, rst,
                   .RTI(RTI),
                   
                   .R_format(R_format), //update it in control!!!!!!!!!1
-                  .I_format(I_format),
+                  .I_format(I_format)
                   );
 
 endmodule

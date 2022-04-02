@@ -1,6 +1,6 @@
 module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg, 
                 ALUOp, ALU_invA, ALU_invB, ALU_Cin, MemRead, MemWrite, ALUSrc, RegWrite,
-                reg_to_pc, pc_to_reg, Halt, err, SIIC, RTI
+                reg_to_pc, pc_to_reg, Halt, err, SIIC, RTI,
                 R_format, I_format);
 
     input [4:0] Opcode;

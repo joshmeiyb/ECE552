@@ -4,7 +4,7 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc, PCSrc, Halt
+module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc, PCSrc, Halt,
                stall, writeEn);
    /* TODO: Add appropriate inputs/outputs for your fetch stage here*/
    
@@ -38,8 +38,8 @@ module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc
                                                          //pc_Halt is the input of PC_reg
 
    //dff PC_reg[15:0](.q(pcCurrent), .d(pc_Halt), .clk(clk), .rst(rst));
-   reg PC_reg (
-        .clk(clk), 
+   reg16 PC_reg (
+        .clk(clk),
         .rst(rst), 
         .write(writeEn), 
         .wdata(pc_Halt), 
