@@ -5,7 +5,7 @@
    Description     : This is the module for the overall fetch stage of the processor.
 */
 module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc, PCSrc, Halt,
-               stall, writeEn);
+               stall, writeEn_PC_reg);
    /* TODO: Add appropriate inputs/outputs for your fetch stage here*/
    
    input clk,rst;
@@ -17,7 +17,7 @@ module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc
    input Halt;
 
    input stall;
-   input writeEn;
+   input writeEn_PC_reg;
 
    output [15:0] next_pc1;
    output [15:0] instruction;
@@ -41,12 +41,12 @@ module fetch (clk, rst, instruction, next_pc1, next_pc2, ALU_Out, err, reg_to_pc
    reg16 PC_reg (
         .clk(clk),
         .rst(rst), 
-        .write(writeEn), 
+        .write(writeEn_PC_reg),  //if stall, disable PC_reg be written
         .wdata(pc_Halt), 
         .rdata(pcCurrent)
    );
 
-   //if stall, stop PC from incrementing
+                                 //if stall, stop PC from incrementing
    wire [15:0] PC_inc;
    assign PC_inc = stall ? 16'h0000 : 16'h0002; 
 

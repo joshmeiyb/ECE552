@@ -1,8 +1,12 @@
-          // Original test: ./shojaei/hw4/problem6/xori_2.asm
-          // Author: shojaei
+          // Original test: ./nfischer/hw4/problem6/ld_0.asm
+          // Author: nfischer
           // Test source code follows
           
           
-0000 c118 lbi r1, 24
-0002 5147 xori r2, r1, 7
-0004 0000 halt
+          //basic load
+0000 c100 lbi  r1, 0     //mem location tests first mem location
+0002 c208 lbi  r2, 8      //value to store
+0004 c300 lbi  r3, 0      //clear r3
+0006 8140 st   r2, r1, 0  //store at mem location
+0008 8960 ld   r3, r1, 0  //load from mem location
+000a 0000 halt

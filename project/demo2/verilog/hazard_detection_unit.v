@@ -9,7 +9,7 @@ module hazard_detection_unit(
     input RegWrite_EXMEM,
     //input branch_taken,
     output stall,
-    output writeEn
+    output writeEn_PC_reg
 );
 
 /*
@@ -28,7 +28,7 @@ module hazard_detection_unit(
 
                 //outputs
                 .stall(stall), 
-                .writeEn(writeEn)
+                .writeEn_PC_reg(writeEn_PC_reg)
 */
     wire raw1, raw2, raw3, raw4;
 
@@ -48,7 +48,7 @@ module hazard_detection_unit(
     
     assign stall = hazard_IDEX | hazard_EXMEM;
     //if stall, disable the pipeline flops
-    assign writeEn = stall ? 1'b0 : 1'b1;
+    assign writeEn_PC_reg = stall ? 1'b0 : 1'b1;
 
 
 endmodule

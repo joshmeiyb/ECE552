@@ -27,6 +27,8 @@ module IDEX(
     input Halt,
     input SIIC,
     input RTI,
+
+    input stall,
     //outputs
     output [15:0] instruction_IDEX,        //propogate the IDEX pipline stage  
     output [15:0] next_pc1_IDEX,              //propogate the IDEX pipline stage
@@ -66,12 +68,15 @@ module IDEX(
     
     */
 
+    wire [15:0] instruction_IFID_temp;
+    assign instruction_IFID_temp = (stall | rst) ? 16'h0800 : instruction_IFID; //NOP when stall
+    //When stall happen, generate the NOP in IDEX. 
     
     reg16 reg_instruction_IFID (
         .clk(clk), 
         .rst(rst), 
         .write(en), 
-        .wdata(instruction_IFID), 
+        .wdata(instruction_IFID_temp), 
         .rdata(instruction_IDEX)
     );
     reg16 reg_next_pc1_IFID (

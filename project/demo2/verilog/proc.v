@@ -56,7 +56,7 @@
         
         wire [15:0]                   extend_output,    extend_output_IDEX;
         //Edited at pipeline design
-        wire [2:0]                    RegisterRd,       RegisterRd_IDEX,     RegisterRd_EXMEM,     RegisterRd_MEMWB;
+        wire [2:0]   RegisterRd_IFID, RegisterRd,       RegisterRd_IDEX,     RegisterRd_EXMEM,     RegisterRd_MEMWB;
         //--------------------------------------------added for forwarding--------------------------------------------//
         wire [2:0]                    RegisterRs,       RegisterRs_IDEX;
         wire [2:0]                    RegisterRt,       RegisterRt_IDEX;
@@ -66,13 +66,13 @@
         wire                          MemtoReg,         MemtoReg_IDEX,       MemtoReg_EXMEM,       MemtoReg_MEMWB;
         wire                          MemWrite,         MemWrite_IDEX,       MemWrite_EXMEM;
         //Edited at pipeline design
-        wire                          RegWrite,         RegWrite_IDEX,       RegWrite_EXMEM,       RegWrite_MEMWB;
+        wire          RegWrite_IFID,  RegWrite,         RegWrite_IDEX,       RegWrite_EXMEM,       RegWrite_MEMWB;
         wire [3:0]                    ALUOp,            ALUOp_IDEX;                          
         wire                          ALUSrc,           ALUSrc_IDEX;
         wire                          ALU_invA,         ALU_invA_IDEX;
         wire                          ALU_invB,         ALU_invB_IDEX;
         wire                          ALU_Cin,          ALU_Cin_IDEX;
-        wire [15:0]                                                                           writeback_data;
+        wire [15:0]   writeback_data_IFID,                                                         writeback_data;
         
         wire                          MemRead,          MemRead_IDEX,        MemRead_EXMEM;
         //Do not need MemRead, since it is only an enable signal which can be replaced by MemtoReg_EXMEM   
@@ -95,7 +95,7 @@
 
         //hazard_detection_unit & forwarding unit
         wire stall;
-        wire writeEn;
+        wire writeEn_PC_reg;
         wire R_format;
         wire I_format;
         
@@ -123,20 +123,28 @@
                                                                 //In this case, next instruction after "Halt instruction" 
                                                                 //would not be accessed by processor
                 .stall(stall),
-                .writeEn(writeEn)
+                .writeEn_PC_reg(writeEn_PC_reg) 
         );
         
         IFID IFID(
                 //inputs
                 .clk(clk),
                 .rst(rst | PCSrc),          //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
-                .en(writeEn),
+                .en(writeEn_PC_reg),
                 .instruction(instruction),
                 .next_pc1(next_pc1),
                 .stall(stall),
+                //.writeback_data(writeback_data),        //16-bit
+                //.RegWrite_MEMWB(RegWrite_MEMWB),        //1-bit, register write enable signal
+                //.RegisterRd_MEMWB(RegisterRd_MEMWB),    //3-bit
                 //outputs
                 .instruction_IFID(instruction_IFID),
-                .next_pc1_IFID(next_pc1_IFID)          
+                .next_pc1_IFID(next_pc1_IFID)
+                
+                //.writeback_data_IFID(writeback_data_IFID),  //16-bit 
+                //.RegWrite_IFID(RegWrite_IFID),          //1-bit
+                //.RegisterRd_IFID(RegisterRd_IFID)      //3-bit
+                     
         );
 
         
@@ -158,7 +166,7 @@
                 .MemRead(MemRead),
 
                 .MemWrite(MemWrite),            
-                .RegWrite_out(RegWrite),        
+                .RegWrite_out(RegWrite),        //Reg write enable signal
 
                 .reg_to_pc(reg_to_pc),
                 .pc_to_reg(pc_to_reg),
@@ -178,8 +186,9 @@
                 .writeback_data(writeback_data),
                 .clk(clk),
                 .rst(rst),
-                .RegWrite_in(RegWrite_MEMWB & (~PCSrc)),           //When branch-taken, PCSrc goes high, set RegWrite to zero, stop writing anything into regFile
-                .RegisterRd_in(RegisterRd_MEMWB)
+                .RegWrite_in(RegWrite_MEMWB /*& (~PCSrc)*/),         //When branch-taken, PCSrc goes high, 
+                                                                //set RegWrite to zero, stop writing anything into regFile
+                .RegisterRd_in(RegisterRd_MEMWB)         //3-bit, for the register writing address
         );
 
         IDEX IDEX(
@@ -212,7 +221,7 @@
                 .SIIC(SIIC),
                 .RTI(RTI),
                 
-                //.stall(1'b0),
+                .stall(stall),
 
                 //outputs
                 .instruction_IDEX(instruction_IDEX),        //propogate the IDEX pipline stage  
@@ -252,7 +261,7 @@
                 .ALU_Ofl(ALU_Ofl),                     //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
                 
                 .stall(stall), 
-                .writeEn(writeEn),
+                .writeEn_PC_reg(writeEn_PC_reg),
 
                 //Inputs
                 .instruction(instruction_IDEX),

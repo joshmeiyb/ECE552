@@ -8,7 +8,7 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
                instruction, next_pc1, read1Data, read2Data, 
                ALUSrc, ALU_Cin, ALUOp, ALU_invA, ALU_invB,
                ALU_sign, extend_output, Branch, Jump, 
-               stall, writeEn,
+               stall, writeEn_PC_reg,
                //--------------hazard detection unit & forwarding -------//
                I_format, R_format,
                RegisterRd_IDEX, RegisterRd_EXMEM,
@@ -34,7 +34,7 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    output ALU_Ofl;                  //DO WE NEED THIS SIGNAL?
    
    output stall;
-   output writeEn;
+   output writeEn_PC_reg;
 
    input [15:0] instruction;
    input [15:0] next_pc1;
@@ -78,7 +78,7 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
 
       //outputs
       .stall(stall),
-      .writeEn(writeEn)
+      .writeEn_PC_reg(writeEn_PC_reg)
    );
 
    //wire forward_EX_to_EX, forward_MEM_to_EX;
