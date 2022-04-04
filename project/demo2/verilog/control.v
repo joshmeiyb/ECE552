@@ -1,7 +1,9 @@
 module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg, 
                 ALUOp, ALU_invA, ALU_invB, ALU_Cin, MemRead, MemWrite, ALUSrc, RegWrite,
                 reg_to_pc, pc_to_reg, Halt, err, SIIC, RTI,
-                R_format, I_format);
+                //LD,
+                R_format, I_format
+                );
 
     input [4:0] Opcode;
     input [1:0] four_mode; //instruction[1:0], selecting mode
@@ -26,8 +28,13 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
     output reg err;
     output reg SIIC;
     output reg RTI;
+    
+    //output reg LD; //MEM-EX forwarding
+    
     output reg R_format;
     output reg I_format;
+
+    
 
     reg [3:0] shared_opcode; //ADD, SUB, XOR, ANDN
     reg alu_inva, alu_invb; //intermediate values for ALU_invA, ALU_invB
@@ -83,6 +90,8 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
         ALU_Cin = 1'b0;
         R_format = 1'b0;
         I_format = 1'b0;
+
+        //LD = 1'b0;
 
         case (Opcode)
 
@@ -205,6 +214,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 ext_select = 3'b000;    //sign_ext_5bit
                 RegWrite = 1'b1;
                 I_format = 1'b1;
+                //LD = 1'b1;
             end
 
             //STU 10011 sss ddd iiiii | Mem[Rs + I(sign ext.)] <- Rd

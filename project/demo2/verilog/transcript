@@ -12,26 +12,3 @@
 # //  18 U.S.C. Section 1905.
 # //
 # dump.wlf opened as dataset "dataset"
-add wave -position insertpoint  \
-dataset:/proc_hier_pbench/DCacheHit \
-dataset:/proc_hier_pbench/DCacheHit_count \
-dataset:/proc_hier_pbench/DCacheReq \
-dataset:/proc_hier_pbench/DCacheReq_count \
-dataset:/proc_hier_pbench/Halt \
-dataset:/proc_hier_pbench/ICacheHit \
-dataset:/proc_hier_pbench/ICacheHit_count \
-dataset:/proc_hier_pbench/ICacheReq \
-dataset:/proc_hier_pbench/ICacheReq_count \
-dataset:/proc_hier_pbench/Inst \
-dataset:/proc_hier_pbench/inst_count \
-dataset:/proc_hier_pbench/MemAddress \
-dataset:/proc_hier_pbench/MemDataIn \
-dataset:/proc_hier_pbench/MemDataOut \
-dataset:/proc_hier_pbench/MemRead \
-dataset:/proc_hier_pbench/MemWrite \
-dataset:/proc_hier_pbench/PC \
-dataset:/proc_hier_pbench/RegWrite \
-dataset:/proc_hier_pbench/sim_log_file \
-dataset:/proc_hier_pbench/trace_file \
-dataset:/proc_hier_pbench/WriteData \
-dataset:/proc_hier_pbench/WriteRegister

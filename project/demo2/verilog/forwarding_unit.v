@@ -19,11 +19,11 @@ module forwarding_unit(
     
     //EXEX forward
     assign forwardA_EXEX = (RegWrite_EXMEM
-                            & (RegisterRd_EXMEM != 0)
+                            //& (RegisterRd_EXMEM != 0)
                             & (RegisterRd_EXMEM == RegisterRs_IDEX)) ? 1'b1 : 1'b0;
 
     assign forwardB_EXEX = (RegWrite_EXMEM
-                            & (RegisterRd_EXMEM != 0)
+                            //& (RegisterRd_EXMEM != 0)
                             & (RegisterRd_EXMEM == RegisterRt_IDEX)) ? 1'b1 : 1'b0;
 
     assign forwardA =   (forwardA_EXEX)  ?  2'b10 :
@@ -32,13 +32,13 @@ module forwarding_unit(
 
     //MEMEX forward
     assign forwardA_MEMEX =   (RegWrite_MEMWB
-                            & (RegisterRd_MEMWB != 0)
+                            //& (RegisterRd_MEMWB != 0)
                             & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
                                 & (RegisterRd_EXMEM == RegisterRs_IDEX)))
                             & (RegisterRd_MEMWB == RegisterRs_IDEX)) ? 1'b1 : 1'b0;
 
     assign forwardB_MEMEX =   (RegWrite_MEMWB
-                            & (RegisterRd_MEMWB != 0)
+                            //& (RegisterRd_MEMWB != 0)
                             & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
                                 & (RegisterRd_EXMEM == RegisterRt_IDEX)))
                             & (RegisterRd_MEMWB == RegisterRt_IDEX)) ? 1'b1 : 1'b0;                 

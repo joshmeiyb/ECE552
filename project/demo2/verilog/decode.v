@@ -7,14 +7,16 @@
 
 module decode (instruction, writeback_data, clk, rst,
                RegWrite_in, RegisterRd_in,
+               extend_output,
                RegWrite_out, 
                RegisterRd_out,
                RegisterRs_out,
                RegisterRt_out,
-               read1Data, read2Data, extend_output, Jump, Branch, 
+               read1Data, read2Data, Jump, Branch, 
                MemtoReg, ALUOp, ALU_invA, ALU_invB, ALU_Cin, 
                MemRead, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
-               Halt, err, SIIC, RTI,
+               Halt_decode, err, SIIC, RTI,
+               //LD,
                R_format, I_format);
    /* TODO: Add appropriate inputs/outputs for your decode stage here*/
    // TODO: Your code here
@@ -26,7 +28,6 @@ module decode (instruction, writeback_data, clk, rst,
    input wire RegWrite_in;                //Edited at pipeline design
    input wire [2:0] RegisterRd_in;    //Edited at pipeline design
 
-   
    //Decode Outputs
    output wire [15:0] read1Data, read2Data;
    output wire err;
@@ -48,9 +49,11 @@ module decode (instruction, writeback_data, clk, rst,
    output wire ALUSrc;
    output wire ALU_invA, ALU_invB;  //connect to ALU ports invA, invB
    output wire ALU_Cin;
-   output wire Halt;
+   output wire Halt_decode;
    output wire SIIC;
    output wire RTI;
+
+   //output wire LD;   //MEM-EX forwarding
 
    output wire R_format;
    output wire I_format;
@@ -100,12 +103,12 @@ module decode (instruction, writeback_data, clk, rst,
    assign zero_ext_5bit = { {11{1'b0}}, instruction[4:0] };
    
    wire [2:0] ext_select; //select sign extend or zero extend
+   
    assign extend_output =  (ext_select == 3'b000) ? sign_ext_5bit  :
                            (ext_select == 3'b001) ? sign_ext_8bit  :
                            (ext_select == 3'b010) ? sign_ext_11bit :
                            (ext_select == 3'b011) ? zero_ext_5bit  :
                                                     zero_ext_8bit;
-
    
    control control(
                   //Inputs
@@ -115,7 +118,8 @@ module decode (instruction, writeback_data, clk, rst,
                   .RegDst(RegDst),     //internal selecting signal between "control unit" and "write_addr MUX" in execute
                   .Jump(Jump), 
                   .Branch(Branch), 
-                  .ext_select(ext_select),  
+                  .ext_select(ext_select),
+                  //.ext_select(ext_select_out),
                   .MemtoReg(MemtoReg), 
                   .ALUOp(ALUOp), 
                   .ALU_invA(ALU_invA), 
@@ -127,11 +131,13 @@ module decode (instruction, writeback_data, clk, rst,
                   .RegWrite(RegWrite_out), 
                   .reg_to_pc(reg_to_pc),
                   .pc_to_reg(pc_to_reg),
-                  .Halt(Halt), 
+                  .Halt(Halt_decode), 
                   .err(control_err),
                   .SIIC(SIIC),
                   .RTI(RTI),
                   
+                  //.LD(LD),
+
                   .R_format(R_format), //update it in control!!!!!!!!!1
                   .I_format(I_format)
                   );

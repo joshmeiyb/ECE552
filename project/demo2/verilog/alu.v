@@ -30,7 +30,7 @@ module alu (InA, InB, Cin, Oper, invA, invB, sign, Out, Zero, Ofl);
     //Opcode    //Function     //Operation/
     //0000      //rll          //Rotate left logical
     //0001      //sll          //Shift left logical
-    //0010      //sra          //Shift right arithmetic
+    //0010      //sra          //rotate right logical
     //0011      //srl          //Shift right logical
     //0100      //ADD          //A + B
     //0101      //AND          //A AND B

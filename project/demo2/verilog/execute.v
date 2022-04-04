@@ -4,40 +4,30 @@
    Filename        : execute.v
    Description     : This is the overall module for the execute stage of the processor.
 */
-module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
-               instruction, next_pc1, read1Data, read2Data, 
+module execute (ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
+               instruction, read1Data, read2Data, 
                ALUSrc, ALU_Cin, ALUOp, ALU_invA, ALU_invB,
-               ALU_sign, extend_output, Branch, Jump, 
-               stall, writeEn_PC_reg,
-               //--------------hazard detection unit & forwarding -------//
-               I_format, R_format,
-               RegisterRd_IDEX, RegisterRd_EXMEM,
-               RegisterRs, RegisterRt,
-               RegWrite_IDEX, RegWrite_EXMEM,
-               //---------------------------------------------------------//
-               //RegWrite_EXMEM, 
-               RegWrite_MEMWB, 
-               //RegisterRd_EXMEM, 
-               RegisterRd_MEMWB,
-               RegisterRs_IDEX, 
-               RegisterRt_IDEX,
+               ALU_sign, extend_output, Branch, Jump,
+               reg_to_pc, pcAdd2, branch_jump_pc,
+               forwardA, forwardB,
                ALU_Out_EXMEM, writeback_data
                //---------------------------------------------------------//
+               
                );
    /* TODO: Add appropriate inputs/outputs for your execute stage here*/
 
    // TODO: Your code here
-   output [15:0] next_pc2;
+   //outputs
+   output [15:0] branch_jump_pc;
    output [15:0] ALU_Out;
    output PCSrc;
    output ALU_Zero;                 //DO WE NEED THIS SIGNAL?
    output ALU_Ofl;                  //DO WE NEED THIS SIGNAL?
-   
-   output stall;
-   output writeEn_PC_reg;
 
+   //inputs
    input [15:0] instruction;
-   input [15:0] next_pc1;
+   input reg_to_pc;
+   input [15:0] pcAdd2;
    input [15:0] read1Data;
    input [15:0] read2Data;
    input ALUSrc;
@@ -50,60 +40,17 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
                                     //               2. the InB of ALU
    input Branch;
    input Jump;
-
-   input I_format, R_format;
-   input [2:0] RegisterRd_IDEX, RegisterRd_EXMEM;
-   input [2:0] RegisterRs, RegisterRt;
-   input RegWrite_IDEX, RegWrite_EXMEM;
-   input RegWrite_MEMWB;
-
-   input [2:0] RegisterRd_MEMWB;
-   input [2:0] RegisterRs_IDEX; 
-   input [2:0] RegisterRt_IDEX;
+   input [1:0] forwardA, forwardB;
    input [15:0] ALU_Out_EXMEM;
    input [15:0] writeback_data;
 
-
-   hazard_detection_unit HDU(
-      //inputs
-      .R_format(R_format),
-      .I_format(I_format),
-      .writeRegSel_IDEX(RegisterRd_IDEX),
-      .writeRegSel_EXMEM(RegisterRd_EXMEM),     
-      .read1RegSel_IFID(RegisterRs),      //RegisterRs_IFID
-      .read2RegSel_IFID(RegisterRt),      //RegisterRt_IFID
-      .RegWrite_IDEX(RegWrite_IDEX),
-      .RegWrite_EXMEM(RegWrite_EXMEM),
-      //.branch_taken(PCSrc),
-
-      //outputs
-      .stall(stall),
-      .writeEn_PC_reg(writeEn_PC_reg)
-   );
-
-   //wire forward_EX_to_EX, forward_MEM_to_EX;
-   wire [1:0] forwardA, forwardB;
    
-   forwarding_unit FU(
-      //inputs
-      .RegWrite_EXMEM(RegWrite_EXMEM),
-      .RegWrite_MEMWB(RegWrite_MEMWB),
-      .RegisterRd_EXMEM(RegisterRd_EXMEM),
-      .RegisterRd_MEMWB(RegisterRd_MEMWB),
-      .RegisterRs_IDEX(RegisterRs_IDEX),
-      .RegisterRt_IDEX(RegisterRt_IDEX),
-      .I_format(I_format),
-      .R_format(R_format),
-      //outputs -- not output to top level
-      .forwardA(forwardA),
-      .forwardB(forwardB)
-   );
-
-   //wire [15:0]addr_offset;
-   //assign addr_offset = {extend_output[14:0], 1'b0}; //shift left 1 bit
+   wire [15:0] Rs_or_pcAdd2;
+   assign Rs_or_pcAdd2 = reg_to_pc ? ALU_Out : pcAdd2;
 
    //Must not shift left by 1bit
-   cla_16b PC_addr_adder2(.sum(next_pc2), .c_out(), .a(next_pc1), .b(extend_output), .c_in(1'b0));
+   //cla_16b PC_addr_adder2(.sum(next_pc2), .c_out(), .a(next_pc1), .b(extend_output), .c_in(1'b0));
+   cla_16b PC_addr_adder2(.sum(branch_jump_pc), .c_out(), .a(Rs_or_pcAdd2), .b(extend_output), .c_in(1'b0));
 
    //To branch or not branch
    wire Branch_AND;
@@ -143,15 +90,6 @@ module execute (next_pc2, ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    alu alu(.InA(InA_forward), .InB(InB_forward), .Cin(ALU_Cin), 
    .Oper(ALUOp), .invA(ALU_invA), .invB(ALU_invB), .sign(ALU_sign),
    .Out(ALU_Out), .Zero(ALU_Zero), .Ofl(ALU_Ofl));
-   /*
-   wire [15:0] alu_input_mux;
-   assign alu_input_mux =  ALUSrc ? extend_output : read2Data; 
-   
-   alu alu(.InA(read1Data), .InB(alu_input_mux), .Cin(ALU_Cin), 
-   .Oper(ALUOp), .invA(ALU_invA), .invB(ALU_invB), .sign(ALU_sign),
-   .Out(ALU_Out), .Zero(ALU_Zero), .Ofl(ALU_Ofl));
-   */
-   
 
 
 
