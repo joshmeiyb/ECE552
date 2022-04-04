@@ -147,6 +147,7 @@
                 .stall(stall),
                 .branch_jump_pc(branch_jump_pc),
                 .PCSrc(PCSrc),
+                .Jump_IDEX(Jump_IDEX),
                 .Halt_fetch(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),              //Halt will stop PC incrementing
                                                 //In this case, next instruction after "Halt instruction" 
                                                 //would not be accessed by processor
@@ -164,6 +165,7 @@
                 
                 .en(~stall),
                 .instruction(instruction),
+                //Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB ???????????
                 .pcAdd2(pcAdd2),
                 .stall(stall),
                 //outputs
