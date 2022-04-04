@@ -5,6 +5,9 @@ module IFID(
             input [15:0] instruction,
             input [15:0] pcAdd2,    //pcAdd2 used to be next_pc1
             input stall,
+
+            input Halt_IFID,
+
             output [15:0] instruction_IFID,
             output [15:0] pcAdd2_IFID
         );
@@ -24,7 +27,8 @@ module IFID(
 
     reg16 reg_pcAdd2(
         .clk(clk), 
-        .rst(rst), 
+        //.rst(rst), 
+        .rst(rst | Halt_IFID),
         .write(en),     //connected to stall in proc.v
         .wdata(pcAdd2), 
         .rdata(pcAdd2_IFID) 

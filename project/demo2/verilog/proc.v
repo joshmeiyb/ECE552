@@ -31,7 +31,7 @@
         /*             Fetch          Decode            Execute	       Memory		Writeback	*/
 
         wire                          rst_IFID;
-        wire           err_fetch,     err_decode;
+        wire           /*err_fetch*/  err_decode;
         
         /////////////////////////////////////////////////////////////////////////////////////////////////
         //Have not implemented these yet.
@@ -64,7 +64,7 @@
         wire [2:0]   RegisterRs_IFID, RegisterRs,       RegisterRs_IDEX;
         wire [2:0]   RegisterRt_IFID, RegisterRt,       RegisterRt_IDEX;
         //--------------------------------------------added for forwarding--------------------------------------------//
-        wire                          Jump,             Jump_IDEX;
+        wire                          Jump,             Jump_IDEX,           Jump_EXMEM;
         wire                          Branch,           Branch_IDEX;
         wire                          MemtoReg,         MemtoReg_IDEX,       MemtoReg_EXMEM,       MemtoReg_MEMWB;
         wire                          MemWrite,         MemWrite_IDEX,       MemWrite_EXMEM;
@@ -96,6 +96,7 @@
         wire [1:0] forwardA, forwardB;
         //-------------------------------------//
 
+        assign err = /*err_fetch | */err_decode;
 
         hazard_detection_unit HDU(
                 //inputs
@@ -123,6 +124,8 @@
            
         forwarding_unit FU(
                 //inputs
+                //.Jump_EXMEM(Jump_EXMEM),
+
                 .RegWrite_EXMEM(RegWrite_EXMEM),
                 .RegWrite_MEMWB(RegWrite_MEMWB),
                 .RegisterRd_EXMEM(RegisterRd_EXMEM),
@@ -138,8 +141,6 @@
 
         //--------------------------------------//
 
-        assign err = err_fetch | err_decode;
-
         fetch fetch(
                 //Inputs
                 .clk(clk),
@@ -148,14 +149,15 @@
                 .branch_jump_pc(branch_jump_pc),
                 .PCSrc(PCSrc),
                 .Jump_IDEX(Jump_IDEX),
-                .Halt_fetch(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),              //Halt will stop PC incrementing
+                //.Halt_fetch(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
+                .Halt_fetch(Halt_decode),              //Halt will stop PC incrementing
                                                 //In this case, next instruction after "Halt instruction" 
                                                 //would not be accessed by processor
                 
                 //Outputs
+                //.err(err_fetch),
                 .pcAdd2(pcAdd2),
-                .instruction(instruction),
-                .err(err_fetch)
+                .instruction(instruction)
         );
         
         IFID IFID(
@@ -165,7 +167,10 @@
                 
                 .en(~stall),
                 .instruction(instruction),
+
+                .Halt_IFID(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
                 //Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB ???????????
+
                 .pcAdd2(pcAdd2),
                 .stall(stall),
                 //outputs
@@ -211,10 +216,36 @@
                 .writeback_data(writeback_data),
                 .clk(clk),
                 .rst(rst),
-                .RegWrite_in(RegWrite_MEMWB & (~PCSrc)),         //When branch-taken, PCSrc goes high, 
+                .RegWrite_in(RegWrite_MEMWB /*& (~PCSrc)*/),         //When branch-taken, PCSrc goes high, 
                                                                 //set RegWrite to zero, stop writing anything into regFile
                 .RegisterRd_in(RegisterRd_MEMWB)                //3-bit, for the register writing address
         );
+
+
+        //About PCSrc, which is a branch/jump_taken signal, if it's asserted, 
+        //I want to flush the IFID and IDEX(which means stalling is happening), and sending to fetch to update PC
+        //but I don't want to flush the decode, in decode we are trying to write back to RegFile.
+        //example for this: beqz_0.asm 
+        /*
+                lbi r1, 1            //set r1 to a constant 1
+                lbi r2, 2                //set r2 to a constant 2
+                lbi r4, 1            //set r4 to a constant 1, r4 will be used to indicate our program can be execate currectly or not
+                slt r3, r1, r2       //set the r3 if r1 is less than r2, it will be set here
+                beqz r3, .label1     //if r3 is zero, program will branch to label1, but since r3 == 1 from the previous line, the branch should not be taken
+                addi r4, r4, 1       //if the beqz above didn't branch, r4 will be added 1
+
+                .label1:
+                lbi r1, 2            //set r1 to a constant 2
+                lbi r2, 1                //set r2 to a constant 1
+                slt r3, r1,r2        //set the r3 if r1 is less than r2, it won't be set here
+                beqz r3, .label2     //if r3 is zero, program will branch to label2 -- since r3 == 0 from the previous line, the branch will be taken
+                addi r4, r4, 4       //if the beqz above didn't branch, r4 will be added 4
+                halt
+
+                .label2:
+                addi r4, r4, 2       //if the beqz above brance, r4 will be added 2
+                halt             
+        */
 
         IDEX IDEX(
                 //input
@@ -283,6 +314,7 @@
                 .PCSrc(PCSrc),
                 .ALU_Zero(ALU_Zero),                   //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE? Seems we do not need ALU_Zero, therefore let it float
                 .ALU_Ofl(ALU_Ofl),                     //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
+
                 //Inputs
                 .reg_to_pc(reg_to_pc_IDEX),
                 .pcAdd2(pcAdd2_IDEX),
@@ -323,6 +355,9 @@
         .RegWrite_IDEX(RegWrite_IDEX),
 
         
+        .Jump_IDEX(Jump_IDEX),        //for j_4.asm
+
+        
         //.ext_select_IDEX(ext_select_IDEX),
         //.LD_IDEX(LD_IDEX),
 
@@ -340,6 +375,8 @@
         .MemWrite_EXMEM(MemWrite_EXMEM),
         .RegWrite_EXMEM(RegWrite_EXMEM),
 
+        .Jump_EXMEM(Jump_EXMEM),        //for j_4.asm
+        
         //.ext_select_EXMEM(ext_select_EXMEM),
         //.LD_EXMEM(LD_EXMEM),
 

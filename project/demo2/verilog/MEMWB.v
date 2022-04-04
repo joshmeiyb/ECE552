@@ -73,18 +73,6 @@ module MEMWB(
         .rdata(RegWrite_MEMWB)
     );
 
-    /*
-    reg3 reg_ext_select_EXMEM (
-        .clk(clk), 
-        .rst(rst | Halt_EXMEM), 
-        .write(en), 
-        .wdata(ext_select_EXMEM), 
-        .rdata(ext_select_MEMWB)
-    );
-    */
-
-
-
     reg16 reg_mem_read_data (
         .clk(clk), 
         .rst(rst | Halt_EXMEM), 

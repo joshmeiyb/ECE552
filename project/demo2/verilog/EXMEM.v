@@ -13,6 +13,8 @@ module EXMEM (
     input MemWrite_IDEX,
     input RegWrite_IDEX,
 
+    input Jump_IDEX,
+
     //input [2:0] ext_select_IDEX,
     //input LD_IDEX,
 
@@ -29,6 +31,9 @@ module EXMEM (
     output MemRead_EXMEM,
     output MemWrite_EXMEM,
     output RegWrite_EXMEM,
+
+
+    output Jump_EXMEM,
 
     //output [2:0] ext_select_EXMEM,
     //output LD_EXMEM,
@@ -101,27 +106,13 @@ module EXMEM (
         .rdata(RegWrite_EXMEM)
     );
 
-
-    /*
-    reg3 reg_ext_select_IDEX (
+    reg1 reg_Jump_IDEX(
         .clk(clk), 
         .rst(rst | Halt_IDEX), 
         .write(en), 
-        .wdata(ext_select_IDEX), 
-        .rdata(ext_select_EXMEM)
+        .wdata(Jump_IDEX), 
+        .rdata(Jump_EXMEM)
     );
-    */
-
-
-    /*
-    reg1 reg_LD_IDEX (
-        .clk(clk), 
-        .rst(rst | Halt_IDEX), 
-        .write(en), 
-        .wdata(LD_IDEX), 
-        .rdata(LD_EXMEM)
-    );
-    */
 
     reg1 reg_Halt_IDEX (
         .clk(clk), 

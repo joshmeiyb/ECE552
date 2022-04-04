@@ -109,8 +109,8 @@ module alu (InA, InB, Cin, Oper, invA, invB, sign, Out, Zero, Ofl);
                                                 //1.2               large - small         =   positive            0               0               No                      0
                                                 //
                                                 //
-                                                //2                 positive - negative   =   positive            0               1               No                      0
-                                                //3                 negative - positive   =   negative            1               1               Yes                     1
+                                                //2                 positive - negative   =   positive            0(flip to 1)    1               No                      0
+                                                //3                 negative - positive   =   negative            1(flip to 0)    1               Yes                     1
                                                 //                                                                (in random case, if we have an overflow, sign bit would flip,
                                                 //                                                                 if the no.15 bit is different from the MSB)
                                                 //                                                                                

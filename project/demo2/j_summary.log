@@ -1,0 +1,5 @@
+/u/s/i/sinclair/courses/cs552/spring2022/handouts/testprograms/public/inst_tests/j_0.asm SUCCESS CPI:4.2 CYCLES:17 ICOUNT:4 IHITRATE: 0 DHITRATE: 0
+/u/s/i/sinclair/courses/cs552/spring2022/handouts/testprograms/public/inst_tests/j_1.asm SUCCESS CPI:4.2 CYCLES:17 ICOUNT:4 IHITRATE: 0 DHITRATE: 0
+/u/s/i/sinclair/courses/cs552/spring2022/handouts/testprograms/public/inst_tests/j_2.asm SUCCESS CPI:6.0 CYCLES:12 ICOUNT:2 IHITRATE: 0 DHITRATE: 0
+/u/s/i/sinclair/courses/cs552/spring2022/handouts/testprograms/public/inst_tests/j_3.asm SUCCESS CPI:10.9 CYCLES:11 ICOUNT:1 IHITRATE: 0 DHITRATE: 0
+/u/s/i/sinclair/courses/cs552/spring2022/handouts/testprograms/public/inst_tests/j_4.asm SUCCESS CPI:4.6 CYCLES:23 ICOUNT:5 IHITRATE: 0 DHITRATE: 0

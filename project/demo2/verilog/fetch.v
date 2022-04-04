@@ -4,10 +4,10 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, rst, stall, 
+module fetch (clk, rst, /*err,*/ stall, 
                branch_jump_pc, PCSrc, Jump_IDEX,
                Halt_fetch, pcAdd2, 
-               instruction, err
+               instruction
                );
    /* TODO: Add appropriate inputs/outputs for your fetch stage here*/
    
@@ -19,7 +19,7 @@ module fetch (clk, rst, stall,
    input Halt_fetch;
    output [15:0] pcAdd2; //PC+2
    output [15:0] instruction;
-   output err; 
+   //output err; 
    
    // TODO: Your code here
 
@@ -34,7 +34,8 @@ module fetch (clk, rst, stall,
    //Meanwhile Jump is in Execute stage, need to prevent Halt_fetch stopping
    //PC from being updated, to succeed in jumping the PC
 
-   cla_16b PC_addr_adder1(.sum(pcAdd2), .c_out(err), .a(pcCurrent), .b(16'h0002), .c_in(1'b0));        
+   // err used to be output from c_out
+   cla_16b PC_addr_adder1(.sum(pcAdd2), .c_out(), .a(pcCurrent), .b(16'h0002), .c_in(1'b0));        
                                                                                                    //c_out is overflow port, 
                                                                                                    //when there is an overflow error, an error will be output                               
 

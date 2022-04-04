@@ -1,7 +1,9 @@
 module forwarding_unit(
+    
+    //input Jump_EXMEM,
+
     input RegWrite_EXMEM,
     input RegWrite_MEMWB,
-    
     input [2:0] RegisterRd_EXMEM,
     input [2:0] RegisterRd_MEMWB,
     input [2:0] RegisterRs_IDEX,
@@ -35,7 +37,22 @@ module forwarding_unit(
                             //& (RegisterRd_MEMWB != 0)
                             & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
                                 & (RegisterRd_EXMEM == RegisterRs_IDEX)))
-                            & (RegisterRd_MEMWB == RegisterRs_IDEX)) ? 1'b1 : 1'b0;
+                            & (RegisterRd_MEMWB == RegisterRs_IDEX)
+                            /*| Jump_EXMEM*/) ? 1'b1 : 1'b0;
+
+                            //if instruction before Jump, and after jump has a RAW, use MEM-EX forwarding,
+                            //j_4.asm 
+                            /*
+                            // j test 2
+                            // Jump instruction should cause looping to earlier portion of program
+                                lbi r1, 0xfd
+                                addi r1, r1, 0x01
+                                bgez r1, .done          //after 3 total executions of add, go to halt
+                                j 0x7fa
+                                .done:
+                                halt
+
+                            */
 
     assign forwardB_MEMEX =   (RegWrite_MEMWB
                             //& (RegisterRd_MEMWB != 0)
