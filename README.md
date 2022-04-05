@@ -16,7 +16,7 @@ After completing the Verilog files, use Modelsim to verify them, the Command-Lin
 
 * untar using tar -xvzf command
 
-`tar -xvzf filename.tgz`
+`tar -xvf filename.tgz`
 
 * compress using tar -cvzf command
 
