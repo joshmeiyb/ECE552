@@ -8,16 +8,35 @@ module forwarding_unit(
     input [2:0] RegisterRd_MEMWB,
     input [2:0] RegisterRs_IDEX,
     input [2:0] RegisterRt_IDEX,
-    input I_format,
-    input R_format,
+    //input I_format,
+    //input R_format,
+
+    //input MemWrite_IDEX,
+    input MemWrite_EXMEM,
+    input MemWrite_MEMWB,
+
+    //input [2:0] RegisterRs_EXMEM,
+    //input [2:0] read1Data_IFID,
+    //input [2:0] read2Data_IFID,
+    //input [2:0] RegisterRd_IDEX,
+    //input [2:0] RegisterRs_IDEX,
+    //input [2:0] RegisterRt_IDEX,
+    //output forward_LBI_ST,
+
     //output forward_EX_to_EX,
     //output forward_MEM_to_EX
+    
+    
+    
     output [1:0] forwardA,
     output [1:0] forwardB
+
+    
 );
     
     wire forwardA_EXEX, forwardB_EXEX;
     wire forwardA_MEMEX, forwardB_MEMEX;
+    wire forward_ST_EXEX, forward_ST_MEMEX;
     
     //EXEX forward
     assign forwardA_EXEX = (RegWrite_EXMEM
@@ -28,9 +47,9 @@ module forwarding_unit(
                             //& (RegisterRd_EXMEM != 0)
                             & (RegisterRd_EXMEM == RegisterRt_IDEX)) ? 1'b1 : 1'b0;
 
-    assign forwardA =   (forwardA_EXEX)  ?  2'b10 :
-                        (forwardA_MEMEX) ?  2'b01 :
-                                            2'b00;
+    assign forwardA =   (forwardA_EXEX  | forward_ST_EXEX)  ?  2'b10 :
+                        (forwardA_MEMEX | forward_ST_MEMEX) ?  2'b01 :
+                                                               2'b00;
 
     //MEMEX forward
     assign forwardA_MEMEX =   (RegWrite_MEMWB
@@ -53,7 +72,6 @@ module forwarding_unit(
                                 halt
 
                             */
-
     assign forwardB_MEMEX =   (RegWrite_MEMWB
                             //& (RegisterRd_MEMWB != 0)
                             & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
@@ -64,5 +82,32 @@ module forwarding_unit(
                         (forwardB_MEMEX) ?  2'b01 :
                                             2'b00;
 
+    //forwarding case for ST after LBI: EX-EX forwarding
+    //  3   4   5   6   7   8
+    //  F   D   X   M   W
+    //           \     
+    //            \
+    //      F   D   X   M   W
+    //if actually writing mem & (wrinting addr == reading addr), EX-EX forward 
+    //forwarding data from ALU_Out_EXMEM to ALU_Out(execution)   
+    
+    assign forward_ST_EXEX = (MemWrite_EXMEM/*MemWrite_IDEX*/ & (RegisterRs_IDEX == RegisterRd_EXMEM)) ? 1'b1 : 1'b0;
+
+    //forwarding case for ST after LBI: MEM-EX forwarding
+    //  3   4   5   6   7   8   9
+    //  F   D   X   M   W
+    //               \     
+    //                \
+    //          F   D   X   M   W
+    //if actually writing mem & (wrinting addr == reading addr), EX-EX forward 
+    //forwarding data from ALU_Out_EXMEM to ALU_Out(execution)
+
+    assign forward_ST_MEMEX = (MemWrite_MEMWB/*MemWrite_IDEX*/ & (RegisterRs_IDEX == RegisterRd_MEMWB)) ? 1'b1 : 1'b0;
+
+    
+    
+    //assign forward_LBI_ST = (MemWrite_IDEX 
+    //                        & (read1Data_IFID == RegisterRd_IDEX) /*| (read2Data_IFID == RegisterRd_IDEX)*/) ? 1'b1 : 1'b0;
+   
 
 endmodule

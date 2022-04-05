@@ -1,23 +1,11 @@
-          // Original test: ./chen-han/hw4/problem6/jalr_0.asm
-          // Author: chen-han
+          // Original test: ./ullmer/hw4/problem6/st_6.asm
+          // Author: ullmer
           // Test source code follows
           
           
-          //test if the jump and link instruction will have correct value in r7 and pc
-0000 2006 j .Label3	
-0002      .Label1:
-0002 c5ff lbi r5, -1
-0004 2f00 jr r7, 0		//back to halt
-0006 c67b lbi r6, 123		//should never go here
-          
-0008      .Label3:
-0008 c500 lbi r5, 0		//first, code go here
-000a c400 lbi r4, U.Label1	//initial r4,r5,r6
-000c c402 lbi r4, L.Label1	//r4 = ,Label1
-000e 448a addi r4, r4, 10
-0010 3cf6 jalr r4, -10		//go .Label1
-0012 0000 halt			//stop
-          
-          // you should have r4 = .Label1 
-          //		   r5 = -1
-          //		   
+          //test where mem address is max neg reg
+          //offset + max neg immediate (mem address = 0xff70)
+0000 c080 lbi r0, -128
+0002 c12d lbi r1, 45
+0004 8030 st r1, r0, -16
+0006 0000 halt

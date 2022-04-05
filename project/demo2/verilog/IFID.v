@@ -5,7 +5,7 @@ module IFID(
             input [15:0] instruction,
             input [15:0] pcAdd2,    //pcAdd2 used to be next_pc1
             input stall,
-
+            //input PCSrc,
             input Halt_IFID,
 
             output [15:0] instruction_IFID,
@@ -20,7 +20,7 @@ module IFID(
     reg16 reg_instruction(
         .clk(clk), 
         .rst(1'b0),
-        .write(1'b1),     
+        .write(/*1'b1*/en),     
         .wdata(instruction_temp), //stall will freeze the input of instruction register
         .rdata(instruction_IFID)
     );

@@ -27,19 +27,30 @@ module fetch (clk, rst, /*err,*/ stall,
    wire [15:0] pcCurrent;  //output of PC_reg,
                            //intermediate value before adding 2
 
-   assign pcNew = ~(Jump_IDEX) & (Halt_fetch | stall)    ?  pcCurrent        : 
+   /*
+   assign pcNew = //rst                                    ?  16'h0000         :
+                  ~(Jump_IDEX) & (Halt_fetch | stall)    ?  pcCurrent        : 
                   PCSrc                                  ?  branch_jump_pc   : 
                                                             pcAdd2;
+   */
+   assign pcNew = PCSrc                                  ?  branch_jump_pc   : 
+                  ~(Jump_IDEX) & (Halt_fetch | stall)    ?  pcCurrent        : 
+                                                            pcAdd2;
+
+
    //If Halt is after a jump, and Halt is decoded in Decode stage,
    //Meanwhile Jump is in Execute stage, need to prevent Halt_fetch stopping
    //PC from being updated, to succeed in jumping the PC
 
    // err used to be output from c_out
-   cla_16b PC_addr_adder1(.sum(pcAdd2), .c_out(), .a(pcCurrent), .b(16'h0002), .c_in(1'b0));        
+   
+   wire [15:0] PC_addr_adder1_input_b;
+   assign PC_addr_adder1_input_b = rst ? 16'h0000 : 16'h0002;
+   cla_16b PC_addr_adder1(.sum(pcAdd2), .c_out(), .a(pcCurrent), .b(/*16'h0002*/PC_addr_adder1_input_b), .c_in(1'b0));        
                                                                                                    //c_out is overflow port, 
                                                                                                    //when there is an overflow error, an error will be output                               
 
-   reg16 PC_reg (.clk(clk), .rst(rst), .write(1'b1), .wdata(pcNew), .rdata(pcCurrent));
+   reg16 PC_reg (.clk(clk), .rst(rst), .write(1'b1/*~rst*/), .wdata(pcNew/* & ~rst*/), .rdata(pcCurrent));
 
    memory2c Instruction_Memory(.data_out(instruction), .data_in(16'h0000), .addr(pcCurrent), 
    .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst)); //enable port is read enable

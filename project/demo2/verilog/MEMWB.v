@@ -9,7 +9,7 @@ module MEMWB(
     input [2:0] RegisterRd_EXMEM, //3-bit   
     input MemtoReg_EXMEM,
     input RegWrite_EXMEM,
-    
+    input MemWrite_EXMEM,
     //input [2:0] ext_select_EXMEM,
     
     input [15:0] mem_read_data,    //16-bit
@@ -22,7 +22,7 @@ module MEMWB(
     output [2:0] RegisterRd_MEMWB,
     output MemtoReg_MEMWB,
     output RegWrite_MEMWB,
-
+    output MemWrite_MEMWB,
     //output [2:0] ext_select_MEMWB,
 
     output [15:0] mem_read_data_MEMWB,
@@ -72,6 +72,15 @@ module MEMWB(
         .wdata(RegWrite_EXMEM), 
         .rdata(RegWrite_MEMWB)
     );
+
+    reg1 reg_MemWrite_EXMEM (
+        .clk(clk), 
+        .rst(rst | Halt_EXMEM), 
+        .write(en), 
+        .wdata(MemWrite_EXMEM), 
+        .rdata(MemWrite_MEMWB)
+    );
+    
 
     reg16 reg_mem_read_data (
         .clk(clk), 

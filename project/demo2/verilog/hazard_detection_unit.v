@@ -11,15 +11,35 @@ module hazard_detection_unit(
     */
     //input branch_taken,
     //output writeEn_PC_reg
+    
+    //input rst,
+    
+    //input RegWrite_IDEX,
+    //input RegWrite_EXMEM,
+
     input MemRead_IDEX,
-    input [2:0] writeRegSel_IDEX,
+    //input [2:0] RegisterRd_EXMEM,
+    //input [2:0] RegisterRd_IDEX,
     input [2:0] RegisterRs_IFID,
     input [2:0] RegisterRt_IFID,
+    input [2:0] RegisterRt_IDEX,
     output stall
     
 );
 
-    assign stall = (MemRead_IDEX) & ((writeRegSel_IDEX == RegisterRs_IFID) | (writeRegSel_IDEX == RegisterRt_IFID));
+    //assign stall = (MemRead_IDEX) & ((RegisterRd_IDEX == RegisterRs_IFID) | (RegisterRd_IDEX == RegisterRt_IFID));
+    assign stall = (MemRead_IDEX) & ((RegisterRt_IDEX == RegisterRs_IFID) | (RegisterRt_IDEX == RegisterRt_IFID));
+    /*
+    assign stall =  rst ? 1'b0 : 
+                    ((RegWrite_IDEX | MemRead_IDEX) & ((RegisterRs_IFID == RegisterRd_IDEX)  
+                    | (RegisterRs_IFID == RegisterRd_IDEX))) |
+
+                    ((RegWrite_EXMEM | MemRead_IDEX) & ((RegisterRs_IFID == RegisterRd_EXMEM)  
+                    | (RegisterRt_IFID == RegisterRd_EXMEM)));
+    */
+
+
+
 
     //wire raw1, raw2, raw3, raw4;
 

@@ -40,17 +40,20 @@ module execute (ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
                                     //               2. the InB of ALU
    input Branch;
    input Jump;
+   
    input [1:0] forwardA, forwardB;
    input [15:0] ALU_Out_EXMEM;
    input [15:0] writeback_data;
 
    
-   wire [15:0] Rs_or_pcAdd2;
-   assign Rs_or_pcAdd2 = reg_to_pc ? ALU_Out : pcAdd2;
+   wire [15:0] pcAdd2_add_extend_output;
+   //assign Rs_or_pcAdd2 = reg_to_pc ? ALU_Out : pcAdd2;
+
+   assign branch_jump_pc = reg_to_pc ? ALU_Out : pcAdd2_add_extend_output;
 
    //Must not shift left by 1bit
    //cla_16b PC_addr_adder2(.sum(next_pc2), .c_out(), .a(next_pc1), .b(extend_output), .c_in(1'b0));
-   cla_16b PC_addr_adder2(.sum(branch_jump_pc), .c_out(), .a(Rs_or_pcAdd2), .b(extend_output), .c_in(1'b0));
+   cla_16b PC_addr_adder2(.sum(/*branch_jump_pc*/pcAdd2_add_extend_output), .c_out(), .a(pcAdd2), .b(extend_output), .c_in(1'b0));
 
    //To branch or not branch
    wire Branch_AND;
@@ -78,13 +81,13 @@ module execute (ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    end
 
    wire [15:0] InA_forward, InB_forward;
-   assign InA_forward = (forwardA == 2'b10) ? ALU_Out_EXMEM :
-                        (forwardA == 2'b01) ? writeback_data :
+   assign InA_forward = (forwardA == 2'b10) ? ALU_Out_EXMEM :  //EX-EX
+                        (forwardA == 2'b01) ? writeback_data : //MEM-EX
                         read1Data;
                         
    assign InB_forward = ALUSrc ? extend_output :
-                        (forwardB == 2'b10) ? ALU_Out_EXMEM :
-                        (forwardB == 2'b01) ? writeback_data :
+                        (forwardB == 2'b10) ? ALU_Out_EXMEM :  //EX-EX
+                        (forwardB == 2'b01) ? writeback_data : //MEM-EX
                         read2Data;
 
    alu alu(.InA(InA_forward), .InB(InB_forward), .Cin(ALU_Cin), 
