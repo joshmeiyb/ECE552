@@ -18,8 +18,9 @@ module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWri
    input MemWrite;
    input Halt;
 
-   wire MemRead_in, MemWrite_in;
-   // if WB is halting, don't read or write memory
+   wire MemRead_in, MemWrite_in;    //This signal is the AND Gates output before writing or reading the data memory 
+                                    //If WB is halting, don't read or write memory, 
+                                    //this is only detected in the random tests in demo2, which is easy to be ignored
    assign MemRead_in = MemRead & ~Halt;
    assign MemWrite_in = MemWrite & ~Halt;
 

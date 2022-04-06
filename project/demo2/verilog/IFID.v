@@ -1,13 +1,14 @@
 module IFID(
+            //inputs
             input clk,
             input rst,          //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
+                                //In proc.v, we connect the "rst" of IFID to "rst | PCSrc"
             input en,
             input [15:0] instruction,
             input [15:0] pcAdd2,    //pcAdd2 used to be next_pc1
             input stall,
-            //input PCSrc,
             input Halt_IFID,
-
+            //outputs
             output [15:0] instruction_IFID,
             output [15:0] pcAdd2_IFID
         );
@@ -19,17 +20,17 @@ module IFID(
 
     reg16 reg_instruction(
         .clk(clk), 
-        .rst(1'b0),
-        .write(/*1'b1*/en),     
-        .wdata(instruction_temp), //stall will freeze the input of instruction register
+        .rst(1'b0),                 //Unique rst signal only for instruction fetching, 
+                                    //we do not want to stop fetching instrcution when "branch/jump is taken" or when "halt is happened"
+        .write(en),     
+        .wdata(instruction_temp),   //stall will freeze the input of instruction register
         .rdata(instruction_IFID)
     );
 
     reg16 reg_pcAdd2(
         .clk(clk), 
-        //.rst(rst), 
         .rst(rst | Halt_IFID),
-        .write(en),     //connected to stall in proc.v
+        .write(en),                 //connected to stall in proc.v
         .wdata(pcAdd2), 
         .rdata(pcAdd2_IFID) 
     );

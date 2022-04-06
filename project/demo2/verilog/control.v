@@ -5,11 +5,11 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 R_format, I_format
                 );
 
+    //inputs
     input [4:0] Opcode;
     input [1:0] four_mode; //instruction[1:0], selecting mode
-    
+    //outputs
     output reg [1:0] RegDst;
-    //output reg RS_sel; //JR, JALR
     output reg Jump;
     output reg Branch;
     output reg [2:0] ext_select;
@@ -27,14 +27,9 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
     output reg Halt;
     output reg err;
     output reg SIIC;
-    output reg RTI;
-    
-    //output reg LD; //MEM-EX forwarding
-    
+    output reg RTI;  
     output reg R_format;
     output reg I_format;
-
-    
 
     reg [3:0] shared_opcode; //ADD, SUB, XOR, ANDN
     reg alu_inva, alu_invb; //intermediate values for ALU_invA, ALU_invB

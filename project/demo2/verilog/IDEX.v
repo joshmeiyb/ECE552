@@ -13,7 +13,6 @@ module IDEX(
     input [2:0] RegisterRd,     //3-bit
     input [2:0] RegisterRs,
     input [2:0] RegisterRt,
-
     input Jump,
     input Branch,
     input MemtoReg,
@@ -27,10 +26,8 @@ module IDEX(
     input ALU_invA,
     input ALU_invB,
     input ALU_Cin,
-    
     input PCSrc,
     input Halt_decode,
-
     input SIIC,
     input RTI,
     //outputs
@@ -57,7 +54,6 @@ module IDEX(
     output ALU_invA_IDEX,
     output ALU_invB_IDEX,
     output ALU_Cin_IDEX,
-
     output Halt_IDEX,
     output SIIC_IDEX,
     output RTI_IDEX
@@ -86,7 +82,7 @@ module IDEX(
         .rdata(instruction_IDEX)
     );
 
-    //don't flush pc when branch is taken
+    //DO NOT flush pc when branch is taken
     reg16 reg_pcAdd2_IFID (
         .clk(clk), 
         .rst(rst | Halt_decode), 
@@ -103,13 +99,9 @@ module IDEX(
         .rdata(read1Data_IDEX)
     ); 
     
-    //wire rst_reg_read2Data;
-    //assign rst_reg_read2Data = MemRead ? 1'b0 : (rst | Halt_decode | PCSrc);
-    
     reg16 reg_read2Data (
         .clk(clk), 
         .rst(rst | Halt_decode | PCSrc), 
-        //.rst(rst_reg_read2Data),
         .write(en), 
         .wdata(read2Data), 
         .rdata(read2Data_IDEX)

@@ -16,7 +16,6 @@ module decode (instruction, writeback_data, clk, rst,
                MemtoReg, ALUOp, ALU_invA, ALU_invB, ALU_Cin, 
                MemRead, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
                Halt_decode, err, SIIC, RTI,
-               //LD,
                R_format, I_format);
    /* TODO: Add appropriate inputs/outputs for your decode stage here*/
    // TODO: Your code here
@@ -26,35 +25,30 @@ module decode (instruction, writeback_data, clk, rst,
    input [15:0] writeback_data;
    input clk, rst;
    input wire RegWrite_in;                //Edited at pipeline design
-   input wire [2:0] RegisterRd_in;    //Edited at pipeline design
-
+   input wire [2:0] RegisterRd_in;        //Edited at pipeline design
    //Decode Outputs
    output wire [15:0] read1Data, read2Data;
    output wire err;
    output wire [15:0] extend_output;
-   output wire [2:0] RegisterRd_out;     //Edited at pipeline design
+   output wire [2:0] RegisterRd_out;      //Edited at pipeline design
    output wire [2:0] RegisterRs_out;
    output wire [2:0] RegisterRt_out;
-
    //Control Outputs
    output wire Jump;
    output wire Branch;
-   output wire MemtoReg;            //control signal in wb stage
+   output wire MemtoReg;                  //control signal in wb stage
    output wire MemRead;
    output wire MemWrite;
-   output wire RegWrite_out;                 //Edited at pipeline design
-   output wire reg_to_pc;           //MUX select signal in fetch stage
-   output wire pc_to_reg;           //MUX select signal in writeback stage
+   output wire RegWrite_out;              //Edited at pipeline design
+   output wire reg_to_pc;                 //MUX select signal in fetch stage
+   output wire pc_to_reg;                 //MUX select signal in writeback stage
    output wire [3:0] ALUOp;
    output wire ALUSrc;
-   output wire ALU_invA, ALU_invB;  //connect to ALU ports invA, invB
+   output wire ALU_invA, ALU_invB;        //connect to ALU ports invA, invB
    output wire ALU_Cin;
    output wire Halt_decode;
    output wire SIIC;
    output wire RTI;
-
-   //output wire LD;   //MEM-EX forwarding
-
    output wire R_format;
    output wire I_format;
     
@@ -63,7 +57,7 @@ module decode (instruction, writeback_data, clk, rst,
    assign err = control_err | regFile_err;
 
    //------------4:1 MUX write address selecting write registers-----------------//
-   //wire [2:0] RegisterRd;       //3-bit control signal select the write back address of regFile
+   //wire [2:0] RegisterRd;         //3-bit control signal select the write back address of regFile
    wire [1:0] RegDst;               //2-bit control signal for RegisterRd
    
    //Edited at pipeline design
@@ -71,17 +65,10 @@ module decode (instruction, writeback_data, clk, rst,
                               (RegDst == 2'b10) ?  instruction[4:2] :    //write to Rd, xxxxx sss ttt ddd xx, bit[4:2]
                               (RegDst == 2'b01) ?  instruction[7:5] :    //write to Rd, xxxxx sss ddd iiiii, bit[7:5], 5-bit immediate number
                                                    instruction[10:8];    //write to Rs, bit[10:8]
-   ////////////////////////////////////////////////////////////////////////////////
-
    assign RegisterRs_out = instruction[10:8];
    assign RegisterRt_out = instruction[7:5]; 
    
-   //-------------------------Register File--------------------------------------//
-   
-   //wire RegWrite;            //regFile write enable signal
-   //Edited at pipeline design
-
-
+   //-------------------------------------------------Register File module with bypassing-----------------------------------------------//
    //Register File with bypass to read/write same data concurrently
    regFile_bypass regFile( 
                            //Outputs
@@ -89,7 +76,7 @@ module decode (instruction, writeback_data, clk, rst,
                            //Inputs
                            .clk(clk), .rst(rst), .read1RegSel(instruction[10:8]), .read2RegSel(instruction[7:5]), 
                            .writeRegSel(RegisterRd_in), .writeData(writeback_data), .writeEn(RegWrite_in)); //Edited at pipeline design
-   ////////////////////////////////////////////////////////////////////////////////
+   //-----------------------------------------------------------------------------------------------------------------------------------//
 
 
    //Jump: signed extended, instr[5:0], instr[7:0], instr[10:0]
@@ -119,7 +106,6 @@ module decode (instruction, writeback_data, clk, rst,
                   .Jump(Jump), 
                   .Branch(Branch), 
                   .ext_select(ext_select),
-                  //.ext_select(ext_select_out),
                   .MemtoReg(MemtoReg), 
                   .ALUOp(ALUOp), 
                   .ALU_invA(ALU_invA), 
@@ -135,10 +121,7 @@ module decode (instruction, writeback_data, clk, rst,
                   .err(control_err),
                   .SIIC(SIIC),
                   .RTI(RTI),
-                  
-                  //.LD(LD),
-
-                  .R_format(R_format), //update it in control!!!!!!!!!1
+                  .R_format(R_format),
                   .I_format(I_format)
                   );
 
