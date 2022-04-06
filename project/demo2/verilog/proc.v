@@ -472,8 +472,9 @@
                 //Do not need MemRead, since it is only an enable signal which can be replaced by MemtoReg_EXMEM 
                 
                 //.MemWrite(MemWrite_in & (~PCSrc)),
-                .MemWrite(/*MemWrite_IDEX |*/ MemWrite_EXMEM & (~PCSrc)),        //When branch-taken, PCSrc goes high, set MemWrite to zero, stop writing anything into data memory
-                
+                .MemWrite(/*MemWrite_IDEX |*/ MemWrite_EXMEM /*& (~PCSrc)*/),        // *WRONG ASSUMPTION* ---> When branch-taken, PCSrc goes high, set MemWrite to zero, stop writing anything into data memory
+                                                                                //Branch/Jump_taken is solved at execution stage, but memory is after execution,
+                                                                                //We only want to flush IFID and IDEX, stopping fetching new instruction (only 3 place where PCSrc should exist) 
                 .Halt(Halt_MEMWB)       //createdump will write whatever in the datamemory into dumpfile(which is the file will be generated when Halt)
                                         //if (createdump) begin
                                         //    mcd = $fopen("dumpfile", "w");
