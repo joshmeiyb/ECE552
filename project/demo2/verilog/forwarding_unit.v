@@ -2,14 +2,16 @@ module forwarding_unit(
     
     //input Jump_EXMEM,
 
+    //input MemRead_MEMWB,
+
     input RegWrite_EXMEM,
     input RegWrite_MEMWB,
     input [2:0] RegisterRd_EXMEM,
     input [2:0] RegisterRd_MEMWB,
     input [2:0] RegisterRs_IDEX,
     input [2:0] RegisterRt_IDEX,
-    //input I_format,
-    //input R_format,
+    input I_format_IDEX,
+    input R_format_IDEX,
 
     //input MemWrite_IDEX,
     input MemWrite_EXMEM,
@@ -26,33 +28,37 @@ module forwarding_unit(
     //output forward_EX_to_EX,
     //output forward_MEM_to_EX
     
-    
-    
+    //output forward_MEM_to_EX;   //only when MemRead_MEMWB is 1'b1
+
     output [1:0] forwardA,
     output [1:0] forwardB
-
-    
 );
     
     wire forwardA_EXEX, forwardB_EXEX;
     wire forwardA_MEMEX, forwardB_MEMEX;
-    wire forward_ST_EXEX, forward_ST_MEMEX;
+    //wire forward_ST_EXEX, forward_ST_MEMEX;
+
+    /*
+    assign forward_MEM_to_EX = (MemRead_MEMWB 
+                                & (RegWrite_EXMEM == RegisterRs_IDEX)) ? 1'b1 : 1'b0;
+
+    */
     
     //EXEX forward
-    assign forwardA_EXEX = (RegWrite_EXMEM
+    assign forwardA_EXEX = (RegWrite_EXMEM /*& ~R_format_IDEX & ~I_format_IDEX*/
                             //& (RegisterRd_EXMEM != 0)
                             & (RegisterRd_EXMEM == RegisterRs_IDEX)) ? 1'b1 : 1'b0;
 
-    assign forwardB_EXEX = (RegWrite_EXMEM
+    assign forwardB_EXEX = (RegWrite_EXMEM & ~I_format_IDEX //Rt should be ignored when considering the I_format_instruction, since it's all immediate number not register
                             //& (RegisterRd_EXMEM != 0)
                             & (RegisterRd_EXMEM == RegisterRt_IDEX)) ? 1'b1 : 1'b0;
 
-    assign forwardA =   (forwardA_EXEX  | forward_ST_EXEX)  ?  2'b10 :
-                        (forwardA_MEMEX | forward_ST_MEMEX) ?  2'b01 :
+    assign forwardA =   (forwardA_EXEX  /*| forward_ST_EXEX*/)  ?  2'b10 :
+                        (forwardA_MEMEX /*| forward_ST_MEMEX*/) ?  2'b01 :
                                                                2'b00;
 
     //MEMEX forward
-    assign forwardA_MEMEX =   (RegWrite_MEMWB
+    assign forwardA_MEMEX =   (RegWrite_MEMWB /*& ~R_format_IDEX & ~I_format_IDEX*/
                             //& (RegisterRd_MEMWB != 0)
                             & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
                                 & (RegisterRd_EXMEM == RegisterRs_IDEX)))
@@ -72,7 +78,7 @@ module forwarding_unit(
                                 halt
 
                             */
-    assign forwardB_MEMEX =   (RegWrite_MEMWB
+    assign forwardB_MEMEX =   (RegWrite_MEMWB & ~I_format_IDEX
                             //& (RegisterRd_MEMWB != 0)
                             & (~(RegWrite_EXMEM & (RegisterRd_EXMEM != 0)
                                 & (RegisterRd_EXMEM == RegisterRt_IDEX)))
@@ -91,7 +97,7 @@ module forwarding_unit(
     //if actually writing mem & (wrinting addr == reading addr), EX-EX forward 
     //forwarding data from ALU_Out_EXMEM to ALU_Out(execution)   
     
-    assign forward_ST_EXEX = (MemWrite_EXMEM/*MemWrite_IDEX*/ & (RegisterRs_IDEX == RegisterRd_EXMEM)) ? 1'b1 : 1'b0;
+    //assign forward_ST_EXEX = (MemWrite_EXMEM/*MemWrite_IDEX*/ & (RegisterRs_IDEX == RegisterRd_EXMEM)) ? 1'b1 : 1'b0;
 
     //forwarding case for ST after LBI: MEM-EX forwarding
     //  3   4   5   6   7   8   9
@@ -102,7 +108,13 @@ module forwarding_unit(
     //if actually writing mem & (wrinting addr == reading addr), EX-EX forward 
     //forwarding data from ALU_Out_EXMEM to ALU_Out(execution)
 
-    assign forward_ST_MEMEX = (MemWrite_MEMWB/*MemWrite_IDEX*/ & (RegisterRs_IDEX == RegisterRd_MEMWB)) ? 1'b1 : 1'b0;
+    //assign forward_ST_MEMEX = (MemWrite_MEMWB/*MemWrite_IDEX*/ & (RegisterRs_IDEX == RegisterRd_MEMWB)) ? 1'b1 : 1'b0;
+
+
+    /*
+    NEED TO BE NOTICED:
+    ST never write to register, so RAW hazard can just be detected by register.read and register.write
+    */
 
     
     

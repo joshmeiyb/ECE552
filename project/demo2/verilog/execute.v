@@ -4,12 +4,14 @@
    Filename        : execute.v
    Description     : This is the overall module for the execute stage of the processor.
 */
-module execute (ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
+module execute (ALU_Out, PCSrc, memWriteData, ALU_Zero, ALU_Ofl,
                instruction, read1Data, read2Data, 
                ALUSrc, ALU_Cin, ALUOp, ALU_invA, ALU_invB,
                ALU_sign, extend_output, Branch, Jump,
                reg_to_pc, pcAdd2, branch_jump_pc,
-               forwardA, forwardB,
+               /*forward_MEM_to_EX,*/ forwardA, forwardB,
+               /*MemRead_MEMWB,*/ 
+               /*mem_read_data_MEMWB,*/ RegisterRd_IDEX, RegisterRs_IFID, /*stall_EX_to_MEMEX_forwarding*//*mem_read_data,*/
                ALU_Out_EXMEM, writeback_data
                //---------------------------------------------------------//
                
@@ -20,9 +22,12 @@ module execute (ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    //outputs
    output [15:0] branch_jump_pc;
    output [15:0] ALU_Out;
+   output [15:0] memWriteData;
    output PCSrc;
    output ALU_Zero;                 //DO WE NEED THIS SIGNAL?
    output ALU_Ofl;                  //DO WE NEED THIS SIGNAL?
+
+   //output stall_EX_to_MEMEX_forwarding;
 
    //inputs
    input [15:0] instruction;
@@ -41,11 +46,17 @@ module execute (ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    input Branch;
    input Jump;
    
+   //input forward_MEM_to_EX;
    input [1:0] forwardA, forwardB;
+   //input [15:0] mem_read_data_MEMWB;
+   //input MemRead_MEMWB;
+   //input [15:0] mem_read_data;
+   input [2:0] RegisterRd_IDEX;
+   input [2:0] RegisterRs_IFID;
    input [15:0] ALU_Out_EXMEM;
    input [15:0] writeback_data;
 
-   
+   wire [15:0] InB_forward_noImm;
    wire [15:0] pcAdd2_add_extend_output;
    //assign Rs_or_pcAdd2 = reg_to_pc ? ALU_Out : pcAdd2;
 
@@ -81,8 +92,24 @@ module execute (ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
    end
 
    wire [15:0] InA_forward, InB_forward;
-   assign InA_forward = (forwardA == 2'b10) ? ALU_Out_EXMEM :  //EX-EX
-                        (forwardA == 2'b01) ? writeback_data : //MEM-EX
+   wire [15:0] InA_forward_temp;
+   
+   /*
+   assign InA_forward = (MemRead_IDEX & (RegisterRd_IDEX == RegisterRs_IFID))  ?  stall_EX_to_MEMEX_forwarding :     //mem_read_data
+                        (forwardA == 2'b10)                                    ?  ALU_Out_EXMEM :  //EX-EX
+                        (forwardA == 2'b01)                                    ?  writeback_data : //MEM-EX
+                                                                                  read1Data;
+                                                                                  
+   */
+
+   //wire [1:0] forwardA_temp;
+   //assign forwardA_temp = (MemRead_MEMWB) ? 2'b01 : forwardA;   //exeception case for MEM-EX to Rs, when LD has the RAW hazard, need MEM-EX forwarding rather than EX-EX forwarding
+   
+   //assign forwardA_temp = (MemRead_MEMWB /*& (instruction[15:11] == 5'b10001)*/) ? 2'b01 : forwardA;
+   
+
+   assign InA_forward = (forwardA/*_temp*/ == 2'b10) ? ALU_Out_EXMEM :  //EX-EX
+                        (forwardA/*_temp*/ == 2'b01) ? writeback_data : //MEM-EX
                         read1Data;
                         
    assign InB_forward = ALUSrc ? extend_output :
@@ -90,11 +117,18 @@ module execute (ALU_Out, PCSrc, ALU_Zero, ALU_Ofl,
                         (forwardB == 2'b01) ? writeback_data : //MEM-EX
                         read2Data;
 
-   alu alu(.InA(InA_forward), .InB(InB_forward), .Cin(ALU_Cin), 
+   /*assign InA_forward_temp = forward_MEM_to_EX ? mem_read_data_MEMWB : //MEM-EX prior to EX-EX only for LD instruction 
+                             InA_forward;
+   */
+
+   alu alu(.InA(InA_forward/*InA_forward_temp*/), .InB(InB_forward), .Cin(ALU_Cin), 
    .Oper(ALUOp), .invA(ALU_invA), .invB(ALU_invB), .sign(ALU_sign),
    .Out(ALU_Out), .Zero(ALU_Zero), .Ofl(ALU_Ofl));
 
+   assign InB_forward_noImm = (forwardB == 2'b10) ? ALU_Out_EXMEM :  //EX-EX
+                              (forwardB == 2'b01) ? writeback_data : //MEM-EX
+                              read2Data;
 
-
+   assign memWriteData = InB_forward_noImm;
 
 endmodule

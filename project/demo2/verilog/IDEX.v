@@ -3,6 +3,8 @@ module IDEX(
     input clk, 
     input rst,          //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
     input en,
+    input I_format,
+    input R_format,
     input [15:0] instruction_IFID,          //16-bit        
     input [15:0] pcAdd2_IFID,             //16-bit 
     input [15:0] read1Data,                 //16-bit        
@@ -32,6 +34,8 @@ module IDEX(
     input SIIC,
     input RTI,
     //outputs
+    output I_format_IDEX,
+    output R_format_IDEX,
     output [15:0] instruction_IDEX,        //propogate the IDEX pipline stage  
     output [15:0] pcAdd2_IDEX,              //propogate the IDEX pipline stage
     output [15:0] read1Data_IDEX,            
@@ -59,7 +63,21 @@ module IDEX(
     output RTI_IDEX
 
 );
-    
+    reg1 reg_I_format_IDEX(
+        .clk(clk), 
+        .rst(rst | Halt_decode | PCSrc), 
+        .write(en), 
+        .wdata(I_format), 
+        .rdata(I_format_IDEX)
+    );
+    reg1 reg_R_format_IDEX(
+        .clk(clk), 
+        .rst(rst | Halt_decode | PCSrc), 
+        .write(en), 
+        .wdata(R_format), 
+        .rdata(R_format_IDEX)
+    );
+
     reg16 reg_instruction_IFID (
         .clk(clk), 
         .rst(rst | Halt_decode | PCSrc), 

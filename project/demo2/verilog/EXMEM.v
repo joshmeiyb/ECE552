@@ -18,6 +18,7 @@ module EXMEM (
     input RegWrite_IDEX,
     //input forward_LBI_ST,
 
+
     input Jump_IDEX,
 
     //input [2:0] ext_select_IDEX,

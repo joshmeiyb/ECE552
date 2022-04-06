@@ -20,15 +20,21 @@ module hazard_detection_unit(
     input MemRead_IDEX,
     //input [2:0] RegisterRd_EXMEM,
     //input [2:0] RegisterRd_IDEX,
+    input [2:0] RegisterRd_IDEX,
+    //input [4:0] Opcode_IDEX,
     input [2:0] RegisterRs_IFID,
     input [2:0] RegisterRt_IFID,
-    input [2:0] RegisterRt_IDEX,
+    //input [2:0] RegisterRt_IDEX,
     output stall
     
 );
 
-    //assign stall = (MemRead_IDEX) & ((RegisterRd_IDEX == RegisterRs_IFID) | (RegisterRd_IDEX == RegisterRt_IFID));
-    assign stall = (MemRead_IDEX) & ((RegisterRt_IDEX == RegisterRs_IFID) | (RegisterRt_IDEX == RegisterRt_IFID));
+    //wire if_LD;
+    //assign if_LD = (Opcode_IDEX == 5'b10001) ? 1'b1 : 1'b0;
+
+
+    assign stall = (MemRead_IDEX) & ((RegisterRd_IDEX == RegisterRs_IFID) | (RegisterRd_IDEX == RegisterRt_IFID));
+    //assign stall = (MemRead_IDEX /*& ~if_LD*/) & ((RegisterRt_IDEX == RegisterRs_IFID) | (RegisterRt_IDEX == RegisterRt_IFID));
     /*
     assign stall =  rst ? 1'b0 : 
                     ((RegWrite_IDEX | MemRead_IDEX) & ((RegisterRs_IFID == RegisterRd_IDEX)  

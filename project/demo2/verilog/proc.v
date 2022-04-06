@@ -54,6 +54,7 @@
         
         //There will be a MEM/EX forwarding for read2Data
         wire [15:0]                   read2Data,        read2Data_IDEX,      read2Data_EXMEM;
+        wire [15:0]                                     memWriteData_EX;
         
         wire [15:0]                   extend_output,    extend_output_IDEX;
         
@@ -76,7 +77,7 @@
         wire                          ALU_Cin,          ALU_Cin_IDEX;
         wire [15:0]   /*writeback_data_IFID,*/                                                     writeback_data;
         
-        wire                          MemRead,          MemRead_IDEX,        MemRead_EXMEM;
+        wire                          MemRead,          MemRead_IDEX,        MemRead_EXMEM,        MemRead_MEMWB;
         //Do not need MemRead, since it is only an enable signal which can be replaced by MemtoReg_EXMEM   
         
         wire                                            ALU_Zero;
@@ -88,14 +89,16 @@
         wire [15:0]                                                          mem_read_data,        mem_read_data_MEMWB;                         
         
 
-        //hazard_detection_unit & forwarding unit
+        //-----------------------------hazard_detection_unit & forwarding unit---------------------------------------//
         wire stall;
         // wire writeEn_PC_reg;
-        wire R_format;
-        wire I_format;
+        wire R_format, R_format_IDEX;
+        wire I_format, I_format_IDEX;
         wire [1:0] forwardA, forwardB;
+        wire forward_MEM_to_EX;
+        //wire stall_EX_to_MEMEX_forwarding;
         wire forward_LBI_ST, forward_LBI_ST_EXMEM;
-        //-------------------------------------//
+        //-----------------------------------------------------------------------------------------------------------//
 
         assign err = /*err_fetch | */err_decode;
 
@@ -115,11 +118,12 @@
 
                 //.rst(rst),
                 .MemRead_IDEX(MemRead_IDEX),
+                //.Opcode_IDEX(instruction_IDEX[15:11]),
                 //.RegWrite_EXMEM(RegWrite_EXMEM),
                 //.RegisterRd_EXMEM(RegisterRd_EXMEM),
                 //.RegWrite_IDEX(RegWrite_IDEX),
-                //.RegisterRd_IDEX(RegisterRd_IDEX),
-                .RegisterRt_IDEX(RegisterRt_IDEX),
+                .RegisterRd_IDEX(RegisterRd_IDEX),
+                //.RegisterRt_IDEX(RegisterRt_IDEX),
                 .RegisterRs_IFID(instruction_IFID[10:8]),
                 .RegisterRt_IFID(instruction_IFID[7:5]),
                 
@@ -133,6 +137,8 @@
         forwarding_unit FU(
                 //inputs
                 //.Jump_EXMEM(Jump_EXMEM),
+
+                //.MemRead_MEMWB(MemRead_MEMWB),
 
                 .RegWrite_EXMEM(RegWrite_EXMEM),
                 .RegWrite_MEMWB(RegWrite_MEMWB),
@@ -153,12 +159,13 @@
                 //.read2Data_IFID(instruction[7:5]),
                 //.RegisterRd_IDEX(RegisterRd_IDEX),
                 
-                //.I_format(I_format),
-                //.R_format(R_format),
+                .I_format_IDEX(I_format_IDEX),
+                .R_format_IDEX(R_format_IDEX),
                 //outputs
 
                 //.forward_LBI_ST(forward_LBI_ST),
 
+                //.forward_MEM_to_EX(forward_MEM_to_EX),
                 .forwardA(forwardA),    //input of execute stage
                 .forwardB(forwardB)     //input of execute stage
         );
@@ -276,9 +283,11 @@
         IDEX IDEX(
                 //input
                 .clk(clk), 
-                .rst(rst /*| (Halt_decode | Halt_EXMEM | Halt_MEMWB)*/ /*| stall*/ /*| PCSrc*/),
+                .rst(rst | stall/*| stall_EX_to_MEMEX_forwarding*//*| (Halt_decode | Halt_EXMEM | Halt_MEMWB)*/ /*| PCSrc*/),
                 //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
                 .en(1'b1),
+                .R_format(R_format),
+                .I_format(I_format),
                 .instruction_IFID(instruction_IFID),        //16-bit        
                 .pcAdd2_IFID(pcAdd2_IFID),                  //16-bit 
                 .read1Data(read1Data),                      //16-bit        
@@ -310,6 +319,8 @@
                 .RTI(RTI),
 
                 //outputs
+                .R_format_IDEX(R_format_IDEX),
+                .I_format_IDEX(I_format_IDEX),
                 .instruction_IDEX(instruction_IDEX),        //propogate the IDEX pipline stage  
                 .pcAdd2_IDEX(pcAdd2_IDEX),              //propogate the IDEX pipline stage
                 .read1Data_IDEX(read1Data_IDEX),            
@@ -344,6 +355,8 @@
                 .PCSrc(PCSrc),
                 .ALU_Zero(ALU_Zero),                   //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE? Seems we do not need ALU_Zero, therefore let it float
                 .ALU_Ofl(ALU_Ofl),                     //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
+                .memWriteData(memWriteData_EX),
+                //.stall_EX_to_MEMEX_forwarding(stall_EX_to_MEMEX_forwarding),
 
                 //Inputs
                 .reg_to_pc(reg_to_pc_IDEX),
@@ -361,10 +374,14 @@
                 .Branch(Branch_IDEX),
                 .Jump(Jump_IDEX),
                 //--------------hazard detection unit & forwarding -------//
-
+                
+                //.forward_MEM_to_EX(forward_MEM_to_EX),
                 .forwardA(forwardA),
                 .forwardB(forwardB),
-
+                //.MemRead_MEMWB(MemRead_MEMWB),
+                //.mem_read_data(mem_read_data),
+                .RegisterRd_IDEX(RegisterRd_IDEX),
+                .RegisterRs_IFID(instruction_IFID[10:8]),
                 //.forward_LBI_ST(forward_LBI_ST),
 
                 .ALU_Out_EXMEM(ALU_Out_EXMEM),
@@ -391,7 +408,7 @@
 
 
         .pc_to_reg_IDEX(pc_to_reg_IDEX),
-        .read2Data_IDEX(read2Data_IDEX),                //16-bit
+        .read2Data_IDEX(memWriteData_EX),                //16-bit
         .RegisterRd_IDEX(RegisterRd_IDEX),              //3-bit
         //.RegisterRs_IDEX(RegisterRs_IDEX),
         //.RegisterRt_IDEX(RegisterRt_IDEX),
@@ -447,7 +464,7 @@
                 .clk(clk),
                 .rst(rst),
 
-                .mem_write_data(read2Data_EXMEM), //This is directly connected with regFile read2Data output
+                .mem_write_data(read2Data_EXMEM /*| ALU_Out_EXMEM | ALU_Out_MEMWB*/), //This is directly connected with regFile read2Data output
                 //.mem_write_data(mem_write_data),
 
                 .ALU_Out(ALU_Out_EXMEM),
@@ -455,9 +472,9 @@
                 //Do not need MemRead, since it is only an enable signal which can be replaced by MemtoReg_EXMEM 
                 
                 //.MemWrite(MemWrite_in & (~PCSrc)),
-                .MemWrite(MemWrite_EXMEM & (~PCSrc)),        //When branch-taken, PCSrc goes high, set MemWrite to zero, stop writing anything into data memory
+                .MemWrite(/*MemWrite_IDEX |*/ MemWrite_EXMEM & (~PCSrc)),        //When branch-taken, PCSrc goes high, set MemWrite to zero, stop writing anything into data memory
                 
-                .Halt(Halt_EXMEM)       //createdump will write whatever in the datamemory into dumpfile(which is the file will be generated when Halt)
+                .Halt(Halt_MEMWB)       //createdump will write whatever in the datamemory into dumpfile(which is the file will be generated when Halt)
                                         //if (createdump) begin
                                         //    mcd = $fopen("dumpfile", "w");
                                         //    for (i=0; i<=largest+1; i=i+1) begin
@@ -479,6 +496,7 @@
         .MemtoReg_EXMEM(MemtoReg_EXMEM),
         .RegWrite_EXMEM(RegWrite_EXMEM),
         .MemWrite_EXMEM(MemWrite_EXMEM),
+        .MemRead_EXMEM(MemRead_EXMEM),
         
         //.ext_select_EXMEM(ext_select_EXMEM),
         
@@ -494,6 +512,7 @@
         .RegWrite_MEMWB(RegWrite_MEMWB),
         .MemWrite_MEMWB(MemWrite_MEMWB),
         //.ext_select_MEMWB(ext_select_MEMWB),
+        .MemRead_MEMWB(MemRead_MEMWB),
 
         .mem_read_data_MEMWB(mem_read_data_MEMWB),
         .Halt_MEMWB(Halt_MEMWB),

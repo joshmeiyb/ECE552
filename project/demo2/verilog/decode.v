@@ -74,7 +74,7 @@ module decode (instruction, writeback_data, clk, rst,
    ////////////////////////////////////////////////////////////////////////////////
 
    assign RegisterRs_out = instruction[10:8];
-   assign RegisterRt_out = instruction[7:5];
+   assign RegisterRt_out = instruction[7:5]; 
    
    //-------------------------Register File--------------------------------------//
    
