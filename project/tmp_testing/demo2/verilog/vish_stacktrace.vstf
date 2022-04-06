@@ -1,0 +1,19 @@
+# Current time Sun Apr  3 00:23:18 2022
+# ModelSim DE Stack Trace
+# Program = vish
+# Id = "10.7c"
+# Version = "2018.08"
+# Date = "Aug 17 2018"
+# Platform = "linuxpe"
+# 0    0xf7d42b60: '<unknown (@0xf7d42b60)>'
+# 1    0xfffffffb: '<unknown (@0xfffffffb)>'
+# End of Stack Trace
+
+# Current time Sun Apr  3 20:25:22 2022
+# ModelSim DE Stack Trace
+# Program = vish
+# Id = "10.7c"
+# Version = "2018.08"
+# Date = "Aug 17 2018"
+# Platform = "linuxpe"
+# 0    0x00000030: '<unknown (@0x30)>'
