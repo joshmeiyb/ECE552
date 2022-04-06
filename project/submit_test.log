@@ -20,7 +20,7 @@ Executing rm -rf __work dump.wlf dump.vcd diff.trace diff.ptrace archsim.trace a
 Executing vlib __work
 Executing vlog +define+RANDSEED=3 -work __work alu.v cla_16b.v cla_4b.v clkrst.v control.v decode.v dff.v execute.v EXMEM.v fetch.v forwarding_unit.v fullAdder_1b.v hazard_detection_unit.v IDEX.v IFID.v memory2c.v memory.v MEMWB.v nand2.v proc_hier_pbench.v proc_hier.v proc.v reg16.v reg1.v reg3.v reg4.v regFile_bypass.v regFile.v shifter.v wb.v xor2.v
 Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
-Start time: 16:13:46 on Apr 06,2022
+Start time: 16:34:05 on Apr 06,2022
 vlog "+define+RANDSEED=3" -work __work alu.v cla_16b.v cla_4b.v clkrst.v control.v decode.v dff.v execute.v EXMEM.v fetch.v forwarding_unit.v fullAdder_1b.v hazard_detection_unit.v IDEX.v IFID.v memory2c.v memory.v MEMWB.v nand2.v proc_hier_pbench.v proc_hier.v proc.v reg16.v reg1.v reg3.v reg4.v regFile_bypass.v regFile.v shifter.v wb.v xor2.v 
 -- Compiling module alu
 -- Compiling module cla_16b
@@ -56,7 +56,7 @@ vlog "+define+RANDSEED=3" -work __work alu.v cla_16b.v cla_4b.v clkrst.v control
 
 Top level modules:
 	proc_hier_pbench
-End time: 16:13:47 on Apr 06,2022, Elapsed time: 0:00:01
+End time: 16:34:05 on Apr 06,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 -------------------------------------------------
 Step: 3
@@ -66,7 +66,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work -voptargs="+acc" -wlf dump.wlf -do "log -howmany -rec /* ; run -all" 
-# Start time: 16:13:51 on Apr 06,2022
+# Start time: 16:34:06 on Apr 06,2022
 # //  ModelSim DE 10.7c Aug 17 2018Linux 5.4.0-107-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -118,7 +118,7 @@ Reading pref.tcl
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 1205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:13:52 on Apr 06,2022, Elapsed time: 0:00:01
+# End time: 16:34:06 on Apr 06,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 -------------------------------------------------
 Step: 4

@@ -1,4 +1,3 @@
-//<<<<<<< HEAD
         /* $Author: sinclair $ */
         /* $LastChangedDate: 2020-02-09 17:03:45 -0600 (Sun, 09 Feb 2020) $ */
         /* $Rev: 46 $ */
@@ -24,7 +23,7 @@
         
         
         /* your code here -- should include instantiations of fetch, decode, execute, mem and wb modules */
-        
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /*             Fetch          Decode            Execute	             Memory		  Writeback	*/
@@ -283,41 +282,41 @@
     );
 
 
-    EXMEM EXMEM(
-        //inputs
-        .clk(clk),
-        .rst(rst),
-        .en(1'b1),
-        .pcAdd2_IDEX(pcAdd2_IDEX),                      //16-bit
-        .ALU_Out(ALU_Out),                              //16-bit
-        .pc_to_reg_IDEX(pc_to_reg_IDEX),
-        .read2Data_IDEX(memWriteData_EX),               //16-bit
-        .RegisterRd_IDEX(RegisterRd_IDEX),              //3-bit
-        .MemtoReg_IDEX(MemtoReg_IDEX),
-        .MemRead_IDEX(MemRead_IDEX),
-        .MemWrite_IDEX(MemWrite_IDEX),
-        .RegWrite_IDEX(RegWrite_IDEX),
-        .Jump_IDEX(Jump_IDEX),                          //for j_4.asm
-        .Halt_IDEX(Halt_IDEX | Halt_MEMWB),
-        .SIIC_IDEX(SIIC_IDEX),
-        .RTI_IDEX(RTI_IDEX),
-        //outputs
-        .pcAdd2_EXMEM(pcAdd2_EXMEM),
-        .ALU_Out_EXMEM(ALU_Out_EXMEM),
-        .pc_to_reg_EXMEM(pc_to_reg_EXMEM),
-        .read2Data_EXMEM(read2Data_EXMEM),
-        .RegisterRd_EXMEM(RegisterRd_EXMEM),
-        .MemtoReg_EXMEM(MemtoReg_EXMEM),
-        .MemRead_EXMEM(MemRead_EXMEM),
-        .MemWrite_EXMEM(MemWrite_EXMEM),
-        .RegWrite_EXMEM(RegWrite_EXMEM),
-        .Jump_EXMEM(Jump_EXMEM),                        //for j_4.asm
-        .Halt_EXMEM(Halt_EXMEM),
-        .SIIC_EXMEM(SIIC_EXMEM),
-        .RTI_EXMEM(RTI_EXMEM)
-    );
+        EXMEM EXMEM(
+                //inputs
+                .clk(clk),
+                .rst(rst),
+                .en(1'b1),
+                .pcAdd2_IDEX(pcAdd2_IDEX),                      //16-bit
+                .ALU_Out(ALU_Out),                              //16-bit
+                .pc_to_reg_IDEX(pc_to_reg_IDEX),
+                .read2Data_IDEX(memWriteData_EX),               //16-bit
+                .RegisterRd_IDEX(RegisterRd_IDEX),              //3-bit
+                .MemtoReg_IDEX(MemtoReg_IDEX),
+                .MemRead_IDEX(MemRead_IDEX),
+                .MemWrite_IDEX(MemWrite_IDEX),
+                .RegWrite_IDEX(RegWrite_IDEX),
+                .Jump_IDEX(Jump_IDEX),                          //for j_4.asm
+                .Halt_IDEX(Halt_IDEX | Halt_MEMWB),
+                .SIIC_IDEX(SIIC_IDEX),
+                .RTI_IDEX(RTI_IDEX),
+                //outputs
+                .pcAdd2_EXMEM(pcAdd2_EXMEM),
+                .ALU_Out_EXMEM(ALU_Out_EXMEM),
+                .pc_to_reg_EXMEM(pc_to_reg_EXMEM),
+                .read2Data_EXMEM(read2Data_EXMEM),
+                .RegisterRd_EXMEM(RegisterRd_EXMEM),
+                .MemtoReg_EXMEM(MemtoReg_EXMEM),
+                .MemRead_EXMEM(MemRead_EXMEM),
+                .MemWrite_EXMEM(MemWrite_EXMEM),
+                .RegWrite_EXMEM(RegWrite_EXMEM),
+                .Jump_EXMEM(Jump_EXMEM),                        //for j_4.asm
+                .Halt_EXMEM(Halt_EXMEM),
+                .SIIC_EXMEM(SIIC_EXMEM),
+                .RTI_EXMEM(RTI_EXMEM)
+        );
     
-    memory memory(
+        memory memory(
                 //Outputs
                 .mem_read_data(mem_read_data),
                 //Inputs
@@ -340,39 +339,39 @@
                                         //    end
                                         //    $fclose(mcd);
                                         //end
-    );
+        );
 
-    MEMWB MEMWB(
-        //inputs
-        .clk(clk),
-        .rst(rst),
-        .en(1'b1),
-        .pcAdd2_EXMEM(pcAdd2_EXMEM),            //16-bit
-        .ALU_Out_EXMEM(ALU_Out_EXMEM),          //16-bit
-        .pc_to_reg_EXMEM(pc_to_reg_EXMEM),
-        .RegisterRd_EXMEM(RegisterRd_EXMEM),    //3-bit   
-        .MemtoReg_EXMEM(MemtoReg_EXMEM),
-        .RegWrite_EXMEM(RegWrite_EXMEM),
-        .MemWrite_EXMEM(MemWrite_EXMEM),
-        .MemRead_EXMEM(MemRead_EXMEM),
-        .mem_read_data(mem_read_data),    //16-bit
-        .Halt_EXMEM(Halt_EXMEM),
-        .SIIC_EXMEM(SIIC_EXMEM),
-        //outputs
-        .pcAdd2_MEMWB(pcAdd2_MEMWB),
-        .ALU_Out_MEMWB(ALU_Out_MEMWB),
-        .pc_to_reg_MEMWB(pc_to_reg_MEMWB),
-        .RegisterRd_MEMWB(RegisterRd_MEMWB),
-        .MemtoReg_MEMWB(MemtoReg_MEMWB),
-        .RegWrite_MEMWB(RegWrite_MEMWB),
-        .MemWrite_MEMWB(MemWrite_MEMWB),
-        .MemRead_MEMWB(MemRead_MEMWB),
-        .mem_read_data_MEMWB(mem_read_data_MEMWB),
-        .Halt_MEMWB(Halt_MEMWB),
-        .SIIC_MEMWB(SIIC_MEMWB)
-    );
+        MEMWB MEMWB(
+                //inputs
+                .clk(clk),
+                .rst(rst),
+                .en(1'b1),
+                .pcAdd2_EXMEM(pcAdd2_EXMEM),            //16-bit
+                .ALU_Out_EXMEM(ALU_Out_EXMEM),          //16-bit
+                .pc_to_reg_EXMEM(pc_to_reg_EXMEM),
+                .RegisterRd_EXMEM(RegisterRd_EXMEM),    //3-bit   
+                .MemtoReg_EXMEM(MemtoReg_EXMEM),
+                .RegWrite_EXMEM(RegWrite_EXMEM),
+                .MemWrite_EXMEM(MemWrite_EXMEM),
+                .MemRead_EXMEM(MemRead_EXMEM),
+                .mem_read_data(mem_read_data),    //16-bit
+                .Halt_EXMEM(Halt_EXMEM),
+                .SIIC_EXMEM(SIIC_EXMEM),
+                //outputs
+                .pcAdd2_MEMWB(pcAdd2_MEMWB),
+                .ALU_Out_MEMWB(ALU_Out_MEMWB),
+                .pc_to_reg_MEMWB(pc_to_reg_MEMWB),
+                .RegisterRd_MEMWB(RegisterRd_MEMWB),
+                .MemtoReg_MEMWB(MemtoReg_MEMWB),
+                .RegWrite_MEMWB(RegWrite_MEMWB),
+                .MemWrite_MEMWB(MemWrite_MEMWB),
+                .MemRead_MEMWB(MemRead_MEMWB),
+                .mem_read_data_MEMWB(mem_read_data_MEMWB),
+                .Halt_MEMWB(Halt_MEMWB),
+                .SIIC_MEMWB(SIIC_MEMWB)
+        );
 
-    wb wb(
+        wb wb(
                 //Outputs
                 .writeback_data(writeback_data),
                 //Inputs
@@ -382,6 +381,6 @@
                 .ALU_Out(ALU_Out_MEMWB),
                 .MemtoReg(MemtoReg_MEMWB),
                 .pc_to_reg(pc_to_reg_MEMWB)
-    );
-    endmodule // proc
-    // DUMMY LINE FOR REV CONTROL :0:
+        );
+        endmodule // proc
+        // DUMMY LINE FOR REV CONTROL :0:
