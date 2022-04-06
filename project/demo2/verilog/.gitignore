@@ -6,8 +6,14 @@ cla_16b.v
 dff.v
 fullAdder_1b.v
 nand2.v
-reg16.v
-regFile.v
 shifter.v
 xor.v
+reg1.v
+reg3.v
+reg4.v
+reg16.v
+regFile.v
+regFile_bypass.v
+proc_hier.v
+proc_hier_pbench.v
 
