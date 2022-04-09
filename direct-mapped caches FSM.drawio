@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-09T06:36:35.533Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="Zmiq8cMwgXkwEuY-GJQf" version="17.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-09T06:41:54.715Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="mXhaUuIrWAaSj5Obq6YF" version="17.4.1" type="github">
   <diagram id="0WsAM_WMDWSk5i0kJ9NH" name="Page-1">
     <mxGraphModel dx="1824" dy="993" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
@@ -10,7 +10,7 @@
         <mxCell id="vXcKBsRQnSgELRRLZla8-2" value="COMPARE_TAGS" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="730" y="190" width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="vXcKBsRQnSgELRRLZla8-3" value="BANK1" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="vXcKBsRQnSgELRRLZla8-3" value="WRITECACHE_BANK1" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="240" y="470" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="vXcKBsRQnSgELRRLZla8-4" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.998;exitY=0.413;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.012;entryY=0.427;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="vXcKBsRQnSgELRRLZla8-1" target="vXcKBsRQnSgELRRLZla8-2" edge="1">
@@ -89,13 +89,13 @@
         <mxCell id="tzn-iaff5u_yxrBMmpEt-3" value="cache_ready never be set on a miss,&lt;br&gt;only be set on a hit" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="160" y="380" width="210" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="tzn-iaff5u_yxrBMmpEt-7" value="BANK2" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-7" value="WRITECACHE_BANK2" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="240" y="700" width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="tzn-iaff5u_yxrBMmpEt-8" value="BANK3" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-8" value="WRITECACHE_BANK3" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="550" y="700" width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="tzn-iaff5u_yxrBMmpEt-9" value="BANK4" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-9" value="WRITECACHE_BANK4" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="550" y="470" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="tzn-iaff5u_yxrBMmpEt-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vXcKBsRQnSgELRRLZla8-3" target="tzn-iaff5u_yxrBMmpEt-7">
@@ -209,14 +209,8 @@
         <mxCell id="tzn-iaff5u_yxrBMmpEt-39" value="If wr = 1, the memory will write data back to cache" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1120" y="350" width="280" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="tzn-iaff5u_yxrBMmpEt-40" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1080" y="440" as="sourcePoint" />
-            <mxPoint x="1440" y="880" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="1440" y="440" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-41" value="Dirty bit = 1, memory does not have this data&amp;nbsp;&lt;br&gt;Dirty bit = 0, memory has this data" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="85" width="260" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
