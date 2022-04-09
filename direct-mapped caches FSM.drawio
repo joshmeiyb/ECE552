@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-09T05:06:30.115Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="c8eyrkNdwJ3G5pb_cqAB" version="17.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-09T05:07:16.707Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="oC5oEVkBsg8Lm-aVq4f1" version="17.4.0" type="github">
   <diagram id="0WsAM_WMDWSk5i0kJ9NH" name="Page-1">
     <mxGraphModel dx="1069" dy="582" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
@@ -97,17 +97,23 @@
         <mxCell id="vXcKBsRQnSgELRRLZla8-25" value="memory_ready == 0" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="90" y="700" width="120" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="vXcKBsRQnSgELRRLZla8-26" value="cache ready == 0, the cache miss is on previous request,&lt;br&gt;the cache will wait data from main memory to cache" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="340" y="35" width="320" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="vXcKBsRQnSgELRRLZla8-27" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1000" y="140" as="sourcePoint" />
-            <mxPoint x="900" y="230" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="vXcKBsRQnSgELRRLZla8-26" value="If cache ready == 0, the cache miss is on previous request,&lt;br&gt;the cache will wait data from main memory to cache" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="365" y="75" width="330" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vXcKBsRQnSgELRRLZla8-28" value="If read, return the data back to processor;&lt;br&gt;If write, write to particulat line in the cache, set dirty bit to 1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="845" y="75" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vXcKBsRQnSgELRRLZla8-29" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1020" y="120" as="sourcePoint" />
+            <mxPoint x="900" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vXcKBsRQnSgELRRLZla8-30" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="529.66" y="110" as="sourcePoint" />
+            <mxPoint x="529.66" y="200" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
