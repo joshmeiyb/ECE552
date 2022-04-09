@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-09T06:24:35.075Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="vjKzLN1SwBPDlMUqluj1" version="17.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-09T06:30:22.793Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="vkT2rcLM6QzYAb0z0iOs" version="17.4.1" type="github">
   <diagram id="0WsAM_WMDWSk5i0kJ9NH" name="Page-1">
     <mxGraphModel dx="1824" dy="993" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
@@ -61,9 +61,6 @@
               <mxPoint x="240" y="140" />
             </Array>
           </mxGeometry>
-        </mxCell>
-        <mxCell id="vXcKBsRQnSgELRRLZla8-21" value="memory_ready == 0" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1570" y="190" width="120" height="20" as="geometry" />
         </mxCell>
         <mxCell id="vXcKBsRQnSgELRRLZla8-26" value="If cache ready == 0, the cache miss is on previous request,&lt;br&gt;the cache will wait data from main memory to cache" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="365" y="75" width="330" height="30" as="geometry" />
@@ -179,7 +176,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="tzn-iaff5u_yxrBMmpEt-30" value="/ Word Offset = 2&#39;b01,&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1030" y="430" width="130" height="20" as="geometry" />
+          <mxGeometry x="1040" y="520" width="130" height="20" as="geometry" />
         </mxCell>
         <mxCell id="tzn-iaff5u_yxrBMmpEt-31" value="/ Word Offset = 2&#39;b10" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1260" y="630" width="130" height="20" as="geometry" />
@@ -202,6 +199,15 @@
         </mxCell>
         <mxCell id="tzn-iaff5u_yxrBMmpEt-37" value="if (read_ready == 0)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="827" y="675" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-38" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1120" y="360" as="sourcePoint" />
+            <mxPoint x="970" y="445" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-39" value="If wr = 1, the memory will write data back to cache" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="350" width="280" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
