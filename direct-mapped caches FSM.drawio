@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-04-09T06:44:22.417Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="U0xBQUdyMye9ijjXmeKI" version="17.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-09T06:48:51.699Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="6I0y8qz5XISvHZagQ8rJ" version="17.4.1" type="github">
   <diagram id="0WsAM_WMDWSk5i0kJ9NH" name="Page-1">
-    <mxGraphModel dx="1824" dy="993" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+    <mxGraphModel dx="1292" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -197,8 +197,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="tzn-iaff5u_yxrBMmpEt-37" value="if (read_ready == 0)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="827" y="675" width="120" height="20" as="geometry" />
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-37" value="if (~writeback_ready)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="822" y="675" width="130" height="20" as="geometry" />
         </mxCell>
         <mxCell id="tzn-iaff5u_yxrBMmpEt-38" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -211,6 +211,45 @@
         </mxCell>
         <mxCell id="tzn-iaff5u_yxrBMmpEt-41" value="Dirty bit = 1, memory does not have this data&amp;nbsp;&lt;br&gt;Dirty bit = 0, memory has this data" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1380" y="85" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-42" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0.001;exitY=0.343;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.201;entryY=0.099;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="886.1600000000003" y="521.1600000000001" as="sourcePoint" />
+            <mxPoint x="918.1599999999999" y="491.8799999999999" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="826" y="507.72" />
+              <mxPoint x="866" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-43" value="if (~writeback_ready)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="801" y="450" width="130" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-46" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0.001;exitY=0.343;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.201;entryY=0.099;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1186.1600000000003" y="731.1600000000001" as="sourcePoint" />
+            <mxPoint x="1218.1599999999999" y="701.8799999999999" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1126" y="717.72" />
+              <mxPoint x="1166" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-47" value="if (~writeback_ready)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1101" y="660" width="130" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-48" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0.001;exitY=0.343;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.201;entryY=0.099;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1194.1600000000003" y="515.0000000000001" as="sourcePoint" />
+            <mxPoint x="1226.1599999999999" y="485.7199999999999" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1134" y="501.56000000000006" />
+              <mxPoint x="1174" y="463.84000000000003" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tzn-iaff5u_yxrBMmpEt-49" value="if (~writeback_ready)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1109" y="443.84000000000003" width="130" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
