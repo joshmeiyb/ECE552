@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-09T05:07:16.707Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="oC5oEVkBsg8Lm-aVq4f1" version="17.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-09T05:09:06.877Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="myO9XG2ZYzQfajNrvRo-" version="17.4.0" type="github">
   <diagram id="0WsAM_WMDWSk5i0kJ9NH" name="Page-1">
     <mxGraphModel dx="1069" dy="582" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
@@ -100,8 +100,8 @@
         <mxCell id="vXcKBsRQnSgELRRLZla8-26" value="If cache ready == 0, the cache miss is on previous request,&lt;br&gt;the cache will wait data from main memory to cache" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="365" y="75" width="330" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="vXcKBsRQnSgELRRLZla8-28" value="If read, return the data back to processor;&lt;br&gt;If write, write to particulat line in the cache, set dirty bit to 1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="845" y="75" width="330" height="30" as="geometry" />
+        <mxCell id="vXcKBsRQnSgELRRLZla8-28" value="If read(hit == 1), return the data back to processor, go to IDLE state;&lt;br&gt;If write (hit == 1), write to particulat line in the cache, set dirty bit to 1, go to IDLE state" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="775" y="75" width="470" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vXcKBsRQnSgELRRLZla8-29" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
