@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-04-11T02:04:12.731Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="X6kFBkwtiFkccBPhmqxV" version="17.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-11T02:26:19.884Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="JqajSMu-UVxJprjfLB6m" version="17.4.0" type="github">
   <diagram id="0WsAM_WMDWSk5i0kJ9NH" name="Page-1">
-    <mxGraphModel dx="3827" dy="1023" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+    <mxGraphModel dx="4914" dy="1535" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -96,7 +96,7 @@
         <mxCell id="G9HL7FKv6nedQ7dIaKoP-28" value="~(hit &amp;amp; valid) &amp;amp; ~dirty" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="-1080" y="480" width="130" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="G9HL7FKv6nedQ7dIaKoP-38" value="WB_0&lt;br&gt;&lt;br&gt;mem_wr = 1&lt;br&gt;mem_offset = 3&#39;b000" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="G9HL7FKv6nedQ7dIaKoP-38" value="WB_0&lt;br&gt;&lt;br&gt;mem_wr = 1&lt;br&gt;tag_select = 1&#39;b1&lt;br&gt;&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22tag_select%22%20style%3D%22text%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3Bresizable%3D0%3Bpoints%3D%5B%5D%3Bautosize%3D1%3BstrokeColor%3Dnone%3BfillColor%3Dnone%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%222430%22%20y%3D%22310%22%20width%3D%2270%22%20height%3D%2220%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;mem_offset = 3&#39;b000" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-450" y="415.86" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="G9HL7FKv6nedQ7dIaKoP-39" value="stall" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
@@ -112,7 +112,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="G9HL7FKv6nedQ7dIaKoP-42" value="WB_1&lt;br&gt;&lt;br&gt;mem_wr = 1&lt;br&gt;mem_offset = 3&#39;b010" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="G9HL7FKv6nedQ7dIaKoP-42" value="WB_1&lt;br&gt;&lt;br&gt;mem_wr = 1&lt;br&gt;tag_select = 1&#39;b1&lt;br&gt;mem_offset = 3&#39;b010" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-220" y="570" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="G9HL7FKv6nedQ7dIaKoP-43" value="stall" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
@@ -128,7 +128,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="G9HL7FKv6nedQ7dIaKoP-45" value="WB_2&lt;br&gt;&lt;br&gt;mem_wr = 1&lt;br&gt;mem_offset = 3&#39;b100" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="G9HL7FKv6nedQ7dIaKoP-45" value="WB_2&lt;br&gt;&lt;br&gt;mem_wr = 1&lt;br&gt;tag_select = 1&#39;b1&lt;br&gt;mem_offset = 3&#39;b100" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-390" y="780" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="G9HL7FKv6nedQ7dIaKoP-46" value="stall" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
@@ -144,7 +144,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="G9HL7FKv6nedQ7dIaKoP-48" value="WB_3&lt;br&gt;&lt;br&gt;mem_wr = 1&lt;br&gt;mem_offset = 3&#39;b110" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="G9HL7FKv6nedQ7dIaKoP-48" value="WB_3&lt;br&gt;&lt;br&gt;mem_wr = 1&lt;br&gt;tag_select = 1&#39;b1&lt;br&gt;mem_offset = 3&#39;b110" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-740" y="791.72" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="G9HL7FKv6nedQ7dIaKoP-49" value="stall" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
