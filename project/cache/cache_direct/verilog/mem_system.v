@@ -32,7 +32,7 @@ module mem_system(/*AUTOARG*/
    wire cache_hit_out, cache_dirty_out;
    wire cache_valid_out;
    wire [4:0] cache_tag_out;
-   wire [3:0] cache_data_out;
+   wire [15:0] cache_data_out;
    wire cache_err;
    //------------------------cache datapath--------------------------//
 
@@ -43,7 +43,7 @@ module mem_system(/*AUTOARG*/
    //outputs
    wire [15:0] mem_data_out;
    wire mem_stall;
-   wire mem_busy;
+   wire [3:0] mem_busy;
    wire mem_err;
    //------------------------four_bank mem---------------------------//
 
@@ -60,14 +60,28 @@ module mem_system(/*AUTOARG*/
    wire cache_valid_in;
    wire cache_ctrl_err;
    wire enable;
+   
+   wire cache_hit;
+   wire done;
+   wire stall_out;
+   
    //------------------------cache controller------------------------//
 
    assign cache_data_in = cache_data_in_select ? mem_data_out : DataIn;
    assign cache_offset_in = cache_offset_select ? cache_offset_out : Addr[2:0];
    assign mem_addr = tag_select ? {cache_tag_out, Addr[10:3], mem_offset} : {Addr[15:3], mem_offset};
-   assign err = cache_err | mem_err | cache_ctrl_err;
-
-   assign DataOut = err ? 16'h0000 : cache_data_out;
+   //assign err = cache_err | mem_err | cache_ctrl_err;
+   
+   always @(*) begin
+      //err = 1'b0;
+      err = cache_err | mem_err | cache_ctrl_err;
+      DataOut = cache_data_out;
+      CacheHit = cache_hit;
+      Stall = stall_out;
+      Done = done;
+   end
+   
+   //assign DataOut = err ? 16'h0000 : cache_data_out;
 
 
    /* data_mem = 1, inst_mem = 0 *
@@ -75,7 +89,7 @@ module mem_system(/*AUTOARG*/
    parameter memtype = 0;
    cache #(0 + memtype) c0(// Outputs
                           .tag_out              (cache_tag_out),
-                          .data_out             (cache_data_out),
+                          .data_out             (cache_data_out/*DataOut*/),
                           .hit                  (cache_hit_out),
                           .dirty                (cache_dirty_out),
                           .valid                (cache_valid_out),
@@ -103,7 +117,7 @@ module mem_system(/*AUTOARG*/
                      .rst               (rst),
                      .createdump        (createdump),
                      .addr              (mem_addr),
-                     .data_in           (cache_data_out),
+                     .data_in           (cache_data_out/*DataOut*/),
                      .wr                (mem_wr),
                      .rd                (mem_rd));
    
@@ -119,9 +133,9 @@ module mem_system(/*AUTOARG*/
                      .mem_offset             (mem_offset),
                      .mem_wr                 (mem_wr),
                      .mem_rd                 (mem_rd),
-                     .cache_hit              (CacheHit),             //top output
-                     .stall_out              (Stall),                //top output
-                     .done                   (Done),                 //top output
+                     .cache_hit              (/*CacheHit*/cache_hit),             //top output
+                     .stall_out              (/*Stall*/stall_out),                //top output
+                     .done                   (/*Done*/done),                 //top output
                      .valid_in               (cache_valid_in),
                      .err                    (cache_ctrl_err),
                      .enable                 (enable),

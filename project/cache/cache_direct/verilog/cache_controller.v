@@ -14,7 +14,7 @@ module cache_controller (
     output reg done,                 //top output
     output reg valid_in,
     output reg err,
-    output reg enable
+    output reg enable,
     //Inputs
     input wire clk,
     input wire rst,
@@ -26,27 +26,30 @@ module cache_controller (
     input wire hit
 
 );
-    wire [3:0] curr_state;      //16 states
-    reg [3:0] next_state;       //16 states
+    
+    parameter IDLE          = 5'h00;
+    parameter COMPARE_RD    = 5'h01;
+    parameter COMPARE_WR    = 5'h02;
+    parameter ALLOC_0       = 5'h03;
+    parameter ALLOC_1       = 5'h04;
+    parameter ALLOC_2       = 5'h05;
+    parameter ALLOC_3       = 5'h06;
+    parameter ALLOC_4       = 5'h07;
+    parameter ALLOC_5       = 5'h08;
+    parameter ALLOC_6       = 5'h09;
+    parameter WB_0          = 5'h0a;
+    parameter WB_1          = 5'h0b;
+    parameter WB_2          = 5'h0c;
+    parameter WB_3          = 5'h0d;
+    parameter HIT_DONE      = 5'h0e;
+    parameter MISS_DONE     = 5'h0f;
+    parameter ERROR         = 5'h10;
+    
+    
+    wire [4:0] curr_state;      //17 states
+    reg [4:0] next_state;       //17 states
 
-    parameter IDLE          = 4'h0;
-    parameter COMPARE_RD    = 4'h1;
-    parameter COMPARE_WR    = 4'h2;
-    parameter ALLOC_0       = 4'h3;
-    parameter ALLOC_1       = 4'h4;
-    parameter ALLOC_2       = 4'h5;
-    parameter ALLOC_3       = 4'h6;
-    parameter ALLOC_4       = 4'h7;
-    parameter ALLOC_5       = 4'h8;
-    parameter ALLOC_6       = 4'h9;
-    parameter WB_0          = 4'ha;
-    parameter WB_1          = 4'hb;
-    parameter WB_2          = 4'hc;
-    parameter WB_3          = 4'hd;
-    parameter DONE          = 4'he;
-    parameter ERROR         = 4'hf;
-
-    dff statereg[3:0] (.q(next_state), .d(curr_state), .clk(clk), .rst(rst));
+    dff statereg[4:0] (.q(curr_state), .d(next_state), .clk(clk), .rst(rst));
 
     always @(*) begin
 
@@ -62,12 +65,14 @@ module cache_controller (
         cache_hit               = 1'b0;
         stall_out               = 1'b1;     //stall_out will keep being one, until the current data is consumed by memory
         done                    = 1'b0;
-        valid_in                = 1'b0
+        valid_in                = 1'b0;
         err                     = 1'b0;
-        enable                  = 1'b0;
+        enable                  = 1'b1;     //always enable cache
+        next_state              = IDLE;
 
         case(curr_state)
             IDLE: begin
+                stall_out = 1'b0;
                 next_state = (~Rd & ~Wr) ? IDLE       :
                              (Rd  & ~Wr) ? COMPARE_RD : 
                              (~Rd & Wr)  ? COMPARE_WR :
@@ -76,7 +81,7 @@ module cache_controller (
             COMPARE_RD: begin
                 comp = 1'b1;
                 cache_write = 1'b0;
-                next_state = (hit & valid)             ? DONE    :
+                next_state = (hit & valid)             ? HIT_DONE:
                              (~(hit & valid) & ~dirty) ? ALLOC_0 : 
                              (~(hit & valid) & dirty)  ? WB_0    :
                                                          ERROR   ;
@@ -84,22 +89,25 @@ module cache_controller (
             COMPARE_WR: begin
                 comp = 1'b1;
                 cache_write = 1'b0;
-                next_state = (hit & valid)             ? DONE    :
+                next_state = (hit & valid)             ? HIT_DONE:
                              (~(hit & valid) & ~dirty) ? ALLOC_0 : 
                              (~(hit & valid) & dirty)  ? WB_0    :
                                                          ERROR   ;
             end
             ALLOC_0: begin
+                //valid_in = 1'b1;
                 mem_rd = 1'b1;
                 mem_offset = 3'b000;
                 next_state = mem_stall ? ALLOC_0 : ALLOC_1; //if main memory is stall, wait for main memory
             end
             ALLOC_1: begin
+                //valid_in = 1'b1;
                 mem_rd = 1'b1;
                 mem_offset = 3'b010;
                 next_state = mem_stall ? ALLOC_1 : ALLOC_2; //if main memory is stall, wait for main memory
             end
             ALLOC_2: begin
+                valid_in = 1'b1;
                 mem_rd = 1'b1;
                 mem_offset = 3'b100;
                 cache_write = 1'b1;
@@ -109,6 +117,7 @@ module cache_controller (
                 next_state = mem_stall ? ALLOC_2 : ALLOC_3; //if main memory is stall, wait for main memory
             end
             ALLOC_3: begin
+                valid_in = 1'b1;
                 mem_rd = 1'b1;
                 mem_offset = 3'b110;
                 cache_write = 1'b1;
@@ -118,6 +127,7 @@ module cache_controller (
                 next_state = mem_stall ? ALLOC_3 : ALLOC_4; //if main memory is stall, wait for main memory
             end
             ALLOC_4: begin
+                valid_in = 1'b1;
                 cache_write = 1'b1;
                 cache_offset = 3'b100;          
                 cache_offset_select = 1'b1;                 //cache offset from cache controller
@@ -125,17 +135,22 @@ module cache_controller (
                 next_state = ALLOC_5;
             end
             ALLOC_5: begin
+                valid_in = 1'b1;
                 cache_write = 1'b1;
                 cache_offset = 3'b110;          
                 cache_offset_select = 1'b1;                 //cache offset from cache controller
                 cache_data_in_select = 1'b1;                //cache input date from main memory
-                next_state = (~Wr & Rd) ? DONE : ALLOC_6;   
+                next_state = (~Wr & Rd)     ? MISS_DONE :
+                             (Wr & ~Rd)     ? ALLOC_6   :
+                             //(~Wr & ~Rd)    ? IDLE      :
+                                              ERROR;   
             end
             ALLOC_6: begin
+                valid_in = 1'b1;
                 cache_write = 1'b1;          
                 cache_offset_select = 1'b0;                 //cache offset from cpu
                 cache_data_in_select = 1'b0;                //cache input date from CPU
-                next_state = DONE;
+                next_state = MISS_DONE;
             end
             WB_0: begin
                 mem_wr = 1'b1;
@@ -161,16 +176,28 @@ module cache_controller (
                 mem_offset = 3'b110;                        //mem address is combined with mem_offset determined by cache controller
                 next_state = mem_stall ? WB_3 : ALLOC_0;
             end
-            DONE: begin
-                valid_in = 1'b1;
+            HIT_DONE: begin
+                //valid_in = 1'b1;
                 done = 1'b1;
-                cache_hit = 1'b1;
+                cache_hit = 1'b1;                           //When hit, hit = 1
                 stall_out = 1'b0;                           //deassert Stall
-                next_state = IDLE;
+                next_state = (~Wr & Rd)  ?  COMPARE_RD :
+                             (Wr & ~Rd)  ?  COMPARE_WR :
+                             (~Wr & ~Rd) ?  IDLE       :
+                                            ERROR;
+            end
+            MISS_DONE: begin
+                //valid_in = 1'b1;
+                done = 1'b1;                                //When miss, do not assert cache_hit
+                stall_out = 1'b0;                           //deassert Stall
+                next_state = (~Wr & Rd)  ?  COMPARE_RD :
+                             (Wr & ~Rd)  ?  COMPARE_WR :
+                             (~Wr & ~Rd) ?  IDLE       :
+                                            ERROR;
             end
             ERROR: begin
                 err = 1'b1;
-                next_state = IDLE;  //Not sure what is next to error state 
+                next_state = IDLE;                          //Not sure what is next to error state 
             end
             default: begin
                 next_state = IDLE;
