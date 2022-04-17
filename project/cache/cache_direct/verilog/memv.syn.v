@@ -4,15 +4,16 @@
 // Synthesizable memory
 // Separate version for the valid bit because of flash clear:
 
+`default_nettype none
 module memv (data_out, addr, data_in, write, clk, rst, createdump, file_id);
-   output data_out;
-   input [7:0] addr;
-   input       data_in;
-   input       write;
-   input       clk;
-   input       rst;
-   input       createdump;
-   input [4:0] file_id;
+   output wire      data_out;
+   input wire [7:0] addr;
+   input wire       data_in;
+   input wire       write;
+   input wire       clk;
+   input wire       rst;
+   input wire       createdump;
+   input wire [4:0] file_id;
 
    reg         mem [0:255];
 
@@ -47,4 +48,5 @@ module memv (data_out, addr, data_in, write, clk, rst, createdump, file_id);
        */
    end
 endmodule
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :0:

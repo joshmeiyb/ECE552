@@ -2,24 +2,24 @@
 /* $LastChangedDate: 2009-04-24 09:28:13 -0500 (Fri, 24 Apr 2009) $ */
 /* $Rev: 77 $ */
 
+`default_nettype none
 module mem_system_hier(/*AUTOARG*/
-   // Outputs
-   DataOut, Done, Stall, CacheHit, 
-   // Inputs
-   Addr, DataIn, Rd, Wr, createdump
-   );
+                       // Outputs
+                       DataOut, Done, Stall, CacheHit, 
+                       // Inputs
+                       Addr, DataIn, Rd, Wr, createdump
+                       );
    
+   input wire  [15:0] Addr;
+   input wire  [15:0] DataIn;
+   input wire         Rd;
+   input wire         Wr;
+   input wire         createdump;
    
-   input [15:0] Addr;
-   input [15:0] DataIn;
-   input        Rd;
-   input        Wr;
-   input        createdump;
-   
-   output [15:0] DataOut;
-   output Done;
-   output Stall;
-   output CacheHit;
+   output wire [15:0] DataOut;
+   output wire        Done;
+   output wire        Stall;
+   output wire        CacheHit;
 
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */
@@ -29,6 +29,7 @@ module mem_system_hier(/*AUTOARG*/
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
    wire                 err;                    // From m0 of mem_system.v
+   wire                 clk, rst;
    // End of automatics
 
    clkrst clkgen(.clk(clk),
@@ -54,4 +55,5 @@ module mem_system_hier(/*AUTOARG*/
                       .rst              (rst));
    
 endmodule // mem_system_hier
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :9:
