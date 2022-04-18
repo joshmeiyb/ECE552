@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 d/u/j/m/jmei/ece552/project/cache/cache_direct/verilog
 vcache
-Z1 !s110 1650239117
+Z1 !s110 1650322795
 !i10b 1
 !s100 Wegio_bBhn^FdMBJ0jXY^2
 I5`>U<[dZjLX[zA0R@Ci9i3
@@ -23,7 +23,7 @@ Z3 OP;L;10.7c;67
 r1
 !s85 0
 31
-Z4 !s108 1650239117.000000
+Z4 !s108 1650322795.000000
 !s107 memv.v|mem_system.v|mem_system_ref.v|mem_system_randbench.v|mem_system_perfbench.v|mem_system_hier.v|memc.v|four_bank_mem.v|final_memory.v|dff.v|clkrst.v|cache.v|cache_controller.v|
 Z5 !s90 +define+RANDSEED=3|-work|__work|cache_controller.v|cache.v|clkrst.v|dff.v|final_memory.v|four_bank_mem.v|memc.v|mem_system_hier.v|mem_system_perfbench.v|mem_system_randbench.v|mem_system_ref.v|mem_system.v|memv.v|
 !i113 1
@@ -33,11 +33,11 @@ Z8 tCvgOpt 0
 vcache_controller
 R1
 !i10b 1
-!s100 `XIW802m[?P3WJ>TFzU7:0
-I6dlhWi=;hdGSl5^m7@l:G0
+!s100 ]nTO@eR80V2n4@l68@dW@2
+I0h[[^hIIbE[HGY:^mOg]P3
 R2
 R0
-w1650238991
+w1650322777
 8cache_controller.v
 Fcache_controller.v
 L0 1

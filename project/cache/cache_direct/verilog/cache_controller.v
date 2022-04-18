@@ -88,7 +88,7 @@ module cache_controller (
             end
             COMPARE_WR: begin
                 comp = 1'b1;
-                cache_write = 1'b0;
+                cache_write = 1'b1;
                 next_state = (hit & valid)             ? HIT_DONE:
                              (~(hit & valid) & ~dirty) ? ALLOC_0 : 
                              (~(hit & valid) & dirty)  ? WB_0    :
@@ -146,32 +146,44 @@ module cache_controller (
                                               ERROR;   
             end
             ALLOC_6: begin
+
                 valid_in = 1'b1;                            //when write in cache, set valid to 1'b1
-                cache_write = 1'b1;          
+                cache_write = 1'b1; 
+                comp = 1'b1;                                //when comp = 1, write = 1, the dirty bit of the cache line will be written to "1"
+                                                            //since ALLOC_6 is used in write cache, the data be written is not existed in memory
+
                 cache_offset_select = 1'b0;                 //cache offset from cpu
                 cache_data_in_select = 1'b0;                //cache input date from CPU
                 next_state = MISS_DONE;
             end
             WB_0: begin
                 mem_wr = 1'b1;
+                cache_offset = 3'b000;                      //write back to bank0
+                cache_offset_select = 1'b1;                 //cache offset from cache
                 tag_select = 1'b1;                          //tag from cache
                 mem_offset = 3'b000;                        //mem address is combined with mem_offset determined by cache controller
                 next_state = mem_stall ? WB_0 : WB_1;
             end
             WB_1: begin
                 mem_wr = 1'b1;
+                cache_offset = 3'b010;                      //write back to bank1
+                cache_offset_select = 1'b1;                 //cache offset from cache
                 tag_select = 1'b1;                          //tag from cache
                 mem_offset = 3'b010;                        //mem address is combined with mem_offset determined by cache controller
                 next_state = mem_stall ? WB_1 : WB_2;
             end
             WB_2: begin
                 mem_wr = 1'b1;
+                cache_offset = 3'b100;                      //write back to bank2
+                cache_offset_select = 1'b1;                 //cache offset from cache
                 tag_select = 1'b1;                          //tag from cache
                 mem_offset = 3'b100;                        //mem address is combined with mem_offset determined by cache controller
                 next_state = mem_stall ? WB_2 : WB_3;
             end
             WB_3: begin
                 mem_wr = 1'b1;
+                cache_offset = 3'b110;                      //write back to bank3
+                cache_offset_select = 1'b1;                 //cache offset from cache
                 tag_select = 1'b1;                          //tag from cache
                 mem_offset = 3'b110;                        //mem address is combined with mem_offset determined by cache controller
                 next_state = mem_stall ? WB_3 : ALLOC_0;
