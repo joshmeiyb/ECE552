@@ -4,16 +4,17 @@
 // Synthesizable memory
 // Memories used by the cache:
 
+`default_nettype none
 module memc (data_out, addr, data_in, write, clk, rst, createdump, file_id);
    parameter Size = 1;
-   output [Size-1:0] data_out;
-   input [7:0]       addr;
-   input [Size-1:0]  data_in;
-   input             write;
-   input             clk;
-   input             rst;
-   input             createdump;
-   input [4:0]       file_id;
+   output wire [Size-1:0] data_out;
+   input wire [7:0]       addr;
+   input wire [Size-1:0]  data_in;
+   input wire             write;
+   input wire             clk;
+   input wire             rst;
+   input wire             createdump;
+   input wire [4:0]       file_id;
 
    reg [Size-1:0]    mem [0:31];
 
@@ -73,4 +74,5 @@ module memc (data_out, addr, data_in, write, clk, rst, createdump, file_id);
        */
    end
 endmodule
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :0:

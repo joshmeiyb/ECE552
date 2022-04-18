@@ -2,6 +2,7 @@
 /* $LastChangedDate: 2009-04-24 09:28:13 -0500 (Fri, 24 Apr 2009) $ */
 /* $Rev: 77 $ */
 
+`default_nettype none
 module mem_system_randbench(/*AUTOARG*/);
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
@@ -60,13 +61,13 @@ module mem_system_randbench(/*AUTOARG*/);
                       .clk( DUT.clkgen.clk),
                       .rst( DUT.clkgen.rst) );
    
-   reg    reg_readorwrite;
-   integer n_requests;
-   integer n_replies;
-   integer n_cache_hits;
-   integer n_cache_hits_total;
-   integer req_cycle;
-   reg test_success;
+   reg                  reg_readorwrite;
+   integer              n_requests;
+   integer              n_replies;
+   integer              n_cache_hits;
+   integer              n_cache_hits_total;
+   integer              req_cycle;
+   reg                  test_success;
    
    
    initial begin
@@ -195,20 +196,20 @@ module mem_system_randbench(/*AUTOARG*/);
    end
 
    task check_dropped_request;
-   	  begin	
-	     if (n_replies != n_requests) begin
+      begin     
+         if (n_replies != n_requests) begin
             if (Rd) begin
-		       $display("LOG: ReqNum %4d Cycle %8d ReqCycle %8d Rd Addr 0x%04x RefValue 0x%04x\n",
-			            n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataOut_ref);
+               $display("LOG: ReqNum %4d Cycle %8d ReqCycle %8d Rd Addr 0x%04x RefValue 0x%04x\n",
+                        n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataOut_ref);
             end
             if (Wr) begin
-		       $display("LOG: ReQNum %4d Cycle %8d ReqCycle %8d Wr Addr 0x%04x Value 0x%04x\n",
-			            n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataIn);
+               $display("LOG: ReQNum %4d Cycle %8d ReqCycle %8d Wr Addr 0x%04x Value 0x%04x\n",
+                        n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataIn);
             end
-	        $display("ERROR! Request dropped");
+            $display("ERROR! Request dropped");
             test_success = 1'b0;               
-	        n_replies = n_requests;	       
-	     end            
+            n_replies = n_requests;            
+         end            
       end
    endtask
    
@@ -322,7 +323,7 @@ module mem_system_randbench(/*AUTOARG*/);
                   DUT.clkgen.cycle_count,
                   n_cache_hits_total );
          if (!test_success)  begin
-           $display("Test status: FAIL");
+            $display("Test status: FAIL");
          end else begin
             $display("Test status: SUCCESS");
          end
@@ -331,4 +332,5 @@ module mem_system_randbench(/*AUTOARG*/);
    endtask // end_simulation
    
 endmodule // mem_system_randbench
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :9:

@@ -14,25 +14,26 @@
 // Although this module has been tested, it is not guaranteed to work.  
 // Please report errors to the TA.
 //
+`default_nettype none
 module cache (
-              input enable,
-              input clk,
-              input rst,
-              input createdump,
-              input [4:0] tag_in,
-              input [7:0] index,
-              input [2:0] offset,
-              input [15:0] data_in,
-              input comp,
-              input write,
-              input valid_in,
+              input wire enable,
+              input wire clk,
+              input wire rst,
+              input wire createdump,
+              input wire [4:0] tag_in,
+              input wire [7:0] index,
+              input wire [2:0] offset,
+              input wire [15:0] data_in,
+              input wire comp,
+              input wire write,
+              input wire valid_in,
 
-              output [4:0] tag_out,
-              output [15:0] data_out,
-              output hit,
-              output dirty,
-              output valid,
-              output err
+              output wire [4:0] tag_out,
+              output wire [15:0] data_out,
+              output wire hit,
+              output wire dirty,
+              output wire valid,
+              output wire err
               );
 
    parameter         cache_id = 0;  // overridden for each cache instance
@@ -44,6 +45,11 @@ module cache (
    wire [4:0]        ram5_id = (cache_id<<3) + 5;
 
    wire [15:0]       w0, w1, w2, w3;
+   wire              go, match;
+   wire              wr_word0, wr_word1, wr_word2, wr_word3;
+   wire              wr_dirty, wr_tag, wr_valid, dirty_in;
+   wire              dirtybit, validbit;
+
    assign            go = enable & ~rst;
    assign            match = (tag_in == tag_out);
 
@@ -75,5 +81,5 @@ module cache (
    assign            valid = go & validbit & (~write | comp);
 
 endmodule
-
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :0:

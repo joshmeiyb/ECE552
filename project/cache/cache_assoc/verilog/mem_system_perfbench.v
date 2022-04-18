@@ -4,6 +4,7 @@
 
 // Name of the file with the address trace
 
+`default_nettype none
 module mem_system_perfbench(/*AUTOARG*/);
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
@@ -23,6 +24,7 @@ module mem_system_perfbench(/*AUTOARG*/);
    
    wire                 clk;
    wire                 rst;
+   wire                 CacheHit;
 
    // Pull out clk and rst from clkgenerator module
    assign               clk = DUT.clkgen.clk;
@@ -41,7 +43,7 @@ module mem_system_perfbench(/*AUTOARG*/);
                        .DataIn          (DataIn[15:0]),
                        .Rd              (Rd),
                        .Wr              (Wr),
-		               .createdump      (1'b0));
+                       .createdump      (1'b0));
 
    wire [15:0]          DataOut_ref;
    wire                 Done_ref;
@@ -62,16 +64,16 @@ module mem_system_perfbench(/*AUTOARG*/);
                       .clk( DUT.clkgen.clk),
                       .rst( DUT.clkgen.rst) );
    
-   reg    reg_readorwrite;
-   integer n_requests;
-   integer n_replies;
-   integer n_cache_hits;
-   reg     test_success;
-   integer req_cycle;
+   reg                  reg_readorwrite;
+   integer              n_requests;
+   integer              n_replies;
+   integer              n_cache_hits;
+   reg                  test_success;
+   integer              req_cycle;
    
    // variables for reading address trace
-   integer fd;
-   integer rval;
+   integer              fd;
+   integer              rval;
    
    initial begin
       Rd = 1'b0;
@@ -130,12 +132,12 @@ module mem_system_perfbench(/*AUTOARG*/);
             end
             
          end
-           
-	 if (Rd) begin
-	    if (DataOut != DataOut_ref) begin
-                $display("ERROR Ref: 0x%04x DUT: 0x%04x", DataOut_ref, DataOut);
-                test_success = 1'b0;
-             end
+         
+         if (Rd) begin
+            if (DataOut != DataOut_ref) begin
+               $display("ERROR Ref: 0x%04x DUT: 0x%04x", DataOut_ref, DataOut);
+               test_success = 1'b0;
+            end
          end
 
          Rd = 1'd0;
@@ -150,23 +152,23 @@ module mem_system_perfbench(/*AUTOARG*/);
 
    task read_line;
       reg [1023:0] line;
-      integer rval;
+      integer      rval;
       
       begin
          if (!rst && (!Stall)) begin
-	        if (n_replies != n_requests) begin
+            if (n_replies != n_requests) begin
                if (Rd) begin
-		          $display("LOG: ReqNum %4d Cycle %8d ReqCycle %8d Rd Addr 0x%04x RefValue 0x%04x\n",
-			               n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataOut_ref);
+                  $display("LOG: ReqNum %4d Cycle %8d ReqCycle %8d Rd Addr 0x%04x RefValue 0x%04x\n",
+                           n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataOut_ref);
                end
                if (Wr) begin
-		          $display("LOG: ReQNum %4d Cycle %8d ReqCycle %8d Wr Addr 0x%04x Value 0x%04x\n",
-			               n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataIn);
+                  $display("LOG: ReQNum %4d Cycle %8d ReqCycle %8d Wr Addr 0x%04x Value 0x%04x\n",
+                           n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataIn);
                end
-	           $display("ERROR! Request dropped");
+               $display("ERROR! Request dropped");
                test_success = 1'b0;               
-	           n_replies = n_requests;	       
-	        end            
+               n_replies = n_requests;         
+            end            
             rval = $fscanf(fd, "%d %d %d %d", 
                            Wr, Rd, Addr, DataIn);
             if (rval == 0) begin
@@ -193,7 +195,7 @@ module mem_system_perfbench(/*AUTOARG*/);
                   DUT.clkgen.cycle_count,
                   n_cache_hits );
          if (!test_success)  begin
-           $display("Test status: FAIL");
+            $display("Test status: FAIL");
          end else begin
             $display("Test status: SUCCESS");
          end
@@ -203,4 +205,5 @@ module mem_system_perfbench(/*AUTOARG*/);
    
    
 endmodule // mem_system_bench
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :9:

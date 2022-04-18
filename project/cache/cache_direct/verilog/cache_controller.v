@@ -108,7 +108,7 @@ module cache_controller (
             end
             ALLOC_2: begin
                 valid_in = 1'b1;
-                mem_rd = 1'b1;
+                mem_rd = 1'b1;                              //when write in cache, set valid to 1'b1
                 mem_offset = 3'b100;
                 cache_write = 1'b1;
                 cache_offset = 3'b000;
@@ -117,7 +117,7 @@ module cache_controller (
                 next_state = mem_stall ? ALLOC_2 : ALLOC_3; //if main memory is stall, wait for main memory
             end
             ALLOC_3: begin
-                valid_in = 1'b1;
+                valid_in = 1'b1;                            //when write in cache, set valid to 1'b1
                 mem_rd = 1'b1;
                 mem_offset = 3'b110;
                 cache_write = 1'b1;
@@ -127,7 +127,7 @@ module cache_controller (
                 next_state = mem_stall ? ALLOC_3 : ALLOC_4; //if main memory is stall, wait for main memory
             end
             ALLOC_4: begin
-                valid_in = 1'b1;
+                valid_in = 1'b1;                            //when write in cache, set valid to 1'b1
                 cache_write = 1'b1;
                 cache_offset = 3'b100;          
                 cache_offset_select = 1'b1;                 //cache offset from cache controller
@@ -135,7 +135,7 @@ module cache_controller (
                 next_state = ALLOC_5;
             end
             ALLOC_5: begin
-                valid_in = 1'b1;
+                valid_in = 1'b1;                            //when write in cache, set valid to 1'b1
                 cache_write = 1'b1;
                 cache_offset = 3'b110;          
                 cache_offset_select = 1'b1;                 //cache offset from cache controller
@@ -146,7 +146,7 @@ module cache_controller (
                                               ERROR;   
             end
             ALLOC_6: begin
-                valid_in = 1'b1;
+                valid_in = 1'b1;                            //when write in cache, set valid to 1'b1
                 cache_write = 1'b1;          
                 cache_offset_select = 1'b0;                 //cache offset from cpu
                 cache_data_in_select = 1'b0;                //cache input date from CPU

@@ -10,11 +10,12 @@
 // Clock period is 100 time units, and reset length
 // to 201 time units (two rising edges of clock).
 
+`default_nettype none
 module clkrst (clk, rst, err);
 
     output clk;
     output rst;
-    input  err;
+    input wire err;
 
     reg clk;
     reg rst;
@@ -49,6 +50,6 @@ module clkrst (clk, rst, err);
        end
     end
 
-
 endmodule
-// DUMMY LINE FOR REV CONTROL :9:
+`default_nettype wire
+// DUMMY LINE FOR REV CONTROL :0:

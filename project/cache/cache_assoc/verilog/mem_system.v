@@ -2,26 +2,27 @@
 /* $LastChangedDate: 2009-04-24 09:28:13 -0500 (Fri, 24 Apr 2009) $ */
 /* $Rev: 77 $ */
 
+`default_nettype none
 module mem_system(/*AUTOARG*/
    // Outputs
-   DataOut, Done, Stall, CacheHit, err, 
+   DataOut, Done, Stall, CacheHit, err,
    // Inputs
    Addr, DataIn, Rd, Wr, createdump, clk, rst
    );
    
-   input [15:0] Addr;
-   input [15:0] DataIn;
-   input        Rd;
-   input        Wr;
-   input        createdump;
-   input        clk;
-   input        rst;
+   input wire [15:0] Addr;
+   input wire [15:0] DataIn;
+   input wire        Rd;
+   input wire        Wr;
+   input wire        createdump;
+   input wire        clk;
+   input wire        rst;
    
-   output [15:0] DataOut;
-   output Done;
-   output Stall;
-   output CacheHit;
-   output err;
+   output reg [15:0] DataOut;
+   output reg        Done;
+   output reg        Stall;
+   output reg        CacheHit;
+   output reg        err;
 
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */
@@ -83,8 +84,5 @@ module mem_system(/*AUTOARG*/
 
    
 endmodule // mem_system
-
-   
-
-
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :9:
