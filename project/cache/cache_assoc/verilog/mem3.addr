@@ -1,0 +1,4 @@
+//read miss, dirty = 1
+//first write into cache, then read with different tag
+1 0 10096 10
+0 1 6000 0

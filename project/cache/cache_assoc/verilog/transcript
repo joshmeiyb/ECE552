@@ -1,5 +1,5 @@
 # vsim -c mem_system_randbench -lib __work -voptargs="+acc" -wlf dump.wlf -do "log -howmany -rec /* ; run -all" 
-# Start time: 19:03:43 on Apr 21,2022
+# Start time: 16:08:09 on Apr 22,2022
 # //  ModelSim DE 10.7c Aug 17 2018Linux 5.4.0-109-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16040,5 +16040,5 @@
 # Test status: FAIL
 # ** Note: $finish    : mem_system_randbench.v(330)
 #    Time: 3363587 ns  Iteration: 0  Instance: /mem_system_randbench
-# End time: 19:04:01 on Apr 21,2022, Elapsed time: 0:00:18
+# End time: 16:08:11 on Apr 22,2022, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0

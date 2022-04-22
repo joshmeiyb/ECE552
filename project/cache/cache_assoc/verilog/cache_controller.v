@@ -115,8 +115,8 @@ module cache_controller (
                 next_state = mem_stall ? ALLOC_1 : ALLOC_2; //if main memory is stall, wait for main memory
             end
             ALLOC_2: begin
-                valid_in = 1'b1;
-                mem_rd = 1'b1;                              //when write in cache, set valid to 1'b1
+                valid_in = 1'b1;                            //when write in cache, set valid to 1'b1
+                mem_rd = 1'b1;                              
                 mem_offset = 3'b100;
                 cache_write = 1'b1;
                 //flip_victimway = 1'b1;

@@ -82,7 +82,7 @@ module mem_system(/*AUTOARG*/
       0       0       0
       0       1       1
       1       0       1
-      1       1       1
+      1       1       0
    */
    wire victimway_in;
    wire victimway_out;  
@@ -93,9 +93,9 @@ module mem_system(/*AUTOARG*/
    wire cache_way_select;
    assign cache_way_select =  (cache_hit_out_0 & cache_valid_out_0)     ? 1'b0 :
                               (cache_hit_out_1 & cache_valid_out_1)     ? 1'b1 :
-                              (~cache_valid_out_0 & ~cache_valid_out_1) ? 1'b0 :
-                              (~cache_valid_out_0 & cache_valid_out_1)  ? 1'b0 : 
-                              (cache_valid_out_0 & ~cache_valid_out_1)  ? 1'b1 :
+                              (/*(~cache_hit_out_0 & ~cache_hit_out_1) & */(~cache_valid_out_0 & ~cache_valid_out_1)) ? 1'b0 :
+                              (/*(~cache_hit_out_0 & ~cache_hit_out_1) & */(~cache_valid_out_0 & cache_valid_out_1))  ? 1'b0 : 
+                              (/*(~cache_hit_out_0 & ~cache_hit_out_1) & */(cache_valid_out_0 & ~cache_valid_out_1))  ? 1'b1 :
                               /*(cache_valid_out_0 & cache_valid_out_1) ?*/ victimway_out;
 
    //Implement a demux for enable signal for two-way cache
