@@ -7,9 +7,9 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/u/j/m/jmei/ece552/project/cache/cache_assoc/verilog
+Z0 d/afs/cs.wisc.edu/u/j/m/jmei/ece552/project/cache/cache_assoc/verilog
 vcache
-Z1 !s110 1650328082
+Z1 !s110 1650585819
 !i10b 1
 !s100 Wegio_bBhn^FdMBJ0jXY^2
 I5`>U<[dZjLX[zA0R@Ci9i3
@@ -23,7 +23,7 @@ Z3 OP;L;10.7c;67
 r1
 !s85 0
 31
-Z4 !s108 1650328082.000000
+Z4 !s108 1650585819.000000
 !s107 memv.v|mem_system.v|mem_system_ref.v|mem_system_randbench.v|mem_system_perfbench.v|mem_system_hier.v|memc.v|four_bank_mem.v|final_memory.v|dff.v|clkrst.v|cache.v|cache_controller.v|
 Z5 !s90 +define+RANDSEED=3|-work|__work|cache_controller.v|cache.v|clkrst.v|dff.v|final_memory.v|four_bank_mem.v|memc.v|mem_system_hier.v|mem_system_perfbench.v|mem_system_randbench.v|mem_system_ref.v|mem_system.v|memv.v|
 !i113 1
@@ -33,11 +33,11 @@ Z8 tCvgOpt 0
 vcache_controller
 R1
 !i10b 1
-!s100 z70l=8PSB]m8<_5D3hZVX3
-IUKPGm8CnHc58@^;ATW7iG3
+!s100 BZfd[HCT4:`EK4Bni_RfS2
+IhGAFLla<nLQDVllznND<10
 R2
 R0
-w1650327341
+w1650585026
 8cache_controller.v
 Fcache_controller.v
 L0 1
@@ -141,13 +141,13 @@ R6
 R7
 R8
 vmem_system
-R1
+Z10 !s110 1650585822
 !i10b 1
-!s100 Occ>cm_F1fA5hgPT6N;=W1
-IWGj>PnGmkO8IG7WSB?@UW3
+!s100 b@[T=J`58gCb]lZ_m5`gT1
+IBM>DkPGR9<j>LEdB;Eb2f3
 R2
 R0
-w1650328009
+w1650585811
 8mem_system.v
 Fmem_system.v
 L0 6
@@ -163,7 +163,7 @@ R6
 R7
 R8
 vmem_system_hier
-R1
+Z11 !s110 1650585821
 !i10b 1
 !s100 OnYbhbVT3Pj@_jP]O>nAb1
 ISBEiWLK3zB>VFe`I8?ff;3
@@ -185,7 +185,7 @@ R6
 R7
 R8
 vmem_system_perfbench
-R1
+R11
 !i10b 1
 !s100 Pc2<n<YHEaiFC@;D7bHRN0
 IhShg52;FBRNaeCLdcDg:E2
@@ -207,7 +207,7 @@ R6
 R7
 R8
 vmem_system_randbench
-R1
+R10
 !i10b 1
 !s100 hngU2@A=6J3FY=7LdFWhJ3
 IzIW1a5H_Y1A`4^Ob2;[4P2
@@ -229,7 +229,7 @@ R6
 R7
 R8
 vmem_system_ref
-R1
+R10
 !i10b 1
 !s100 A]YX]h`U^hfM0NkJK_]gK3
 I:JF1]Y]GSAJU162E9J30e1
@@ -251,7 +251,7 @@ R6
 R7
 R8
 vmemc
-R1
+R11
 !i10b 1
 !s100 Bd7YJ88=[HE0Pgf;MU^1J3
 I5OOgbJ9k5BnTK=F:joGfe1
@@ -273,7 +273,7 @@ R6
 R7
 R8
 vmemv
-R1
+R10
 !i10b 1
 !s100 Dck^hz7F@W5j[Z:N0n1iT3
 IcFA2M`UaPGT0I64l2db;E2

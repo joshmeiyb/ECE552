@@ -91,30 +91,64 @@ module mem_system(/*AUTOARG*/
    dff victimway (.q(victimway_out), .d(victimway_in), .clk(clk), .rst(rst));
 
    wire cache_way_select;
-   assign cache_way_select =  (~cache_valid_out_0 & ~cache_valid_out_1) ? 1'b0 :
+   assign cache_way_select =  (cache_hit_out_0 & cache_valid_out_0)     ? 1'b0 :
+                              (cache_hit_out_1 & cache_valid_out_1)     ? 1'b1 :
+                              (~cache_valid_out_0 & ~cache_valid_out_1) ? 1'b0 :
                               (~cache_valid_out_0 & cache_valid_out_1)  ? 1'b0 : 
                               (cache_valid_out_0 & ~cache_valid_out_1)  ? 1'b1 :
                               /*(cache_valid_out_0 & cache_valid_out_1) ?*/ victimway_out;
 
    //Implement a demux for enable signal for two-way cache
+   
+   
+   wire cache_way_input;
+   wire cache_way_output;
+   assign cache_way_input = flip_victimway ? cache_way_select : cache_way_output;   //only happen in COMPARE states
+   dff dff_enable(.q(cache_way_output), .d(cache_way_input), .clk(clk), .rst(rst));
+
+   wire enable_0, enable_1;
+   assign enable_0 = enable ? 1'b1 : ~cache_way_output;
+   assign enable_1 = enable ? 1'b1 : cache_way_output;
+   
+   /*
+   wire enable_select;
+   assign enable_select = cache_way_select ? 1'b1 : 1'b0;
+   wire enable_0, enable_1;
+   assign enable_0 = enable_select ? 1'b0 : 1'b1;
+   assign enable_1 = enable_select ? 1'b1 : 1'b0;
+   */
+   
+   /*
+   //reg enable_0 = 1'b1;
+   //reg enable_1 = 1'b1;
    reg enable_0;
    reg enable_1;
    always @(*) begin
       case(cache_way_select)
          1'b0: begin
-            enable_0 = enable;
+            //enable_0 = enable;
+            enable_0 = 1'b1;
+            //enable_1 = 1'b0;
          end
          1'b1: begin
+            //enable_0 = 1'b0;
             enable_1 = enable;
          end
-         default: enable_0 = enable;
+         default: begin
+            enable_0 = 1'b0;
+            enable_1 = 1'b0;
+         end
       endcase
    end
+   */
+   
    
    /*
+   wire enable_0, enable_1;
    assign enable_0 = ~cache_way_select;   //if cache_way_select = 0, select cache 0
    assign enable_1 = cache_way_select;    //if cache_way_select = 1, select cache 1
    */
+   
 
    wire [15:0] DataOut_temp;
    wire [4:0] cache_tag_out_temp;
@@ -217,6 +251,7 @@ module mem_system(/*AUTOARG*/
                      .err                    (cache_ctrl_err),
                      .enable                 (enable),
                      .flip_victimway         (flip_victimway),
+                     //.enable_vw              (enable_vw),
                      //Inputs
                      .clk                    (clk),
                      .rst                    (rst),

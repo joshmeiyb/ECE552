@@ -14,7 +14,9 @@ module cache_controller (
     output reg done,                 //top output
     output reg valid_in,
     output reg err,
-    output reg enable,
+    output wire enable,
+    //output reg enable_0,
+    //output reg enable_1,
     output reg flip_victimway,
     //Inputs
     input wire clk,
@@ -52,6 +54,8 @@ module cache_controller (
 
     dff statereg[4:0] (.q(curr_state), .d(next_state), .clk(clk), .rst(rst));
 
+    assign enable = ((curr_state == IDLE) | (curr_state == COMPARE_RD) | (curr_state == COMPARE_WR));
+
     always @(*) begin
 
         comp                    = 1'b0;
@@ -68,7 +72,7 @@ module cache_controller (
         done                    = 1'b0;
         valid_in                = 1'b0;
         err                     = 1'b0;
-        enable                  = 1'b1;     //always enable cache
+        //enable                  = 1'b1;     //always enable cache
         next_state              = IDLE;
         flip_victimway          = 1'b0;
 
@@ -115,7 +119,7 @@ module cache_controller (
                 mem_rd = 1'b1;                              //when write in cache, set valid to 1'b1
                 mem_offset = 3'b100;
                 cache_write = 1'b1;
-                flip_victimway = 1'b1;
+                //flip_victimway = 1'b1;
                 cache_offset = 3'b000;
                 cache_offset_select = 1'b1;                 //cache offset from cache controller
                 cache_data_in_select = 1'b1;                //cache input date from main memory
@@ -126,7 +130,7 @@ module cache_controller (
                 mem_rd = 1'b1;
                 mem_offset = 3'b110;
                 cache_write = 1'b1;
-                flip_victimway = 1'b1;
+                //flip_victimway = 1'b1;
                 cache_offset = 3'b010;          
                 cache_offset_select = 1'b1;                 //cache offset from cache controller
                 cache_data_in_select = 1'b1;                //cache input date from main memory
@@ -135,7 +139,7 @@ module cache_controller (
             ALLOC_4: begin
                 valid_in = 1'b1;                            //when write in cache, set valid to 1'b1
                 cache_write = 1'b1;
-                flip_victimway = 1'b1;
+                //flip_victimway = 1'b1;
                 cache_offset = 3'b100;          
                 cache_offset_select = 1'b1;                 //cache offset from cache controller
                 cache_data_in_select = 1'b1;                //cache input date from main memory
@@ -144,7 +148,7 @@ module cache_controller (
             ALLOC_5: begin
                 valid_in = 1'b1;                            //when write in cache, set valid to 1'b1
                 cache_write = 1'b1;
-                flip_victimway = 1'b1;
+                //flip_victimway = 1'b1;
                 cache_offset = 3'b110;          
                 cache_offset_select = 1'b1;                 //cache offset from cache controller
                 cache_data_in_select = 1'b1;                //cache input date from main memory
@@ -157,7 +161,7 @@ module cache_controller (
 
                 valid_in = 1'b1;                            //when write in cache, set valid to 1'b1
                 cache_write = 1'b1;
-                flip_victimway = 1'b1; 
+                //flip_victimway = 1'b1; 
                 comp = 1'b1;                                //when comp = 1, write = 1, the dirty bit of the cache line will be written to "1"
                                                             //since ALLOC_6 is used in write cache, the data be written is not existed in memory
 
