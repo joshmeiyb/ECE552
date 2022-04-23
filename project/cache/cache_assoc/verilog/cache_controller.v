@@ -55,6 +55,7 @@ module cache_controller (
     dff statereg[4:0] (.q(curr_state), .d(next_state), .clk(clk), .rst(rst));
 
     assign enable = ((curr_state == IDLE) | (curr_state == COMPARE_RD) | (curr_state == COMPARE_WR));
+    //In IDLE state or COMPARE states, we keep the enable signal of cache high, to let the data into the cache
 
     always @(*) begin
 
@@ -72,9 +73,11 @@ module cache_controller (
         done                    = 1'b0;
         valid_in                = 1'b0;
         err                     = 1'b0;
-        //enable                  = 1'b1;     //always enable cache
+        //enable                  = 1'b1;       //always enable cache, this used to be high in direct mapped cache
+                                                //In 2 ways assoc-mapped cache, we do not always enable one cache, 
+                                                //we want to flip between two caches
         next_state              = IDLE;
-        flip_victimway          = 1'b0;
+        flip_victimway          = 1'b0;     //DON't KNOW IF THIS TRIGGERED CORRECTLY
 
         case(curr_state)
             IDLE: begin
@@ -205,7 +208,7 @@ module cache_controller (
                 //valid_in = 1'b1;
                 done = 1'b1;
                 cache_hit = 1'b1;                           //When hit, hit = 1
-                stall_out = 1'b0;                           //deassert Stall
+                stall_out = 1'b1;                           //deassert Stall
                 next_state = (~Wr & Rd)  ?  COMPARE_RD :
                              (Wr & ~Rd)  ?  COMPARE_WR :
                              (~Wr & ~Rd) ?  IDLE       :
@@ -214,7 +217,7 @@ module cache_controller (
             MISS_DONE: begin
                 //valid_in = 1'b1;
                 done = 1'b1;                                //When miss, do not assert cache_hit
-                stall_out = 1'b0;                           //deassert Stall
+                stall_out = 1'b1;                           //deassert Stall
                 next_state = (~Wr & Rd)  ?  COMPARE_RD :
                              (Wr & ~Rd)  ?  COMPARE_WR :
                              (~Wr & ~Rd) ?  IDLE       :

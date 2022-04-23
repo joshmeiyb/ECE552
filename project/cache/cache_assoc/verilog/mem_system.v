@@ -96,7 +96,7 @@ module mem_system(/*AUTOARG*/
                               (/*(~cache_hit_out_0 & ~cache_hit_out_1) & */(~cache_valid_out_0 & ~cache_valid_out_1)) ? 1'b0 :
                               (/*(~cache_hit_out_0 & ~cache_hit_out_1) & */(~cache_valid_out_0 & cache_valid_out_1))  ? 1'b0 : 
                               (/*(~cache_hit_out_0 & ~cache_hit_out_1) & */(cache_valid_out_0 & ~cache_valid_out_1))  ? 1'b1 :
-                              /*(cache_valid_out_0 & cache_valid_out_1) ?*/ victimway_out;
+                              /*(cache_valid_out_0 & cache_valid_out_1) ?*/ /*victimway_out*/victimway_in;  //FIXED THIS IN THE LAST STEP, ONE CYCLE LACK BEFORE
 
    //Implement a demux for enable signal for two-way cache
    
@@ -107,8 +107,8 @@ module mem_system(/*AUTOARG*/
    dff dff_enable(.q(cache_way_output), .d(cache_way_input), .clk(clk), .rst(rst));
 
    wire enable_0, enable_1;
-   assign enable_0 = enable ? 1'b1 : ~cache_way_output;
-   assign enable_1 = enable ? 1'b1 : cache_way_output;
+   assign enable_0 = enable ? 1'b1 : ~cache_way_output; // enable & ~cache_way_output
+   assign enable_1 = enable ? 1'b1 : cache_way_output; // enable & cache_way_output
    
    /*
    wire enable_select;
@@ -153,12 +153,18 @@ module mem_system(/*AUTOARG*/
    wire [15:0] DataOut_temp;
    wire [4:0] cache_tag_out_temp;
    wire cache_hit_out_temp, cache_dirty_out_temp, cache_valid_out_temp, cache_err_temp;
-   assign DataOut_temp           = cache_way_select ? cache_data_out_1  : cache_data_out_0;     //top level output
-   assign cache_tag_out_temp     = cache_way_select ? cache_tag_out_1   : cache_tag_out_0;      //used for mem address
+   
+   //Top Level Outputs -- selecting signal cache_way_select is one cycle lack from cache_way_output
+   //cache_way_output is the output of dff, we want this output signal to be the selecting signal for the TOP LEVEL SIGNALS
+   assign DataOut_temp           = /*cache_way_select*/cache_way_output ? cache_data_out_1  : cache_data_out_0;     //top level output
+   assign cache_tag_out_temp     = /*cache_way_select*/cache_way_output ? cache_tag_out_1   : cache_tag_out_0;      //used for mem address
+   assign cache_err_temp         = /*cache_way_select*/cache_way_output ? cache_err_1       : cache_err_0;          //top level output 
+
+   //FSM Inputs
    assign cache_hit_out_temp     = cache_way_select ? cache_hit_out_1   : cache_hit_out_0;      //input of FSM
    assign cache_dirty_out_temp   = cache_way_select ? cache_dirty_out_1 : cache_dirty_out_0;    //input of FSM
    assign cache_valid_out_temp   = cache_way_select ? cache_valid_out_1 : cache_valid_out_0;    //input of FSM
-   assign cache_err_temp         = cache_way_select ? cache_err_1       : cache_err_0;          //top level output 
+   
    
    assign cache_data_in = cache_data_in_select ? mem_data_out : DataIn;
    assign cache_offset_in = cache_offset_select ? cache_offset_out : Addr[2:0];
