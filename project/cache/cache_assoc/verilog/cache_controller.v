@@ -208,7 +208,7 @@ module cache_controller (
                 //valid_in = 1'b1;
                 done = 1'b1;
                 cache_hit = 1'b1;                           //When hit, hit = 1
-                stall_out = 1'b1;                           //deassert Stall
+                //stall_out = 1'b1;                           //deassert Stall
                 next_state = (~Wr & Rd)  ?  COMPARE_RD :
                              (Wr & ~Rd)  ?  COMPARE_WR :
                              (~Wr & ~Rd) ?  IDLE       :
@@ -217,7 +217,7 @@ module cache_controller (
             MISS_DONE: begin
                 //valid_in = 1'b1;
                 done = 1'b1;                                //When miss, do not assert cache_hit
-                stall_out = 1'b1;                           //deassert Stall
+                //stall_out = 1'b1;                           //deassert Stall
                 next_state = (~Wr & Rd)  ?  COMPARE_RD :
                              (Wr & ~Rd)  ?  COMPARE_WR :
                              (~Wr & ~Rd) ?  IDLE       :
