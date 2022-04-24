@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-04-24T00:00:58.496Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="qstKK98r-reACPVwz0RY" version="17.4.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-24T00:01:08.876Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="RnCuciXJhJDZNeeNyXJ9" version="17.4.6" type="github">
   <diagram id="0WsAM_WMDWSk5i0kJ9NH" name="Page-1">
-    <mxGraphModel dx="1915" dy="377" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+    <mxGraphModel dx="2299" dy="933" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -20,10 +20,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="G9HL7FKv6nedQ7dIaKoP-6" value="COMPARE_RD&lt;br&gt;&lt;br&gt;comp = 1,&lt;br&gt;cache_wr = 0&lt;br&gt;flip_victimway = 1" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="G9HL7FKv6nedQ7dIaKoP-6" value="COMPARE_RD&lt;br&gt;&lt;br&gt;comp = 1&lt;br&gt;cache_wr = 0&lt;br&gt;flip_victimway = 1" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-1015" y="800" width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="G9HL7FKv6nedQ7dIaKoP-7" value="COMPARE_WR&lt;br&gt;&lt;br&gt;comp = 1,&lt;br&gt;cache_wr = 1;&lt;br&gt;flip_victimway = 1" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="G9HL7FKv6nedQ7dIaKoP-7" value="COMPARE_WR&lt;br&gt;&lt;br&gt;comp = 1&lt;br&gt;cache_wr = 1&lt;br&gt;flip_victimway = 1" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-620" y="803.8399999999999" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="G9HL7FKv6nedQ7dIaKoP-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.052;exitY=0.767;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="G9HL7FKv6nedQ7dIaKoP-1" target="G9HL7FKv6nedQ7dIaKoP-6" edge="1">
