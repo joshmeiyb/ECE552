@@ -1,1 +1,0 @@
-vsim -view dataset=dump.wlf
