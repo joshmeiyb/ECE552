@@ -154,7 +154,7 @@ module proc_hier_pbench();
    assign MemDataOut = DUT.p0.mem_read_data;
    // Data read from memory for memory reads (16 bits)
 
-   
+   /*
    //assign ICacheReq = DUT.p0.readData;
    assign ICacheReq = DUT.p0.fetch.Instruction_Memory.Rd;
    // Signal indicating a valid instruction read request to cache
@@ -175,7 +175,7 @@ module proc_hier_pbench();
    // Signal indicating a valid data cache hit
    // Above assignment is a dummy example
    // new added 05/03
-   
+   */
    
    assign Halt = DUT.p0.MEMWB.Halt_MEMWB;
    // Processor halted

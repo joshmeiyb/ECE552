@@ -20,7 +20,7 @@ module IFID(
     wire [15:0] instruction_temp;
     assign instruction_temp =   (rst)   ?   16'h0800 :
                                 (stall) ?   instruction_IFID : 
-                                            instruction;
+                                            instruction;            //When hazard stall, loop the old instruction to the new one
 
     reg1 reg_inst_mem_err(
         .clk(clk), 

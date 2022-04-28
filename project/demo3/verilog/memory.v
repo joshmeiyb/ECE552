@@ -5,13 +5,14 @@
    Description     : This module contains all components in the Memory stage of the 
                      processor.
 */
-module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWrite, Halt, data_mem_err, data_mem_stall);
+module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWrite, Halt, data_mem_err, data_mem_stall, data_mem_done);
    /* TODO: Add appropriate inputs/outputs for your memory stage here*/
 
    // TODO: Your code here
    output [15:0] mem_read_data;
    output data_mem_err;             //phase 2.1 mem_align
    output data_mem_stall;           //phase 2.2 mem_stall
+   output data_mem_done;
 
    input clk, rst;
    input [15:0] mem_write_data;
@@ -49,7 +50,7 @@ module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWri
    
    stallmem Data_Memory(
       .DataOut(mem_read_data), 
-      .Done(),                  //NOT SURE HOW TO CONNECT DONE SIGNAL
+      .Done(data_mem_done),                  //NOT SURE HOW TO CONNECT DONE SIGNAL
       .Stall(data_mem_stall), 
       .CacheHit(), 
       .err(data_mem_err), 

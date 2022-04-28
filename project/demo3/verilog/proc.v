@@ -148,15 +148,15 @@
         IFID IFID(
                 //inputs
                 .clk(clk),
-                .rst(rst | PCSrc | inst_mem_err | data_mem_err | inst_mem_stall),       //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
+                .rst(rst | PCSrc | inst_mem_err | data_mem_err /*| inst_mem_stall*/),       //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
                                                         //When data_mem_err is 1'b1, flush this pipeline
                 
                 .inst_mem_err(inst_mem_err),
-                .en( (~stall) /*& (~inst_mem_stall) & (~data_mem_stall)*/),
+                .en( (~stall) /*& (~inst_mem_stall)*/ /*& (~data_mem_stall)*/),
                 .instruction(instruction),
                 .Halt_IFID(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
                 .pcAdd2(pcAdd2),
-                .stall(stall /*| data_mem_stall | inst_mem_stall*/),
+                .stall(stall /*| data_mem_stall /*| inst_mem_stall*/),
                 //outputs
                 .inst_mem_err_IFID(inst_mem_err_IFID),
                 .instruction_IFID(instruction_IFID),
@@ -209,7 +209,7 @@
                 .rst(rst | stall | data_mem_err),       //When stall the decode stage, rst the IDEX registers, stop instruction propagate through
                                                         //When data_mem_err is 1'b1, flush IDEX registers
                                                                         
-                .en(1'b1 /*(~inst_mem_stall) & (~data_mem_stall)*/ ),
+                .en(1'b1/*1'b1 (~inst_mem_stall) & (~data_mem_stall) */),
 
                 .err_decode(err_decode),
                 .inst_mem_err_IFID(inst_mem_err_IFID),
@@ -319,7 +319,7 @@
                 .err_decode_IDEX(err_decode_IDEX),
                 .inst_mem_err_IDEX(inst_mem_err_IDEX),
                 
-                .en(1'b1 /*(~inst_mem_stall) & (~data_mem_stall)*/),
+                .en(1'b1/*1'b1 (~inst_mem_stall) & (~data_mem_stall)*/),
                 .pcAdd2_IDEX(pcAdd2_IDEX),                      //16-bit
                 .ALU_Out(ALU_Out),                              //16-bit
                 .pc_to_reg_IDEX(pc_to_reg_IDEX),
@@ -358,7 +358,8 @@
                 .mem_read_data(mem_read_data),
                 .data_mem_err(data_mem_err),            //When memory address is not aligned, data_mem_err will be 1'b1
                 .data_mem_stall(data_mem_stall),
-                //Inputs~data_mem_stall
+                .data_mem_done(data_mem_done),
+                //Inputs
                 .clk(clk),
                 .rst(rst),
                 .mem_write_data(read2Data_EXMEM), //This is directly connected with regFile read2Data output
@@ -383,7 +384,7 @@
         MEMWB MEMWB(
                 //inputs
                 .clk(clk),
-                .rst(rst /*| data_mem_stall*/),             //When data_mem_stall is 1'b1, flush MEMWB registers
+                .rst(rst /*| ~data_mem_done*/),             //When data_mem_stall is 1'b1, flush MEMWB registers
                 
                 .err_decode_EXMEM(err_decode_EXMEM),
                 .inst_mem_err_EXMEM(inst_mem_err_EXMEM),
