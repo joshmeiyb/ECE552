@@ -12,4 +12,6 @@
 # //  18 U.S.C. Section 1905.
 # //
 # dump.wlf opened as dataset "dataset"
-add wave -position insertpoint dataset:/proc_hier_pbench/*
+add wave -position insertpoint dataset:/proc_hier_pbench/DUT/p0/*
+add wave -position insertpoint  \
+dataset:/proc_hier_pbench/DUT/p0/fetch/inst_mem_stall
