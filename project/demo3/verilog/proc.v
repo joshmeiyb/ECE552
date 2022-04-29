@@ -90,7 +90,8 @@
         //Phase 2.1 aligned memory, Phase 2.2 stall memory
         //wire inst_mem_err, data_mem_err;             
         wire inst_mem_stall, data_mem_stall;
-        wire inst_mem_done, data_mem_done;    
+        wire inst_mem_done, data_mem_done;  
+        wire data_mem_stall_MEMWB, data_mem_done_MEMWB;  
 
         assign err = /*err_fetch | */err_decode_MEMWB | inst_mem_err_MEMWB | data_mem_err_MEMWB;        
                                                         //pipeline this err in decode, combined with memory err, then output err_MEMWB
@@ -130,14 +131,14 @@
                 //Inputs
                 .clk(clk),
                 .rst(rst),
-                .stall(stall /*| data_mem_stall*/),
+                .stall(stall | data_mem_stall),
                 .branch_jump_pc(branch_jump_pc),
                 .PCSrc(PCSrc),
                 .Jump_IDEX(Jump_IDEX),
-                .Halt_fetch(Halt_decode | data_mem_err),       //Halt will stop PC incrementing
-                                                //.Halt_fetch(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
-                                                //In this case, next instruction after "Halt instruction" 
-                                                //would not be accessed by processor
+                .Halt_fetch(Halt_decode | data_mem_err),        //Halt will stop PC incrementing
+                                                                //.Halt_fetch(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
+                                                                //In this case, next instruction after "Halt instruction" 
+                                                                //would not be accessed by processor
                 //Outputs
                 .pcAdd2(pcAdd2),
                 .inst_mem_err(inst_mem_err),
@@ -150,15 +151,15 @@
         IFID IFID(
                 //inputs
                 .clk(clk),
-                .rst(rst | PCSrc | inst_mem_err | data_mem_err | inst_mem_stall),       //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
-                                                        //When data_mem_err is 1'b1, flush this pipeline
+                .rst(rst | PCSrc | inst_mem_err | data_mem_err /*| inst_mem_stall*/),       //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
+                                                                                        //When data_mem_err is 1'b1, flush this pipeline
                 
                 .inst_mem_err(inst_mem_err),
-                .en(~stall),                             //& (~data_mem_stall)& (~inst_mem_stall)
+                .en(~stall & (~data_mem_stall)),                                                            // & (~data_mem_stall) & (~inst_mem_stall)
                 .instruction(instruction),
                 .Halt_IFID(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
                 .pcAdd2(pcAdd2),
-                .stall(stall ), /*| data_mem_stall | inst_mem_stall*/
+                .stall(stall),                                                          // | data_mem_stall | inst_mem_stall
                 //outputs
                 .inst_mem_err_IFID(inst_mem_err_IFID),
                 .instruction_IFID(instruction_IFID),
@@ -211,7 +212,7 @@
                 .rst(rst | stall | data_mem_err),       //When stall the decode stage, rst the IDEX registers, stop instruction propagate through
                                                         //When data_mem_err is 1'b1, flush IDEX registers
                                                                         
-                .en(1'b1/*1'b1 (~inst_mem_stall) & (~data_mem_stall) */),
+                .en(1'b1 & (~data_mem_stall)),                              // (~inst_mem_stall) & (~data_mem_stall)
 
                 .err_decode(err_decode),
                 .inst_mem_err_IFID(inst_mem_err_IFID),
@@ -239,7 +240,7 @@
                 .ALU_invA(ALU_invA),
                 .ALU_invB(ALU_invB),
                 .ALU_Cin(ALU_Cin),
-                .PCSrc(PCSrc),          //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
+                .PCSrc(PCSrc),                           //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
                 .Halt_decode(Halt_decode | Halt_EXMEM | Halt_MEMWB),    //if halt happened in later stage, stop the IDEX, which means rst it
                                                                         //but we don't want to rst the Halt itself from propagating through the next stage
                 .SIIC(SIIC),
@@ -321,7 +322,7 @@
                 .err_decode_IDEX(err_decode_IDEX),
                 .inst_mem_err_IDEX(inst_mem_err_IDEX),
                 
-                .en(1'b1/*1'b1 (~inst_mem_stall) & (~data_mem_stall)*/),
+                .en(1'b1 & (~data_mem_stall)),                                      // 1'b1 (~inst_mem_stall) & (~data_mem_stall)
                 .pcAdd2_IDEX(pcAdd2_IDEX),                      //16-bit
                 .ALU_Out(ALU_Out),                              //16-bit
                 .pc_to_reg_IDEX(pc_to_reg_IDEX),
@@ -386,7 +387,11 @@
         MEMWB MEMWB(
                 //inputs
                 .clk(clk),
-                .rst(rst /*| ~data_mem_done*/),             //When data_mem_stall is 1'b1, flush MEMWB registers
+                .rst(rst | data_mem_stall),                              // | ~data_mem_done
+                                                        //When data_mem_stall is 1'b1, flush MEMWB registers
+                
+                .data_mem_stall(data_mem_stall),
+                .data_mem_done(data_mem_done),
                 
                 .err_decode_EXMEM(err_decode_EXMEM),
                 .inst_mem_err_EXMEM(inst_mem_err_EXMEM),
@@ -405,6 +410,9 @@
                 .Halt_EXMEM(Halt_EXMEM),
                 .SIIC_EXMEM(SIIC_EXMEM),
                 //outputs
+
+                .data_mem_stall_MEMWB(data_mem_stall_MEMWB),
+                .data_mem_done_MEMWB(data_mem_done_MEMWB),
 
                 .err_decode_MEMWB(err_decode_MEMWB),
                 .inst_mem_err_MEMWB(inst_mem_err_MEMWB),
