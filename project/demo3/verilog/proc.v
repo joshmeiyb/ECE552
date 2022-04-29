@@ -89,7 +89,8 @@
 
         //Phase 2.1 aligned memory, Phase 2.2 stall memory
         //wire inst_mem_err, data_mem_err;             
-        wire inst_mem_stall, data_mem_stall;         
+        wire inst_mem_stall, data_mem_stall;
+        wire inst_mem_done, data_mem_done;    
 
         assign err = /*err_fetch | */err_decode_MEMWB | inst_mem_err_MEMWB | data_mem_err_MEMWB;        
                                                         //pipeline this err in decode, combined with memory err, then output err_MEMWB
@@ -141,6 +142,7 @@
                 .pcAdd2(pcAdd2),
                 .inst_mem_err(inst_mem_err),
                 .inst_mem_stall(inst_mem_stall),
+                .inst_mem_done(inst_mem_done),
                 .instruction(instruction)
                 
         );
@@ -148,15 +150,15 @@
         IFID IFID(
                 //inputs
                 .clk(clk),
-                .rst(rst | PCSrc | inst_mem_err | data_mem_err /*| inst_mem_stall*/),       //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
+                .rst(rst | PCSrc | inst_mem_err | data_mem_err | inst_mem_stall),       //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
                                                         //When data_mem_err is 1'b1, flush this pipeline
                 
                 .inst_mem_err(inst_mem_err),
-                .en( (~stall) /*& (~inst_mem_stall)*/ /*& (~data_mem_stall)*/),
+                .en(~stall),                             //& (~data_mem_stall)& (~inst_mem_stall)
                 .instruction(instruction),
                 .Halt_IFID(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
                 .pcAdd2(pcAdd2),
-                .stall(stall /*| data_mem_stall /*| inst_mem_stall*/),
+                .stall(stall ), /*| data_mem_stall | inst_mem_stall*/
                 //outputs
                 .inst_mem_err_IFID(inst_mem_err_IFID),
                 .instruction_IFID(instruction_IFID),

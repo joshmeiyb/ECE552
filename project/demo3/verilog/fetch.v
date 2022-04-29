@@ -9,6 +9,7 @@ module fetch (clk, rst, /*err,*/ stall,
                Halt_fetch, pcAdd2, 
                inst_mem_err,
                inst_mem_stall,
+               inst_mem_done,
                instruction
                );
    /* TODO: Add appropriate inputs/outputs for your fetch stage here*/
@@ -23,6 +24,7 @@ module fetch (clk, rst, /*err,*/ stall,
    output [15:0] instruction;
    output wire inst_mem_err;
    output wire inst_mem_stall;
+   output wire inst_mem_done;
    //output err; 
    
    // TODO: Your code here
@@ -40,12 +42,12 @@ module fetch (clk, rst, /*err,*/ stall,
    //Even though pcNew MUX has passed all the demo2 testing programs, this order may need to be reconsidered in the future demos
    //P.S. NOT SURE THE EXACT FUNCTION OF "Jump_IDEX" here...Need to reconsider in the future tests
    
-   // wire [15:0] branch_jump_pc_temp;
-   // reg16 branch_jump_flush_reg (.clk(clk), .rst(rst), .write(~inst_mem_stall), .wdata(branch_jump_pc), .rdata(branch_jump_pc_temp));
+   wire [15:0] branch_jump_pc_temp;
+   reg16 branch_jump_flush_reg (.clk(clk), .rst(rst), .write(~inst_mem_stall), .wdata(branch_jump_pc), .rdata(branch_jump_pc_temp));
    
-   assign pcNew = PCSrc                                                                    ?    branch_jump_pc  : //branch_jump_pc_temp 
-                  ~(Jump_IDEX) & (Halt_fetch | stall | inst_mem_err /*| inst_mem_stall*/)      ?    pcCurrent        : 
-                                                                                                pcAdd2;
+   assign pcNew = PCSrc                                                                                     ?    branch_jump_pc_temp  : //branch_jump_pc_temp 
+                  ~(Jump_IDEX) & (Halt_fetch | stall | inst_mem_err | inst_mem_stall)     ?    pcCurrent        : 
+                                                                                                            pcAdd2;
    //If Halt is after a jump, and Halt is decoded in Decode stage,
    //Meanwhile Jump is in Execute stage, need to prevent Halt_fetch stopping
    //PC from being updated, to succeed in jumping the PC
@@ -66,34 +68,34 @@ module fetch (clk, rst, /*err,*/ stall,
    */
 
    
-   memory2c_align Instruction_Memory(
-      .data_out(instruction), 
-      .data_in(16'h0000), 
-      .addr(pcCurrent), 
-      .enable(~pcCurrent[0]),    //if ALU_out[0] is 1'b1, memory address is not aligned 
-      .wr(1'b0), 
-      .createdump(1'b0), 
-      .clk(clk), 
-      .rst(rst), 
-      .err(inst_mem_err)
-   );
+   // memory2c_align Instruction_Memory(
+   //    .data_out(instruction), 
+   //    .data_in(16'h0000), 
+   //    .addr(pcCurrent), 
+   //    .enable(~pcCurrent[0]),    //if ALU_out[0] is 1'b1, memory address is not aligned 
+   //    .wr(1'b0), 
+   //    .createdump(1'b0), 
+   //    .clk(clk), 
+   //    .rst(rst), 
+   //    .err(inst_mem_err)
+   // );
    
 
    
-   // stallmem Instruction_Memory(
-   //    .DataOut(instruction), 
-   //    .Done(),                     //NOT SURE HOW TO CONNECT DONE SIGNAL
-   //    .Stall(inst_mem_stall), 
-   //    .CacheHit(), 
-   //    .err(inst_mem_err), 
-   //    .Addr(pcCurrent), 
-   //    .DataIn(16'h0000), 
-   //    .Rd(~pcCurrent[0]),     //enable port, if ALU_out[0] is 1'b1, memory address is not aligned
-   //    .Wr(1'b0), 
-   //    .createdump(1'b0), 
-   //    .clk(clk), 
-   //    .rst(rst)
-   //    );
+   stallmem Instruction_Memory(
+      .DataOut(instruction), 
+      .Done(inst_mem_done),                     //NOT SURE HOW TO CONNECT DONE SIGNAL
+      .Stall(inst_mem_stall), 
+      .CacheHit(), 
+      .err(inst_mem_err), 
+      .Addr(pcCurrent), 
+      .DataIn(16'h0000), 
+      .Rd(~pcCurrent[0]),     //enable port, if ALU_out[0] is 1'b1, memory address is not aligned
+      .Wr(1'b0), 
+      .createdump(1'b0), 
+      .clk(clk), 
+      .rst(rst)
+      );
 
    
    
