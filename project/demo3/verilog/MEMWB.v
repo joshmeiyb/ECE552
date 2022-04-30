@@ -3,6 +3,8 @@ module MEMWB(
     input clk,
     input rst,
 
+    input [15:0] instruction_EXMEM,
+
     input data_mem_stall,
     input data_mem_done,
 
@@ -23,6 +25,8 @@ module MEMWB(
     input Halt_EXMEM,
     input SIIC_EXMEM,
     //outputs
+
+    output [15:0] instruction_MEMWB,
     
     output data_mem_stall_MEMWB,
     output data_mem_done_MEMWB,
@@ -44,9 +48,17 @@ module MEMWB(
     output SIIC_MEMWB
 );
 
+    reg16 reg_instruction_EXMEM (
+        .clk(clk), 
+        .rst(rst /*| Halt_EXMEM*/), 
+        .write(en), 
+        .wdata(instruction_EXMEM), 
+        .rdata(instruction_MEMWB)
+    );
+
     reg1 reg_data_mem_stall (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(data_mem_stall), 
         .rdata(data_mem_stall_MEMWB)
@@ -54,7 +66,7 @@ module MEMWB(
 
     reg1 reg_data_mem_done (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(data_mem_done), 
         .rdata(data_mem_done_MEMWB)
@@ -62,7 +74,7 @@ module MEMWB(
     
     reg1 reg_err_decode_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(err_decode_EXMEM), 
         .rdata(err_decode_MEMWB)
@@ -70,7 +82,7 @@ module MEMWB(
     
     reg1 reg_inst_mem_err_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(inst_mem_err_EXMEM), 
         .rdata(inst_mem_err_MEMWB)
@@ -78,7 +90,7 @@ module MEMWB(
 
     reg1 reg_data_mem_err (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(data_mem_err), 
         .rdata(data_mem_err_MEMWB)
@@ -87,21 +99,21 @@ module MEMWB(
     
     reg16 reg_pcAdd2_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(pcAdd2_EXMEM), 
         .rdata(pcAdd2_MEMWB)
     );
     reg16 reg_ALU_Out_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(ALU_Out_EXMEM), 
         .rdata(ALU_Out_MEMWB)
     );
     reg1 reg_pc_to_reg_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(pc_to_reg_EXMEM), 
         .rdata(pc_to_reg_MEMWB)
@@ -109,21 +121,21 @@ module MEMWB(
 
     reg3 reg_RegisterRd_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(RegisterRd_EXMEM), 
         .rdata(RegisterRd_MEMWB)
     );
     reg1 reg_MemtoReg_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(MemtoReg_EXMEM), 
         .rdata(MemtoReg_MEMWB)
     );
     reg1 reg_RegWrite_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(RegWrite_EXMEM), 
         .rdata(RegWrite_MEMWB)
@@ -131,7 +143,7 @@ module MEMWB(
 
     reg1 reg_MemWrite_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(MemWrite_EXMEM), 
         .rdata(MemWrite_MEMWB)
@@ -139,7 +151,7 @@ module MEMWB(
 
     reg1 reg_MemRead_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(MemRead_EXMEM), 
         .rdata(MemRead_MEMWB)
@@ -147,7 +159,7 @@ module MEMWB(
 
     reg16 reg_mem_read_data (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(mem_read_data), 
         .rdata(mem_read_data_MEMWB)
@@ -163,7 +175,7 @@ module MEMWB(
     
     reg1 reg_SIIC_EXMEM (
         .clk(clk), 
-        .rst(rst /*| Halt_EXMEM */), 
+        .rst(rst /*| Halt_EXMEM*/), 
         .write(en), 
         .wdata(SIIC_EXMEM), 
         .rdata(SIIC_MEMWB)

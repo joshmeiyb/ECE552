@@ -5,6 +5,8 @@ module IFID(
                                 //In proc.v, we connect the "rst" of IFID to "rst | PCSrc"
             input inst_mem_err,
 
+            input inst_mem_done,    //NOT SURE ON THIS SIGNAL
+
             input en,
             input [15:0] instruction,
             input [15:0] pcAdd2,    //pcAdd2 used to be next_pc1

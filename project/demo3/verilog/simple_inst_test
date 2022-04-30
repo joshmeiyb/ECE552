@@ -1,0 +1,8 @@
+wsrun.pl -list /u/s/i/sinclair/courses/cs552/spring2022/handouts/testprograms/public/inst_tests/all.list proc_hier_bench proc_hier_bench.v proc_hier.v proc.v  alu.v cla_4b.v cla_16b.v clkrst.v control.v decode.v dff.v execute.v fetch.v fullAdder_1b.v memory.v memory2c.v nand2.v reg16.v regFile.v shifter.v wb.v xor2.v
+
+
+
+
+
+demo2: 
+wsrun.pl -wave -pipe -prog /u/s/i/sinclair/courses/cs552/spring2022/handouts/testprograms/public/inst_tests/lbi_0.asm proc_hier_pbench *.v

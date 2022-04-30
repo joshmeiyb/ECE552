@@ -33,19 +33,19 @@ module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWri
     .enable( MemRead_in | MemWrite_in), .wr(MemWrite_in), .createdump(Halt), .clk(clk), .rst(rst));
    */
 
-   /*
-   memory2c_align Data_Memory(
-      .data_out(mem_read_data), 
-      .data_in(mem_write_data), 
-      .addr(ALU_Out), 
-      .enable((MemRead_in | MemWrite_in) & (~ALU_Out[0])),     //if ALU_out[0] is 1'b1, memory address is not aligned 
-      .wr(MemWrite_in), 
-      .createdump(Halt), 
-      .clk(clk), 
-      .rst(rst), 
-      .err(data_mem_err)
-   );
-   */
+   
+   // memory2c_align Data_Memory(
+   //    .data_out(mem_read_data), 
+   //    .data_in(mem_write_data), 
+   //    .addr(ALU_Out), 
+   //    .enable((MemRead_in | MemWrite_in) & (~ALU_Out[0])),     //if ALU_out[0] is 1'b1, memory address is not aligned 
+   //    .wr(MemWrite_in), 
+   //    .createdump(Halt), 
+   //    .clk(clk), 
+   //    .rst(rst), 
+   //    .err(data_mem_err)
+   // );
+   
 
    
    stallmem Data_Memory(

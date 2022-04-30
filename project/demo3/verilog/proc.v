@@ -39,7 +39,7 @@
         wire                          SIIC,             SIIC_IDEX,           SIIC_EXMEM,          SIIC_MEMWB;
         wire                          RTI,              RTI_IDEX,            RTI_EXMEM;
         /////////////////////////////////////////////////////////////////////////////////////////////////
-        wire [15:0]    instruction,   instruction_IFID, instruction_IDEX; 
+        wire [15:0]    instruction,   instruction_IFID, instruction_IDEX,    instruction_EXMEM,   instruction_MEMWB; 
         wire [15:0]    pcAdd2,        pcAdd2_IFID,      pcAdd2_IDEX,         pcAdd2_EXMEM,        pcAdd2_MEMWB;
 
         wire [15:0]                                     branch_jump_pc;
@@ -139,23 +139,27 @@
                                                                 //.Halt_fetch(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
                                                                 //In this case, next instruction after "Halt instruction" 
                                                                 //would not be accessed by processor
+                //.Halt_fetch(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB | data_mem_err),                                        
                 //Outputs
                 .pcAdd2(pcAdd2),
                 .inst_mem_err(inst_mem_err),
                 .inst_mem_stall(inst_mem_stall),
                 .inst_mem_done(inst_mem_done),
-                .instruction(instruction)
-                
+                .instruction(instruction),
+                .PCSrc_temp(PCSrc_temp)
         );
         
         IFID IFID(
                 //inputs
                 .clk(clk),
-                .rst(rst | PCSrc | inst_mem_err | data_mem_err /*| inst_mem_stall*/),       //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
-                                                                                        //When data_mem_err is 1'b1, flush this pipeline
-                
+                //When fetch stall and memory stall happen at same time,
+                //don't flush the IFID registers, let data_mem_stall cover inst_mem_stall
+                .rst(rst | PCSrc | inst_mem_err | data_mem_err | (inst_mem_stall & ~data_mem_stall) | (PCSrc_temp & ~inst_mem_stall) /*| ~inst_mem_done*/),      //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
+                                                                                                                                //When data_mem_err is 1'b1, flush this pipeline
+
+                .inst_mem_done(inst_mem_done),                  //NOT SURE ON THIS SIGNAL                                                                                                              
                 .inst_mem_err(inst_mem_err),
-                .en(~stall & (~data_mem_stall)),                                                            // & (~data_mem_stall) & (~inst_mem_stall)
+                .en(~stall & (~data_mem_stall)),                                        // & (~data_mem_stall) & (~inst_mem_stall)
                 .instruction(instruction),
                 .Halt_IFID(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
                 .pcAdd2(pcAdd2),
@@ -209,7 +213,7 @@
         IDEX IDEX(
                 //input
                 .clk(clk), 
-                .rst(rst | stall | data_mem_err),       //When stall the decode stage, rst the IDEX registers, stop instruction propagate through
+                .rst(rst | (stall & ~data_mem_stall) | data_mem_err),       //When stall the decode stage, rst the IDEX registers, stop instruction propagate through
                                                         //When data_mem_err is 1'b1, flush IDEX registers
                                                                         
                 .en(1'b1 & (~data_mem_stall)),                              // (~inst_mem_stall) & (~data_mem_stall)
@@ -318,7 +322,8 @@
                 .clk(clk),
                 .rst(rst | data_mem_err),               //When data_mem_err is 1'b1, flush EXMEM registers
                                                         //When data_mem_stall is 1'b1, flush EXMEM registers
-                
+                .instruction_IDEX(instruction_IDEX),
+
                 .err_decode_IDEX(err_decode_IDEX),
                 .inst_mem_err_IDEX(inst_mem_err_IDEX),
                 
@@ -338,6 +343,8 @@
                 .RTI_IDEX(RTI_IDEX),
                 //outputs
                 
+                .instruction_EXMEM(instruction_EXMEM),
+
                 .err_decode_EXMEM(err_decode_EXMEM),
                 .inst_mem_err_EXMEM(inst_mem_err_EXMEM),
                 
@@ -390,6 +397,8 @@
                 .rst(rst | data_mem_stall),                              // | ~data_mem_done
                                                         //When data_mem_stall is 1'b1, flush MEMWB registers
                 
+                .instruction_EXMEM(instruction_EXMEM),
+
                 .data_mem_stall(data_mem_stall),
                 .data_mem_done(data_mem_done),
                 
@@ -411,7 +420,9 @@
                 .SIIC_EXMEM(SIIC_EXMEM),
                 //outputs
 
-                .data_mem_stall_MEMWB(data_mem_stall_MEMWB),
+                .instruction_MEMWB(instruction_MEMWB),
+
+                .data_mem_stall_MEMWB(data_mem_stall_MEMWB),            //HAVE NOT USE THIS ONE
                 .data_mem_done_MEMWB(data_mem_done_MEMWB),
 
                 .err_decode_MEMWB(err_decode_MEMWB),

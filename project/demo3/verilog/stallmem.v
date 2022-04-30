@@ -76,14 +76,14 @@ module stallmem (DataOut, Done, Stall, CacheHit, err, Addr, DataIn, Rd, Wr, crea
                             ((ready & (~Wr))? {mem[Addr],mem[Addr+8'h1]}: 0);
    assign         CacheHit = 0;
 
-   integer        seed;
+   integer        seed, retVal;
    
    initial begin
       loaded = 0;
       largest = 0;
 //      rand_pat = 32'b01010010011000101001111000001010;
       seed = 0;
-      $value$plusargs("seed=%d", seed);
+      retVal = $value$plusargs("seed=%d", seed);
       $display("Using seed %d", seed);
       rand_pat = $random(seed);
       $display("rand_pat=%08x %32b", rand_pat, rand_pat);
