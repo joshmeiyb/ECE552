@@ -105,6 +105,7 @@
                 .RegisterRd_IDEX(RegisterRd_IDEX),
                 .RegisterRs_IFID(instruction_IFID[10:8]),
                 .RegisterRt_IFID(instruction_IFID[7:5]),
+                .Instr_IFID(instruction_IFID),
                 //outputs
                 .stall(stall)
         );
@@ -131,7 +132,10 @@
                 //Inputs
                 .clk(clk),
                 .rst(rst),
-                .stall(stall | data_mem_stall),
+                
+                //rand_complex t_2_all.asm debug
+                .stall((stall & ~data_mem_stall) | data_mem_stall/*data_mem_done*/),
+
                 .branch_jump_pc(branch_jump_pc),
                 .PCSrc(PCSrc),
                 .Jump_IDEX(Jump_IDEX),
@@ -163,7 +167,7 @@
                 .instruction(instruction),
                 .Halt_IFID(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
                 .pcAdd2(pcAdd2),
-                .stall(stall),                                                          // | data_mem_stall | inst_mem_stall
+                .stall((stall & ~data_mem_stall)),                                                          // | data_mem_stall | inst_mem_stall
                 //outputs
                 .inst_mem_err_IFID(inst_mem_err_IFID),
                 .instruction_IFID(instruction_IFID),
@@ -213,10 +217,12 @@
         IDEX IDEX(
                 //input
                 .clk(clk), 
-                .rst(rst | (stall & ~data_mem_stall) | data_mem_err),       //When stall the decode stage, rst the IDEX registers, stop instruction propagate through
-                                                        //When data_mem_err is 1'b1, flush IDEX registers
+                .rst(rst | (stall & ~data_mem_stall) | data_mem_err),           //When stall the decode stage, while mem stall is not happening
+                                                                                //rst the IDEX registers, stop instruction propagate through
+                                                                                
+                                                                                //When data_mem_err is 1'b1, flush IDEX registers
                                                                         
-                .en(1'b1 & (~data_mem_stall)),                              // (~inst_mem_stall) & (~data_mem_stall)
+                .en(1'b1 & (~data_mem_stall)),  // (~inst_mem_stall) & (~data_mem_stall)
 
                 .err_decode(err_decode),
                 .inst_mem_err_IFID(inst_mem_err_IFID),
