@@ -46,14 +46,29 @@ module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWri
    //    .err(data_mem_err)
    // );
    
+   // stallmem Data_Memory(
+   //    .DataOut(mem_read_data), 
+   //    .Done(data_mem_done),                  //NOT SURE HOW TO CONNECT DONE SIGNAL
+   //    .Stall(data_mem_stall), 
+   //    .CacheHit(), 
+   //    .err(data_mem_err), 
+   //    .Addr(ALU_Out), 
+   //    .DataIn(mem_write_data), 
+   //    .Rd(MemRead_in & (~ALU_Out[0])), 
+   //    .Wr(MemWrite_in & (~ALU_Out[0])), 
+   //    .createdump(Halt), 
+   //    .clk(clk), 
+   //    .rst(rst)
+   //    );
 
-   
-   stallmem Data_Memory(
+   mem_system Data_Memory(
+      //Outputs
       .DataOut(mem_read_data), 
       .Done(data_mem_done),                  //NOT SURE HOW TO CONNECT DONE SIGNAL
       .Stall(data_mem_stall), 
       .CacheHit(), 
       .err(data_mem_err), 
+      //Inputs
       .Addr(ALU_Out), 
       .DataIn(mem_write_data), 
       .Rd(MemRead_in & (~ALU_Out[0])), 
@@ -61,7 +76,7 @@ module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWri
       .createdump(Halt), 
       .clk(clk), 
       .rst(rst)
-      );
+   );
 
 
 endmodule

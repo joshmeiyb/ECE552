@@ -18,13 +18,21 @@ Once you have created your address traces this testbench can be run using:
 If it correctly runs you will get output that looks like the following:
 
 `# Using trace file   mem.addr`
+
 `# LOG: ReQNum    1 Cycle       12 ReqCycle        3 Wr Addr 0x015c Value 0x0018 ValueRef 0x0018 HIT 0`
+
 `#`
+
 `# LOG: ReqNum    2 Cycle       14 ReqCycle       12 Rd Addr 0x015c Value 0x0018 ValueRef 0x0018 HIT 1`
+
 `#`
+
 `# LOG: Done all Requests:          2 Replies:          2 Cycles:         14 Hits:          1`
+
 `# Test status: SUCCESS`
+
 `# Break at mem_system_perfbench.v line 200`
+
 `# Stopped at mem_system_perfbench.v line 200`
 
 WARNING: just because a SUCCESS message prints, it does not guarantee your cache is working correctly. It merely states that your design ran to completion successfully (i.e., it says nothing about if you got the right number of hits or misses). You should use the cache simulator to verify the correct behavior is happening. The cache simulator can be run as follows:

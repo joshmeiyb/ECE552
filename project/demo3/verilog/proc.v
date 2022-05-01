@@ -80,8 +80,8 @@
 
         //-----------------------------hazard_detection_unit & forwarding unit---------------------------------------//
         wire stall;
-        wire R_format, R_format_IDEX;
-        wire I_format, I_format_IDEX;
+        //wire R_format, R_format_IDEX;
+        //wire I_format, I_format_IDEX;
         wire [1:0] forwardA, forwardB;
         wire forward_MEM_to_EX;
         wire forward_LBI_ST, forward_LBI_ST_EXMEM;
@@ -105,14 +105,12 @@
                 .RegisterRd_IDEX(RegisterRd_IDEX),
                 .RegisterRs_IFID(instruction_IFID[10:8]),
                 .RegisterRt_IFID(instruction_IFID[7:5]),
-                .Opcode_IFID(instruction_IFID[15:11]),
+                .Opcode_IFID(instruction_IFID[15:11]),          //IFormat, RFormat
                 //outputs
                 .stall(stall)
         );
         forwarding_unit FU(
                 //inputs
-                //.clk(clk),
-                //.rst(rst),
                 .RegWrite_EXMEM(RegWrite_EXMEM),
                 .RegWrite_MEMWB(RegWrite_MEMWB),
                 .RegisterRd_EXMEM(RegisterRd_EXMEM),
@@ -121,9 +119,9 @@
                 .RegisterRt_IDEX(RegisterRt_IDEX),
                 .MemWrite_EXMEM(MemWrite_EXMEM),
                 .MemWrite_MEMWB(MemWrite_MEMWB),   
-                .I_format_IDEX(I_format_IDEX),
-                .R_format_IDEX(R_format_IDEX),
-                .Instr_IDEX(instruction_IDEX),
+                //.I_format_IDEX(I_format_IDEX),
+                //.R_format_IDEX(R_format_IDEX),
+                .Opcode_IDEX(instruction_IDEX[15:11]),          //IFormat, RFormat
                 //outputs
                 .forwardA(forwardA),    //input of execute stage
                 .forwardB(forwardB)     //input of execute stage
@@ -159,18 +157,29 @@
         IFID IFID(
                 //inputs
                 .clk(clk),
+                
+                //----------------------------------------------------------------------------------//
+                //Phase 2 - Perfect Memory
+                //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
+                //When data_mem_err is 1'b1, flush this pipeline
+                //----------------------------------------------------------------------------------//
+                //Phase 2.2 - Stall Memory
                 //When fetch stall and memory stall happen at same time,
                 //don't flush the IFID registers, let data_mem_stall cover inst_mem_stall
-                .rst(rst | PCSrc | inst_mem_err | data_mem_err | (inst_mem_stall & ~data_mem_stall) | (PCSrc_temp & ~inst_mem_stall) /*| ~inst_mem_done*/),      //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
-                                                                                                                                //When data_mem_err is 1'b1, flush this pipeline
+                //----------------------------------------------------------------------------------//
+                .rst(rst | PCSrc 
+                         | inst_mem_err | data_mem_err 
+                         | (inst_mem_stall & ~data_mem_stall) | (PCSrc_temp & ~inst_mem_stall) /*| ~inst_mem_done*/),  
 
-                .inst_mem_done(inst_mem_done),                  //NOT SURE ON THIS SIGNAL                                                                                                              
+                .inst_mem_done(inst_mem_done),                          //NOT SURE ON THIS SIGNAL                                                                                                              
                 .inst_mem_err(inst_mem_err),
-                .en(~stall & (~data_mem_stall)),                                        // & (~data_mem_stall) & (~inst_mem_stall)
+                .en(~stall & (~data_mem_stall)),                        // & (~data_mem_stall) & (~inst_mem_stall)
                 .instruction(instruction),
-                .Halt_IFID(Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB),
+                
+                .Halt_IFID( (Halt_decode | Halt_IDEX | Halt_EXMEM | Halt_MEMWB ) /*& ~inst_mem_stall & ~data_mem_stall*/),
+
                 .pcAdd2(pcAdd2),
-                .stall((stall & ~data_mem_stall)),                                                          // | data_mem_stall | inst_mem_stall
+                .stall((stall & ~data_mem_stall)),                      // | data_mem_stall | inst_mem_stall
                 //outputs
                 .inst_mem_err_IFID(inst_mem_err_IFID),
                 .instruction_IFID(instruction_IFID),
@@ -204,8 +213,8 @@
                 .Halt_decode(Halt_decode),              //CHECK IF HALT IS IMPLEMENTED CORRECT HERE!
                 .SIIC(SIIC),
                 .RTI(RTI),
-                .R_format(R_format),
-                .I_format(I_format),
+                //.R_format(R_format),
+                //.I_format(I_format),
                 //Inputs
                 .instruction(instruction_IFID),
                 .writeback_data(writeback_data),
@@ -230,26 +239,35 @@
         IDEX IDEX(
                 //input
                 .clk(clk), 
-                .rst(rst | (stall & ~data_mem_stall) | data_mem_err | (PCSrc_temp & ~inst_mem_stall)),           //When stall the decode stage, while mem stall is not happening
-                                                                                //rst the IDEX registers, stop instruction propagate through
-                                                                                
-                                                                                //When data_mem_err is 1'b1, flush IDEX registers
+                .rst(rst | (stall & ~data_mem_stall) 
+                         | data_mem_err 
+                         | (PCSrc_temp & ~inst_mem_stall)),     //When stall the decode stage, while mem stall is not happening
+                                                                //rst the IDEX registers, stop instruction propagate through
+                                                                //(PCSrc_temp & ~inst_mem_stall) is the last change help me pass
+                                                                //the last relax-pass in test
+                //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
+                .PCSrc(PCSrc),                           
+                
+                //if halt happened in later stage, stop the IDEX, which means rst it
+                //but we don't want to rst the Halt itself from propagating through the next stage
+                .Halt_decode(Halt_decode | Halt_EXMEM | Halt_MEMWB),                                                                    
                                                                         
                 .en(1'b1 & (~data_mem_stall)),  // (~inst_mem_stall) & (~data_mem_stall)
-                //.stall(stall),
-                //.data_mem_stall(data_mem_stall),
-
                 .err_decode(err_decode),
                 .inst_mem_err_IFID(inst_mem_err_IFID),
-
-                .R_format(R_format),
-                .I_format(I_format),
+                //.R_format(R_format),
+                //.I_format(I_format),
                 .instruction_IFID(instruction_IFID),    //16-bit        
                 .pcAdd2_IFID(pcAdd2_IFID),              //16-bit 
                 
-                //When MEM-EX and data_mem_stall happen at the same time
+                //-------------------------------------------------------------------------//
+                //MEM - EX forwarding decision happens with stall signal at the same time
                 .read1Data(read1Data),                  //16-bit        
                 .read2Data(read2Data),                  //16-bit
+                .fwdA_m_x((forwardA == 2'b01) & data_mem_stall),
+                .fwdB_m_x((forwardB == 2'b01) & data_mem_stall),
+                .readData_m_x(writeback_data),
+                //-------------------------------------------------------------------------//
 
                 .extend_output(extend_output),          //16-bit
                 .RegisterRd(RegisterRd),                //3-bit
@@ -268,22 +286,13 @@
                 .ALU_invA(ALU_invA),
                 .ALU_invB(ALU_invB),
                 .ALU_Cin(ALU_Cin),
-                .PCSrc(PCSrc),                           //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
-                .Halt_decode(Halt_decode | Halt_EXMEM | Halt_MEMWB),    //if halt happened in later stage, stop the IDEX, which means rst it
-                                                                        //but we don't want to rst the Halt itself from propagating through the next stage
                 .SIIC(SIIC),
                 .RTI(RTI),
-                .fwdA_m_x((forwardA == 2'b01) & data_mem_stall),
-                .fwdB_m_x((forwardB == 2'b01) & data_mem_stall),
-                .readData_m_x(writeback_data),
-
                 //outputs
-
                 .err_decode_IDEX(err_decode_IDEX),
                 .inst_mem_err_IDEX(inst_mem_err_IDEX),
-
-                .R_format_IDEX(R_format_IDEX),
-                .I_format_IDEX(I_format_IDEX),
+                //.R_format_IDEX(R_format_IDEX),
+                //.I_format_IDEX(I_format_IDEX),
                 .instruction_IDEX(instruction_IDEX),    //propogate the IDEX pipline stage  
                 .pcAdd2_IDEX(pcAdd2_IDEX),              //propogate the IDEX pipline stage
                 .read1Data_IDEX(read1Data_IDEX),            

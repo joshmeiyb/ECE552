@@ -1,6 +1,7 @@
 /* $Author: karu $ */
-/* $LastChangedDate: 2009-03-04 23:09:45 -0600 (Wed, 04 Mar 2009) $ */
-/* $Rev: 45 $ */
+/* $LastChangedDate: 2009-04-24 09:28:13 -0500 (Fri, 24 Apr 2009) $ */
+/* $Rev: 77 $ */
+
 // clock and reset generator
 // CS/ECE 552
 // Andy Phelps (TA)
@@ -9,11 +10,12 @@
 // Clock period is 100 time units, and reset length
 // to 201 time units (two rising edges of clock).
 
+`default_nettype none
 module clkrst (clk, rst, err);
 
     output clk;
     output rst;
-    input  err;
+    input wire err;
 
     reg clk;
     reg rst;
@@ -48,6 +50,6 @@ module clkrst (clk, rst, err);
        end
     end
 
-
 endmodule
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :0:

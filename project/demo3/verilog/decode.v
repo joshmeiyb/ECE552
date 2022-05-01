@@ -15,8 +15,9 @@ module decode (instruction, writeback_data, clk, rst,
                read1Data, read2Data, Jump, Branch, 
                MemtoReg, ALUOp, ALU_invA, ALU_invB, ALU_Cin, 
                MemRead, MemWrite, ALUSrc, reg_to_pc, pc_to_reg,
-               Halt_decode, err, SIIC, RTI,
-               R_format, I_format);
+               Halt_decode, err, SIIC, RTI
+               //R_format, I_format
+               );
    /* TODO: Add appropriate inputs/outputs for your decode stage here*/
    // TODO: Your code here
 
@@ -49,8 +50,8 @@ module decode (instruction, writeback_data, clk, rst,
    output wire Halt_decode;
    output wire SIIC;
    output wire RTI;
-   output wire R_format;
-   output wire I_format;
+   //output wire R_format;
+   //output wire I_format;
     
    
    wire control_err, regFile_err;
@@ -120,9 +121,9 @@ module decode (instruction, writeback_data, clk, rst,
                   .Halt(Halt_decode), 
                   .err(control_err),
                   .SIIC(SIIC),
-                  .RTI(RTI),
-                  .R_format(R_format),
-                  .I_format(I_format)
+                  .RTI(RTI)
+                  //.R_format(R_format),
+                  //.I_format(I_format)
                   );
 
 endmodule

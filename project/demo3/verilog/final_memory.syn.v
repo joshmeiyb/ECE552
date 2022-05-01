@@ -52,18 +52,19 @@
 //
 //////////////////////////////////////
 
+`default_nettype none
 module final_memory (
-    output [15:0] data_out,
-    output        err,
-    input  [15:0] data_in,
-    input  [12:0] addr,
-    input         wr,
-    input         rd,
-    input         enable,
-    input         create_dump,
-    input   [1:0] bank_id,
-    input         clk,
-    input         rst
+    output wire [15:0] data_out,
+    output wire       err,
+    input wire [15:0] data_in,
+    input wire [12:0] addr,
+    input wire        wr,
+    input wire        rd,
+    input wire        enable,
+    input wire        create_dump,
+    input wire [1:0]  bank_id,
+    input wire        clk,
+    input wire        rst
 );
 
     reg     [7:0]  mem [0:32];
@@ -72,7 +73,10 @@ module final_memory (
 
     wire [13:0] addr_1c;
     wire [15:0] data_in_1c;
-
+    wire        rd0, rd1, rd2, rd3;
+    wire        wr0, wr1, wr2, wr3;
+    wire        busy;
+ 
     integer        mcd;
     integer        largeout;
     integer        i;
@@ -151,6 +155,6 @@ module final_memory (
       end
     end
 
-
 endmodule  // final_memory
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :0:

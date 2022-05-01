@@ -91,12 +91,29 @@ module fetch (clk, rst, /*err,*/ stall,
    //    .err(inst_mem_err)
    // );
    
-   stallmem Instruction_Memory(
+   // stallmem Instruction_Memory(
+   //    .DataOut(instruction), 
+   //    .Done(inst_mem_done),                     //NOT SURE HOW TO CONNECT DONE SIGNAL
+   //    .Stall(inst_mem_stall), 
+   //    .CacheHit(), 
+   //    .err(inst_mem_err), 
+   //    .Addr(pcCurrent), 
+   //    .DataIn(16'h0000), 
+   //    .Rd(~pcCurrent[0]),     //enable port, if ALU_out[0] is 1'b1, memory address is not aligned
+   //    .Wr(1'b0), 
+   //    .createdump(1'b0), 
+   //    .clk(clk), 
+   //    .rst(rst)
+   //    );
+
+   mem_system Instruction_Memory(
+      //Outputs
       .DataOut(instruction), 
       .Done(inst_mem_done),                     //NOT SURE HOW TO CONNECT DONE SIGNAL
       .Stall(inst_mem_stall), 
       .CacheHit(), 
-      .err(inst_mem_err), 
+      .err(inst_mem_err),
+      //Inputs
       .Addr(pcCurrent), 
       .DataIn(16'h0000), 
       .Rd(~pcCurrent[0]),     //enable port, if ALU_out[0] is 1'b1, memory address is not aligned
@@ -104,6 +121,6 @@ module fetch (clk, rst, /*err,*/ stall,
       .createdump(1'b0), 
       .clk(clk), 
       .rst(rst)
-      );
+   );
    
 endmodule
