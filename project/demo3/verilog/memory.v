@@ -61,13 +61,14 @@ module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWri
    //    .rst(rst)
    //    );
 
+   wire data_mem_err_temp;
    mem_system Data_Memory(
       //Outputs
       .DataOut(mem_read_data), 
       .Done(data_mem_done),                  //NOT SURE HOW TO CONNECT DONE SIGNAL
       .Stall(data_mem_stall), 
       .CacheHit(), 
-      .err(data_mem_err), 
+      .err(/*data_mem_err*/data_mem_err_temp), 
       //Inputs
       .Addr(ALU_Out), 
       .DataIn(mem_write_data), 
@@ -79,4 +80,7 @@ module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWri
    );
 
 
+   //Not solve the problem, need to figure out why data_mem_err is 1'b1 
+   assign data_mem_err = data_mem_err_temp & (MemRead_in | MemWrite_in);
+   
 endmodule

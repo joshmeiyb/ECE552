@@ -106,9 +106,14 @@ module fetch (clk, rst, /*err,*/ stall,
    //    .rst(rst)
    //    );
 
+   //---------------------------------------------------------------------------------------------------//
+   //When instruction memory is stalling, should be passing NOPs out.
+   wire [15:0] instruction_temp;
+   assign instruction = inst_mem_stall ? 16'h0800 : instruction_temp;
+
    mem_system Instruction_Memory(
       //Outputs
-      .DataOut(instruction), 
+      .DataOut(instruction_temp), 
       .Done(inst_mem_done),                     //NOT SURE HOW TO CONNECT DONE SIGNAL
       .Stall(inst_mem_stall), 
       .CacheHit(), 
@@ -122,5 +127,6 @@ module fetch (clk, rst, /*err,*/ stall,
       .clk(clk), 
       .rst(rst)
    );
+   //---------------------------------------------------------------------------------------------------//
    
 endmodule

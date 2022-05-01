@@ -127,7 +127,13 @@ module mem_system(/*AUTOARG*/
    
    
    assign cache_data_in = cache_data_in_select ? mem_data_out : DataIn;
-   assign cache_offset_in = cache_offset_select ? cache_offset_out : Addr[2:0];
+
+   //---------------------------------------------------------------------------------------------//
+   //Passing decimal 7 for no reason, which is 3'b111
+   assign cache_offset_in = cache_offset_select ? cache_offset_out : (Addr[2:0] & ~(mem_rd | mem_wr));
+   //---------------------------------------------------------------------------------------------//
+   
+   
    assign mem_addr = tag_select ? {cache_tag_out_temp, Addr[10:3], mem_offset} : {Addr[15:3], mem_offset};
    //assign err = cache_err | mem_err | cache_ctrl_err;
    //assign DataOut = err ? 16'h0000 : cache_data_out;
