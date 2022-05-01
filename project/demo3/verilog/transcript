@@ -1,5 +1,5 @@
 # vsim "+seed=45" -c proc_hier_pbench -lib __work -voptargs="+acc" -wlf dump.wlf -do "log -howmany -rec /* ; run -all" 
-# Start time: 22:36:14 on Apr 30,2022
+# Start time: 22:55:08 on Apr 30,2022
 # //  ModelSim DE 10.7c Aug 17 2018Linux 5.4.0-109-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -54,6 +54,6 @@
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
-#    Time: 627705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 22:36:16 on Apr 30,2022, Elapsed time: 0:00:02
+#    Time: 274405 ns  Iteration: 0  Instance: /proc_hier_pbench
+# End time: 22:55:09 on Apr 30,2022, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

@@ -230,7 +230,7 @@
         IDEX IDEX(
                 //input
                 .clk(clk), 
-                .rst(rst | (stall & ~data_mem_stall) | data_mem_err),           //When stall the decode stage, while mem stall is not happening
+                .rst(rst | (stall & ~data_mem_stall) | data_mem_err | (PCSrc_temp & ~inst_mem_stall)),           //When stall the decode stage, while mem stall is not happening
                                                                                 //rst the IDEX registers, stop instruction propagate through
                                                                                 
                                                                                 //When data_mem_err is 1'b1, flush IDEX registers
@@ -249,7 +249,7 @@
                 
                 //When MEM-EX and data_mem_stall happen at the same time
                 .read1Data(read1Data),                  //16-bit        
-                .read2Data(read1Data),                  //16-bit
+                .read2Data(read2Data),                  //16-bit
 
                 .extend_output(extend_output),          //16-bit
                 .RegisterRd(RegisterRd),                //3-bit
@@ -323,8 +323,8 @@
                 .reg_to_pc(reg_to_pc_IDEX),
                 .pcAdd2(pcAdd2_IDEX),
                 .instruction(instruction_IDEX),
-                .read1Data(read1Data),
-                .read2Data(read2Data),
+                .read1Data(read1Data_IDEX),
+                .read2Data(read2Data_IDEX),
                 .ALUSrc(ALUSrc_IDEX),
                 .ALU_Cin(ALU_Cin_IDEX),                 //When doing subtraction, Cin would be need to implement 2's complement
                 .ALUOp(ALUOp_IDEX),

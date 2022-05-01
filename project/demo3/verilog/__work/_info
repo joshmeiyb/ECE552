@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 d/u/j/m/jmei/ece552/project/demo3/verilog
 valu
-Z1 !s110 1651376140
+Z1 !s110 1651377290
 !i10b 1
 !s100 HWPRzW9hYeTdW^QV60afO1
 IRClK<dl3^Jj;W:8=A;[TR3
@@ -23,7 +23,7 @@ Z4 OP;L;10.7c;67
 r1
 !s85 0
 31
-Z5 !s108 1651376139.000000
+Z5 !s108 1651377290.000000
 !s107 xor2.v|wb.v|stallmem.v|shifter.v|regFile.v|regFile_bypass.v|reg4.v|reg3.v|reg1.v|reg16.v|proc.v|proc_hier.v|proc_hier_pbench.v|nand2.v|MEMWB.v|memory.v|memory2c.v|memory2c_align.v|IFID.v|IDEX.v|hazard_detection_unit.v|fullAdder_1b.v|four_bank_mem.v|forwarding_unit.v|final_memory.v|fetch.v|EXMEM.v|execute.v|dff.v|decode.v|control.v|clkrst.v|cla_4b.v|cla_16b.v|alu.v|
 Z6 !s90 +define+RANDSEED=3|-work|__work|alu.v|cla_16b.v|cla_4b.v|clkrst.v|control.v|decode.v|dff.v|execute.v|EXMEM.v|fetch.v|final_memory.v|forwarding_unit.v|four_bank_mem.v|fullAdder_1b.v|hazard_detection_unit.v|IDEX.v|IFID.v|memory2c_align.v|memory2c.v|memory.v|MEMWB.v|nand2.v|proc_hier_pbench.v|proc_hier.v|proc.v|reg16.v|reg1.v|reg3.v|reg4.v|regFile_bypass.v|regFile.v|shifter.v|stallmem.v|wb.v|xor2.v|
 !i113 1
@@ -500,11 +500,11 @@ R9
 vproc
 R1
 !i10b 1
-!s100 71bmSTZJYa?[Qz:d2c78A2
-IYC9M=<oO=J;=Lfe8W=9m`0
+!s100 hTNn8KG<1_==E=HZok?gB1
+Ic7nL?ojL091ZKPliJQBzj2
 R2
 R0
-w1651375851
+w1651377180
 8proc.v
 Fproc.v
 L0 4
