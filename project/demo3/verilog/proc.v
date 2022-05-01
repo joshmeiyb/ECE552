@@ -105,12 +105,14 @@
                 .RegisterRd_IDEX(RegisterRd_IDEX),
                 .RegisterRs_IFID(instruction_IFID[10:8]),
                 .RegisterRt_IFID(instruction_IFID[7:5]),
-                .Instr_IFID(instruction_IFID),
+                .Opcode_IFID(instruction_IFID[15:11]),
                 //outputs
                 .stall(stall)
         );
         forwarding_unit FU(
                 //inputs
+                //.clk(clk),
+                //.rst(rst),
                 .RegWrite_EXMEM(RegWrite_EXMEM),
                 .RegWrite_MEMWB(RegWrite_MEMWB),
                 .RegisterRd_EXMEM(RegisterRd_EXMEM),
@@ -121,6 +123,7 @@
                 .MemWrite_MEMWB(MemWrite_MEMWB),   
                 .I_format_IDEX(I_format_IDEX),
                 .R_format_IDEX(R_format_IDEX),
+                .Instr_IDEX(instruction_IDEX),
                 //outputs
                 .forwardA(forwardA),    //input of execute stage
                 .forwardB(forwardB)     //input of execute stage
@@ -214,6 +217,16 @@
                 .RegisterRd_in(RegisterRd_MEMWB)                //3-bit, for the register writing address
         );
 
+        
+        // wire [15:0] read1Data_temp, read2Data_temp;
+        // assign read1Data_temp = (forwardA == 2'b01 /*& data_mem_stall*/)    ?   ALU_Out_EXMEM : 
+        //                         (data_mem_stall /*& forwardA == 2'b01*/)    ?   read1Data_IDEX :
+        //                                                                         read1Data;
+        // assign read2Data_temp = (forwardB == 2'b01 /*& data_mem_stall*/)    ?   ALU_Out_EXMEM : 
+        //                         (data_mem_stall /*& forwardB == 2'b01*/)    ?   read2Data_IDEX :
+        //                                                                         read2Data;    
+        
+
         IDEX IDEX(
                 //input
                 .clk(clk), 
@@ -223,6 +236,8 @@
                                                                                 //When data_mem_err is 1'b1, flush IDEX registers
                                                                         
                 .en(1'b1 & (~data_mem_stall)),  // (~inst_mem_stall) & (~data_mem_stall)
+                //.stall(stall),
+                //.data_mem_stall(data_mem_stall),
 
                 .err_decode(err_decode),
                 .inst_mem_err_IFID(inst_mem_err_IFID),
@@ -231,8 +246,11 @@
                 .I_format(I_format),
                 .instruction_IFID(instruction_IFID),    //16-bit        
                 .pcAdd2_IFID(pcAdd2_IFID),              //16-bit 
+                
+                //When MEM-EX and data_mem_stall happen at the same time
                 .read1Data(read1Data),                  //16-bit        
-                .read2Data(read2Data),                  //16-bit
+                .read2Data(read1Data),                  //16-bit
+
                 .extend_output(extend_output),          //16-bit
                 .RegisterRd(RegisterRd),                //3-bit
                 .RegisterRs(RegisterRs),                //3-bit
@@ -255,6 +273,10 @@
                                                                         //but we don't want to rst the Halt itself from propagating through the next stage
                 .SIIC(SIIC),
                 .RTI(RTI),
+                .fwdA_m_x((forwardA == 2'b01) & data_mem_stall),
+                .fwdB_m_x((forwardB == 2'b01) & data_mem_stall),
+                .readData_m_x(writeback_data),
+
                 //outputs
 
                 .err_decode_IDEX(err_decode_IDEX),
@@ -287,7 +309,7 @@
                 .SIIC_IDEX(SIIC_IDEX),
                 .RTI_IDEX(RTI_IDEX)
         );
-        
+
 
         execute execute(
                 //Outputs
@@ -301,8 +323,8 @@
                 .reg_to_pc(reg_to_pc_IDEX),
                 .pcAdd2(pcAdd2_IDEX),
                 .instruction(instruction_IDEX),
-                .read1Data(read1Data_IDEX),
-                .read2Data(read2Data_IDEX),
+                .read1Data(read1Data),
+                .read2Data(read2Data),
                 .ALUSrc(ALUSrc_IDEX),
                 .ALU_Cin(ALU_Cin_IDEX),                 //When doing subtraction, Cin would be need to implement 2's complement
                 .ALUOp(ALUOp_IDEX),

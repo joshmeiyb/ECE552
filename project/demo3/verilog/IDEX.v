@@ -3,6 +3,8 @@ module IDEX(
     input clk, 
     input rst,          //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
     input en,
+    //input stall,
+    //input data_mem_stall,
 
     input err_decode,
     input inst_mem_err_IFID,
@@ -34,6 +36,9 @@ module IDEX(
     input Halt_decode,
     input SIIC,
     input RTI,
+    input fwdA_m_x,
+    input fwdB_m_x,
+    input [15:0] readData_m_x,
     //outputs
 
     output err_decode_IDEX,
@@ -67,6 +72,37 @@ module IDEX(
     output RTI_IDEX
 
 );
+    
+    /*
+    //When MEM-EX forwarding and data_mem_stall happens at same time, 
+    //do not let stall memory stop the forwarding
+    wire [15:0] read1Data_temp, read2Data_temp;
+    //When data_mem_stall happens, keep the old data in loop
+    assign read1Data_temp = data_mem_stall ? read1Data_IDEX : read1Data;
+    assign read2Data_temp = data_mem_stall ? read2Data_IDEX : read2Data;
+    */
+
+    wire [15:0] read1Data_temp, read2Data_temp;
+    assign read1Data_temp = fwdA_m_x ? readData_m_x : read1Data;
+    assign read2Data_temp = fwdB_m_x ? readData_m_x : read2Data;
+
+    reg16 reg_read1Data (
+        .clk(clk), 
+        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .write(en | (~en & fwdA_m_x) /*& (~data_mem_stall)*/), 
+        .wdata(read1Data_temp), 
+        .rdata(read1Data_IDEX)
+    ); 
+    
+    reg16 reg_read2Data (
+        .clk(clk), 
+        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .write(en | (~en & fwdB_m_x) /*& (~data_mem_stall)*/), 
+        .wdata(read2Data_temp), 
+        .rdata(read2Data_IDEX)
+    );
+
+
 
     // halt must not in rst
     reg1 reg_err_decode(
@@ -117,21 +153,7 @@ module IDEX(
         .rdata(pcAdd2_IDEX)
     );
     
-    reg16 reg_read1Data (
-        .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
-        .write(en), 
-        .wdata(read1Data), 
-        .rdata(read1Data_IDEX)
-    ); 
     
-    reg16 reg_read2Data (
-        .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
-        .write(en), 
-        .wdata(read2Data), 
-        .rdata(read2Data_IDEX)
-    );
     reg16 reg_extend_output (
         .clk(clk), 
         .rst(rst /*| Halt_decode*/ | PCSrc), 

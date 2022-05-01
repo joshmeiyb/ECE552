@@ -244,7 +244,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 //we don't care about ALUSrc, since we don't need to read Rd in instr[7:5]
                 //MemtoReg is default set to 1'b0, therefore ALU_Out will be written back to regFile
                 RegWrite = 1'b1;
-                R_format = 1'b1;
+                //R_format = 1'b1;
             end
 
             //ALU Control differentiates by instr[1:0]

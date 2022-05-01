@@ -9,10 +9,12 @@ module execute (ALU_Out, PCSrc, memWriteData, ALU_Zero, ALU_Ofl,
                ALUSrc, ALU_Cin, ALUOp, ALU_invA, ALU_invB,
                ALU_sign, extend_output, Branch, Jump,
                reg_to_pc, pcAdd2, branch_jump_pc,
-               /*forward_MEM_to_EX,*/ forwardA, forwardB,
-               /*MemRead_MEMWB,*/ 
-               /*mem_read_data_MEMWB,*/ RegisterRd_IDEX, RegisterRs_IFID, /*stall_EX_to_MEMEX_forwarding*//*mem_read_data,*/
-               ALU_Out_EXMEM, writeback_data
+
+               //---------------------------------------------------------//
+               forwardA, forwardB,
+               RegisterRd_IDEX, RegisterRs_IFID,
+               ALU_Out_EXMEM, 
+               writeback_data
                //---------------------------------------------------------//
                
                );
@@ -42,6 +44,7 @@ module execute (ALU_Out, PCSrc, memWriteData, ALU_Zero, ALU_Ofl,
                                     //               2. the InB of ALU
    input Branch;
    input Jump;
+
    input [1:0] forwardA, forwardB;
    input [2:0] RegisterRd_IDEX;
    input [2:0] RegisterRs_IFID;
@@ -85,13 +88,13 @@ module execute (ALU_Out, PCSrc, memWriteData, ALU_Zero, ALU_Ofl,
    wire [15:0] InA_forward, InB_forward;
    wire [15:0] InA_forward_temp;
 
-   assign InA_forward = (forwardA == 2'b10) ? ALU_Out_EXMEM :  //EX-EX
-                        (forwardA == 2'b01) ? writeback_data : //MEM-EX
+   assign InA_forward = (forwardA == 2'b10)  ? ALU_Out_EXMEM   :  //EX-EX
+                        (forwardA == 2'b01)  ? writeback_data  :  //MEM-EX
                         read1Data;
                         
-   assign InB_forward = ALUSrc ? extend_output :
-                        (forwardB == 2'b10) ? ALU_Out_EXMEM :  //EX-EX
-                        (forwardB == 2'b01) ? writeback_data : //MEM-EX
+   assign InB_forward = ALUSrc               ? extend_output   :
+                        (forwardB == 2'b10)  ? ALU_Out_EXMEM   :  //EX-EX
+                        (forwardB == 2'b01)  ? writeback_data  :  //MEM-EX
                         read2Data;
 
    alu alu(.InA(InA_forward), .InB(InB_forward), .Cin(ALU_Cin), 
@@ -101,8 +104,8 @@ module execute (ALU_Out, PCSrc, memWriteData, ALU_Zero, ALU_Ofl,
    
    //InB_forward_noImm creates an exception for ST forwarding which do not use extended_output to ALU input B
    //Since the InB_forward has the first priority MUX for extend_output
-   assign InB_forward_noImm = (forwardB == 2'b10) ? ALU_Out_EXMEM :  //EX-EX
-                              (forwardB == 2'b01) ? writeback_data : //MEM-EX
+   assign InB_forward_noImm = (forwardB == 2'b10) ? ALU_Out_EXMEM  :  //EX-EX
+                              (forwardB == 2'b01) ? writeback_data :  //MEM-EX
                               read2Data;
 
    assign memWriteData = InB_forward_noImm;
