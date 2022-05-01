@@ -130,7 +130,7 @@ module mem_system(/*AUTOARG*/
 
    //---------------------------------------------------------------------------------------------//
    //Passing decimal 7 for no reason, which is 3'b111
-   assign cache_offset_in = cache_offset_select ? cache_offset_out : (Addr[2:0] & ~(mem_rd | mem_wr));
+   assign cache_offset_in = cache_offset_select ? cache_offset_out : (Addr[2:0] /*& (mem_rd | mem_wr)*/);
    //---------------------------------------------------------------------------------------------//
    
    
