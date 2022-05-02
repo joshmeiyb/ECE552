@@ -69,7 +69,10 @@ module mem_system(/*AUTOARG*/
    wire cache_ctrl_err;
    wire enable;
    wire cache_hit;
+   
    wire done;
+   //wire done_delay;
+
    wire stall_out;
    //-----------------------------------------------------------------//
 
@@ -133,7 +136,6 @@ module mem_system(/*AUTOARG*/
    assign cache_offset_in = cache_offset_select ? cache_offset_out : (Addr[2:0] /*& (mem_rd | mem_wr)*/);
    //---------------------------------------------------------------------------------------------//
    
-   
    assign mem_addr = tag_select ? {cache_tag_out_temp, Addr[10:3], mem_offset} : {Addr[15:3], mem_offset};
    //assign err = cache_err | mem_err | cache_ctrl_err;
    //assign DataOut = err ? 16'h0000 : cache_data_out;
@@ -143,8 +145,9 @@ module mem_system(/*AUTOARG*/
    assign DataOut = DataOut_temp;
    assign CacheHit = cache_hit;
    assign Stall = stall_out;
-   assign Done = done;
-
+   assign Done = done/*done_delay*/;
+   //reg1 done_delay_reg(.clk(clk), .rst(rst), .write(1'b1), .wdata(done), .rdata(done_delay));
+   
    
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */

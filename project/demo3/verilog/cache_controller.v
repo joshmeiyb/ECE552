@@ -54,7 +54,9 @@ module cache_controller (
 
     dff statereg[4:0] (.q(curr_state), .d(next_state), .clk(clk), .rst(rst));
 
-    assign enable = (curr_state != IDLE) && (curr_state != ERROR);//((curr_state == IDLE) | (curr_state == COMPARE_RD) | (curr_state == COMPARE_WR));
+    //assign enable = (curr_state != IDLE) && (curr_state != ERROR);
+    assign enable = ((curr_state == COMPARE_RD) | (curr_state == COMPARE_WR));
+    //assign enable = ((curr_state == IDLE) | (curr_state == COMPARE_RD) | (curr_state == COMPARE_WR));
     //In IDLE state or COMPARE states, we keep the enable signal of cache high, to let the data into the cache
 
     always @(*) begin
@@ -85,6 +87,7 @@ module cache_controller (
             IDLE: begin
                 //When there is a new Rd or Wr signal, stall the cache     
                 stall_out = (Rd | Wr);
+                //stall_out = 1'b0;
                 next_state = (~Rd & ~Wr) ? IDLE       :
                              (Rd  & ~Wr) ? COMPARE_RD : 
                              (~Rd & Wr)  ? COMPARE_WR :
@@ -227,20 +230,22 @@ module cache_controller (
                 stall_out = 1'b0;                           //deassert Stall
                 done = 1'b1;
                 cache_hit = 1'b1;                           //When hit, hit = 1   
-                next_state = (~Wr & Rd)  ?  COMPARE_RD :
-                             (Wr & ~Rd)  ?  COMPARE_WR :
-                             (~Wr & ~Rd) ?  IDLE       :
-                                            ERROR;
+                next_state = IDLE;
+                // next_state = (~Wr & Rd)  ?  COMPARE_RD :
+                //              (Wr & ~Rd)  ?  COMPARE_WR :
+                //              (~Wr & ~Rd) ?  IDLE       :
+                //                             ERROR;
             end
             //5'h0f
             MISS_DONE: begin
                 //valid_in = 1'b1;
                 stall_out = 1'b0;                           //deassert Stall
                 done = 1'b1;                                //When miss, do not assert cache_hit
-                next_state = (~Wr & Rd)  ?  COMPARE_RD :
-                             (Wr & ~Rd)  ?  COMPARE_WR :
-                             (~Wr & ~Rd) ?  IDLE       :
-                                            ERROR;
+                next_state = IDLE;
+                // next_state = (~Wr & Rd)  ?  COMPARE_RD :
+                //              (Wr & ~Rd)  ?  COMPARE_WR :
+                //              (~Wr & ~Rd) ?  IDLE       :
+                //                             ERROR;
             end
             //5'h10
             ERROR: begin

@@ -62,6 +62,7 @@ module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWri
    //    );
 
    wire data_mem_err_temp;
+
    mem_system Data_Memory(
       //Outputs
       .DataOut(mem_read_data), 
@@ -70,7 +71,7 @@ module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWri
       .CacheHit(), 
       .err(/*data_mem_err*/data_mem_err_temp), 
       //Inputs
-      .Addr(ALU_Out), 
+      .Addr(ALU_Out /*& (MemRead_in | MemWrite_in)*/), 
       .DataIn(mem_write_data), 
       .Rd(MemRead_in & (~ALU_Out[0])), 
       .Wr(MemWrite_in & (~ALU_Out[0])), 

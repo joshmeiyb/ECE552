@@ -1,12 +1,11 @@
-          // Original test: ./jmeyer/hw4/problem6/lbi_0.asm
-          // Author: jmeyer
-          // Test source code follows
+          // Write your assembly program for Problem 1 (a) #3 here.
           
+          //Test seq instruction
+          //11100 sss ttt ddd xx | SEQ Rd, Rs, Rt | if (Rs == Rt) then Rd <- 1 else Rd <- 0
           
-          //Tests lbi of positive, zero, and negative values into same reg
-0000 c07f lbi	r0, 127		//R0 <- 0x007f
-0002 c080 lbi     r0, 128		//R0 <- 0xff80
-0004 c000 lbi	r0, 0		//R0 <- 0x0000
-0006 c080 lbi     r0, -128	//R0 <- 0xff80
-0008 c0ff lbi	r0, -1		//R0 <- 0xffff
+0000 c102 lbi r1, 2
+0002 c201 lbi r2, 1
+0004 d94d sub r3, r1, r2
+0006 8a41 ld  r2, r2, 1
+0008 e270 seq r4, r2, r3
 000a 0000 halt
