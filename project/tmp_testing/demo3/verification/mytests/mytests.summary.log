@@ -1,0 +1,4 @@
+/u/j/m/jmei/ece552/project/demo2/verification/mytests/jump_0.asm SUCCESS CPI:11.6 CYCLES:70 ICOUNT:6 IHITRATE: 0 DHITRATE: 0
+/u/j/m/jmei/ece552/project/demo2/verification/mytests/p1_1.asm SUCCESS CPI:6.2 CYCLES:37 ICOUNT:6 IHITRATE: 0 DHITRATE: 0
+/u/j/m/jmei/ece552/project/demo2/verification/mytests/p1_2.asm SUCCESS CPI:8.6 CYCLES:43 ICOUNT:5 IHITRATE: 77.8 DHITRATE: 0
+/u/j/m/jmei/ece552/project/demo2/verification/mytests/p1_3.asm SUCCESS CPI:6.7 CYCLES:40 ICOUNT:6 IHITRATE: 66.7 DHITRATE: 0

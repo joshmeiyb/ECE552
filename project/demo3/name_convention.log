@@ -1,0 +1,102 @@
+Checking file proc.v: OK: Found module proc (expected proc) in proc.v, at line 4:module proc (/*AUTOARG*/
+
+Checking file memory.v: OK: Found module memory (expected memory) in memory.v, at line 8:module memory (mem_read_data, clk, rst, mem_write_data, ALU_Out, MemRead, MemWrite, Halt, data_mem_err, data_mem_stall, data_mem_done);
+
+Checking file cache_controller.v: OK: Found module cache_controller (expected cache_controller) in cache_controller.v, at line 1:module cache_controller (
+
+Checking file mem_system.v: OK: Found module mem_system (expected mem_system) in mem_system.v, at line 6:module mem_system(/*AUTOARG*/
+
+Checking file clkrst.v: OK: Found module clkrst (expected clkrst) in clkrst.v, at line 14:module clkrst (clk, rst, err);
+
+Checking file fetch.v: OK: Found module fetch (expected fetch) in fetch.v, at line 7:module fetch (clk, rst, /*err,*/ stall, 
+
+Checking file forwarding_unit.v: OK: Found module forwarding_unit (expected forwarding_unit) in forwarding_unit.v, at line 1:module forwarding_unit(
+
+Checking file IDEX.v: OK: Found module IDEX (expected IDEX) in IDEX.v, at line 1:module IDEX(
+
+Checking file decode.v: OK: Found module decode (expected decode) in decode.v, at line 8:module decode (instruction, writeback_data, clk, rst,
+
+Checking file control.v: OK: Found module control (expected control) in control.v, at line 1:module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg, 
+
+Checking file proc_hier_pbench.v: OK: Found module proc_hier_pbench (expected proc_hier_pbench) in proc_hier_pbench.v, at line 4:module proc_hier_pbench();
+
+Checking file execute.v: OK: Found module execute (expected execute) in execute.v, at line 7:module execute (ALU_Out, PCSrc, memWriteData, ALU_Zero, ALU_Ofl,
+
+Checking file hazard_detection_unit.v: OK: Found module hazard_detection_unit (expected hazard_detection_unit) in hazard_detection_unit.v, at line 1:module hazard_detection_unit(
+
+Checking file EXMEM.v: OK: Found module EXMEM (expected EXMEM) in EXMEM.v, at line 1:module EXMEM (
+
+Checking file MEMWB.v: OK: Found module MEMWB (expected MEMWB) in MEMWB.v, at line 1:module MEMWB(
+
+Checking file stallmem.v: OK: Found module stallmem (expected stallmem) in stallmem.v, at line 45:module stallmem (DataOut, Done, Stall, CacheHit, err, Addr, DataIn, Rd, Wr, createdump, clk, rst);
+
+Checking file IFID.v: OK: Found module IFID (expected IFID) in IFID.v, at line 1:module IFID(
+
+Checking file mem_system_perfbench.v: OK: Found module mem_system_perfbench (expected mem_system_perfbench) in mem_system_perfbench.v, at line 8:module mem_system_perfbench(/*AUTOARG*/);
+
+Checking file wb.v: OK: Found module wb (expected wb) in wb.v, at line 7:module wb ( writeback_data,
+
+Checking file cla_4b.v: OK: Found module cla_4b (expected cla_4b) in cla_4b.v, at line 7:module cla_4b(sum, c_out, a, b, c_in);
+
+Checking file alu.v: OK: Found module alu (expected alu) in alu.v, at line 12:module alu (InA, InB, Cin, Oper, invA, invB, sign, Out, Zero, Ofl);
+
+Checking file reg4.v: OK: Found module reg4 (expected reg4) in reg4.v, at line 1:module reg4(clk, rst, write, wdata, rdata);
+
+Checking file reg3.v: OK: Found module reg3 (expected reg3) in reg3.v, at line 1:module reg3(clk, rst, write, wdata, rdata);
+
+Checking file reg1.v: OK: Found module reg1 (expected reg1) in reg1.v, at line 1:module reg1(clk, rst, write, wdata, rdata);
+
+Checking file regFile_bypass.v: OK: Found module regFile_bypass (expected regFile_bypass) in regFile_bypass.v, at line 8:module regFile_bypass (
+
+Checking file memv.syn.v: ERROR: (name mismatch) Found module memv (expected memv.syn) in memv.syn.v, at line 8:module memv (data_out, addr, data_in, write, clk, rst, createdump, file_id);
+
+Checking file final_memory.syn.v: ERROR: (name mismatch) Found module final_memory (expected final_memory.syn) in final_memory.syn.v, at line 56:module final_memory (
+
+Checking file mem_system_ref.v: OK: Found module mem_system_ref (expected mem_system_ref) in mem_system_ref.v, at line 6:module mem_system_ref(/*AUTOARG*/
+
+Checking file mem_system_randbench.v: OK: Found module mem_system_randbench (expected mem_system_randbench) in mem_system_randbench.v, at line 6:module mem_system_randbench(/*AUTOARG*/);
+
+Checking file mem_system_hier.v: OK: Found module mem_system_hier (expected mem_system_hier) in mem_system_hier.v, at line 6:module mem_system_hier(/*AUTOARG*/
+
+Checking file memc.syn.v: ERROR: (name mismatch) Found module memc (expected memc.syn) in memc.syn.v, at line 8:module memc (data_out, addr, data_in, write, clk, rst, createdump, file_id);
+
+Checking file four_bank_mem.v: OK: Found module four_bank_mem (expected four_bank_mem) in four_bank_mem.v, at line 69:module four_bank_mem (
+
+Checking file final_memory.v: OK: Found module final_memory (expected final_memory) in final_memory.v, at line 55:module final_memory (
+
+Checking file cache.v: OK: Found module cache (expected cache) in cache.v, at line 18:module cache (
+
+Checking file dff.v: OK: Found module dff (expected dff) in dff.v, at line 6:module dff (q, d, clk, rst);
+
+Checking file memv.v: OK: Found module memv (expected memv) in memv.v, at line 7:module memv (data_out, addr, data_in, write, clk, rst, createdump, file_id);
+
+Checking file memc.v: OK: Found module memc (expected memc) in memc.v, at line 7:module memc (data_out, addr, data_in, write, clk, rst, createdump, file_id);
+
+Checking file shifter.v: OK: Found module shifter (expected shifter) in shifter.v, at line 10:module shifter (In, ShAmt, Oper, Out);
+
+Checking file cla_16b.v: OK: Found module cla_16b (expected cla_16b) in cla_16b.v, at line 7:module cla_16b(sum, c_out, a, b, c_in);
+
+Checking file regFile.v: OK: Found module regFile (expected regFile) in regFile.v, at line 10:module regFile (
+
+Checking file reg16.v: OK: Found module reg16 (expected reg16) in reg16.v, at line 1:module reg16(clk, rst, write, wdata, rdata);
+
+Checking file fullAdder_1b.v: OK: Found module fullAdder_1b (expected fullAdder_1b) in fullAdder_1b.v, at line 7:module fullAdder_1b(s, c_out, a, b, c_in);
+
+Checking file xor2.v: OK: Found module xor2 (expected xor2) in xor2.v, at line 7:module xor2 (out,in1,in2);
+
+Checking file nand2.v: OK: Found module nand2 (expected nand2) in nand2.v, at line 7:module nand2 (out,in1,in2);
+
+Checking file memory2c_align.syn.v: ERROR: (name mismatch) Found module memory2c_align (expected memory2c_align.syn) in memory2c_align.syn.v, at line 38:module memory2c_align (data_out, data_in, addr, enable, wr, createdump, clk, rst, err);
+
+Checking file memory2c_align.v: OK: Found module memory2c_align (expected memory2c_align) in memory2c_align.v, at line 36:module memory2c_align (data_out, data_in, addr, enable, wr, createdump, clk, rst, err);
+
+Checking file memory2c.syn.v: ERROR: (name mismatch) Found module memory2c (expected memory2c.syn) in memory2c.syn.v, at line 37:module memory2c (data_out, data_in, addr, enable, wr, createdump, clk, rst);
+
+Checking file memory2c.v: OK: Found module memory2c (expected memory2c) in memory2c.v, at line 35:module memory2c (data_out, data_in, addr, enable, wr, createdump, clk, rst);
+
+Checking file proc_hier.v: OK: Found module proc_hier (expected proc_hier) in proc_hier.v, at line 6:module proc_hier();
+
+Checking file stallmem.syn.v: ERROR: (name mismatch) Found module stallmem (expected stallmem.syn) in stallmem.syn.v, at line 44:module stallmem (DataOut, Done, Stall, CacheHit, err, Addr, DataIn, Rd, Wr, createdump, clk, rst);
+
+Examined 49 files, Found 6 errors
+

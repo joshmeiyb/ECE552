@@ -1,0 +1,459 @@
+Using directory /u/j/m/jmei/ece552/project/demo3/verilog
+Vcheckout output files in .vcheck.out
+Generating vcheck file for EXMEM.v
+Generating vcheck file for IDEX.v
+Generating vcheck file for IFID.v
+Generating vcheck file for MEMWB.v
+Generating vcheck file for alu.v
+Generating vcheck file for cache.v
+Generating vcheck file for cache_controller.v
+Generating vcheck file for cla_16b.v
+Generating vcheck file for cla_4b.v
+Generating vcheck file for clkrst.v
+Generating vcheck file for control.v
+Generating vcheck file for decode.v
+Generating vcheck file for dff.v
+Generating vcheck file for execute.v
+Generating vcheck file for fetch.v
+Generating vcheck file for final_memory.syn.v
+Generating vcheck file for final_memory.v
+Generating vcheck file for forwarding_unit.v
+Generating vcheck file for four_bank_mem.v
+Generating vcheck file for fullAdder_1b.v
+Generating vcheck file for hazard_detection_unit.v
+Generating vcheck file for mem_system.v
+Generating vcheck file for mem_system_hier.v
+Generating vcheck file for mem_system_perfbench.v
+Generating vcheck file for mem_system_randbench.v
+Generating vcheck file for mem_system_ref.v
+Generating vcheck file for memc.syn.v
+Generating vcheck file for memc.v
+Generating vcheck file for memory.v
+Generating vcheck file for memory2c.syn.v
+Generating vcheck file for memory2c.v
+Generating vcheck file for memory2c_align.syn.v
+Generating vcheck file for memory2c_align.v
+Generating vcheck file for memv.syn.v
+Generating vcheck file for memv.v
+Generating vcheck file for nand2.v
+Generating vcheck file for proc.v
+Generating vcheck file for proc_hier.v
+Generating vcheck file for proc_hier_pbench.v
+Generating vcheck file for reg1.v
+Generating vcheck file for reg16.v
+Generating vcheck file for reg3.v
+Generating vcheck file for reg4.v
+Generating vcheck file for regFile.v
+Generating vcheck file for regFile_bypass.v
+Generating vcheck file for shifter.v
+Generating vcheck file for stallmem.syn.v
+Generating vcheck file for stallmem.v
+Generating vcheck file for wb.v
+Generating vcheck file for xor2.v
+Printing any vcheck errors in file EXMEM.vcheck.out:
+
+Printing any vcheck errors in file IDEX.vcheck.out:
+
+Printing any vcheck errors in file IFID.vcheck.out:
+
+Printing any vcheck errors in file MEMWB.vcheck.out:
+
+Printing any vcheck errors in file alu.vcheck.out:
+
+Printing any vcheck errors in file cache.vcheck.out:
+
+Printing any vcheck errors in file cache_controller.vcheck.out:
+
+Printing any vcheck errors in file cla_16b.vcheck.out:
+
+Printing any vcheck errors in file cla_4b.vcheck.out:
+
+Printing any vcheck errors in file clkrst.vcheck.out:
+Line 22: Bad keyword integer
+Line 24: Bad keyword initial
+Line 25: begin without always/case
+Line 32: Expected '@' after 'always'
+Line 34: Bad keyword if
+Line 32: Always without case(x)
+Line 39: Bad keyword posedge
+Line 47: Bad keyword if
+Line 39: Always without case(x)
+
+Printing any vcheck errors in file control.vcheck.out:
+
+Printing any vcheck errors in file decode.vcheck.out:
+
+Printing any vcheck errors in file dff.vcheck.out:
+Line 17: Bad keyword posedge
+Line 17: Always without case(x)
+
+Printing any vcheck errors in file execute.vcheck.out:
+
+Printing any vcheck errors in file fetch.vcheck.out:
+
+Printing any vcheck errors in file final_memory.syn.vcheck.out:
+Line 80: Bad keyword integer
+Line 81: Bad keyword integer
+Line 82: Bad keyword integer
+Line 109: Bad keyword initial
+Line 110: begin without always/case
+Line 114: Bad keyword posedge
+Line 115: Bad keyword if
+Line 131: Bad keyword else
+Line 132: Bad keyword if
+Line 114: Always without case(x)
+
+Printing any vcheck errors in file final_memory.vcheck.out:
+Line 79: Bad keyword integer
+Line 80: Bad keyword integer
+Line 81: Bad keyword integer
+Line 108: Bad keyword initial
+Line 109: begin without always/case
+Line 113: Bad keyword posedge
+Line 114: Bad keyword if
+Line 115: Bad keyword if
+Line 116: Bad keyword for
+Line 128: Bad keyword else
+Line 129: begin without always/case
+Line 129: Bad keyword if
+Line 130: begin without always/case
+Line 132: Bad keyword if
+Line 134: Bad keyword if
+Line 135: begin without always/case
+Line 135: Case(x) without always
+Line 141: Bad keyword for
+Line 142: begin without always/case
+
+Printing any vcheck errors in file forwarding_unit.vcheck.out:
+
+Printing any vcheck errors in file four_bank_mem.vcheck.out:
+
+Printing any vcheck errors in file fullAdder_1b.vcheck.out:
+
+Printing any vcheck errors in file hazard_detection_unit.vcheck.out:
+
+Printing any vcheck errors in file mem_system.vcheck.out:
+
+Printing any vcheck errors in file mem_system_hier.vcheck.out:
+
+Printing any vcheck errors in file mem_system_perfbench.vcheck.out:
+Line 68: Bad keyword integer
+Line 69: Bad keyword integer
+Line 70: Bad keyword integer
+Line 72: Bad keyword integer
+Line 75: Bad keyword integer
+Line 76: Bad keyword integer
+Line 78: Bad keyword initial
+Line 79: begin without always/case
+Line 90: Bad keyword if
+Line 91: begin without always/case
+Line 103: Bad keyword posedge
+Line 108: Bad keyword if
+Line 110: Bad keyword if
+Line 113: Bad keyword if
+Line 117: Bad keyword if
+Line 121: Bad keyword if
+Line 122: Bad keyword if
+Line 123: Bad keyword if
+Line 127: Bad keyword else
+Line 128: Bad keyword if
+Line 128: Bad keyword ||
+Line 136: Bad keyword if
+Line 137: Bad keyword if
+Line 153: Bad keyword task
+Line 155: Bad keyword integer
+Line 158: Bad keyword if
+Line 158: Bad keyword &&
+Line 159: Bad keyword if
+Line 160: Bad keyword if
+Line 164: Bad keyword if
+Line 174: Bad keyword if
+Line 179: Bad keyword if
+Line 182: Bad keyword if
+Line 190: Bad keyword endtask
+Line 190: Bad keyword task
+Line 197: Bad keyword if
+Line 199: Bad keyword else
+Line 207: Bad keyword endtask
+Line 103: Always without case(x)
+
+Printing any vcheck errors in file mem_system_randbench.vcheck.out:
+Line 65: Bad keyword integer
+Line 66: Bad keyword integer
+Line 67: Bad keyword integer
+Line 68: Bad keyword integer
+Line 69: Bad keyword integer
+Line 73: Bad keyword initial
+Line 74: begin without always/case
+Line 86: Bad keyword posedge
+Line 90: Bad keyword if
+Line 92: Bad keyword if
+Line 95: Bad keyword if
+Line 103: Bad keyword if
+Line 108: Bad keyword if
+Line 112: Bad keyword if
+Line 113: Bad keyword if
+Line 114: Bad keyword if
+Line 118: Bad keyword else
+Line 119: Bad keyword if
+Line 119: Bad keyword ||
+Line 132: Bad keyword if
+Line 132: Bad keyword &&
+Line 133: Bad keyword if
+Line 135: Bad keyword else
+Line 135: Bad keyword if
+Line 147: Bad keyword else
+Line 147: Bad keyword if
+Line 159: Bad keyword else
+Line 159: Bad keyword if
+Line 171: Bad keyword else
+Line 171: Bad keyword if
+Line 183: Bad keyword else
+Line 183: Bad keyword if
+Line 185: Bad keyword else
+Line 185: Bad keyword if
+Line 187: Bad keyword else
+Line 187: Bad keyword if
+Line 189: Bad keyword else
+Line 192: Bad keyword if
+Line 192: Bad keyword &&
+Line 192: Bad keyword &&
+Line 198: Bad keyword task
+Line 200: Bad keyword if
+Line 201: Bad keyword if
+Line 205: Bad keyword if
+Line 216: Bad keyword endtask
+Line 217: Bad keyword task
+Line 220: Bad keyword if
+Line 220: Bad keyword &&
+Line 223: Bad keyword if
+Line 230: Bad keyword else
+Line 239: Bad keyword endtask
+Line 241: Bad keyword task
+Line 244: Bad keyword if
+Line 244: Bad keyword &&
+Line 247: Bad keyword if
+Line 249: Bad keyword if
+Line 251: Bad keyword else
+Line 255: Bad keyword if
+Line 258: Bad keyword else
+Line 267: Bad keyword else
+Line 276: Bad keyword endtask
+Line 276: Bad keyword task
+Line 278: Bad keyword if
+Line 278: Bad keyword &&
+Line 278: Bad keyword &&
+Line 281: Bad keyword if
+Line 287: Bad keyword else
+Line 296: Bad keyword endtask
+Line 296: Bad keyword task
+Line 301: Bad keyword if
+Line 301: Bad keyword &&
+Line 301: Bad keyword &&
+Line 304: Bad keyword if
+Line 310: Bad keyword else
+Line 318: Bad keyword endtask
+Line 318: Bad keyword task
+Line 325: Bad keyword if
+Line 327: Bad keyword else
+Line 334: Bad keyword endtask
+Line 86: Always without case(x)
+
+Printing any vcheck errors in file mem_system_ref.vcheck.out:
+Line 31: Bad keyword integer
+Line 33: Bad keyword initial
+Line 34: begin without always/case
+Line 35: Bad keyword for
+Line 36: begin without always/case
+Line 41: Bad keyword if
+Line 42: Bad keyword if
+Line 46: Bad keyword else
+Line 47: Bad keyword if
+Line 50: Bad keyword if
+Line 40: Always without case(x)
+
+Printing any vcheck errors in file memc.syn.vcheck.out:
+Line 21: Bad keyword integer
+Line 22: Bad keyword integer
+Line 26: Bad keyword posedge
+Line 28: Bad keyword if
+Line 36: Bad keyword if
+Line 36: Bad keyword &&
+Line 26: Always without case(x)
+
+Printing any vcheck errors in file memc.vcheck.out:
+Line 20: Bad keyword integer
+Line 21: Bad keyword integer
+Line 25: Bad keyword posedge
+Line 27: Bad keyword if
+Line 28: Bad keyword for
+Line 33: Bad keyword if
+Line 33: Bad keyword &&
+Line 34: Bad keyword if
+Line 34: Bad keyword &&
+Line 65: Bad keyword for
+Line 66: begin without always/case
+
+Printing any vcheck errors in file memory.vcheck.out:
+
+Printing any vcheck errors in file memory2c.syn.vcheck.out:
+Line 54: Bad keyword integer
+Line 55: Bad keyword integer
+Line 61: Bad keyword initial
+Line 62: begin without always/case
+Line 71: Bad keyword posedge
+Line 72: Bad keyword if
+Line 81: Bad keyword else
+Line 82: Bad keyword if
+Line 71: Always without case(x)
+
+Printing any vcheck errors in file memory2c.vcheck.out:
+Line 52: Bad keyword integer
+Line 53: Bad keyword integer
+Line 59: Bad keyword initial
+Line 60: begin without always/case
+Line 62: Bad keyword for
+Line 63: begin without always/case
+Line 67: Bad keyword posedge
+Line 68: Bad keyword if
+Line 70: Bad keyword if
+Line 75: Bad keyword else
+Line 76: Bad keyword if
+Line 79: Bad keyword if
+Line 81: Bad keyword if
+Line 83: Bad keyword for
+Line 67: Always without case(x)
+
+Printing any vcheck errors in file memory2c_align.syn.vcheck.out:
+Line 56: Bad keyword integer
+Line 57: Bad keyword integer
+Line 67: Bad keyword initial
+Line 68: begin without always/case
+Line 77: Bad keyword posedge
+Line 78: Bad keyword if
+Line 86: Bad keyword else
+Line 87: Bad keyword if
+Line 77: Always without case(x)
+
+Printing any vcheck errors in file memory2c_align.vcheck.out:
+Line 54: Bad keyword integer
+Line 55: Bad keyword integer
+Line 68: Bad keyword initial
+Line 69: begin without always/case
+Line 71: Bad keyword for
+Line 72: begin without always/case
+Line 76: Bad keyword posedge
+Line 77: Bad keyword if
+Line 78: Bad keyword if
+Line 83: Bad keyword else
+Line 84: Bad keyword if
+Line 87: Bad keyword if
+Line 89: Bad keyword if
+Line 91: Bad keyword for
+Line 76: Always without case(x)
+
+Printing any vcheck errors in file memv.syn.vcheck.out:
+Line 20: Bad keyword integer
+Line 21: Bad keyword integer
+Line 25: Bad keyword posedge
+Line 26: Bad keyword if
+Line 33: Bad keyword if
+Line 33: Bad keyword &&
+Line 25: Always without case(x)
+
+Printing any vcheck errors in file memv.vcheck.out:
+Line 19: Bad keyword integer
+Line 20: Bad keyword integer
+Line 24: Bad keyword posedge
+Line 25: Bad keyword if
+Line 26: Bad keyword for
+Line 30: Bad keyword if
+Line 30: Bad keyword &&
+Line 31: Bad keyword if
+Line 31: Bad keyword &&
+Line 39: Bad keyword for
+Line 40: begin without always/case
+
+Printing any vcheck errors in file nand2.vcheck.out:
+
+Printing any vcheck errors in file proc.vcheck.out:
+
+Printing any vcheck errors in file proc_hier.vcheck.out:
+
+Printing any vcheck errors in file proc_hier_pbench.vcheck.out:
+Line 33: Bad keyword integer
+Line 34: Bad keyword integer
+Line 35: Bad keyword integer
+Line 37: Bad keyword integer
+Line 38: Bad keyword integer
+Line 39: Bad keyword integer
+Line 40: Bad keyword integer
+Line 46: Bad keyword initial
+Line 47: begin without always/case
+Line 60: Bad keyword posedge
+Line 61: Bad keyword if
+Line 62: Bad keyword if
+Line 62: Bad keyword ||
+Line 62: Bad keyword ||
+Line 65: Bad keyword if
+Line 68: Bad keyword if
+Line 71: Bad keyword if
+Line 74: Bad keyword if
+Line 89: Bad keyword if
+Line 94: Bad keyword if
+Line 99: Bad keyword if
+Line 103: Bad keyword if
+Line 60: Always without case(x)
+
+Printing any vcheck errors in file reg1.vcheck.out:
+
+Printing any vcheck errors in file reg16.vcheck.out:
+
+Printing any vcheck errors in file reg3.vcheck.out:
+
+Printing any vcheck errors in file reg4.vcheck.out:
+
+Printing any vcheck errors in file regFile.vcheck.out:
+
+Printing any vcheck errors in file regFile_bypass.vcheck.out:
+
+Printing any vcheck errors in file shifter.vcheck.out:
+
+Printing any vcheck errors in file stallmem.syn.vcheck.out:
+Line 68: Bad keyword integer
+Line 69: Bad keyword integer
+Line 80: Bad keyword integer
+Line 82: Bad keyword initial
+Line 83: begin without always/case
+Line 98: Bad keyword posedge
+Line 99: Bad keyword if
+Line 107: Bad keyword else
+Line 110: Bad keyword if
+Line 113: Bad keyword if
+Line 98: Always without case(x)
+
+Printing any vcheck errors in file stallmem.vcheck.out:
+Line 67: Bad keyword integer
+Line 68: Bad keyword integer
+Line 79: Bad keyword integer
+Line 81: Bad keyword initial
+Line 82: begin without always/case
+Line 91: Bad keyword for
+Line 92: begin without always/case
+Line 97: Bad keyword posedge
+Line 98: Bad keyword if
+Line 99: Bad keyword if
+Line 104: Bad keyword else
+Line 105: Bad keyword if
+Line 108: Bad keyword if
+Line 110: Bad keyword if
+Line 112: Bad keyword for
+Line 97: Always without case(x)
+
+Printing any vcheck errors in file wb.vcheck.out:
+
+Printing any vcheck errors in file xor2.vcheck.out:
+
+[jmei@royal-19] (6)$ 
+
+
