@@ -74,38 +74,6 @@ module fetch (clk, rst, /*err,*/ stall,
 
    reg16 PC_reg (.clk(clk), .rst(rst), .write(1'b1/*~rst*/), .wdata(pcNew/* & ~rst*/), .rdata(pcCurrent));
 
-   /*
-   memory2c Instruction_Memory(.data_out(instruction), .data_in(16'h0000), .addr(pcCurrent), 
-   .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst)); //enable port is read enable
-   */
-
-   // memory2c_align Instruction_Memory(
-   //    .data_out(instruction), 
-   //    .data_in(16'h0000), 
-   //    .addr(pcCurrent), 
-   //    .enable(~pcCurrent[0]),    //if ALU_out[0] is 1'b1, memory address is not aligned 
-   //    .wr(1'b0), 
-   //    .createdump(1'b0), 
-   //    .clk(clk), 
-   //    .rst(rst), 
-   //    .err(inst_mem_err)
-   // );
-   
-   // stallmem Instruction_Memory(
-   //    .DataOut(instruction), 
-   //    .Done(inst_mem_done),                     //NOT SURE HOW TO CONNECT DONE SIGNAL
-   //    .Stall(inst_mem_stall), 
-   //    .CacheHit(), 
-   //    .err(inst_mem_err), 
-   //    .Addr(pcCurrent), 
-   //    .DataIn(16'h0000), 
-   //    .Rd(~pcCurrent[0]),     //enable port, if ALU_out[0] is 1'b1, memory address is not aligned
-   //    .Wr(1'b0), 
-   //    .createdump(1'b0), 
-   //    .clk(clk), 
-   //    .rst(rst)
-   //    );
-
    //---------------------------------------------------------------------------------------------------//
    //When instruction memory is stalling, should be passing NOPs out.
    wire [15:0] instruction_temp;
