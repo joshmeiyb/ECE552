@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-05-03T21:47:31.304Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36" etag="LxFLZYNCuB7324FRLqdi" version="16.6.4" type="github">
+<mxfile host="app.diagrams.net" modified="2022-05-03T21:49:34.843Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36" etag="59sZ8SJl99J7H51XMrlF" version="16.6.4" type="github">
   <diagram id="hqRiYopjJ3fhep-TcIhG" name="Page-1">
-    <mxGraphModel dx="2331" dy="2736" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+    <mxGraphModel dx="2370" dy="3736" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -882,9 +882,6 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qNigCdEiMOE3G2IUtMEy-20" value="stop incrementing PC" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="-130" y="480" width="130" height="20" as="geometry" />
-        </mxCell>
         <mxCell id="qNigCdEiMOE3G2IUtMEy-23" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="qNigCdEiMOE3G2IUtMEy-35" target="qNigCdEiMOE3G2IUtMEy-42">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="980" y="1135" as="sourcePoint" />
@@ -977,12 +974,6 @@
         </mxCell>
         <mxCell id="qNigCdEiMOE3G2IUtMEy-59" value="en" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="90" y="530" width="30" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="qNigCdEiMOE3G2IUtMEy-61" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.logic_gates.logic_gate;operation=xor;negating=1;negSize=0.15;fontColor=#000000;direction=south;" vertex="1" parent="1">
-          <mxGeometry x="-180" y="480" width="35" height="65" as="geometry" />
-        </mxCell>
-        <mxCell id="qNigCdEiMOE3G2IUtMEy-63" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.logic_gates.logic_gate;operation=xor;fontColor=#000000;direction=west;" vertex="1" parent="1">
-          <mxGeometry x="-180" y="412" width="65" height="40" as="geometry" />
         </mxCell>
         <mxCell id="qNigCdEiMOE3G2IUtMEy-64" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.logic_gates.inverter_2;fontColor=#000000;direction=west;" vertex="1" parent="1">
           <mxGeometry x="230" y="495" width="60" height="30" as="geometry" />
