@@ -14,11 +14,16 @@ module forwarding_unit(
     input MemWrite_MEMWB,
     input [4:0] Opcode_IDEX,
     input [4:0] Opcode_IFID,
+    input [4:0] Opcode_EXMEM,
+    input [4:0] Opcode_MEMWB,
+    input [15:0] ALU_Out_EXMEM,
+    input [15:0] ALU_Out_MEMWB,
     //outputs
     output forwardA_MEMID,
     output forwardB_MEMID,
     output [1:0] forwardA,
-    output [1:0] forwardB
+    output [1:0] forwardB,
+    output forward_MEMMEM
 );
     
     wire forwardA_EXEX, forwardB_EXEX;
@@ -143,6 +148,11 @@ module forwarding_unit(
                             & (~(RegWrite_MEMWB
                                 & (RegisterRd_MEMWB == RegisterRt_IDEX)))
                             & (RegisterRd_MEMWB == RegisterRt_IFID)) ? 1'b1 : 1'b0;
+
+
+    //MEMMEM forward
+    assign forward_MEMMEM = (MemWrite_MEMWB & ( Opcode_EXMEM == 5'b10001 & ((Opcode_MEMWB == 5'b10011) | (Opcode_MEMWB == 5'b10000)) )
+                            & (ALU_Out_MEMWB == ALU_Out_EXMEM)) ? 1'b1 : 1'b0;
 
 
     assign forwardA =   (forwardA_EXEX)  ?  2'b10 :

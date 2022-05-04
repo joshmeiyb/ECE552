@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 d/u/j/m/jmei/ece552/project/extra_credits/branch_jump_EPC
 vadder
-Z1 !s110 1651700789
+Z1 !s110 1651705698
 !i10b 1
 !s100 9E8Y::^AKPX=F4?WG1o2X0
 I?k>2aNnkg6@e4n]aTkMJh0
@@ -23,7 +23,7 @@ Z3 OP;L;10.7c;67
 r1
 !s85 0
 31
-Z4 !s108 1651700789.000000
+Z4 !s108 1651705698.000000
 !s107 xor2.v|wb.v|stallmem.v|shifter.v|regFile.v|regFile_bypass.v|reg4.v|reg3.v|reg1.v|reg16.v|proc.v|proc_hier.v|proc_hier_pbench.v|nand2.v|MEMWB.v|memv.v|mem_system.v|mem_system_ref.v|mem_system_randbench.v|mem_system_perfbench.v|mem_system_hier.v|memory.v|memory2c.v|memory2c_align.v|memc.v|IFID.v|IDEX.v|hazard_detection_unit.v|fullAdder_1b.v|four_bank_mem.v|forwarding_unit.v|final_memory.v|fetch.v|EXMEM.v|execute.v|dff.v|decode.v|control.v|clkrst.v|cla_4b.v|cla_16b.v|cache.v|cache_controller.v|alu.v|alu_branch_jump.v|adder.v|
 Z5 !s90 +define+RANDSEED=3|-work|__work|adder.v|alu_branch_jump.v|alu.v|cache_controller.v|cache.v|cla_16b.v|cla_4b.v|clkrst.v|control.v|decode.v|dff.v|execute.v|EXMEM.v|fetch.v|final_memory.v|forwarding_unit.v|four_bank_mem.v|fullAdder_1b.v|hazard_detection_unit.v|IDEX.v|IFID.v|memc.v|memory2c_align.v|memory2c.v|memory.v|mem_system_hier.v|mem_system_perfbench.v|mem_system_randbench.v|mem_system_ref.v|mem_system.v|memv.v|MEMWB.v|nand2.v|proc_hier_pbench.v|proc_hier.v|proc.v|reg16.v|reg1.v|reg3.v|reg4.v|regFile_bypass.v|regFile.v|shifter.v|stallmem.v|wb.v|xor2.v|
 !i113 1
@@ -342,11 +342,11 @@ R8
 vforwarding_unit
 R1
 !i10b 1
-!s100 1TPCBL2OXd08Q>FfN5UE`1
-I@4We=VL68E@JXBE=_o;aU3
+!s100 LVAPH4nIbc8^M44I^jT;V3
+I<i:G?ZTYddjDTCXz5geVW2
 R2
 R0
-w1651639017
+w1651705367
 8forwarding_unit.v
 Fforwarding_unit.v
 L0 1
@@ -609,11 +609,11 @@ R8
 vmemory
 R1
 !i10b 1
-!s100 lFVhae41`V^WONTPVelX81
-IM9JkAWP>Y@_C;L<IE:ne01
+!s100 TIC[YI5<<@4WXWOD<S[Kk2
+I[iP8[DVUB?o6b7VzdFEGk0
 R2
 R0
-w1651451532
+w1651705554
 8memory.v
 Fmemory.v
 L0 8
@@ -697,11 +697,11 @@ R8
 vMEMWB
 R1
 !i10b 1
-!s100 X[N3[Y]TG;Y4CeD<=6fmb3
-I=^NHl?XXbYXEm66dJRiY21
+!s100 4;GH_DFf7Vl1n^ko>Ddmo0
+IEKFbXFIgTfZ8[7j7IJnX10
 R2
 R0
-w1651649167
+w1651705301
 8MEMWB.v
 FMEMWB.v
 L0 1
@@ -742,11 +742,11 @@ R8
 vproc
 R1
 !i10b 1
-!s100 64GO0Tb?cO1:YW5cTDX@X3
-IfbU5SoD?bUSD]hJi^3kO33
+!s100 Z]HadVPaA?f9TEZlWm<>T3
+IUz]bF:f:Ynz:b4:=?:`PY1
 R2
 R0
-w1651694662
+w1651705193
 8proc.v
 Fproc.v
 L0 4

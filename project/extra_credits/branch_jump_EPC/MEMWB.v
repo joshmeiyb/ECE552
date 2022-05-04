@@ -3,6 +3,8 @@ module MEMWB(
     input clk,
     input rst,
 
+    input [15:0] read2Data_EXMEM,
+
     input [15:0] instruction_EXMEM,
 
     input data_mem_stall,
@@ -26,6 +28,8 @@ module MEMWB(
     // input SIIC_EXMEM,
     //outputs
 
+    output [15:0] read2Data_MEMWB,
+
     output [15:0] instruction_MEMWB,
     
     output data_mem_stall_MEMWB,
@@ -47,6 +51,15 @@ module MEMWB(
     output Halt_MEMWB
     // output SIIC_MEMWB
 );
+
+    reg16 reg_read2Data_EXMEM (
+        .clk(clk), 
+        .rst(rst /*| Halt_EXMEM*/), 
+        .write(en), 
+        .wdata(read2Data_EXMEM), 
+        .rdata(read2Data_MEMWB)
+    );
+
 
     reg16 reg_instruction_EXMEM (
         .clk(clk), 

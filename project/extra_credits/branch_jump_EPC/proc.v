@@ -48,7 +48,7 @@ wire                          pc_to_reg,        pc_to_reg_IDEX,      pc_to_reg_E
 wire [15:0]                   read1Data,        read1Data_IDEX;
 
 //There will be a MEM/EX forwarding for read2Data
-wire [15:0]                   read2Data,        read2Data_IDEX,      read2Data_EXMEM;
+wire [15:0]                   read2Data,        read2Data_IDEX,      read2Data_EXMEM,     read2Data_MEMWB;
 //memWriteData_EX, this is almost the last steps fixed for demo1 pipelined version simple_inst_test!
 wire [15:0]                                     memWriteData_EX;        
 wire [15:0]                   extend_output,    extend_output_IDEX;
@@ -88,6 +88,7 @@ wire stall;
 //wire I_format, I_format_IDEX;
 wire [1:0] forwardA, forwardB;
 wire forwardA_MEMID, forwardB_MEMID;
+wire forward_MEMMEM;
 //-----------------------------------------------------------------------------------------------------------//
 
 //Phase 2.1 aligned memory, Phase 2.2 stall memory
@@ -132,6 +133,11 @@ forwarding_unit FU(
         .forwardA_MEMID(forwardA_MEMID), 
         .forwardB_MEMID(forwardB_MEMID),
         //-------------------------------------------------------------------------------//
+        .Opcode_EXMEM(instruction_EXMEM[15:11]),
+        .Opcode_MEMWB(instruction_MEMWB[15:11]),
+        .ALU_Out_EXMEM(ALU_Out_EXMEM),
+        .ALU_Out_MEMWB(ALU_Out_MEMWB),
+        .forward_MEMMEM(forward_MEMMEM),
         //outputs
         .forwardA(forwardA),    //input of execute stage
         .forwardB(forwardB)     //input of execute stage
@@ -431,6 +437,8 @@ memory memory(
         .clk(clk),
         .rst(rst),
         .mem_write_data(read2Data_EXMEM), //This is directly connected with regFile read2Data output
+        .mem_forward_data(read2Data_MEMWB),
+        .forward_MEMMEM(forward_MEMMEM),
         .ALU_Out(ALU_Out_EXMEM),
         .MemRead(MemRead_EXMEM),
         .MemWrite(MemWrite_EXMEM),      //CAUTION: DO NOT PUT PCSrc HERE
@@ -444,6 +452,9 @@ MEMWB MEMWB(
         .clk(clk),
         .rst(rst | data_mem_stall),                              // | ~data_mem_done
                                                 //When data_mem_stall is 1'b1, flush MEMWB registers
+        
+        .read2Data_EXMEM(read2Data_EXMEM),      //MEM-MEM forwarding
+        
         .instruction_EXMEM(instruction_EXMEM),
         .data_mem_stall(data_mem_stall),
         .data_mem_done(data_mem_done),
@@ -463,6 +474,9 @@ MEMWB MEMWB(
         .Halt_EXMEM(Halt_EXMEM),
         //.SIIC_EXMEM(SIIC_EXMEM),
         //outputs
+
+        .read2Data_MEMWB(read2Data_MEMWB),      //MEM-MEM forwarding
+
         .instruction_MEMWB(instruction_MEMWB),
         .data_mem_stall_MEMWB(data_mem_stall_MEMWB),            //HAVE NOT USE THIS ONE
         .data_mem_done_MEMWB(data_mem_done_MEMWB),
