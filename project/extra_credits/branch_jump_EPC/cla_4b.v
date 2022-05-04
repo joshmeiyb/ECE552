@@ -18,20 +18,20 @@ module cla_4b(sum, c_out, a, b, c_in);
     wire c0, c1, c2, c3, c4;
     wire [3:0] g, p;
     
-    /*
-    =====================================================================
-    Possible Optimization in future demo, which save areas without Cout
-    =====================================================================
-    // adder adder1(.s(sum[0]), .a(a[0]), .b(b[0]), .c_in(c0));
-    // adder adder2(.s(sum[1]), .a(a[1]), .b(b[1]), .c_in(c1));
-    // adder adder3(.s(sum[2]), .a(a[2]), .b(b[2]), .c_in(c2));
-    // adder adder4(.s(sum[3]), .a(a[3]), .b(b[3]), .c_in(c3));
-    =====================================================================
-    */
-    fullAdder_1b fa1(.s(sum[0]), .c_out(), .a(a[0]), .b(b[0]), .c_in(c0));
-    fullAdder_1b fa2(.s(sum[1]), .c_out(), .a(a[1]), .b(b[1]), .c_in(c1));
-    fullAdder_1b fa3(.s(sum[2]), .c_out(), .a(a[2]), .b(b[2]), .c_in(c2));
-    fullAdder_1b fa4(.s(sum[3]), .c_out(), .a(a[3]), .b(b[3]), .c_in(c3));
+    
+    // =====================================================================
+    // Possible Optimization in future demo, which save areas without Cout
+    // =====================================================================
+    adder adder1(.s(sum[0]), .a(a[0]), .b(b[0]), .c_in(c0));
+    adder adder2(.s(sum[1]), .a(a[1]), .b(b[1]), .c_in(c1));
+    adder adder3(.s(sum[2]), .a(a[2]), .b(b[2]), .c_in(c2));
+    adder adder4(.s(sum[3]), .a(a[3]), .b(b[3]), .c_in(c3));
+    // =====================================================================
+    
+    // fullAdder_1b fa1(.s(sum[0]), .c_out(), .a(a[0]), .b(b[0]), .c_in(c0));
+    // fullAdder_1b fa2(.s(sum[1]), .c_out(), .a(a[1]), .b(b[1]), .c_in(c1));
+    // fullAdder_1b fa3(.s(sum[2]), .c_out(), .a(a[2]), .b(b[2]), .c_in(c2));
+    // fullAdder_1b fa4(.s(sum[3]), .c_out(), .a(a[3]), .b(b[3]), .c_in(c3));
 
     //Generate terms
     assign g[0] = a[0] & b[0];

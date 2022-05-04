@@ -5,27 +5,2317 @@ Type "help" for more information
 
 Loading program...
 Executing...
-lbi r1, -10
-INUM:        0 PC: 0x0000 REG: 1 VALUE: 0xfff6
-bgez r1, 6
-INUM:        1 PC: 0x0002
+lbi r0, 3
+INUM:        0 PC: 0x0000 REG: 0 VALUE: 0x0003
+slbi r0, 61
+INUM:        1 PC: 0x0002 REG: 0 VALUE: 0x033d
 lbi r2, 0
 INUM:        2 PC: 0x0004 REG: 2 VALUE: 0x0000
-addi r2, r2, 2
-INUM:        3 PC: 0x0006 REG: 2 VALUE: 0x0002
-addi r2, r2, 2
-INUM:        4 PC: 0x0008 REG: 2 VALUE: 0x0004
-bgez r1, 0
-INUM:        5 PC: 0x000a
-bgez r1, 0
-INUM:        6 PC: 0x000c
-bgez r1, 0
-INUM:        7 PC: 0x000e
-addi r1, r1, 11
-INUM:        8 PC: 0x0010 REG: 1 VALUE: 0x0001
-bgez r1, 4
+lbi r3, 32
+INUM:        3 PC: 0x0006 REG: 3 VALUE: 0x0020
+slli r3, r3, 8
+INUM:        4 PC: 0x0008 REG: 3 VALUE: 0x2000
+lbi r7, 0
+INUM:        5 PC: 0x000a REG: 7 VALUE: 0x0000
+addi r6, r0, 0
+INUM:        6 PC: 0x000c REG: 6 VALUE: 0x033d
+srli r6, r6, 1
+INUM:        7 PC: 0x000e REG: 6 VALUE: 0x019e
+addi r7, r7, 1
+INUM:        8 PC: 0x0010 REG: 7 VALUE: 0x0001
+bnez r6, -6
 INUM:        9 PC: 0x0012
+srli r6, r6, 1
+INUM:       10 PC: 0x000e REG: 6 VALUE: 0x00cf
+addi r7, r7, 1
+INUM:       11 PC: 0x0010 REG: 7 VALUE: 0x0002
+bnez r6, -6
+INUM:       12 PC: 0x0012
+srli r6, r6, 1
+INUM:       13 PC: 0x000e REG: 6 VALUE: 0x0067
+addi r7, r7, 1
+INUM:       14 PC: 0x0010 REG: 7 VALUE: 0x0003
+bnez r6, -6
+INUM:       15 PC: 0x0012
+srli r6, r6, 1
+INUM:       16 PC: 0x000e REG: 6 VALUE: 0x0033
+addi r7, r7, 1
+INUM:       17 PC: 0x0010 REG: 7 VALUE: 0x0004
+bnez r6, -6
+INUM:       18 PC: 0x0012
+srli r6, r6, 1
+INUM:       19 PC: 0x000e REG: 6 VALUE: 0x0019
+addi r7, r7, 1
+INUM:       20 PC: 0x0010 REG: 7 VALUE: 0x0005
+bnez r6, -6
+INUM:       21 PC: 0x0012
+srli r6, r6, 1
+INUM:       22 PC: 0x000e REG: 6 VALUE: 0x000c
+addi r7, r7, 1
+INUM:       23 PC: 0x0010 REG: 7 VALUE: 0x0006
+bnez r6, -6
+INUM:       24 PC: 0x0012
+srli r6, r6, 1
+INUM:       25 PC: 0x000e REG: 6 VALUE: 0x0006
+addi r7, r7, 1
+INUM:       26 PC: 0x0010 REG: 7 VALUE: 0x0007
+bnez r6, -6
+INUM:       27 PC: 0x0012
+srli r6, r6, 1
+INUM:       28 PC: 0x000e REG: 6 VALUE: 0x0003
+addi r7, r7, 1
+INUM:       29 PC: 0x0010 REG: 7 VALUE: 0x0008
+bnez r6, -6
+INUM:       30 PC: 0x0012
+srli r6, r6, 1
+INUM:       31 PC: 0x000e REG: 6 VALUE: 0x0001
+addi r7, r7, 1
+INUM:       32 PC: 0x0010 REG: 7 VALUE: 0x0009
+bnez r6, -6
+INUM:       33 PC: 0x0012
+srli r6, r6, 1
+INUM:       34 PC: 0x000e REG: 6 VALUE: 0x0000
+addi r7, r7, 1
+INUM:       35 PC: 0x0010 REG: 7 VALUE: 0x000a
+bnez r6, -6
+INUM:       36 PC: 0x0012
+srli r7, r7, 1
+INUM:       37 PC: 0x0014 REG: 7 VALUE: 0x0005
+j 8
+INUM:       38 PC: 0x0016
+addi r6, r0, 0
+INUM:       39 PC: 0x0020 REG: 6 VALUE: 0x033d
+lbi r1, 3
+INUM:       40 PC: 0x0022 REG: 1 VALUE: 0x0003
+srl r4, r0, r7
+INUM:       41 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:       42 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:       43 PC: 0x0028
+lbi r2, 0
+INUM:       44 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:       45 PC: 0x002c
+slt r4, r1, r0
+INUM:       46 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:       47 PC: 0x0046
+slt r4, r1, r3
+INUM:       48 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:       49 PC: 0x004a
+slli r1, r1, 1
+INUM:       50 PC: 0x0040 REG: 1 VALUE: 0x0006
+addi r2, r2, 1
+INUM:       51 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:       52 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:       53 PC: 0x0046
+slt r4, r1, r3
+INUM:       54 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:       55 PC: 0x004a
+slli r1, r1, 1
+INUM:       56 PC: 0x0040 REG: 1 VALUE: 0x000c
+addi r2, r2, 1
+INUM:       57 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:       58 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:       59 PC: 0x0046
+slt r4, r1, r3
+INUM:       60 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:       61 PC: 0x004a
+slli r1, r1, 1
+INUM:       62 PC: 0x0040 REG: 1 VALUE: 0x0018
+addi r2, r2, 1
+INUM:       63 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:       64 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:       65 PC: 0x0046
+slt r4, r1, r3
+INUM:       66 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:       67 PC: 0x004a
+slli r1, r1, 1
+INUM:       68 PC: 0x0040 REG: 1 VALUE: 0x0030
+addi r2, r2, 1
+INUM:       69 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:       70 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:       71 PC: 0x0046
+slt r4, r1, r3
+INUM:       72 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:       73 PC: 0x004a
+slli r1, r1, 1
+INUM:       74 PC: 0x0040 REG: 1 VALUE: 0x0060
+addi r2, r2, 1
+INUM:       75 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:       76 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:       77 PC: 0x0046
+slt r4, r1, r3
+INUM:       78 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:       79 PC: 0x004a
+slli r1, r1, 1
+INUM:       80 PC: 0x0040 REG: 1 VALUE: 0x00c0
+addi r2, r2, 1
+INUM:       81 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:       82 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:       83 PC: 0x0046
+slt r4, r1, r3
+INUM:       84 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:       85 PC: 0x004a
+slli r1, r1, 1
+INUM:       86 PC: 0x0040 REG: 1 VALUE: 0x0180
+addi r2, r2, 1
+INUM:       87 PC: 0x0042 REG: 2 VALUE: 0x0007
+slt r4, r1, r0
+INUM:       88 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:       89 PC: 0x0046
+slt r4, r1, r3
+INUM:       90 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:       91 PC: 0x004a
+slli r1, r1, 1
+INUM:       92 PC: 0x0040 REG: 1 VALUE: 0x0300
+addi r2, r2, 1
+INUM:       93 PC: 0x0042 REG: 2 VALUE: 0x0008
+slt r4, r1, r0
+INUM:       94 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:       95 PC: 0x0046
+slt r4, r1, r3
+INUM:       96 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:       97 PC: 0x004a
+slli r1, r1, 1
+INUM:       98 PC: 0x0040 REG: 1 VALUE: 0x0600
+addi r2, r2, 1
+INUM:       99 PC: 0x0042 REG: 2 VALUE: 0x0009
+slt r4, r1, r0
+INUM:      100 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:      101 PC: 0x0046
+sle r4, r1, r0
+INUM:      102 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      103 PC: 0x004e
+beqz r2, 6
+INUM:      104 PC: 0x0052
+addi r2, r2, -1
+INUM:      105 PC: 0x0054 REG: 2 VALUE: 0x0008
+srli r1, r1, 1
+INUM:      106 PC: 0x0056 REG: 1 VALUE: 0x0300
+j 65522
+INUM:      107 PC: 0x0058
+sle r4, r1, r0
+INUM:      108 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      109 PC: 0x004e
+sub r0, r1, r0
+INUM:      110 PC: 0x0050 REG: 0 VALUE: 0x003d
+beqz r2, 6
+INUM:      111 PC: 0x0052
+addi r2, r2, -1
+INUM:      112 PC: 0x0054 REG: 2 VALUE: 0x0007
+srli r1, r1, 1
+INUM:      113 PC: 0x0056 REG: 1 VALUE: 0x0180
+j 65522
+INUM:      114 PC: 0x0058
+sle r4, r1, r0
+INUM:      115 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      116 PC: 0x004e
+beqz r2, 6
+INUM:      117 PC: 0x0052
+addi r2, r2, -1
+INUM:      118 PC: 0x0054 REG: 2 VALUE: 0x0006
+srli r1, r1, 1
+INUM:      119 PC: 0x0056 REG: 1 VALUE: 0x00c0
+j 65522
+INUM:      120 PC: 0x0058
+sle r4, r1, r0
+INUM:      121 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      122 PC: 0x004e
+beqz r2, 6
+INUM:      123 PC: 0x0052
+addi r2, r2, -1
+INUM:      124 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:      125 PC: 0x0056 REG: 1 VALUE: 0x0060
+j 65522
+INUM:      126 PC: 0x0058
+sle r4, r1, r0
+INUM:      127 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      128 PC: 0x004e
+beqz r2, 6
+INUM:      129 PC: 0x0052
+addi r2, r2, -1
+INUM:      130 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:      131 PC: 0x0056 REG: 1 VALUE: 0x0030
+j 65522
+INUM:      132 PC: 0x0058
+sle r4, r1, r0
+INUM:      133 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      134 PC: 0x004e
+sub r0, r1, r0
+INUM:      135 PC: 0x0050 REG: 0 VALUE: 0x000d
+beqz r2, 6
+INUM:      136 PC: 0x0052
+addi r2, r2, -1
+INUM:      137 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:      138 PC: 0x0056 REG: 1 VALUE: 0x0018
+j 65522
+INUM:      139 PC: 0x0058
+sle r4, r1, r0
+INUM:      140 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      141 PC: 0x004e
+beqz r2, 6
+INUM:      142 PC: 0x0052
+addi r2, r2, -1
+INUM:      143 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:      144 PC: 0x0056 REG: 1 VALUE: 0x000c
+j 65522
+INUM:      145 PC: 0x0058
+sle r4, r1, r0
+INUM:      146 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      147 PC: 0x004e
+sub r0, r1, r0
+INUM:      148 PC: 0x0050 REG: 0 VALUE: 0x0001
+beqz r2, 6
+INUM:      149 PC: 0x0052
+addi r2, r2, -1
+INUM:      150 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:      151 PC: 0x0056 REG: 1 VALUE: 0x0006
+j 65522
+INUM:      152 PC: 0x0058
+sle r4, r1, r0
+INUM:      153 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      154 PC: 0x004e
+beqz r2, 6
+INUM:      155 PC: 0x0052
+addi r2, r2, -1
+INUM:      156 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:      157 PC: 0x0056 REG: 1 VALUE: 0x0003
+j 65522
+INUM:      158 PC: 0x0058
+sle r4, r1, r0
+INUM:      159 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      160 PC: 0x004e
+beqz r2, 6
+INUM:      161 PC: 0x0052
+addi r5, r0, 0
+INUM:      162 PC: 0x005a REG: 5 VALUE: 0x0001
+j 65488
+INUM:      163 PC: 0x005c
+beqz r5, 6
+INUM:      164 PC: 0x002e
+addi r0, r6, 0
+INUM:      165 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:      166 PC: 0x0032 REG: 1 VALUE: 0x0005
+j 65518
+INUM:      167 PC: 0x0034
+srl r4, r0, r7
+INUM:      168 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:      169 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:      170 PC: 0x0028
+lbi r2, 0
+INUM:      171 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:      172 PC: 0x002c
+slt r4, r1, r0
+INUM:      173 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      174 PC: 0x0046
+slt r4, r1, r3
+INUM:      175 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      176 PC: 0x004a
+slli r1, r1, 1
+INUM:      177 PC: 0x0040 REG: 1 VALUE: 0x000a
+addi r2, r2, 1
+INUM:      178 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:      179 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      180 PC: 0x0046
+slt r4, r1, r3
+INUM:      181 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      182 PC: 0x004a
+slli r1, r1, 1
+INUM:      183 PC: 0x0040 REG: 1 VALUE: 0x0014
+addi r2, r2, 1
+INUM:      184 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:      185 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      186 PC: 0x0046
+slt r4, r1, r3
+INUM:      187 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      188 PC: 0x004a
+slli r1, r1, 1
+INUM:      189 PC: 0x0040 REG: 1 VALUE: 0x0028
+addi r2, r2, 1
+INUM:      190 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:      191 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      192 PC: 0x0046
+slt r4, r1, r3
+INUM:      193 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      194 PC: 0x004a
+slli r1, r1, 1
+INUM:      195 PC: 0x0040 REG: 1 VALUE: 0x0050
+addi r2, r2, 1
+INUM:      196 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:      197 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      198 PC: 0x0046
+slt r4, r1, r3
+INUM:      199 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      200 PC: 0x004a
+slli r1, r1, 1
+INUM:      201 PC: 0x0040 REG: 1 VALUE: 0x00a0
+addi r2, r2, 1
+INUM:      202 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:      203 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      204 PC: 0x0046
+slt r4, r1, r3
+INUM:      205 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      206 PC: 0x004a
+slli r1, r1, 1
+INUM:      207 PC: 0x0040 REG: 1 VALUE: 0x0140
+addi r2, r2, 1
+INUM:      208 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:      209 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      210 PC: 0x0046
+slt r4, r1, r3
+INUM:      211 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      212 PC: 0x004a
+slli r1, r1, 1
+INUM:      213 PC: 0x0040 REG: 1 VALUE: 0x0280
+addi r2, r2, 1
+INUM:      214 PC: 0x0042 REG: 2 VALUE: 0x0007
+slt r4, r1, r0
+INUM:      215 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      216 PC: 0x0046
+slt r4, r1, r3
+INUM:      217 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      218 PC: 0x004a
+slli r1, r1, 1
+INUM:      219 PC: 0x0040 REG: 1 VALUE: 0x0500
+addi r2, r2, 1
+INUM:      220 PC: 0x0042 REG: 2 VALUE: 0x0008
+slt r4, r1, r0
+INUM:      221 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:      222 PC: 0x0046
+sle r4, r1, r0
+INUM:      223 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      224 PC: 0x004e
+beqz r2, 6
+INUM:      225 PC: 0x0052
+addi r2, r2, -1
+INUM:      226 PC: 0x0054 REG: 2 VALUE: 0x0007
+srli r1, r1, 1
+INUM:      227 PC: 0x0056 REG: 1 VALUE: 0x0280
+j 65522
+INUM:      228 PC: 0x0058
+sle r4, r1, r0
+INUM:      229 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      230 PC: 0x004e
+sub r0, r1, r0
+INUM:      231 PC: 0x0050 REG: 0 VALUE: 0x00bd
+beqz r2, 6
+INUM:      232 PC: 0x0052
+addi r2, r2, -1
+INUM:      233 PC: 0x0054 REG: 2 VALUE: 0x0006
+srli r1, r1, 1
+INUM:      234 PC: 0x0056 REG: 1 VALUE: 0x0140
+j 65522
+INUM:      235 PC: 0x0058
+sle r4, r1, r0
+INUM:      236 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      237 PC: 0x004e
+beqz r2, 6
+INUM:      238 PC: 0x0052
+addi r2, r2, -1
+INUM:      239 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:      240 PC: 0x0056 REG: 1 VALUE: 0x00a0
+j 65522
+INUM:      241 PC: 0x0058
+sle r4, r1, r0
+INUM:      242 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      243 PC: 0x004e
+sub r0, r1, r0
+INUM:      244 PC: 0x0050 REG: 0 VALUE: 0x001d
+beqz r2, 6
+INUM:      245 PC: 0x0052
+addi r2, r2, -1
+INUM:      246 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:      247 PC: 0x0056 REG: 1 VALUE: 0x0050
+j 65522
+INUM:      248 PC: 0x0058
+sle r4, r1, r0
+INUM:      249 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      250 PC: 0x004e
+beqz r2, 6
+INUM:      251 PC: 0x0052
+addi r2, r2, -1
+INUM:      252 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:      253 PC: 0x0056 REG: 1 VALUE: 0x0028
+j 65522
+INUM:      254 PC: 0x0058
+sle r4, r1, r0
+INUM:      255 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      256 PC: 0x004e
+beqz r2, 6
+INUM:      257 PC: 0x0052
+addi r2, r2, -1
+INUM:      258 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:      259 PC: 0x0056 REG: 1 VALUE: 0x0014
+j 65522
+INUM:      260 PC: 0x0058
+sle r4, r1, r0
+INUM:      261 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      262 PC: 0x004e
+sub r0, r1, r0
+INUM:      263 PC: 0x0050 REG: 0 VALUE: 0x0009
+beqz r2, 6
+INUM:      264 PC: 0x0052
+addi r2, r2, -1
+INUM:      265 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:      266 PC: 0x0056 REG: 1 VALUE: 0x000a
+j 65522
+INUM:      267 PC: 0x0058
+sle r4, r1, r0
+INUM:      268 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      269 PC: 0x004e
+beqz r2, 6
+INUM:      270 PC: 0x0052
+addi r2, r2, -1
+INUM:      271 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:      272 PC: 0x0056 REG: 1 VALUE: 0x0005
+j 65522
+INUM:      273 PC: 0x0058
+sle r4, r1, r0
+INUM:      274 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      275 PC: 0x004e
+sub r0, r1, r0
+INUM:      276 PC: 0x0050 REG: 0 VALUE: 0x0004
+beqz r2, 6
+INUM:      277 PC: 0x0052
+addi r5, r0, 0
+INUM:      278 PC: 0x005a REG: 5 VALUE: 0x0004
+j 65488
+INUM:      279 PC: 0x005c
+beqz r5, 6
+INUM:      280 PC: 0x002e
+addi r0, r6, 0
+INUM:      281 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:      282 PC: 0x0032 REG: 1 VALUE: 0x0007
+j 65518
+INUM:      283 PC: 0x0034
+srl r4, r0, r7
+INUM:      284 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:      285 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:      286 PC: 0x0028
+lbi r2, 0
+INUM:      287 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:      288 PC: 0x002c
+slt r4, r1, r0
+INUM:      289 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      290 PC: 0x0046
+slt r4, r1, r3
+INUM:      291 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      292 PC: 0x004a
+slli r1, r1, 1
+INUM:      293 PC: 0x0040 REG: 1 VALUE: 0x000e
+addi r2, r2, 1
+INUM:      294 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:      295 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      296 PC: 0x0046
+slt r4, r1, r3
+INUM:      297 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      298 PC: 0x004a
+slli r1, r1, 1
+INUM:      299 PC: 0x0040 REG: 1 VALUE: 0x001c
+addi r2, r2, 1
+INUM:      300 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:      301 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      302 PC: 0x0046
+slt r4, r1, r3
+INUM:      303 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      304 PC: 0x004a
+slli r1, r1, 1
+INUM:      305 PC: 0x0040 REG: 1 VALUE: 0x0038
+addi r2, r2, 1
+INUM:      306 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:      307 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      308 PC: 0x0046
+slt r4, r1, r3
+INUM:      309 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      310 PC: 0x004a
+slli r1, r1, 1
+INUM:      311 PC: 0x0040 REG: 1 VALUE: 0x0070
+addi r2, r2, 1
+INUM:      312 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:      313 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      314 PC: 0x0046
+slt r4, r1, r3
+INUM:      315 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      316 PC: 0x004a
+slli r1, r1, 1
+INUM:      317 PC: 0x0040 REG: 1 VALUE: 0x00e0
+addi r2, r2, 1
+INUM:      318 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:      319 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      320 PC: 0x0046
+slt r4, r1, r3
+INUM:      321 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      322 PC: 0x004a
+slli r1, r1, 1
+INUM:      323 PC: 0x0040 REG: 1 VALUE: 0x01c0
+addi r2, r2, 1
+INUM:      324 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:      325 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      326 PC: 0x0046
+slt r4, r1, r3
+INUM:      327 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      328 PC: 0x004a
+slli r1, r1, 1
+INUM:      329 PC: 0x0040 REG: 1 VALUE: 0x0380
+addi r2, r2, 1
+INUM:      330 PC: 0x0042 REG: 2 VALUE: 0x0007
+slt r4, r1, r0
+INUM:      331 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:      332 PC: 0x0046
+sle r4, r1, r0
+INUM:      333 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      334 PC: 0x004e
+beqz r2, 6
+INUM:      335 PC: 0x0052
+addi r2, r2, -1
+INUM:      336 PC: 0x0054 REG: 2 VALUE: 0x0006
+srli r1, r1, 1
+INUM:      337 PC: 0x0056 REG: 1 VALUE: 0x01c0
+j 65522
+INUM:      338 PC: 0x0058
+sle r4, r1, r0
+INUM:      339 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      340 PC: 0x004e
+sub r0, r1, r0
+INUM:      341 PC: 0x0050 REG: 0 VALUE: 0x017d
+beqz r2, 6
+INUM:      342 PC: 0x0052
+addi r2, r2, -1
+INUM:      343 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:      344 PC: 0x0056 REG: 1 VALUE: 0x00e0
+j 65522
+INUM:      345 PC: 0x0058
+sle r4, r1, r0
+INUM:      346 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      347 PC: 0x004e
+sub r0, r1, r0
+INUM:      348 PC: 0x0050 REG: 0 VALUE: 0x009d
+beqz r2, 6
+INUM:      349 PC: 0x0052
+addi r2, r2, -1
+INUM:      350 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:      351 PC: 0x0056 REG: 1 VALUE: 0x0070
+j 65522
+INUM:      352 PC: 0x0058
+sle r4, r1, r0
+INUM:      353 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      354 PC: 0x004e
+sub r0, r1, r0
+INUM:      355 PC: 0x0050 REG: 0 VALUE: 0x002d
+beqz r2, 6
+INUM:      356 PC: 0x0052
+addi r2, r2, -1
+INUM:      357 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:      358 PC: 0x0056 REG: 1 VALUE: 0x0038
+j 65522
+INUM:      359 PC: 0x0058
+sle r4, r1, r0
+INUM:      360 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      361 PC: 0x004e
+beqz r2, 6
+INUM:      362 PC: 0x0052
+addi r2, r2, -1
+INUM:      363 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:      364 PC: 0x0056 REG: 1 VALUE: 0x001c
+j 65522
+INUM:      365 PC: 0x0058
+sle r4, r1, r0
+INUM:      366 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      367 PC: 0x004e
+sub r0, r1, r0
+INUM:      368 PC: 0x0050 REG: 0 VALUE: 0x0011
+beqz r2, 6
+INUM:      369 PC: 0x0052
+addi r2, r2, -1
+INUM:      370 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:      371 PC: 0x0056 REG: 1 VALUE: 0x000e
+j 65522
+INUM:      372 PC: 0x0058
+sle r4, r1, r0
+INUM:      373 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      374 PC: 0x004e
+sub r0, r1, r0
+INUM:      375 PC: 0x0050 REG: 0 VALUE: 0x0003
+beqz r2, 6
+INUM:      376 PC: 0x0052
+addi r2, r2, -1
+INUM:      377 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:      378 PC: 0x0056 REG: 1 VALUE: 0x0007
+j 65522
+INUM:      379 PC: 0x0058
+sle r4, r1, r0
+INUM:      380 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      381 PC: 0x004e
+beqz r2, 6
+INUM:      382 PC: 0x0052
+addi r5, r0, 0
+INUM:      383 PC: 0x005a REG: 5 VALUE: 0x0003
+j 65488
+INUM:      384 PC: 0x005c
+beqz r5, 6
+INUM:      385 PC: 0x002e
+addi r0, r6, 0
+INUM:      386 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:      387 PC: 0x0032 REG: 1 VALUE: 0x0009
+j 65518
+INUM:      388 PC: 0x0034
+srl r4, r0, r7
+INUM:      389 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:      390 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:      391 PC: 0x0028
+lbi r2, 0
+INUM:      392 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:      393 PC: 0x002c
+slt r4, r1, r0
+INUM:      394 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      395 PC: 0x0046
+slt r4, r1, r3
+INUM:      396 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      397 PC: 0x004a
+slli r1, r1, 1
+INUM:      398 PC: 0x0040 REG: 1 VALUE: 0x0012
+addi r2, r2, 1
+INUM:      399 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:      400 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      401 PC: 0x0046
+slt r4, r1, r3
+INUM:      402 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      403 PC: 0x004a
+slli r1, r1, 1
+INUM:      404 PC: 0x0040 REG: 1 VALUE: 0x0024
+addi r2, r2, 1
+INUM:      405 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:      406 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      407 PC: 0x0046
+slt r4, r1, r3
+INUM:      408 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      409 PC: 0x004a
+slli r1, r1, 1
+INUM:      410 PC: 0x0040 REG: 1 VALUE: 0x0048
+addi r2, r2, 1
+INUM:      411 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:      412 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      413 PC: 0x0046
+slt r4, r1, r3
+INUM:      414 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      415 PC: 0x004a
+slli r1, r1, 1
+INUM:      416 PC: 0x0040 REG: 1 VALUE: 0x0090
+addi r2, r2, 1
+INUM:      417 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:      418 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      419 PC: 0x0046
+slt r4, r1, r3
+INUM:      420 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      421 PC: 0x004a
+slli r1, r1, 1
+INUM:      422 PC: 0x0040 REG: 1 VALUE: 0x0120
+addi r2, r2, 1
+INUM:      423 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:      424 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      425 PC: 0x0046
+slt r4, r1, r3
+INUM:      426 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      427 PC: 0x004a
+slli r1, r1, 1
+INUM:      428 PC: 0x0040 REG: 1 VALUE: 0x0240
+addi r2, r2, 1
+INUM:      429 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:      430 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      431 PC: 0x0046
+slt r4, r1, r3
+INUM:      432 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      433 PC: 0x004a
+slli r1, r1, 1
+INUM:      434 PC: 0x0040 REG: 1 VALUE: 0x0480
+addi r2, r2, 1
+INUM:      435 PC: 0x0042 REG: 2 VALUE: 0x0007
+slt r4, r1, r0
+INUM:      436 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:      437 PC: 0x0046
+sle r4, r1, r0
+INUM:      438 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      439 PC: 0x004e
+beqz r2, 6
+INUM:      440 PC: 0x0052
+addi r2, r2, -1
+INUM:      441 PC: 0x0054 REG: 2 VALUE: 0x0006
+srli r1, r1, 1
+INUM:      442 PC: 0x0056 REG: 1 VALUE: 0x0240
+j 65522
+INUM:      443 PC: 0x0058
+sle r4, r1, r0
+INUM:      444 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      445 PC: 0x004e
+sub r0, r1, r0
+INUM:      446 PC: 0x0050 REG: 0 VALUE: 0x00fd
+beqz r2, 6
+INUM:      447 PC: 0x0052
+addi r2, r2, -1
+INUM:      448 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:      449 PC: 0x0056 REG: 1 VALUE: 0x0120
+j 65522
+INUM:      450 PC: 0x0058
+sle r4, r1, r0
+INUM:      451 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      452 PC: 0x004e
+beqz r2, 6
+INUM:      453 PC: 0x0052
+addi r2, r2, -1
+INUM:      454 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:      455 PC: 0x0056 REG: 1 VALUE: 0x0090
+j 65522
+INUM:      456 PC: 0x0058
+sle r4, r1, r0
+INUM:      457 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      458 PC: 0x004e
+sub r0, r1, r0
+INUM:      459 PC: 0x0050 REG: 0 VALUE: 0x006d
+beqz r2, 6
+INUM:      460 PC: 0x0052
+addi r2, r2, -1
+INUM:      461 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:      462 PC: 0x0056 REG: 1 VALUE: 0x0048
+j 65522
+INUM:      463 PC: 0x0058
+sle r4, r1, r0
+INUM:      464 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      465 PC: 0x004e
+sub r0, r1, r0
+INUM:      466 PC: 0x0050 REG: 0 VALUE: 0x0025
+beqz r2, 6
+INUM:      467 PC: 0x0052
+addi r2, r2, -1
+INUM:      468 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:      469 PC: 0x0056 REG: 1 VALUE: 0x0024
+j 65522
+INUM:      470 PC: 0x0058
+sle r4, r1, r0
+INUM:      471 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      472 PC: 0x004e
+sub r0, r1, r0
+INUM:      473 PC: 0x0050 REG: 0 VALUE: 0x0001
+beqz r2, 6
+INUM:      474 PC: 0x0052
+addi r2, r2, -1
+INUM:      475 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:      476 PC: 0x0056 REG: 1 VALUE: 0x0012
+j 65522
+INUM:      477 PC: 0x0058
+sle r4, r1, r0
+INUM:      478 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      479 PC: 0x004e
+beqz r2, 6
+INUM:      480 PC: 0x0052
+addi r2, r2, -1
+INUM:      481 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:      482 PC: 0x0056 REG: 1 VALUE: 0x0009
+j 65522
+INUM:      483 PC: 0x0058
+sle r4, r1, r0
+INUM:      484 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      485 PC: 0x004e
+beqz r2, 6
+INUM:      486 PC: 0x0052
+addi r5, r0, 0
+INUM:      487 PC: 0x005a REG: 5 VALUE: 0x0001
+j 65488
+INUM:      488 PC: 0x005c
+beqz r5, 6
+INUM:      489 PC: 0x002e
+addi r0, r6, 0
+INUM:      490 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:      491 PC: 0x0032 REG: 1 VALUE: 0x000b
+j 65518
+INUM:      492 PC: 0x0034
+srl r4, r0, r7
+INUM:      493 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:      494 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:      495 PC: 0x0028
+lbi r2, 0
+INUM:      496 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:      497 PC: 0x002c
+slt r4, r1, r0
+INUM:      498 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      499 PC: 0x0046
+slt r4, r1, r3
+INUM:      500 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      501 PC: 0x004a
+slli r1, r1, 1
+INUM:      502 PC: 0x0040 REG: 1 VALUE: 0x0016
+addi r2, r2, 1
+INUM:      503 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:      504 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      505 PC: 0x0046
+slt r4, r1, r3
+INUM:      506 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      507 PC: 0x004a
+slli r1, r1, 1
+INUM:      508 PC: 0x0040 REG: 1 VALUE: 0x002c
+addi r2, r2, 1
+INUM:      509 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:      510 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      511 PC: 0x0046
+slt r4, r1, r3
+INUM:      512 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      513 PC: 0x004a
+slli r1, r1, 1
+INUM:      514 PC: 0x0040 REG: 1 VALUE: 0x0058
+addi r2, r2, 1
+INUM:      515 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:      516 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      517 PC: 0x0046
+slt r4, r1, r3
+INUM:      518 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      519 PC: 0x004a
+slli r1, r1, 1
+INUM:      520 PC: 0x0040 REG: 1 VALUE: 0x00b0
+addi r2, r2, 1
+INUM:      521 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:      522 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      523 PC: 0x0046
+slt r4, r1, r3
+INUM:      524 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      525 PC: 0x004a
+slli r1, r1, 1
+INUM:      526 PC: 0x0040 REG: 1 VALUE: 0x0160
+addi r2, r2, 1
+INUM:      527 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:      528 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      529 PC: 0x0046
+slt r4, r1, r3
+INUM:      530 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      531 PC: 0x004a
+slli r1, r1, 1
+INUM:      532 PC: 0x0040 REG: 1 VALUE: 0x02c0
+addi r2, r2, 1
+INUM:      533 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:      534 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      535 PC: 0x0046
+slt r4, r1, r3
+INUM:      536 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      537 PC: 0x004a
+slli r1, r1, 1
+INUM:      538 PC: 0x0040 REG: 1 VALUE: 0x0580
+addi r2, r2, 1
+INUM:      539 PC: 0x0042 REG: 2 VALUE: 0x0007
+slt r4, r1, r0
+INUM:      540 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:      541 PC: 0x0046
+sle r4, r1, r0
+INUM:      542 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      543 PC: 0x004e
+beqz r2, 6
+INUM:      544 PC: 0x0052
+addi r2, r2, -1
+INUM:      545 PC: 0x0054 REG: 2 VALUE: 0x0006
+srli r1, r1, 1
+INUM:      546 PC: 0x0056 REG: 1 VALUE: 0x02c0
+j 65522
+INUM:      547 PC: 0x0058
+sle r4, r1, r0
+INUM:      548 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      549 PC: 0x004e
+sub r0, r1, r0
+INUM:      550 PC: 0x0050 REG: 0 VALUE: 0x007d
+beqz r2, 6
+INUM:      551 PC: 0x0052
+addi r2, r2, -1
+INUM:      552 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:      553 PC: 0x0056 REG: 1 VALUE: 0x0160
+j 65522
+INUM:      554 PC: 0x0058
+sle r4, r1, r0
+INUM:      555 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      556 PC: 0x004e
+beqz r2, 6
+INUM:      557 PC: 0x0052
+addi r2, r2, -1
+INUM:      558 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:      559 PC: 0x0056 REG: 1 VALUE: 0x00b0
+j 65522
+INUM:      560 PC: 0x0058
+sle r4, r1, r0
+INUM:      561 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      562 PC: 0x004e
+beqz r2, 6
+INUM:      563 PC: 0x0052
+addi r2, r2, -1
+INUM:      564 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:      565 PC: 0x0056 REG: 1 VALUE: 0x0058
+j 65522
+INUM:      566 PC: 0x0058
+sle r4, r1, r0
+INUM:      567 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      568 PC: 0x004e
+sub r0, r1, r0
+INUM:      569 PC: 0x0050 REG: 0 VALUE: 0x0025
+beqz r2, 6
+INUM:      570 PC: 0x0052
+addi r2, r2, -1
+INUM:      571 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:      572 PC: 0x0056 REG: 1 VALUE: 0x002c
+j 65522
+INUM:      573 PC: 0x0058
+sle r4, r1, r0
+INUM:      574 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      575 PC: 0x004e
+beqz r2, 6
+INUM:      576 PC: 0x0052
+addi r2, r2, -1
+INUM:      577 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:      578 PC: 0x0056 REG: 1 VALUE: 0x0016
+j 65522
+INUM:      579 PC: 0x0058
+sle r4, r1, r0
+INUM:      580 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      581 PC: 0x004e
+sub r0, r1, r0
+INUM:      582 PC: 0x0050 REG: 0 VALUE: 0x000f
+beqz r2, 6
+INUM:      583 PC: 0x0052
+addi r2, r2, -1
+INUM:      584 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:      585 PC: 0x0056 REG: 1 VALUE: 0x000b
+j 65522
+INUM:      586 PC: 0x0058
+sle r4, r1, r0
+INUM:      587 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      588 PC: 0x004e
+sub r0, r1, r0
+INUM:      589 PC: 0x0050 REG: 0 VALUE: 0x0004
+beqz r2, 6
+INUM:      590 PC: 0x0052
+addi r5, r0, 0
+INUM:      591 PC: 0x005a REG: 5 VALUE: 0x0004
+j 65488
+INUM:      592 PC: 0x005c
+beqz r5, 6
+INUM:      593 PC: 0x002e
+addi r0, r6, 0
+INUM:      594 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:      595 PC: 0x0032 REG: 1 VALUE: 0x000d
+j 65518
+INUM:      596 PC: 0x0034
+srl r4, r0, r7
+INUM:      597 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:      598 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:      599 PC: 0x0028
+lbi r2, 0
+INUM:      600 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:      601 PC: 0x002c
+slt r4, r1, r0
+INUM:      602 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      603 PC: 0x0046
+slt r4, r1, r3
+INUM:      604 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      605 PC: 0x004a
+slli r1, r1, 1
+INUM:      606 PC: 0x0040 REG: 1 VALUE: 0x001a
+addi r2, r2, 1
+INUM:      607 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:      608 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      609 PC: 0x0046
+slt r4, r1, r3
+INUM:      610 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      611 PC: 0x004a
+slli r1, r1, 1
+INUM:      612 PC: 0x0040 REG: 1 VALUE: 0x0034
+addi r2, r2, 1
+INUM:      613 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:      614 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      615 PC: 0x0046
+slt r4, r1, r3
+INUM:      616 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      617 PC: 0x004a
+slli r1, r1, 1
+INUM:      618 PC: 0x0040 REG: 1 VALUE: 0x0068
+addi r2, r2, 1
+INUM:      619 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:      620 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      621 PC: 0x0046
+slt r4, r1, r3
+INUM:      622 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      623 PC: 0x004a
+slli r1, r1, 1
+INUM:      624 PC: 0x0040 REG: 1 VALUE: 0x00d0
+addi r2, r2, 1
+INUM:      625 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:      626 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      627 PC: 0x0046
+slt r4, r1, r3
+INUM:      628 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      629 PC: 0x004a
+slli r1, r1, 1
+INUM:      630 PC: 0x0040 REG: 1 VALUE: 0x01a0
+addi r2, r2, 1
+INUM:      631 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:      632 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      633 PC: 0x0046
+slt r4, r1, r3
+INUM:      634 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      635 PC: 0x004a
+slli r1, r1, 1
+INUM:      636 PC: 0x0040 REG: 1 VALUE: 0x0340
+addi r2, r2, 1
+INUM:      637 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:      638 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:      639 PC: 0x0046
+sle r4, r1, r0
+INUM:      640 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      641 PC: 0x004e
+beqz r2, 6
+INUM:      642 PC: 0x0052
+addi r2, r2, -1
+INUM:      643 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:      644 PC: 0x0056 REG: 1 VALUE: 0x01a0
+j 65522
+INUM:      645 PC: 0x0058
+sle r4, r1, r0
+INUM:      646 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      647 PC: 0x004e
+sub r0, r1, r0
+INUM:      648 PC: 0x0050 REG: 0 VALUE: 0x019d
+beqz r2, 6
+INUM:      649 PC: 0x0052
+addi r2, r2, -1
+INUM:      650 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:      651 PC: 0x0056 REG: 1 VALUE: 0x00d0
+j 65522
+INUM:      652 PC: 0x0058
+sle r4, r1, r0
+INUM:      653 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      654 PC: 0x004e
+sub r0, r1, r0
+INUM:      655 PC: 0x0050 REG: 0 VALUE: 0x00cd
+beqz r2, 6
+INUM:      656 PC: 0x0052
+addi r2, r2, -1
+INUM:      657 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:      658 PC: 0x0056 REG: 1 VALUE: 0x0068
+j 65522
+INUM:      659 PC: 0x0058
+sle r4, r1, r0
+INUM:      660 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      661 PC: 0x004e
+sub r0, r1, r0
+INUM:      662 PC: 0x0050 REG: 0 VALUE: 0x0065
+beqz r2, 6
+INUM:      663 PC: 0x0052
+addi r2, r2, -1
+INUM:      664 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:      665 PC: 0x0056 REG: 1 VALUE: 0x0034
+j 65522
+INUM:      666 PC: 0x0058
+sle r4, r1, r0
+INUM:      667 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      668 PC: 0x004e
+sub r0, r1, r0
+INUM:      669 PC: 0x0050 REG: 0 VALUE: 0x0031
+beqz r2, 6
+INUM:      670 PC: 0x0052
+addi r2, r2, -1
+INUM:      671 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:      672 PC: 0x0056 REG: 1 VALUE: 0x001a
+j 65522
+INUM:      673 PC: 0x0058
+sle r4, r1, r0
+INUM:      674 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      675 PC: 0x004e
+sub r0, r1, r0
+INUM:      676 PC: 0x0050 REG: 0 VALUE: 0x0017
+beqz r2, 6
+INUM:      677 PC: 0x0052
+addi r2, r2, -1
+INUM:      678 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:      679 PC: 0x0056 REG: 1 VALUE: 0x000d
+j 65522
+INUM:      680 PC: 0x0058
+sle r4, r1, r0
+INUM:      681 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      682 PC: 0x004e
+sub r0, r1, r0
+INUM:      683 PC: 0x0050 REG: 0 VALUE: 0x000a
+beqz r2, 6
+INUM:      684 PC: 0x0052
+addi r5, r0, 0
+INUM:      685 PC: 0x005a REG: 5 VALUE: 0x000a
+j 65488
+INUM:      686 PC: 0x005c
+beqz r5, 6
+INUM:      687 PC: 0x002e
+addi r0, r6, 0
+INUM:      688 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:      689 PC: 0x0032 REG: 1 VALUE: 0x000f
+j 65518
+INUM:      690 PC: 0x0034
+srl r4, r0, r7
+INUM:      691 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:      692 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:      693 PC: 0x0028
+lbi r2, 0
+INUM:      694 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:      695 PC: 0x002c
+slt r4, r1, r0
+INUM:      696 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      697 PC: 0x0046
+slt r4, r1, r3
+INUM:      698 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      699 PC: 0x004a
+slli r1, r1, 1
+INUM:      700 PC: 0x0040 REG: 1 VALUE: 0x001e
+addi r2, r2, 1
+INUM:      701 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:      702 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      703 PC: 0x0046
+slt r4, r1, r3
+INUM:      704 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      705 PC: 0x004a
+slli r1, r1, 1
+INUM:      706 PC: 0x0040 REG: 1 VALUE: 0x003c
+addi r2, r2, 1
+INUM:      707 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:      708 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      709 PC: 0x0046
+slt r4, r1, r3
+INUM:      710 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      711 PC: 0x004a
+slli r1, r1, 1
+INUM:      712 PC: 0x0040 REG: 1 VALUE: 0x0078
+addi r2, r2, 1
+INUM:      713 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:      714 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      715 PC: 0x0046
+slt r4, r1, r3
+INUM:      716 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      717 PC: 0x004a
+slli r1, r1, 1
+INUM:      718 PC: 0x0040 REG: 1 VALUE: 0x00f0
+addi r2, r2, 1
+INUM:      719 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:      720 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      721 PC: 0x0046
+slt r4, r1, r3
+INUM:      722 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      723 PC: 0x004a
+slli r1, r1, 1
+INUM:      724 PC: 0x0040 REG: 1 VALUE: 0x01e0
+addi r2, r2, 1
+INUM:      725 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:      726 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      727 PC: 0x0046
+slt r4, r1, r3
+INUM:      728 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      729 PC: 0x004a
+slli r1, r1, 1
+INUM:      730 PC: 0x0040 REG: 1 VALUE: 0x03c0
+addi r2, r2, 1
+INUM:      731 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:      732 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:      733 PC: 0x0046
+sle r4, r1, r0
+INUM:      734 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      735 PC: 0x004e
+beqz r2, 6
+INUM:      736 PC: 0x0052
+addi r2, r2, -1
+INUM:      737 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:      738 PC: 0x0056 REG: 1 VALUE: 0x01e0
+j 65522
+INUM:      739 PC: 0x0058
+sle r4, r1, r0
+INUM:      740 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      741 PC: 0x004e
+sub r0, r1, r0
+INUM:      742 PC: 0x0050 REG: 0 VALUE: 0x015d
+beqz r2, 6
+INUM:      743 PC: 0x0052
+addi r2, r2, -1
+INUM:      744 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:      745 PC: 0x0056 REG: 1 VALUE: 0x00f0
+j 65522
+INUM:      746 PC: 0x0058
+sle r4, r1, r0
+INUM:      747 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      748 PC: 0x004e
+sub r0, r1, r0
+INUM:      749 PC: 0x0050 REG: 0 VALUE: 0x006d
+beqz r2, 6
+INUM:      750 PC: 0x0052
+addi r2, r2, -1
+INUM:      751 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:      752 PC: 0x0056 REG: 1 VALUE: 0x0078
+j 65522
+INUM:      753 PC: 0x0058
+sle r4, r1, r0
+INUM:      754 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      755 PC: 0x004e
+beqz r2, 6
+INUM:      756 PC: 0x0052
+addi r2, r2, -1
+INUM:      757 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:      758 PC: 0x0056 REG: 1 VALUE: 0x003c
+j 65522
+INUM:      759 PC: 0x0058
+sle r4, r1, r0
+INUM:      760 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      761 PC: 0x004e
+sub r0, r1, r0
+INUM:      762 PC: 0x0050 REG: 0 VALUE: 0x0031
+beqz r2, 6
+INUM:      763 PC: 0x0052
+addi r2, r2, -1
+INUM:      764 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:      765 PC: 0x0056 REG: 1 VALUE: 0x001e
+j 65522
+INUM:      766 PC: 0x0058
+sle r4, r1, r0
+INUM:      767 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      768 PC: 0x004e
+sub r0, r1, r0
+INUM:      769 PC: 0x0050 REG: 0 VALUE: 0x0013
+beqz r2, 6
+INUM:      770 PC: 0x0052
+addi r2, r2, -1
+INUM:      771 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:      772 PC: 0x0056 REG: 1 VALUE: 0x000f
+j 65522
+INUM:      773 PC: 0x0058
+sle r4, r1, r0
+INUM:      774 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      775 PC: 0x004e
+sub r0, r1, r0
+INUM:      776 PC: 0x0050 REG: 0 VALUE: 0x0004
+beqz r2, 6
+INUM:      777 PC: 0x0052
+addi r5, r0, 0
+INUM:      778 PC: 0x005a REG: 5 VALUE: 0x0004
+j 65488
+INUM:      779 PC: 0x005c
+beqz r5, 6
+INUM:      780 PC: 0x002e
+addi r0, r6, 0
+INUM:      781 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:      782 PC: 0x0032 REG: 1 VALUE: 0x0011
+j 65518
+INUM:      783 PC: 0x0034
+srl r4, r0, r7
+INUM:      784 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:      785 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:      786 PC: 0x0028
+lbi r2, 0
+INUM:      787 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:      788 PC: 0x002c
+slt r4, r1, r0
+INUM:      789 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      790 PC: 0x0046
+slt r4, r1, r3
+INUM:      791 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      792 PC: 0x004a
+slli r1, r1, 1
+INUM:      793 PC: 0x0040 REG: 1 VALUE: 0x0022
+addi r2, r2, 1
+INUM:      794 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:      795 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      796 PC: 0x0046
+slt r4, r1, r3
+INUM:      797 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      798 PC: 0x004a
+slli r1, r1, 1
+INUM:      799 PC: 0x0040 REG: 1 VALUE: 0x0044
+addi r2, r2, 1
+INUM:      800 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:      801 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      802 PC: 0x0046
+slt r4, r1, r3
+INUM:      803 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      804 PC: 0x004a
+slli r1, r1, 1
+INUM:      805 PC: 0x0040 REG: 1 VALUE: 0x0088
+addi r2, r2, 1
+INUM:      806 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:      807 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      808 PC: 0x0046
+slt r4, r1, r3
+INUM:      809 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      810 PC: 0x004a
+slli r1, r1, 1
+INUM:      811 PC: 0x0040 REG: 1 VALUE: 0x0110
+addi r2, r2, 1
+INUM:      812 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:      813 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      814 PC: 0x0046
+slt r4, r1, r3
+INUM:      815 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      816 PC: 0x004a
+slli r1, r1, 1
+INUM:      817 PC: 0x0040 REG: 1 VALUE: 0x0220
+addi r2, r2, 1
+INUM:      818 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:      819 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      820 PC: 0x0046
+slt r4, r1, r3
+INUM:      821 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      822 PC: 0x004a
+slli r1, r1, 1
+INUM:      823 PC: 0x0040 REG: 1 VALUE: 0x0440
+addi r2, r2, 1
+INUM:      824 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:      825 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:      826 PC: 0x0046
+sle r4, r1, r0
+INUM:      827 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      828 PC: 0x004e
+beqz r2, 6
+INUM:      829 PC: 0x0052
+addi r2, r2, -1
+INUM:      830 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:      831 PC: 0x0056 REG: 1 VALUE: 0x0220
+j 65522
+INUM:      832 PC: 0x0058
+sle r4, r1, r0
+INUM:      833 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      834 PC: 0x004e
+sub r0, r1, r0
+INUM:      835 PC: 0x0050 REG: 0 VALUE: 0x011d
+beqz r2, 6
+INUM:      836 PC: 0x0052
+addi r2, r2, -1
+INUM:      837 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:      838 PC: 0x0056 REG: 1 VALUE: 0x0110
+j 65522
+INUM:      839 PC: 0x0058
+sle r4, r1, r0
+INUM:      840 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      841 PC: 0x004e
+sub r0, r1, r0
+INUM:      842 PC: 0x0050 REG: 0 VALUE: 0x000d
+beqz r2, 6
+INUM:      843 PC: 0x0052
+addi r2, r2, -1
+INUM:      844 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:      845 PC: 0x0056 REG: 1 VALUE: 0x0088
+j 65522
+INUM:      846 PC: 0x0058
+sle r4, r1, r0
+INUM:      847 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      848 PC: 0x004e
+beqz r2, 6
+INUM:      849 PC: 0x0052
+addi r2, r2, -1
+INUM:      850 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:      851 PC: 0x0056 REG: 1 VALUE: 0x0044
+j 65522
+INUM:      852 PC: 0x0058
+sle r4, r1, r0
+INUM:      853 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      854 PC: 0x004e
+beqz r2, 6
+INUM:      855 PC: 0x0052
+addi r2, r2, -1
+INUM:      856 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:      857 PC: 0x0056 REG: 1 VALUE: 0x0022
+j 65522
+INUM:      858 PC: 0x0058
+sle r4, r1, r0
+INUM:      859 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      860 PC: 0x004e
+beqz r2, 6
+INUM:      861 PC: 0x0052
+addi r2, r2, -1
+INUM:      862 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:      863 PC: 0x0056 REG: 1 VALUE: 0x0011
+j 65522
+INUM:      864 PC: 0x0058
+sle r4, r1, r0
+INUM:      865 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      866 PC: 0x004e
+beqz r2, 6
+INUM:      867 PC: 0x0052
+addi r5, r0, 0
+INUM:      868 PC: 0x005a REG: 5 VALUE: 0x000d
+j 65488
+INUM:      869 PC: 0x005c
+beqz r5, 6
+INUM:      870 PC: 0x002e
+addi r0, r6, 0
+INUM:      871 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:      872 PC: 0x0032 REG: 1 VALUE: 0x0013
+j 65518
+INUM:      873 PC: 0x0034
+srl r4, r0, r7
+INUM:      874 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:      875 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:      876 PC: 0x0028
+lbi r2, 0
+INUM:      877 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:      878 PC: 0x002c
+slt r4, r1, r0
+INUM:      879 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      880 PC: 0x0046
+slt r4, r1, r3
+INUM:      881 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      882 PC: 0x004a
+slli r1, r1, 1
+INUM:      883 PC: 0x0040 REG: 1 VALUE: 0x0026
+addi r2, r2, 1
+INUM:      884 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:      885 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      886 PC: 0x0046
+slt r4, r1, r3
+INUM:      887 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      888 PC: 0x004a
+slli r1, r1, 1
+INUM:      889 PC: 0x0040 REG: 1 VALUE: 0x004c
+addi r2, r2, 1
+INUM:      890 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:      891 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      892 PC: 0x0046
+slt r4, r1, r3
+INUM:      893 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      894 PC: 0x004a
+slli r1, r1, 1
+INUM:      895 PC: 0x0040 REG: 1 VALUE: 0x0098
+addi r2, r2, 1
+INUM:      896 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:      897 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      898 PC: 0x0046
+slt r4, r1, r3
+INUM:      899 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      900 PC: 0x004a
+slli r1, r1, 1
+INUM:      901 PC: 0x0040 REG: 1 VALUE: 0x0130
+addi r2, r2, 1
+INUM:      902 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:      903 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      904 PC: 0x0046
+slt r4, r1, r3
+INUM:      905 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      906 PC: 0x004a
+slli r1, r1, 1
+INUM:      907 PC: 0x0040 REG: 1 VALUE: 0x0260
+addi r2, r2, 1
+INUM:      908 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:      909 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      910 PC: 0x0046
+slt r4, r1, r3
+INUM:      911 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      912 PC: 0x004a
+slli r1, r1, 1
+INUM:      913 PC: 0x0040 REG: 1 VALUE: 0x04c0
+addi r2, r2, 1
+INUM:      914 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:      915 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:      916 PC: 0x0046
+sle r4, r1, r0
+INUM:      917 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      918 PC: 0x004e
+beqz r2, 6
+INUM:      919 PC: 0x0052
+addi r2, r2, -1
+INUM:      920 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:      921 PC: 0x0056 REG: 1 VALUE: 0x0260
+j 65522
+INUM:      922 PC: 0x0058
+sle r4, r1, r0
+INUM:      923 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      924 PC: 0x004e
+sub r0, r1, r0
+INUM:      925 PC: 0x0050 REG: 0 VALUE: 0x00dd
+beqz r2, 6
+INUM:      926 PC: 0x0052
+addi r2, r2, -1
+INUM:      927 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:      928 PC: 0x0056 REG: 1 VALUE: 0x0130
+j 65522
+INUM:      929 PC: 0x0058
+sle r4, r1, r0
+INUM:      930 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      931 PC: 0x004e
+beqz r2, 6
+INUM:      932 PC: 0x0052
+addi r2, r2, -1
+INUM:      933 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:      934 PC: 0x0056 REG: 1 VALUE: 0x0098
+j 65522
+INUM:      935 PC: 0x0058
+sle r4, r1, r0
+INUM:      936 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      937 PC: 0x004e
+sub r0, r1, r0
+INUM:      938 PC: 0x0050 REG: 0 VALUE: 0x0045
+beqz r2, 6
+INUM:      939 PC: 0x0052
+addi r2, r2, -1
+INUM:      940 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:      941 PC: 0x0056 REG: 1 VALUE: 0x004c
+j 65522
+INUM:      942 PC: 0x0058
+sle r4, r1, r0
+INUM:      943 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:      944 PC: 0x004e
+beqz r2, 6
+INUM:      945 PC: 0x0052
+addi r2, r2, -1
+INUM:      946 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:      947 PC: 0x0056 REG: 1 VALUE: 0x0026
+j 65522
+INUM:      948 PC: 0x0058
+sle r4, r1, r0
+INUM:      949 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      950 PC: 0x004e
+sub r0, r1, r0
+INUM:      951 PC: 0x0050 REG: 0 VALUE: 0x001f
+beqz r2, 6
+INUM:      952 PC: 0x0052
+addi r2, r2, -1
+INUM:      953 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:      954 PC: 0x0056 REG: 1 VALUE: 0x0013
+j 65522
+INUM:      955 PC: 0x0058
+sle r4, r1, r0
+INUM:      956 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:      957 PC: 0x004e
+sub r0, r1, r0
+INUM:      958 PC: 0x0050 REG: 0 VALUE: 0x000c
+beqz r2, 6
+INUM:      959 PC: 0x0052
+addi r5, r0, 0
+INUM:      960 PC: 0x005a REG: 5 VALUE: 0x000c
+j 65488
+INUM:      961 PC: 0x005c
+beqz r5, 6
+INUM:      962 PC: 0x002e
+addi r0, r6, 0
+INUM:      963 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:      964 PC: 0x0032 REG: 1 VALUE: 0x0015
+j 65518
+INUM:      965 PC: 0x0034
+srl r4, r0, r7
+INUM:      966 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:      967 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:      968 PC: 0x0028
+lbi r2, 0
+INUM:      969 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:      970 PC: 0x002c
+slt r4, r1, r0
+INUM:      971 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      972 PC: 0x0046
+slt r4, r1, r3
+INUM:      973 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      974 PC: 0x004a
+slli r1, r1, 1
+INUM:      975 PC: 0x0040 REG: 1 VALUE: 0x002a
+addi r2, r2, 1
+INUM:      976 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:      977 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      978 PC: 0x0046
+slt r4, r1, r3
+INUM:      979 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      980 PC: 0x004a
+slli r1, r1, 1
+INUM:      981 PC: 0x0040 REG: 1 VALUE: 0x0054
+addi r2, r2, 1
+INUM:      982 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:      983 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      984 PC: 0x0046
+slt r4, r1, r3
+INUM:      985 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      986 PC: 0x004a
+slli r1, r1, 1
+INUM:      987 PC: 0x0040 REG: 1 VALUE: 0x00a8
+addi r2, r2, 1
+INUM:      988 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:      989 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      990 PC: 0x0046
+slt r4, r1, r3
+INUM:      991 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      992 PC: 0x004a
+slli r1, r1, 1
+INUM:      993 PC: 0x0040 REG: 1 VALUE: 0x0150
+addi r2, r2, 1
+INUM:      994 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:      995 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:      996 PC: 0x0046
+slt r4, r1, r3
+INUM:      997 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:      998 PC: 0x004a
+slli r1, r1, 1
+INUM:      999 PC: 0x0040 REG: 1 VALUE: 0x02a0
+addi r2, r2, 1
+INUM:     1000 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:     1001 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:     1002 PC: 0x0046
+slt r4, r1, r3
+INUM:     1003 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:     1004 PC: 0x004a
+slli r1, r1, 1
+INUM:     1005 PC: 0x0040 REG: 1 VALUE: 0x0540
+addi r2, r2, 1
+INUM:     1006 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:     1007 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:     1008 PC: 0x0046
+sle r4, r1, r0
+INUM:     1009 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:     1010 PC: 0x004e
+beqz r2, 6
+INUM:     1011 PC: 0x0052
+addi r2, r2, -1
+INUM:     1012 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:     1013 PC: 0x0056 REG: 1 VALUE: 0x02a0
+j 65522
+INUM:     1014 PC: 0x0058
+sle r4, r1, r0
+INUM:     1015 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:     1016 PC: 0x004e
+sub r0, r1, r0
+INUM:     1017 PC: 0x0050 REG: 0 VALUE: 0x009d
+beqz r2, 6
+INUM:     1018 PC: 0x0052
+addi r2, r2, -1
+INUM:     1019 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:     1020 PC: 0x0056 REG: 1 VALUE: 0x0150
+j 65522
+INUM:     1021 PC: 0x0058
+sle r4, r1, r0
+INUM:     1022 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:     1023 PC: 0x004e
+beqz r2, 6
+INUM:     1024 PC: 0x0052
+addi r2, r2, -1
+INUM:     1025 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:     1026 PC: 0x0056 REG: 1 VALUE: 0x00a8
+j 65522
+INUM:     1027 PC: 0x0058
+sle r4, r1, r0
+INUM:     1028 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:     1029 PC: 0x004e
+beqz r2, 6
+INUM:     1030 PC: 0x0052
+addi r2, r2, -1
+INUM:     1031 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:     1032 PC: 0x0056 REG: 1 VALUE: 0x0054
+j 65522
+INUM:     1033 PC: 0x0058
+sle r4, r1, r0
+INUM:     1034 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:     1035 PC: 0x004e
+sub r0, r1, r0
+INUM:     1036 PC: 0x0050 REG: 0 VALUE: 0x0049
+beqz r2, 6
+INUM:     1037 PC: 0x0052
+addi r2, r2, -1
+INUM:     1038 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:     1039 PC: 0x0056 REG: 1 VALUE: 0x002a
+j 65522
+INUM:     1040 PC: 0x0058
+sle r4, r1, r0
+INUM:     1041 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:     1042 PC: 0x004e
+sub r0, r1, r0
+INUM:     1043 PC: 0x0050 REG: 0 VALUE: 0x001f
+beqz r2, 6
+INUM:     1044 PC: 0x0052
+addi r2, r2, -1
+INUM:     1045 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:     1046 PC: 0x0056 REG: 1 VALUE: 0x0015
+j 65522
+INUM:     1047 PC: 0x0058
+sle r4, r1, r0
+INUM:     1048 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:     1049 PC: 0x004e
+sub r0, r1, r0
+INUM:     1050 PC: 0x0050 REG: 0 VALUE: 0x000a
+beqz r2, 6
+INUM:     1051 PC: 0x0052
+addi r5, r0, 0
+INUM:     1052 PC: 0x005a REG: 5 VALUE: 0x000a
+j 65488
+INUM:     1053 PC: 0x005c
+beqz r5, 6
+INUM:     1054 PC: 0x002e
+addi r0, r6, 0
+INUM:     1055 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:     1056 PC: 0x0032 REG: 1 VALUE: 0x0017
+j 65518
+INUM:     1057 PC: 0x0034
+srl r4, r0, r7
+INUM:     1058 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:     1059 PC: 0x0026 REG: 4 VALUE: 0x0001
+beqz r4, 16
+INUM:     1060 PC: 0x0028
+lbi r2, 0
+INUM:     1061 PC: 0x002a REG: 2 VALUE: 0x0000
+j 22
+INUM:     1062 PC: 0x002c
+slt r4, r1, r0
+INUM:     1063 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:     1064 PC: 0x0046
+slt r4, r1, r3
+INUM:     1065 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:     1066 PC: 0x004a
+slli r1, r1, 1
+INUM:     1067 PC: 0x0040 REG: 1 VALUE: 0x002e
+addi r2, r2, 1
+INUM:     1068 PC: 0x0042 REG: 2 VALUE: 0x0001
+slt r4, r1, r0
+INUM:     1069 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:     1070 PC: 0x0046
+slt r4, r1, r3
+INUM:     1071 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:     1072 PC: 0x004a
+slli r1, r1, 1
+INUM:     1073 PC: 0x0040 REG: 1 VALUE: 0x005c
+addi r2, r2, 1
+INUM:     1074 PC: 0x0042 REG: 2 VALUE: 0x0002
+slt r4, r1, r0
+INUM:     1075 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:     1076 PC: 0x0046
+slt r4, r1, r3
+INUM:     1077 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:     1078 PC: 0x004a
+slli r1, r1, 1
+INUM:     1079 PC: 0x0040 REG: 1 VALUE: 0x00b8
+addi r2, r2, 1
+INUM:     1080 PC: 0x0042 REG: 2 VALUE: 0x0003
+slt r4, r1, r0
+INUM:     1081 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:     1082 PC: 0x0046
+slt r4, r1, r3
+INUM:     1083 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:     1084 PC: 0x004a
+slli r1, r1, 1
+INUM:     1085 PC: 0x0040 REG: 1 VALUE: 0x0170
+addi r2, r2, 1
+INUM:     1086 PC: 0x0042 REG: 2 VALUE: 0x0004
+slt r4, r1, r0
+INUM:     1087 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:     1088 PC: 0x0046
+slt r4, r1, r3
+INUM:     1089 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:     1090 PC: 0x004a
+slli r1, r1, 1
+INUM:     1091 PC: 0x0040 REG: 1 VALUE: 0x02e0
+addi r2, r2, 1
+INUM:     1092 PC: 0x0042 REG: 2 VALUE: 0x0005
+slt r4, r1, r0
+INUM:     1093 PC: 0x0044 REG: 4 VALUE: 0x0001
+beqz r4, 4
+INUM:     1094 PC: 0x0046
+slt r4, r1, r3
+INUM:     1095 PC: 0x0048 REG: 4 VALUE: 0x0001
+bnez r4, -12
+INUM:     1096 PC: 0x004a
+slli r1, r1, 1
+INUM:     1097 PC: 0x0040 REG: 1 VALUE: 0x05c0
+addi r2, r2, 1
+INUM:     1098 PC: 0x0042 REG: 2 VALUE: 0x0006
+slt r4, r1, r0
+INUM:     1099 PC: 0x0044 REG: 4 VALUE: 0x0000
+beqz r4, 4
+INUM:     1100 PC: 0x0046
+sle r4, r1, r0
+INUM:     1101 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:     1102 PC: 0x004e
+beqz r2, 6
+INUM:     1103 PC: 0x0052
+addi r2, r2, -1
+INUM:     1104 PC: 0x0054 REG: 2 VALUE: 0x0005
+srli r1, r1, 1
+INUM:     1105 PC: 0x0056 REG: 1 VALUE: 0x02e0
+j 65522
+INUM:     1106 PC: 0x0058
+sle r4, r1, r0
+INUM:     1107 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:     1108 PC: 0x004e
+sub r0, r1, r0
+INUM:     1109 PC: 0x0050 REG: 0 VALUE: 0x005d
+beqz r2, 6
+INUM:     1110 PC: 0x0052
+addi r2, r2, -1
+INUM:     1111 PC: 0x0054 REG: 2 VALUE: 0x0004
+srli r1, r1, 1
+INUM:     1112 PC: 0x0056 REG: 1 VALUE: 0x0170
+j 65522
+INUM:     1113 PC: 0x0058
+sle r4, r1, r0
+INUM:     1114 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:     1115 PC: 0x004e
+beqz r2, 6
+INUM:     1116 PC: 0x0052
+addi r2, r2, -1
+INUM:     1117 PC: 0x0054 REG: 2 VALUE: 0x0003
+srli r1, r1, 1
+INUM:     1118 PC: 0x0056 REG: 1 VALUE: 0x00b8
+j 65522
+INUM:     1119 PC: 0x0058
+sle r4, r1, r0
+INUM:     1120 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:     1121 PC: 0x004e
+beqz r2, 6
+INUM:     1122 PC: 0x0052
+addi r2, r2, -1
+INUM:     1123 PC: 0x0054 REG: 2 VALUE: 0x0002
+srli r1, r1, 1
+INUM:     1124 PC: 0x0056 REG: 1 VALUE: 0x005c
+j 65522
+INUM:     1125 PC: 0x0058
+sle r4, r1, r0
+INUM:     1126 PC: 0x004c REG: 4 VALUE: 0x0001
+beqz r4, 2
+INUM:     1127 PC: 0x004e
+sub r0, r1, r0
+INUM:     1128 PC: 0x0050 REG: 0 VALUE: 0x0001
+beqz r2, 6
+INUM:     1129 PC: 0x0052
+addi r2, r2, -1
+INUM:     1130 PC: 0x0054 REG: 2 VALUE: 0x0001
+srli r1, r1, 1
+INUM:     1131 PC: 0x0056 REG: 1 VALUE: 0x002e
+j 65522
+INUM:     1132 PC: 0x0058
+sle r4, r1, r0
+INUM:     1133 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:     1134 PC: 0x004e
+beqz r2, 6
+INUM:     1135 PC: 0x0052
+addi r2, r2, -1
+INUM:     1136 PC: 0x0054 REG: 2 VALUE: 0x0000
+srli r1, r1, 1
+INUM:     1137 PC: 0x0056 REG: 1 VALUE: 0x0017
+j 65522
+INUM:     1138 PC: 0x0058
+sle r4, r1, r0
+INUM:     1139 PC: 0x004c REG: 4 VALUE: 0x0000
+beqz r4, 2
+INUM:     1140 PC: 0x004e
+beqz r2, 6
+INUM:     1141 PC: 0x0052
+addi r5, r0, 0
+INUM:     1142 PC: 0x005a REG: 5 VALUE: 0x0001
+j 65488
+INUM:     1143 PC: 0x005c
+beqz r5, 6
+INUM:     1144 PC: 0x002e
+addi r0, r6, 0
+INUM:     1145 PC: 0x0030 REG: 0 VALUE: 0x033d
+addi r1, r1, 2
+INUM:     1146 PC: 0x0032 REG: 1 VALUE: 0x0019
+j 65518
+INUM:     1147 PC: 0x0034
+srl r4, r0, r7
+INUM:     1148 PC: 0x0024 REG: 4 VALUE: 0x0019
+slt r4, r1, r4
+INUM:     1149 PC: 0x0026 REG: 4 VALUE: 0x0000
+beqz r4, 16
+INUM:     1150 PC: 0x0028
+lbi r5, 1
+INUM:     1151 PC: 0x003a REG: 5 VALUE: 0x0001
+j 65498
+INUM:     1152 PC: 0x003c
+beqz r5, 4
+INUM:     1153 PC: 0x0018
+addi r5, r6, 0
+INUM:     1154 PC: 0x001a REG: 5 VALUE: 0x033d
 halt
 program halted
-INUM:       10 PC: 0x0018
+INUM:     1155 PC: 0x001c
 Program Finished

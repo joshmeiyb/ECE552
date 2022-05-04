@@ -1,40 +1,70 @@
-          // Author: Matt Sinclair
-          // CS/ECE 552 Spring '08
-          // Homework #4, Problem #7
-          //
-          // Filename: bgez_9.asm
-          // BGEZ assembly test
-          //
-          // This is a test of the bgez instruction.  This test should verify that a BGEZ
-          // works when there are multiple branches that are not taken in a row, followed
-          // by one that is taken.
+0000 c003 lbi r0 0x03
+0002 903d slbi r0 0x3d   // loads decimal value 12349 (feel free to test other values)
+0004 c200 lbi r2 0
+0006 c320 lbi r3 32
+0008 ab68 slli r3 r3 8
           
-0000 c1f6 LBI	r1, -10				// move -10 into r1
+000a c700 lbi r7 0
+000c 40c0 addi r6 r0 0	// Calculate rough square root
+000e      .doSubTract:
+000e bec1 srli r6 r6 1
+0010 47e1 addi r7 r7 1
+0012 6efa bnez r6 .doSubTract
+0014 bfe1 srli r7 r7 1	// Rough square root size
           
-0002      .branch1:
-0002 7906 BGEZ	r1, .shouldNotBranchHere	// -10 !>= 0, so doesn't branch
-          					// all of these should execute
-0004 c200 LBI	r2, 0
-0006 4242 ADDI	r2, r2, 2
-0008 4242 ADDI	r2, r2, 2
+0016      .findNextPrime:
+0016 2008 j .determinePrime
+0018      .return_from_prime:
+0018 6504 beqz r5 .try_next_number
+001a 46a0 addi r5 r6 0	// when halts, should have next prime number value 12373 0x3055
+001c 0000 halt
+001e      .try_next_number:
+001e 4602 addi r0 r6 2	
           
-000a      .shouldNotBranchHere:
-000a 7900 BGEZ	r1, .hereNext			// not taken
-          	
-000c      .hereNext:
-000c 7900 BGEZ	r1, .keepGoing			// not taken
-          	
-000e      .keepGoing:	
-000e 7900 BGEZ	r1, .stillHard			// not taken
-          	
-0010      .stillHard:
-0010 412b ADDI	r1, r1, 11			// r1 = 1 now
-0012 7904 BGEZ	r1, .finally			// this should be taken
-          	
-0014 c600 LBI	r6, 0				// not executed
-0016 0000 	HALT	
-          	
-0018      .finally:	
-0018 0000 	HALT				// end bgez_9.asm
-          					// r1 = 1 (base 10) now
-          					// r2 = 4 (base 10) = 0x4
+0020      .determinePrime:	
+          // determine if r0 is prime
+0020 40c0 addi r6 r0 0
+0022 c103 lbi r1 3		// start with dividing by 3
+0024      .tryAgain:
+0024 d0f3 srl r4 r0 r7
+0026 e990 slt r4 r1 r4
+0028 6410 beqz r4 .isPrime	// stop testing if you reach square root
+002a c200 lbi r2 0
+002c 2016 j .doPart1
+002e      .return_from_mod:
+002e 6506 beqz r5 .notPrime	// if r0 mod r1 is 0, it is not prime
+0030 4600 addi r0 r6 0
+0032 4122 addi r1 r1 2
+0034 27ee j .tryAgain		// if inconclusive evidence, try the next odd divisor
+0036      .notPrime:
+0036 c500 lbi r5 0
+0038 27de j .return_from_prime	// outputs not prime
+003a      .isPrime:
+003a c501 lbi r5 1
+003c 27da j .return_from_prime	// outputs found prime
+          
+003e      .findMod:		
+          // calculates r0 mod r1 and outputs in r5
+003e 2004 j .doPart1
+0040      .doPart0:		
+          // r1 is smaller than r0 so we double it
+0040 a921 slli r1 r1 1		// to make the second part run faster
+0042 4241 addi r2 r2 1
+0044      .doPart1:		
+0044 e910 slt r4 r1 r0 		
+0046 6404 beqz r4 .doPart2	// if r0 <r1, we are ready to subtract
+0048 e970 slt r4 r1 r3 		
+004a 6cf4 bnez r4 .doPart0	// if r1 is too big, we are ready to subtract
+004c      .doPart2:
+004c f110 sle r4 r1 r0 		
+004e 6402 beqz r4 .skipAdd	// if r0 >= r1
+0050 d901 sub r0 r1 r0		// then r0 <- r0-r1
+0052      .skipAdd:
+0052 6206 beqz r2 .doOutput	// once r1 is realigned, we output
+0054 425f addi r2 r2 -1
+0056 b921 srli r1 r1 1
+0058 27f2 j .doPart2		// if r1 is not realigned, we shrink and repeat
+005a      .doOutput:
+005a 40a0 addi r5 r0 0
+005c 27d0 j .return_from_mod
+          

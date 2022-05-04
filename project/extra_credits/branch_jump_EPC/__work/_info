@@ -8,50 +8,72 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/u/j/m/jmei/ece552/project/extra_credits/branch_jump_EPC
+vadder
+Z1 !s110 1651700789
+!i10b 1
+!s100 9E8Y::^AKPX=F4?WG1o2X0
+I?k>2aNnkg6@e4n]aTkMJh0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1651698168
+8adder.v
+Fadder.v
+L0 2
+Z3 OP;L;10.7c;67
+r1
+!s85 0
+31
+Z4 !s108 1651700789.000000
+!s107 xor2.v|wb.v|stallmem.v|shifter.v|regFile.v|regFile_bypass.v|reg4.v|reg3.v|reg1.v|reg16.v|proc.v|proc_hier.v|proc_hier_pbench.v|nand2.v|MEMWB.v|memv.v|mem_system.v|mem_system_ref.v|mem_system_randbench.v|mem_system_perfbench.v|mem_system_hier.v|memory.v|memory2c.v|memory2c_align.v|memc.v|IFID.v|IDEX.v|hazard_detection_unit.v|fullAdder_1b.v|four_bank_mem.v|forwarding_unit.v|final_memory.v|fetch.v|EXMEM.v|execute.v|dff.v|decode.v|control.v|clkrst.v|cla_4b.v|cla_16b.v|cache.v|cache_controller.v|alu.v|alu_branch_jump.v|adder.v|
+Z5 !s90 +define+RANDSEED=3|-work|__work|adder.v|alu_branch_jump.v|alu.v|cache_controller.v|cache.v|cla_16b.v|cla_4b.v|clkrst.v|control.v|decode.v|dff.v|execute.v|EXMEM.v|fetch.v|final_memory.v|forwarding_unit.v|four_bank_mem.v|fullAdder_1b.v|hazard_detection_unit.v|IDEX.v|IFID.v|memc.v|memory2c_align.v|memory2c.v|memory.v|mem_system_hier.v|mem_system_perfbench.v|mem_system_randbench.v|mem_system_ref.v|mem_system.v|memv.v|MEMWB.v|nand2.v|proc_hier_pbench.v|proc_hier.v|proc.v|reg16.v|reg1.v|reg3.v|reg4.v|regFile_bypass.v|regFile.v|shifter.v|stallmem.v|wb.v|xor2.v|
+!i113 1
+Z6 o-work __work
+Z7 !s92 +define+RANDSEED=3 -work __work
+Z8 tCvgOpt 0
 valu
-Z1 !s110 1651695117
+R1
 !i10b 1
 !s100 HWPRzW9hYeTdW^QV60afO1
 IRClK<dl3^Jj;W:8=A;[TR3
-Z2 VDg1SIo80bB@j0V0VzS_@n1
+R2
 R0
 w1649097079
 8alu.v
 Falu.v
-Z3 L0 12
-Z4 OP;L;10.7c;67
+Z9 L0 12
+R3
 r1
 !s85 0
 31
-Z5 !s108 1651695117.000000
-!s107 xor2.v|wb.v|stallmem.v|shifter.v|regFile.v|regFile_bypass.v|reg4.v|reg3.v|reg1.v|reg16.v|proc.v|proc_hier.v|proc_hier_pbench.v|nand2.v|MEMWB.v|memv.v|mem_system.v|mem_system_ref.v|mem_system_randbench.v|mem_system_perfbench.v|mem_system_hier.v|memory.v|memory2c.v|memory2c_align.v|memc.v|IFID.v|IDEX.v|hazard_detection_unit.v|fullAdder_1b.v|four_bank_mem.v|forwarding_unit.v|final_memory.v|fetch.v|EXMEM.v|execute.v|dff.v|decode.v|control.v|clkrst.v|cla_4b.v|cla_16b.v|cache.v|cache_controller.v|alu.v|alu_branch_jump.v|
-Z6 !s90 +define+RANDSEED=3|-work|__work|alu_branch_jump.v|alu.v|cache_controller.v|cache.v|cla_16b.v|cla_4b.v|clkrst.v|control.v|decode.v|dff.v|execute.v|EXMEM.v|fetch.v|final_memory.v|forwarding_unit.v|four_bank_mem.v|fullAdder_1b.v|hazard_detection_unit.v|IDEX.v|IFID.v|memc.v|memory2c_align.v|memory2c.v|memory.v|mem_system_hier.v|mem_system_perfbench.v|mem_system_randbench.v|mem_system_ref.v|mem_system.v|memv.v|MEMWB.v|nand2.v|proc_hier_pbench.v|proc_hier.v|proc.v|reg16.v|reg1.v|reg3.v|reg4.v|regFile_bypass.v|regFile.v|shifter.v|stallmem.v|wb.v|xor2.v|
+R4
+Z10 !s107 xor2.v|wb.v|stallmem.v|shifter.v|regFile.v|regFile_bypass.v|reg4.v|reg3.v|reg1.v|reg16.v|proc.v|proc_hier.v|proc_hier_pbench.v|nand2.v|MEMWB.v|memv.v|mem_system.v|mem_system_ref.v|mem_system_randbench.v|mem_system_perfbench.v|mem_system_hier.v|memory.v|memory2c.v|memory2c_align.v|memc.v|IFID.v|IDEX.v|hazard_detection_unit.v|fullAdder_1b.v|four_bank_mem.v|forwarding_unit.v|final_memory.v|fetch.v|EXMEM.v|execute.v|dff.v|decode.v|control.v|clkrst.v|cla_4b.v|cla_16b.v|cache.v|cache_controller.v|alu.v|alu_branch_jump.v|adder.v|
+R5
 !i113 1
-Z7 o-work __work
-Z8 !s92 +define+RANDSEED=3 -work __work
-Z9 tCvgOpt 0
+R6
+R7
+R8
 valu_branch_jump
 R1
 !i10b 1
-!s100 F@Lz1f;SZdijYQXRF7C2M0
-IZ7XQNR=1LR5Hi[K@mLJ]A1
+!s100 VU:zhlkJOo=ZdmP;Ooc0S2
+IJH:gXNIoMm4ghDee4Q1Vz0
 R2
 R0
-w1651638548
+w1651697786
 8alu_branch_jump.v
 Falu_branch_jump.v
+R9
 R3
-R4
 r1
 !s85 0
 31
+R4
+R10
 R5
-Z10 !s107 xor2.v|wb.v|stallmem.v|shifter.v|regFile.v|regFile_bypass.v|reg4.v|reg3.v|reg1.v|reg16.v|proc.v|proc_hier.v|proc_hier_pbench.v|nand2.v|MEMWB.v|memv.v|mem_system.v|mem_system_ref.v|mem_system_randbench.v|mem_system_perfbench.v|mem_system_hier.v|memory.v|memory2c.v|memory2c_align.v|memc.v|IFID.v|IDEX.v|hazard_detection_unit.v|fullAdder_1b.v|four_bank_mem.v|forwarding_unit.v|final_memory.v|fetch.v|EXMEM.v|execute.v|dff.v|decode.v|control.v|clkrst.v|cla_4b.v|cla_16b.v|cache.v|cache_controller.v|alu.v|alu_branch_jump.v|
-R6
 !i113 1
+R6
 R7
 R8
-R9
 vcache
 R1
 !i10b 1
@@ -63,17 +85,17 @@ w1646509241
 8cache.v
 Fcache.v
 Z11 L0 18
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vcache_controller
 R1
 !i10b 1
@@ -85,17 +107,17 @@ w1651446971
 8cache_controller.v
 Fcache_controller.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vcla_16b
 R1
 !i10b 1
@@ -107,39 +129,39 @@ w1646025541
 8cla_16b.v
 Fcla_16b.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vcla_4b
 R1
 !i10b 1
-!s100 gMbDY8>EM5T<APMg45GPS1
-Io9W?8Vz^[`el<A?3OUHaH3
+!s100 eNeaf;g:lkS`dN=egMC:N0
+I5f=Z951?5MBdUH[jkd5KP0
 R2
 R0
-w1649276144
+w1651698021
 8cla_4b.v
 Fcla_4b.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vclkrst
 R1
 !i10b 1
@@ -151,17 +173,17 @@ w1651435335
 8clkrst.v
 Fclkrst.v
 L0 14
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vcontrol
 R1
 !i10b 1
@@ -169,43 +191,43 @@ R1
 IX2R^IMXAgA]_jfB;DRbZU2
 R2
 R0
-w1651684862
+w1651695667
 8control.v
 Fcontrol.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vdecode
 R1
 !i10b 1
-!s100 4jCVaaRFb8]4:SHZ[8Oon0
-IA3BJP8MSnn?<fFo8Pe3nj3
+!s100 Qo<@nVANT>_Eb@8X;47D:3
+I1P6a]Eil<c0?]iRa7zW2;2
 R2
 R0
-w1651694703
+w1651697143
 8decode.v
 Fdecode.v
 R11
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vdff
 R1
 !i10b 1
@@ -217,17 +239,17 @@ w1646508858
 8dff.v
 Fdff.v
 L0 6
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vexecute
 R1
 !i10b 1
@@ -239,17 +261,17 @@ w1651693676
 8execute.v
 Fexecute.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vEXMEM
 R1
 !i10b 1
@@ -261,17 +283,17 @@ w1651649145
 8EXMEM.v
 FEXMEM.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 n@e@x@m@e@m
 vfetch
 R1
@@ -284,17 +306,17 @@ w1651694772
 8fetch.v
 Ffetch.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vfinal_memory
 R1
 !i10b 1
@@ -306,17 +328,17 @@ w1646509322
 8final_memory.v
 Ffinal_memory.v
 L0 55
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vforwarding_unit
 R1
 !i10b 1
@@ -328,17 +350,17 @@ w1651639017
 8forwarding_unit.v
 Fforwarding_unit.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vfour_bank_mem
 R1
 !i10b 1
@@ -350,17 +372,17 @@ w1646509394
 8four_bank_mem.v
 Ffour_bank_mem.v
 L0 69
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vfullAdder_1b
 R1
 !i10b 1
@@ -372,17 +394,17 @@ w1644183243
 8fullAdder_1b.v
 FfullAdder_1b.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 nfull@adder_1b
 vhazard_detection_unit
 R1
@@ -395,17 +417,17 @@ w1651458493
 8hazard_detection_unit.v
 Fhazard_detection_unit.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vIDEX
 R1
 !i10b 1
@@ -417,17 +439,17 @@ w1651694976
 8IDEX.v
 FIDEX.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 n@i@d@e@x
 vIFID
 R1
@@ -440,17 +462,17 @@ w1651279629
 8IFID.v
 FIFID.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 n@i@f@i@d
 vmem_system
 R1
@@ -463,17 +485,17 @@ w1651445579
 8mem_system.v
 Fmem_system.v
 L0 6
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vmem_system_hier
 R1
 !i10b 1
@@ -485,17 +507,17 @@ w1646510485
 8mem_system_hier.v
 Fmem_system_hier.v
 L0 6
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vmem_system_perfbench
 R1
 !i10b 1
@@ -507,17 +529,17 @@ w1650749408
 8mem_system_perfbench.v
 Fmem_system_perfbench.v
 L0 8
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vmem_system_randbench
 R1
 !i10b 1
@@ -529,17 +551,17 @@ w1646510496
 8mem_system_randbench.v
 Fmem_system_randbench.v
 L0 6
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vmem_system_ref
 R1
 !i10b 1
@@ -551,17 +573,17 @@ w1646510502
 8mem_system_ref.v
 Fmem_system_ref.v
 L0 6
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vmemc
 R1
 !i10b 1
@@ -573,17 +595,17 @@ w1646507783
 8memc.v
 Fmemc.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vmemory
 R1
 !i10b 1
@@ -595,17 +617,17 @@ w1651451532
 8memory.v
 Fmemory.v
 L0 8
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vmemory2c
 R1
 !i10b 1
@@ -617,17 +639,17 @@ Z12 w1581299029
 8memory2c.v
 Fmemory2c.v
 L0 35
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vmemory2c_align
 R1
 !i10b 1
@@ -639,17 +661,17 @@ R12
 8memory2c_align.v
 Fmemory2c_align.v
 L0 36
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vmemv
 R1
 !i10b 1
@@ -661,17 +683,17 @@ w1646508674
 8memv.v
 Fmemv.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vMEMWB
 R1
 !i10b 1
@@ -683,17 +705,17 @@ w1651649167
 8MEMWB.v
 FMEMWB.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 n@m@e@m@w@b
 vnand2
 R1
@@ -706,17 +728,17 @@ w1643946701
 8nand2.v
 Fnand2.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vproc
 R1
 !i10b 1
@@ -728,17 +750,17 @@ w1651694662
 8proc.v
 Fproc.v
 L0 4
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vproc_hier
 R1
 !i10b 1
@@ -750,17 +772,17 @@ R12
 8proc_hier.v
 Fproc_hier.v
 L0 6
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vproc_hier_pbench
 R1
 !i10b 1
@@ -772,17 +794,17 @@ w1651379059
 8proc_hier_pbench.v
 Fproc_hier_pbench.v
 L0 4
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vreg1
 R1
 !i10b 1
@@ -794,17 +816,17 @@ w1648927671
 8reg1.v
 Freg1.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vreg16
 R1
 !i10b 1
@@ -816,17 +838,17 @@ w1645386089
 8reg16.v
 Freg16.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vreg3
 R1
 !i10b 1
@@ -838,17 +860,17 @@ w1648927682
 8reg3.v
 Freg3.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vreg4
 R1
 !i10b 1
@@ -860,17 +882,17 @@ w1648927695
 8reg4.v
 Freg4.v
 L0 1
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vregFile
 R1
 !i10b 1
@@ -882,17 +904,17 @@ w1645576386
 8regFile.v
 FregFile.v
 Z13 L0 10
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 nreg@file
 vregFile_bypass
 R1
@@ -905,17 +927,17 @@ w1648923789
 8regFile_bypass.v
 FregFile_bypass.v
 L0 8
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 nreg@file_bypass
 vshifter
 R1
@@ -928,17 +950,17 @@ w1646176858
 8shifter.v
 Fshifter.v
 R13
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vstallmem
 R1
 !i10b 1
@@ -950,17 +972,17 @@ w1651283702
 8stallmem.v
 Fstallmem.v
 L0 45
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vwb
 R1
 !i10b 1
@@ -972,17 +994,17 @@ w1649276200
 8wb.v
 Fwb.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9
 vxor2
 R1
 !i10b 1
@@ -994,14 +1016,14 @@ w1643946702
 8xor2.v
 Fxor2.v
 L0 7
-R4
+R3
 r1
 !s85 0
 31
-R5
+R4
 R10
-R6
+R5
 !i113 1
+R6
 R7
 R8
-R9

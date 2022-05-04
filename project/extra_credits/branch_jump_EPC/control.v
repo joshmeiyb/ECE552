@@ -390,7 +390,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
                 //I_format = 1'b1;
 		    end
             
-            //SLBI 10010 sss iiiiiiii | Rs <- (Rs << 8) | I(zero ext.)
+            //SLBI 10010 sss iiiiiiii | Rs <- (Rs << //A + B8) | I(zero ext.)
 		    5'b10010 : begin
 			    RegDst = 2'b00;	
 			    ALUOp = 4'b1110;        //ALU Specific Operation 
