@@ -42,10 +42,6 @@ wire [15:0]                   EPC_out;
 /////////////////////////////////////////////////////////////////////////////////////////////////
 wire [15:0]    instruction,   instruction_IFID, instruction_IDEX,    instruction_EXMEM,   instruction_MEMWB; 
 wire [15:0]    pcAdd2,        pcAdd2_IFID,      pcAdd2_IDEX,         pcAdd2_EXMEM,        pcAdd2_MEMWB;
-
-//wire [15:0]                                     branch_jump_pc;
-wire [15:0]                                     branch_pc;
-wire [15:0]                                     jump_pc;
 wire [15:0]                                     ALU_Out,             ALU_Out_EXMEM,       ALU_Out_MEMWB;
 wire                          reg_to_pc,        reg_to_pc_IDEX;
 wire                          pc_to_reg,        pc_to_reg_IDEX,      pc_to_reg_EXMEM,     pc_to_reg_MEMWB;
@@ -80,9 +76,12 @@ wire                                            ALU_sign;
 wire [15:0]                                                          mem_read_data,        mem_read_data_MEMWB;                         
 
 
-//-----------------------------hazard_detection_unit & forwarding unit---------------------------------------//
-//wire PCSrc;
-wire PCSrc_branch, PCSrc_jump;
+//--------------------------hazard_detection_unit & forwarding unit & branch/jump----------------------------//
+wire [15:0] branch_jump_pc;
+//wire [15:0] branch_pc;
+//wire [15:0] jump_pc;
+wire PCSrc;
+//wire PCSrc_branch, PCSrc_jump;
 wire PCSrc_temp;
 wire stall;
 //wire R_format, R_format_IDEX;
@@ -149,10 +148,10 @@ fetch fetch(
         .stall((stall & ~data_mem_stall) | data_mem_stall/*data_mem_done*/),
 
         //----------------------------------Branch/Jump----------------------------------//
-        //.branch_jump_pc(branch_jump_pc),
-        .branch_pc(branch_pc),
-        .jump_pc(jump_pc),
-        .PCSrc(/*PCSrc*/PCSrc_branch | PCSrc_jump),
+        .branch_jump_pc(branch_jump_pc),
+        //.branch_pc(branch_pc),
+        //.jump_pc(jump_pc),
+        .PCSrc(PCSrc/*PCSrc_branch | PCSrc_jump*/),
         //.Jump_IDEX(Jump_IDEX),
         //-------------------------------------------------------------------------------//
         //--------------------EPC------------------------------//
@@ -188,7 +187,7 @@ IFID IFID(
         //When fetch stall and memory stall happen at same time,
         //don't flush the IFID registers, let data_mem_stall cover inst_mem_stall
         //----------------------------------------------------------------------------------//
-        .rst(rst | /*PCSrc*/(PCSrc_branch | PCSrc_jump) 
+        .rst(rst | PCSrc/*(PCSrc_branch | PCSrc_jump)*/ 
                  | inst_mem_err | data_mem_err 
                  | (inst_mem_stall & ~data_mem_stall) | (PCSrc_temp & ~inst_mem_stall) /*| ~inst_mem_done*/),  
 
@@ -229,8 +228,6 @@ decode decode(
         .MemRead(MemRead),
         .MemWrite(MemWrite),            
         .RegWrite_out(RegWrite),                //Reg write enable signal
-        .reg_to_pc(reg_to_pc),
-        .pc_to_reg(pc_to_reg),
         .ALUOp(ALUOp),
         .ALUSrc(ALUSrc),
         .ALU_invA(ALU_invA),
@@ -243,14 +240,18 @@ decode decode(
         //.R_format(R_format),
         //.I_format(I_format),
         //----------------------------------Branch/Jump----------------------------------//
+        .reg_to_pc(reg_to_pc),
+        .pc_to_reg(pc_to_reg),
         .pcAdd2(pcAdd2_IFID),           //for branch/jump decision
         .forwardA_MEMID(forwardA_MEMID),
         .forwardB_MEMID(forwardB_MEMID),
         //.Jump(Jump),
-        .Branch(Branch),
-        .jump_pc(jump_pc), 
+        //.Branch(Branch),
+        //.jump_pc(jump_pc), 
         //.branch_pc(branch_pc),
-        .PCSrc_jump(PCSrc_jump)
+        .branch_jump_pc(branch_jump_pc),
+        //.PCSrc_jump(PCSrc_jump)
+        .PCSrc(PCSrc)
         //-------------------------------------------------------------------------------//
 );
 
@@ -259,12 +260,13 @@ IDEX IDEX(
         .clk(clk), 
         .rst(rst | (stall & ~data_mem_stall) 
                         | data_mem_err 
-                        | (PCSrc_temp & ~inst_mem_stall)),     //When stall the decode stage, while mem stall is not happening
-                                                        //rst the IDEX registers, stop instruction propagate through
-                                                        //(PCSrc_temp & ~inst_mem_stall) is the last change help me pass
-                                                        //the last relax-pass in test
+                        /*| (PCSrc_temp & ~inst_mem_stall)*/),     
+                                                                //When stall the decode stage, while mem stall is not happening
+                                                                //rst the IDEX registers, stop instruction propagate through
+                                                                //(PCSrc_temp & ~inst_mem_stall) is the last change help me pass
+                                                                //the last relax-pass in test
         //When branch is taken, we flush the instruction by rst IF/ID and ID/EX 
-        .PCSrc(PCSrc_branch),                           
+        //.PCSrc(PCSrc_branch),                           
         
         //if halt happened in later stage, stop the IDEX, which means rst it
         //but we don't want to rst the Halt itself from propagating through the next stage
@@ -289,14 +291,16 @@ IDEX IDEX(
         .RegisterRd(RegisterRd),                //3-bit
         .RegisterRs(RegisterRs),                //3-bit
         .RegisterRt(RegisterRt),                //3-bit
+        //----------------------------------Branch/Jump----------------------------------//
         //.Jump(Jump),
-        .Branch(Branch),
+        //.Branch(Branch),
+        .reg_to_pc(reg_to_pc),
+        .pc_to_reg(pc_to_reg),                  //For JAL, JALR
+        //-------------------------------------------------------------------------------//
         .MemtoReg(MemtoReg),
         .MemRead(MemRead),
         .MemWrite(MemWrite),
         .RegWrite(RegWrite),
-        .reg_to_pc(reg_to_pc),
-        .pc_to_reg(pc_to_reg),
         .ALUOp(ALUOp),                                  //4-bit
         .ALUSrc(ALUSrc),
         .ALU_invA(ALU_invA),
@@ -317,14 +321,16 @@ IDEX IDEX(
         .RegisterRd_IDEX(RegisterRd_IDEX),
         .RegisterRs_IDEX(RegisterRs_IDEX),
         .RegisterRt_IDEX(RegisterRt_IDEX),
+        //----------------------------------Branch/Jump----------------------------------//
         //.Jump_IDEX(Jump_IDEX),
-        .Branch_IDEX(Branch_IDEX),
+        //.Branch_IDEX(Branch_IDEX),
+        .reg_to_pc_IDEX(reg_to_pc_IDEX),
+        .pc_to_reg_IDEX(pc_to_reg_IDEX),        //For JAL, JALR
+        //-------------------------------------------------------------------------------//
         .MemtoReg_IDEX(MemtoReg_IDEX),
         .MemRead_IDEX(MemRead_IDEX),
         .MemWrite_IDEX(MemWrite_IDEX),
         .RegWrite_IDEX(RegWrite_IDEX),
-        .reg_to_pc_IDEX(reg_to_pc_IDEX),
-        .pc_to_reg_IDEX(pc_to_reg_IDEX),
         .ALUOp_IDEX(ALUOp_IDEX),
         .ALUSrc_IDEX(ALUSrc_IDEX),
         .ALU_invA_IDEX(ALU_invA_IDEX),
@@ -338,17 +344,11 @@ IDEX IDEX(
 
 execute execute(
         //Outputs
-        //.branch_jump_pc(branch_jump_pc),        //Don't need pipeline for this signal?
-        .branch_pc(branch_pc),
         .ALU_Out(ALU_Out),
-        //.PCSrc(PCSrc),
-        .PCSrc_branch(PCSrc_branch),
         .ALU_Zero(ALU_Zero),                   //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE? Seems we do not need ALU_Zero, therefore let it float
         .ALU_Ofl(ALU_Ofl),                     //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
         .memWriteData(memWriteData_EX),
         //Inputs
-        .reg_to_pc(reg_to_pc_IDEX),
-        .pcAdd2(pcAdd2_IDEX),
         .instruction(instruction_IDEX),
         .read1Data(read1Data_IDEX),
         .read2Data(read2Data_IDEX),
@@ -359,8 +359,16 @@ execute execute(
         .ALU_invB(ALU_invB_IDEX),
         .ALU_sign(ALU_sign),                    //DO WE NEED THIS SIGNAL? HOW TO CONNECT WITH OTHER MODULE?
         .extend_output(extend_output_IDEX),
-        .Branch(Branch_IDEX),
+        //----------------------------------Branch/Jump----------------------------------//
+        //.branch_jump_pc(branch_jump_pc),        //Don't need pipeline for this signal?
+        //.branch_pc(branch_pc),
+        //.PCSrc(PCSrc),
+        //.PCSrc_branch(PCSrc_branch),
+        //.pcAdd2(pcAdd2_IDEX),
+        //.reg_to_pc(reg_to_pc_IDEX),
+        //.Branch(Branch_IDEX),
         //.Jump(Jump_IDEX),
+        //-------------------------------------------------------------------------------//
         //--------------hazard detection unit & forwarding -------//
         .forwardA(forwardA),
         .forwardB(forwardB),

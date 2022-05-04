@@ -1,9 +1,40 @@
-          // Test provided by Karu 
-0000 c102 lbi r1, 2
-0002 c304 lbi r3, 4
-          // should jump to PC=0x000a
-          // skip the 2 add instructions
-0004 2908 jr r1, 8 
-0006 d968 add r2, r1, r3
-0008 d96c add r3, r1, r3
-000a 0000 halt
+          // Author: Matt Sinclair
+          // CS/ECE 552 Spring '08
+          // Homework #4, Problem #7
+          //
+          // Filename: bgez_9.asm
+          // BGEZ assembly test
+          //
+          // This is a test of the bgez instruction.  This test should verify that a BGEZ
+          // works when there are multiple branches that are not taken in a row, followed
+          // by one that is taken.
+          
+0000 c1f6 LBI	r1, -10				// move -10 into r1
+          
+0002      .branch1:
+0002 7906 BGEZ	r1, .shouldNotBranchHere	// -10 !>= 0, so doesn't branch
+          					// all of these should execute
+0004 c200 LBI	r2, 0
+0006 4242 ADDI	r2, r2, 2
+0008 4242 ADDI	r2, r2, 2
+          
+000a      .shouldNotBranchHere:
+000a 7900 BGEZ	r1, .hereNext			// not taken
+          	
+000c      .hereNext:
+000c 7900 BGEZ	r1, .keepGoing			// not taken
+          	
+000e      .keepGoing:	
+000e 7900 BGEZ	r1, .stillHard			// not taken
+          	
+0010      .stillHard:
+0010 412b ADDI	r1, r1, 11			// r1 = 1 now
+0012 7904 BGEZ	r1, .finally			// this should be taken
+          	
+0014 c600 LBI	r6, 0				// not executed
+0016 0000 	HALT	
+          	
+0018      .finally:	
+0018 0000 	HALT				// end bgez_9.asm
+          					// r1 = 1 (base 10) now
+          					// r2 = 4 (base 10) = 0x4

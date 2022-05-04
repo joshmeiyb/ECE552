@@ -20,7 +20,7 @@ module IDEX(
     input [2:0] RegisterRs,
     input [2:0] RegisterRt,
     //input Jump,
-    input Branch,
+    //input Branch,
     input MemtoReg,
     input MemRead,
     input MemWrite,
@@ -32,7 +32,7 @@ module IDEX(
     input ALU_invA,
     input ALU_invB,
     input ALU_Cin,
-    input PCSrc,
+    //input PCSrc,
     input Halt_decode,
     // input SIIC,
     // input RTI,
@@ -55,7 +55,7 @@ module IDEX(
     output [2:0] RegisterRs_IDEX,
     output [2:0] RegisterRt_IDEX,
     //output Jump_IDEX,
-    output Branch_IDEX,
+    //output Branch_IDEX,
     output MemtoReg_IDEX,
     output MemRead_IDEX,
     output MemWrite_IDEX,
@@ -88,7 +88,7 @@ module IDEX(
 
     reg16 reg_read1Data (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en | (~en & fwdA_m_x) /*& (~data_mem_stall)*/), 
         .wdata(read1Data_temp), 
         .rdata(read1Data_IDEX)
@@ -96,7 +96,7 @@ module IDEX(
     
     reg16 reg_read2Data (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en | (~en & fwdB_m_x) /*& (~data_mem_stall)*/), 
         .wdata(read2Data_temp), 
         .rdata(read2Data_IDEX)
@@ -107,7 +107,7 @@ module IDEX(
     // halt must not in rst
     reg1 reg_err_decode(
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(err_decode), 
         .rdata(err_decode_IDEX)
@@ -115,7 +115,7 @@ module IDEX(
 
     reg1 reg_inst_mem_err_IFID(
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(inst_mem_err_IFID), 
         .rdata(inst_mem_err_IDEX)
@@ -123,14 +123,14 @@ module IDEX(
 
     // reg1 reg_I_format(
     //     .clk(clk), 
-    //     .rst(rst /*| Halt_decode*/ | PCSrc), 
+    //     .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
     //     .write(en), 
     //     .wdata(I_format), 
     //     .rdata(I_format_IDEX)
     // );
     // reg1 reg_R_format(
     //     .clk(clk), 
-    //     .rst(rst /*| Halt_decode*/ | PCSrc), 
+    //     .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
     //     .write(en), 
     //     .wdata(R_format), 
     //     .rdata(R_format_IDEX)
@@ -138,7 +138,7 @@ module IDEX(
 
     reg16 reg_instruction_IFID (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(instruction_IFID), 
         .rdata(instruction_IDEX)
@@ -156,7 +156,7 @@ module IDEX(
     
     reg16 reg_extend_output (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(extend_output), 
         .rdata(extend_output_IDEX)
@@ -165,7 +165,7 @@ module IDEX(
 
     reg3 reg_RegisterRd (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(RegisterRd), 
         .rdata(RegisterRd_IDEX)
@@ -173,14 +173,14 @@ module IDEX(
     
     reg3 reg_RegisterRs (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(RegisterRs), 
         .rdata(RegisterRs_IDEX)
     );
     reg3 reg_RegisterRt_from_decode (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(RegisterRt), 
         .rdata(RegisterRt_IDEX)
@@ -188,63 +188,63 @@ module IDEX(
 
     // reg1 reg_Jump (
     //     .clk(clk), 
-    //     .rst(rst /*| Halt_decode*/ | PCSrc), 
+    //     .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
     //     .write(en), 
     //     .wdata(Jump), 
     //     .rdata(Jump_IDEX)
     // );
-    reg1 reg_Branch (
-        .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
-        .write(en), 
-        .wdata(Branch), 
-        .rdata(Branch_IDEX)
-    );
+    // reg1 reg_Branch (
+    //     .clk(clk), 
+    //     .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
+    //     .write(en), 
+    //     .wdata(Branch), 
+    //     .rdata(Branch_IDEX)
+    // );
     reg1 reg_MemtoReg (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(MemtoReg), 
         .rdata(MemtoReg_IDEX)
     );
     reg1 reg_MemRead (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(MemRead), 
         .rdata(MemRead_IDEX)
     );
     reg1 reg_MemWrite (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(MemWrite), 
         .rdata(MemWrite_IDEX)
     );
     reg1 reg_RegWrite (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(RegWrite), 
         .rdata(RegWrite_IDEX)
     );
     reg1 reg_reg_to_pc (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(reg_to_pc), 
         .rdata(reg_to_pc_IDEX)
     );
     reg1 reg_pc_to_reg (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(pc_to_reg), 
         .rdata(pc_to_reg_IDEX)
     );
     reg4 reg_ALUOp (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(ALUOp), 
         .rdata(ALUOp_IDEX)
@@ -252,28 +252,28 @@ module IDEX(
     
     reg1 reg_ALUSrc (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(ALUSrc), 
         .rdata(ALUSrc_IDEX)
     );
     reg1 reg_ALU_invA (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(ALU_invA), 
         .rdata(ALU_invA_IDEX)
     );
     reg1 reg_ALU_invB (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(ALU_invB), 
         .rdata(ALU_invB_IDEX)
     );
     reg1 reg_ALU_Cin (
         .clk(clk), 
-        .rst(rst /*| Halt_decode*/ | PCSrc), 
+        .rst(rst /*| Halt_decode*/ /*| PCSrc*/), 
         .write(en), 
         .wdata(ALU_Cin), 
         .rdata(ALU_Cin_IDEX)
@@ -281,7 +281,7 @@ module IDEX(
     
     reg1 reg_Halt_decode (
         .clk(clk), 
-        .rst(rst | PCSrc), 
+        .rst(rst /*| PCSrc*/), 
         .write(en), 
         .wdata(Halt_decode), 
         .rdata(Halt_IDEX)
@@ -289,14 +289,14 @@ module IDEX(
     
     // reg1 reg_SIIC (
     //     .clk(clk), 
-    //     .rst(rst /*| Halt_decode*/ | PCSrc), 
+    //     .rst(rst /*| Halt_decode*/ | /*| PCSrc*/), 
     //     .write(en), 
     //     .wdata(SIIC), 
     //     .rdata(SIIC_IDEX)
     // );
     // reg1 reg_RTI (
     //     .clk(clk), 
-    //     .rst(rst /*| Halt_decode*/ | PCSrc), 
+    //     .rst(rst /*| Halt_decode*/ | /*| PCSrc*/), 
     //     .write(en), 
     //     .wdata(RTI), 
     //     .rdata(RTI_IDEX)

@@ -18,9 +18,9 @@ module fetch (
                output wire PCSrc_temp,
                //-------------------------------------------------------------------------------//
                //----------------------------------Branch/Jump----------------------------------//
-               /*input [15:0] branch_jump_pc,*/
-               input [15:0] branch_pc,
-               input [15:0] jump_pc,
+               input wire [15:0] branch_jump_pc,
+               //input [15:0] branch_pc,
+               //input [15:0] jump_pc,
                input PCSrc,                        //branch_jump_taken signal
                //-------------------------------------------------------------------------------//
                //--------------------EPC------------------------------//
@@ -46,8 +46,8 @@ module fetch (
    //P.S. NOT SURE THE EXACT FUNCTION OF "Jump_IDEX" here...Need to reconsider in the future tests
    //---------------------------------------------------------------------------------------------------------------------------//
    //Conflict case in phase 2.2 : if mem_stall and flush happen at the same time, hold the "PCSrc signal" and "branch_jump_pc"
-   wire [15:0] branch_jump_pc;
-   assign branch_jump_pc = branch_pc | jump_pc;
+   //wire [15:0] branch_jump_pc;
+   //assign branch_jump_pc = branch_pc | jump_pc;
    wire [15:0] branch_jump_pc_temp;
    
    reg1 branch_jump_flush_reg (.clk(clk), .rst(rst | ~inst_mem_stall), .write(inst_mem_stall & PCSrc), .wdata(PCSrc), .rdata(PCSrc_temp));

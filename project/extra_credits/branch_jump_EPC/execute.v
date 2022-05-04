@@ -22,14 +22,14 @@ module execute (
                input ALU_sign, 
                input [15:0] extend_output,
                //---------------branch jump decision to be moved to decode----------------------//
-               input Branch, 
-               //input Jump,
-               input reg_to_pc, 
-               input [15:0] pcAdd2, 
-               //output [15:0] branch_jump_pc,
-               output [15:0] branch_pc,
-               //output PCSrc,
-               output wire PCSrc_branch,
+               // input Branch, 
+               // //input Jump,
+               // input reg_to_pc, 
+               // input [15:0] pcAdd2, 
+               // //output [15:0] branch_jump_pc,
+               // output [15:0] branch_pc,
+               // //output PCSrc,
+               // output wire PCSrc_branch,
                //-------------------------------------------------------------------------------//
 
                //---------------------forwarding--------------------------//
@@ -46,38 +46,38 @@ module execute (
    // TODO: Your code here
 
    wire [15:0] InB_forward_noImm;
-   wire [15:0] pcAdd2_add_extend_output;
+   //wire [15:0] pcAdd2_add_extend_output;
    //assign branch_jump_pc = reg_to_pc ? ALU_Out : pcAdd2_add_extend_output;
-   assign branch_pc = reg_to_pc ? ALU_Out : pcAdd2_add_extend_output;
+   //assign branch_pc = reg_to_pc ? ALU_Out : pcAdd2_add_extend_output;
    //Must not shift left by 1bit
-   cla_16b PC_addr_adder2(.sum(pcAdd2_add_extend_output), .c_out(), .a(pcAdd2), .b(extend_output), .c_in(1'b0));
+   //cla_16b PC_addr_adder2(.sum(pcAdd2_add_extend_output), .c_out(), .a(pcAdd2), .b(extend_output), .c_in(1'b0));
 
    // //-------------------------------------Branch/Jump Decesion Unit--------------------------------------//
-   wire Branch_AND;
-   reg Branch_condition;
-   assign PCSrc = ( Branch_AND /*| Jump*/ );
-   assign PCSrc_branch = ( Branch_AND /*| Jump*/ );
-   assign Branch_AND = Branch & Branch_condition;
-   always @(*) begin
-      //Branch_condition = 1'b0;
-      case(instruction[15:11])
-         5'b01100 : begin //BEQZ
-            Branch_condition = ~|ALU_Out;    //ALU_Out is zero, ALU_Out is InAA (Oper == 4'b1111)
-         end
-         5'b01101 : begin //BNEZ
-            Branch_condition = |ALU_Out;     //ALU_Out is non-zero, ALU_Out is InAA (Oper == 4'b1111)
-         end
-         5'b01110 : begin //BLTZ
-            Branch_condition = ALU_Out[15];  //MSB of ALU_Out is 1, negative number
-         end
-         5'b01111 : begin //BGEZ
-            Branch_condition = ~ALU_Out[15];  //MSB of ALU_Out is 0, positive number
-         end
-         default : begin
-            Branch_condition = 1'b0;
-         end
-      endcase
-   end
+   // wire Branch_AND;
+   // reg Branch_condition;
+   // assign PCSrc = ( Branch_AND /*| Jump*/ );
+   // assign PCSrc_branch = ( Branch_AND /*| Jump*/ );
+   // assign Branch_AND = Branch & Branch_condition;
+   // always @(*) begin
+   //    //Branch_condition = 1'b0;
+   //    case(instruction[15:11])
+   //       5'b01100 : begin //BEQZ
+   //          Branch_condition = ~|ALU_Out;    //ALU_Out is zero, ALU_Out is InAA (Oper == 4'b1111)
+   //       end
+   //       5'b01101 : begin //BNEZ
+   //          Branch_condition = |ALU_Out;     //ALU_Out is non-zero, ALU_Out is InAA (Oper == 4'b1111)
+   //       end
+   //       5'b01110 : begin //BLTZ
+   //          Branch_condition = ALU_Out[15];  //MSB of ALU_Out is 1, negative number
+   //       end
+   //       5'b01111 : begin //BGEZ
+   //          Branch_condition = ~ALU_Out[15];  //MSB of ALU_Out is 0, positive number
+   //       end
+   //       default : begin
+   //          Branch_condition = 1'b0;
+   //       end
+   //    endcase
+   // end
    // //----------------------------------------------------------------------------------------------//
 
    //--------------------------------Forwarding Logic in Execution Stage--------------------------------------//

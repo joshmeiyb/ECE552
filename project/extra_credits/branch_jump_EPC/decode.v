@@ -36,8 +36,6 @@ module decode (
                output wire MemRead,
                output wire MemWrite,
                output wire RegWrite_out,              //Edited at pipeline design
-               output wire reg_to_pc,                 //MUX select signal in fetch stage
-               output wire pc_to_reg,                 //MUX select signal in writeback stage
                output wire [3:0] ALUOp,
                output wire ALUSrc,
                output wire ALU_invA, ALU_invB,        //connect to ALU ports invA, invB
@@ -49,78 +47,53 @@ module decode (
                //output wire R_format,
                //output wire I_format,
                //----------------------------------Branch/Jump----------------------------------//
+               output wire reg_to_pc,                 //For J, JR
+               output wire pc_to_reg,                 //For JAL, JALR
                input [15:0] pcAdd2,
                input forwardA_MEMID, 
                input forwardB_MEMID, 
-               //output wire Jump, 
-               output wire Branch,
-               output wire [15:0] jump_pc,
+               //output wire [15:0] jump_pc,
                //output wire [15:0] branch_pc,
-               output wire PCSrc_jump
+               output [15:0] branch_jump_pc,
+               output PCSrc
+               //output wire Jump, 
+               //output wire Branch,
+               
+               //output wire PCSrc_jump
                //-------------------------------------------------------------------------------//
                );
    /* TODO: Add appropriate inputs/outputs for your decode stage here*/
    // TODO: Your code here
 
    //--------------------EPC------------------------------//
-   //wire [15:0] EPC_out;
-   //wire [15:0] EPC_in;
-
-   //assign EPC_in = SIIC ? pcAdd2 : EPC_out;
    reg16 EPC_reg(.clk(clk), .rst(rst), .write(/*1'b1*/SIIC), .wdata(pcAdd2/*EPC_in*/), .rdata(EPC_out));
    //-----------------------------------------------------//
 
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////
    //-------------------------------------Branch/Jump Decesion Unit--------------------------------------//
+   /////////////////////////////////////////////////////////////////////////
    //J      PC <- PC + 2 + D(sign ext.)
    //JAL    PC <- PC + 2 + D(sign ext.)         R7 <- PC + 2,  
-
+   
+   /////////////////////////////////////////////////////////////////////////
+   //------------------THIS SHOULD BE SOLVED IN EXECUTE-------------------//
    //Need ALU
    //JR     PC <- Rs + I(sign ext.)
    //JALR   PC <- Rs + I(sign ext.)             R7 <- PC + 2, 
+   /////////////////////////////////////////////////////////////////////////
 
    wire Jump;
-   //wire Branch;
-   //wire PCSrc_jump;
+   wire Branch;
    wire [15:0] InA_forward, InB_forward;
-   wire [15:0] ALU_Out, jump_pc_new;
-
-   
+   wire [15:0] ALU_Out;
+   //wire [15:0] jump_pc_new;
+   //wire [15:0] branch_pc_new; 
+   wire [15:0] branch_jump_pc_new; 
    wire [15:0] jump_pc_addr_adder_input_a;
-
-   //For JR, JALR, PC <- Rs + I(sign ext.)
-   assign jump_pc_addr_adder_input_a = ( (instruction[15:11] == 5'b00101) | (instruction[15:11] == 5'b00111) ) ? ALU_Out : pcAdd2;
-
-   cla_16b jump_pc_addr_adder(.sum(jump_pc_new), .c_out(), .a(jump_pc_addr_adder_input_a/*pcAdd2*/), .b(extend_output), .c_in(1'b0));
-   assign jump_pc =  reg_to_pc   ?  ALU_Out : 
-                                    jump_pc_new;
-
-   assign PCSrc_jump = ( /*Branch_AND |*/ Jump );
-
-
-   // wire Branch_AND;
-   // reg Branch_condition;
-   // assign PCSrc = ( Branch_AND /*| Jump*/ );
-   // assign PCSrc_branch = ( Branch_AND /*| Jump*/ );
-   // assign Branch_AND = Branch & Branch_condition;
-   // always @(*) begin
-   //    case(instruction[15:11])
-   //       5'b01100 : begin //BEQZ
-   //          Branch_condition = ~|ALU_Out;    //ALU_Out is zero, ALU_Out is InAA (Oper == 4'b1111)
-   //       end
-   //       5'b01101 : begin //BNEZ
-   //          Branch_condition = |ALU_Out;     //ALU_Out is non-zero, ALU_Out is InAA (Oper == 4'b1111)
-   //       end
-   //       5'b01110 : begin //BLTZ
-   //          Branch_condition = ALU_Out[15];  //MSB of ALU_Out is 1, negative number
-   //       end
-   //       5'b01111 : begin //BGEZ
-   //          Branch_condition = ~ALU_Out[15];  //MSB of ALU_Out is 0, positive number
-   //       end
-   //       default : begin
-   //          Branch_condition = 1'b0;
-   //       end
-   //    endcase
-   // end
+   wire [15:0] branch_pc_addr_adder_input_a;
+   wire [15:0] pc_addr_adder_input_a;
+   wire Branch_AND;
+   reg Branch_condition;
 
    //MEM-ID forwarding
    assign InA_forward = (forwardA_MEMID) ?   writeback_data : read1Data;     
@@ -141,8 +114,41 @@ module decode (
                                     .Zero(),
                                     .Ofl());
 
-   //----------------------------------------------------------------------------------------------//
-   
+   // assign PCSrc_jump = ( /*Branch_AND |*/ Jump );
+   // assign PCSrc_branch = ( Branch_AND /*| Jump*/ );
+   assign Branch_AND = Branch & Branch_condition;
+   assign PCSrc = ( Branch_AND | Jump );
+   always @(*) begin
+      case(instruction[15:11])
+         5'b01100 : begin //BEQZ
+            Branch_condition = ~|ALU_Out;    //ALU_Out is zero, ALU_Out is InAA (Oper == 4'b1111)
+         end
+         5'b01101 : begin //BNEZ
+            Branch_condition = |ALU_Out;     //ALU_Out is non-zero, ALU_Out is InAA (Oper == 4'b1111)
+         end
+         5'b01110 : begin //BLTZ
+            Branch_condition = ALU_Out[15];  //MSB of ALU_Out is 1, negative number
+         end
+         5'b01111 : begin //BGEZ
+            Branch_condition = ~ALU_Out[15];  //MSB of ALU_Out is 0, positive number
+         end
+         default : begin
+            Branch_condition = 1'b0;
+         end
+      endcase
+   end
+
+   //For JR, JALR, PC <- Rs + I(sign ext.)
+   //assign jump_pc_addr_adder_input_a = ( (instruction[15:11] == 5'b00101) | (instruction[15:11] == 5'b00111) ) ? ALU_Out : pcAdd2;
+   //assign branch_pc_addr_adder_input_a = pcAdd2;
+   assign pc_addr_adder_input_a = ( (instruction[15:11] == 5'b00101) | (instruction[15:11] == 5'b00111) ) ? ALU_Out : pcAdd2;
+
+   cla_16b jump_pc_addr_adder(.sum(branch_jump_pc_new), .c_out(), .a(pc_addr_adder_input_a/*jump_pc_addr_adder_input_a*//*pcAdd2*/), .b(extend_output), .c_in(1'b0));
+   assign branch_jump_pc =  reg_to_pc ? ALU_Out : branch_jump_pc_new;
+   //----------------------------------------------------------------------------------------------------//
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
    wire control_err, regFile_err;
    assign err = control_err | regFile_err;
 
