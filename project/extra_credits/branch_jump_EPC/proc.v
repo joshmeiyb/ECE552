@@ -38,6 +38,7 @@ wire                          Halt_decode,      Halt_IDEX,           Halt_EXMEM,
 //----------------------------Have not implemented SIIC and RTI yet.---------------------------//
 wire                          SIIC;             //SIIC_IDEX,           SIIC_EXMEM,          SIIC_MEMWB;
 wire                          RTI;              //RTI_IDEX,            RTI_EXMEM;
+wire [15:0]                   EPC_out;
 /////////////////////////////////////////////////////////////////////////////////////////////////
 wire [15:0]    instruction,   instruction_IFID, instruction_IDEX,    instruction_EXMEM,   instruction_MEMWB; 
 wire [15:0]    pcAdd2,        pcAdd2_IFID,      pcAdd2_IDEX,         pcAdd2_EXMEM,        pcAdd2_MEMWB;
@@ -157,6 +158,7 @@ fetch fetch(
         //--------------------EPC------------------------------//
         .SIIC(SIIC),
         .RTI(RTI),
+        .EPC_out(EPC_out),
         //-----------------------------------------------------//
 
         .Halt_fetch(Halt_decode | data_mem_err),        //Halt will stop PC incrementing
@@ -237,6 +239,7 @@ decode decode(
         .Halt_decode(Halt_decode),              //CHECK IF HALT IS IMPLEMENTED CORRECT HERE!
         .SIIC(SIIC),
         .RTI(RTI),
+        .EPC_out(EPC_out),
         //.R_format(R_format),
         //.I_format(I_format),
         //----------------------------------Branch/Jump----------------------------------//

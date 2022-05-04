@@ -45,6 +45,7 @@ module decode (
                output wire Halt_decode,
                output wire SIIC,
                output wire RTI,
+               output wire [15:0] EPC_out,
                //output wire R_format,
                //output wire I_format,
                //----------------------------------Branch/Jump----------------------------------//
@@ -62,11 +63,11 @@ module decode (
    // TODO: Your code here
 
    //--------------------EPC------------------------------//
-   wire [15:0] EPC_out;
-   wire [15:0] EPC_in;
+   //wire [15:0] EPC_out;
+   //wire [15:0] EPC_in;
 
-   assign EPC_in = SIIC ? pcAdd2 : EPC_out;
-   reg16 EPC_reg(.clk(clk), .rst(rst), .write(1'b1), .wdata(EPC_in), .rdata(EPC_out));
+   //assign EPC_in = SIIC ? pcAdd2 : EPC_out;
+   reg16 EPC_reg(.clk(clk), .rst(rst), .write(/*1'b1*/SIIC), .wdata(pcAdd2/*EPC_in*/), .rdata(EPC_out));
    //-----------------------------------------------------//
 
    //-------------------------------------Branch/Jump Decesion Unit--------------------------------------//
@@ -83,9 +84,14 @@ module decode (
    wire [15:0] InA_forward, InB_forward;
    wire [15:0] ALU_Out, jump_pc_new;
 
-   cla_16b jump_pc_addr_adder(.sum(jump_pc_new), .c_out(), .a(pcAdd2), .b(extend_output), .c_in(1'b0));
-   assign jump_pc =  SIIC        ?  EPC_out :      //siic is special jump
-                     reg_to_pc   ?  ALU_Out : 
+   
+   wire [15:0] jump_pc_addr_adder_input_a;
+
+   //For JR, JALR, PC <- Rs + I(sign ext.)
+   assign jump_pc_addr_adder_input_a = ( (instruction[15:11] == 5'b00101) | (instruction[15:11] == 5'b00111) ) ? ALU_Out : pcAdd2;
+
+   cla_16b jump_pc_addr_adder(.sum(jump_pc_new), .c_out(), .a(jump_pc_addr_adder_input_a/*pcAdd2*/), .b(extend_output), .c_in(1'b0));
+   assign jump_pc =  reg_to_pc   ?  ALU_Out : 
                                     jump_pc_new;
 
    assign PCSrc_jump = ( /*Branch_AND |*/ Jump );
@@ -117,8 +123,11 @@ module decode (
    // end
 
    //MEM-ID forwarding
-   assign InA_forward = (forwardA_MEMID) ? writeback_data : read1Data;     
-   assign InB_forward = (forwardB_MEMID) ? writeback_data : read2Data;          
+   assign InA_forward = (forwardA_MEMID) ?   writeback_data : read1Data;     
+   
+   assign InB_forward = ALUSrc           ?   extend_output  :
+                        (forwardB_MEMID) ?   writeback_data : 
+                                             read2Data;          
    
    alu_branch_jump alu_branch_jump(
                                     .InA(InA_forward), 

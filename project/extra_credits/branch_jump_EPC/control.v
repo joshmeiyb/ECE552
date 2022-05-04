@@ -456,8 +456,9 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
             5'b00010: begin
             //extra credit, implement later
                 SIIC = 1'b1;
-                Jump = 1'b1;
+                //Jump = 1'b1;  //Don't jump while SIIC
                 ALUSrc = 1'b1;
+                ALUOp = 4'b1111;
                 pc_to_reg = 1'b1;
 
             end
@@ -467,7 +468,7 @@ module control( Opcode, four_mode, RegDst, Jump, Branch, ext_select, MemtoReg,
             //extra credit, implement later
                 RTI = 1'b1;
                 reg_to_pc = 1'b1;
-                ALUOp = 4'b1111;
+                ALUOp = 4'b1111;    //ALU A
             end
 
             default: begin

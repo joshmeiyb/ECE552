@@ -25,7 +25,8 @@ module fetch (
                //-------------------------------------------------------------------------------//
                //--------------------EPC------------------------------//
                input SIIC,
-               input RTI
+               input RTI,
+               input [15:0] EPC_out
                //-----------------------------------------------------//
                );
    /* TODO: Add appropriate inputs/outputs for your fetch stage here*/
@@ -80,7 +81,7 @@ module fetch (
    //--------------------EPC------------------------------//
    wire [15:0] pcNext;
    assign pcNext =   SIIC  ?  16'h0002 :
-                     RTI   ?  jump_pc  :
+                     RTI   ?  EPC_out  :
                               pcNew;
    //-----------------------------------------------------//
    
