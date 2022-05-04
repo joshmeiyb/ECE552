@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 d/u/j/m/jmei/ece552/project/tmp_testing/demo3/verilog
 valu
-Z1 !s110 1651450832
+Z1 !s110 1651451683
 !i10b 1
 !s100 HWPRzW9hYeTdW^QV60afO1
 IRClK<dl3^Jj;W:8=A;[TR3
@@ -23,7 +23,7 @@ Z3 OP;L;10.7c;67
 r1
 !s85 0
 31
-Z4 !s108 1651450832.000000
+Z4 !s108 1651451683.000000
 !s107 xor2.v|wb.v|stallmem.v|shifter.v|regFile.v|regFile_bypass.v|reg4.v|reg3.v|reg1.v|reg16.v|proc.v|proc_hier.v|proc_hier_pbench.v|nand2.v|MEMWB.v|memv.v|mem_system.v|mem_system_ref.v|mem_system_randbench.v|mem_system_perfbench.v|mem_system_hier.v|memory.v|memory2c.v|memory2c_align.v|memc.v|IFID.v|IDEX.v|hazard_detection_unit.v|fullAdder_1b.v|four_bank_mem.v|forwarding_unit.v|final_memory.v|fetch.v|EXMEM.v|execute.v|dff.v|decode.v|control.v|clkrst.v|cla_4b.v|cla_16b.v|cache.v|cache_controller.v|alu.v|
 Z5 !s90 +define+RANDSEED=3|-work|__work|alu.v|cache_controller.v|cache.v|cla_16b.v|cla_4b.v|clkrst.v|control.v|decode.v|dff.v|execute.v|EXMEM.v|fetch.v|final_memory.v|forwarding_unit.v|four_bank_mem.v|fullAdder_1b.v|hazard_detection_unit.v|IDEX.v|IFID.v|memc.v|memory2c_align.v|memory2c.v|memory.v|mem_system_hier.v|mem_system_perfbench.v|mem_system_randbench.v|mem_system_ref.v|mem_system.v|memv.v|MEMWB.v|nand2.v|proc_hier_pbench.v|proc_hier.v|proc.v|reg16.v|reg1.v|reg3.v|reg4.v|regFile_bypass.v|regFile.v|shifter.v|stallmem.v|wb.v|xor2.v|
 !i113 1
@@ -254,11 +254,11 @@ n@e@x@m@e@m
 vfetch
 R1
 !i10b 1
-!s100 jCm<F0nHdloU5[e6lEl7I1
-IFO>o<FnN_;>h]O4QJ5ZJ22
+!s100 Jd@fzT5VbA0`3>lAd^;_L1
+IIARH4@3E6_<_lP1QKodVf1
 R2
 R0
-w1651435174
+w1651451504
 8fetch.v
 Ffetch.v
 L0 7
@@ -565,11 +565,11 @@ R8
 vmemory
 R1
 !i10b 1
-!s100 ndRVmV7FOOB<dVc6FCQJV2
-IDWZfZ3R=J@cI3843US6QW0
+!s100 lFVhae41`V^WONTPVelX81
+IM9JkAWP>Y@_C;L<IE:ne01
 R2
 R0
-w1651447346
+w1651451532
 8memory.v
 Fmemory.v
 L0 8

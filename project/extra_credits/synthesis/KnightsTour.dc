@@ -1,0 +1,102 @@
+####################################
+#  Read in all the verilog files   #
+####################################
+read_file -format sverilog { ./charge.sv ./inert_intf.sv ./PID.sv ./RemoteComm.sv ./UART_rx.sv ./IR_intf.sv ./reset_synch.sv ./UART_tx.sv ./cmd_proc.sv ./MtrDrv.sv ./SPI_iNEMO4.sv ./TourLogic.sv ./UART.v ./inertial_integrator.sv ./PB_release.sv ./PWM11.sv ./SPI_mnrch.sv ./TourCmd.sv ./UART_wrapper.sv ./KnightsTour.sv }
+
+#############################
+#  Set the current design   #
+#############################
+set current_design KnightsTour
+link
+
+##################################################
+#  Define the clock and set do not mess with it  #
+##################################################
+create_clock -name "clk" -period 3 -waveform { 0 1 } { clk }
+set_dont_touch_network [find port clk] 
+
+#setup pointer that contains all inputs except clock#
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+
+###########################################
+#  Set input delay & drive on all inputs  #
+###########################################
+set_input_delay -clock clk 0.4 [copy_collection $prim_inputs]
+
+set_driving_cell -lib_cell NAND2X2_LVT -library saed32lvt_tt0p85v25c [copy_collection $prim_inputs]
+
+##tell it that rst_n strongly driven so that it will not buffer##
+set_drive 0.1 rst_n 
+
+############################################
+#  Set output delay & load on all outputs  #
+############################################
+set_output_delay -clock clk 0.4 [all_outputs]
+set_load 0.10 [all_outputs] 
+
+#############################################
+#  Set the Max Transition Time (for Hot E)  #
+#############################################
+set_max_transition 0.15 [current_design] 
+
+##########################################
+#  Set the Clock Uncertainty/Clock Skew  #
+##########################################
+set_clock_uncertainty 0.15 clk 
+
+#####################################
+#  Set the correct wire load model  #
+#####################################
+set_wire_load_model -name 16000 -library saed32lvt_tt0p85v25c
+
+#######################################
+#  Compile design for the first time  #
+#######################################
+compile -map_effort medium
+
+####################
+#  Flatten design  #
+####################
+ungroup -all -flatten 
+
+##############################
+#  Compile the design again  #
+##############################
+compile -map_effort medium 
+
+##################
+#  Check design  #
+##################
+check_design 
+
+####################
+#  Fix Hold Times  #
+####################
+set_fix_hold clk
+
+##############################
+#  Compile the design again  #
+##############################
+compile -map_effort medium 
+
+########################################
+#  Produce a min and max delay report  #
+########################################
+report_timing -delay min > min_delay.rpt
+
+report_timing -delay max > max_delay.rpt
+
+############################
+#  Produce an area report  #
+############################
+report_area > area.rpt
+
+####################################
+#  Write out a gate level netlist  #
+####################################
+write -format verilog KnightsTour -output KnightsTour.vg
+
+##########################
+#  Write out SDC report  #
+##########################
+write_sdc KnightsTour.sdc  

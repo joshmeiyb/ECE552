@@ -1,0 +1,1630 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 20
+Design : proc
+Version: Q-2019.12-SP3
+Date   : Mon May  2 21:54:51 2022
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch/Instruction_Memory/c1/mem_dr/mem_reg<10><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U143/Y (NAND3X1)
+                                                          0.02       0.23 f
+  fetch/Instruction_Memory/cache_controller/U131/Y (AND2X2)
+                                                          0.05       0.28 f
+  fetch/Instruction_Memory/cache_controller/U132/Y (INVX8)
+                                                          0.02       0.29 r
+  fetch/Instruction_Memory/cache_controller/comp (cache_controller_1)
+                                                          0.00       0.29 r
+  fetch/Instruction_Memory/c1/comp (cache_cache_id2_1)
+                                                          0.00       0.29 r
+  fetch/Instruction_Memory/c1/U128/Y (INVX1)              0.01       0.31 f
+  fetch/Instruction_Memory/c1/U25/Y (AND2X2)              0.04       0.35 f
+  fetch/Instruction_Memory/c1/U134/Y (NAND2X1)            0.02       0.37 r
+  fetch/Instruction_Memory/c1/U117/Y (INVX1)              0.03       0.40 f
+  fetch/Instruction_Memory/c1/mem_tg/write (memc_Size5_2)
+                                                          0.00       0.40 f
+  fetch/Instruction_Memory/c1/mem_tg/U547/Y (INVX1)       0.00       0.40 r
+  fetch/Instruction_Memory/c1/mem_tg/U456/Y (AND2X2)      0.04       0.44 r
+  fetch/Instruction_Memory/c1/mem_tg/U457/Y (INVX1)       0.02       0.45 f
+  fetch/Instruction_Memory/c1/mem_tg/U545/Y (INVX1)       0.01       0.46 r
+  fetch/Instruction_Memory/c1/mem_tg/U728/Y (AND2X2)      0.04       0.50 r
+  fetch/Instruction_Memory/c1/mem_tg/data_out<0> (memc_Size5_2)
+                                                          0.00       0.50 r
+  fetch/Instruction_Memory/c1/U79/Y (XNOR2X1)             0.03       0.53 f
+  fetch/Instruction_Memory/c1/U83/Y (NOR3X1)              0.03       0.56 r
+  fetch/Instruction_Memory/c1/U84/Y (INVX2)               0.02       0.58 f
+  fetch/Instruction_Memory/c1/U136/Y (NOR3X1)             0.02       0.61 r
+  fetch/Instruction_Memory/c1/U3/Y (AND2X2)               0.04       0.64 r
+  fetch/Instruction_Memory/c1/U100/Y (INVX1)              0.02       0.66 f
+  fetch/Instruction_Memory/c1/U137/Y (OAI21X1)            0.04       0.70 r
+  fetch/Instruction_Memory/c1/mem_dr/write (memc_Size1_2)
+                                                          0.00       0.70 r
+  fetch/Instruction_Memory/c1/mem_dr/U9/Y (INVX1)         0.03       0.74 f
+  fetch/Instruction_Memory/c1/mem_dr/U112/Y (NOR3X1)      0.02       0.76 r
+  fetch/Instruction_Memory/c1/mem_dr/U114/Y (AND2X2)      0.05       0.81 r
+  fetch/Instruction_Memory/c1/mem_dr/U137/Y (NAND3X1)     0.02       0.83 f
+  fetch/Instruction_Memory/c1/mem_dr/U15/Y (BUFX2)        0.05       0.88 f
+  fetch/Instruction_Memory/c1/mem_dr/U142/Y (OAI21X1)     0.04       0.92 r
+  fetch/Instruction_Memory/c1/mem_dr/U143/Y (OAI21X1)     0.02       0.94 f
+  fetch/Instruction_Memory/c1/mem_dr/mem_reg<10><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch/Instruction_Memory/c1/mem_dr/mem_reg<10><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch/Instruction_Memory/c1/mem_dr/mem_reg<11><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U143/Y (NAND3X1)
+                                                          0.02       0.23 f
+  fetch/Instruction_Memory/cache_controller/U131/Y (AND2X2)
+                                                          0.05       0.28 f
+  fetch/Instruction_Memory/cache_controller/U132/Y (INVX8)
+                                                          0.02       0.29 r
+  fetch/Instruction_Memory/cache_controller/comp (cache_controller_1)
+                                                          0.00       0.29 r
+  fetch/Instruction_Memory/c1/comp (cache_cache_id2_1)
+                                                          0.00       0.29 r
+  fetch/Instruction_Memory/c1/U128/Y (INVX1)              0.01       0.31 f
+  fetch/Instruction_Memory/c1/U25/Y (AND2X2)              0.04       0.35 f
+  fetch/Instruction_Memory/c1/U134/Y (NAND2X1)            0.02       0.37 r
+  fetch/Instruction_Memory/c1/U117/Y (INVX1)              0.03       0.40 f
+  fetch/Instruction_Memory/c1/mem_tg/write (memc_Size5_2)
+                                                          0.00       0.40 f
+  fetch/Instruction_Memory/c1/mem_tg/U547/Y (INVX1)       0.00       0.40 r
+  fetch/Instruction_Memory/c1/mem_tg/U456/Y (AND2X2)      0.04       0.44 r
+  fetch/Instruction_Memory/c1/mem_tg/U457/Y (INVX1)       0.02       0.45 f
+  fetch/Instruction_Memory/c1/mem_tg/U545/Y (INVX1)       0.01       0.46 r
+  fetch/Instruction_Memory/c1/mem_tg/U728/Y (AND2X2)      0.04       0.50 r
+  fetch/Instruction_Memory/c1/mem_tg/data_out<0> (memc_Size5_2)
+                                                          0.00       0.50 r
+  fetch/Instruction_Memory/c1/U79/Y (XNOR2X1)             0.03       0.53 f
+  fetch/Instruction_Memory/c1/U83/Y (NOR3X1)              0.03       0.56 r
+  fetch/Instruction_Memory/c1/U84/Y (INVX2)               0.02       0.58 f
+  fetch/Instruction_Memory/c1/U136/Y (NOR3X1)             0.02       0.61 r
+  fetch/Instruction_Memory/c1/U3/Y (AND2X2)               0.04       0.64 r
+  fetch/Instruction_Memory/c1/U100/Y (INVX1)              0.02       0.66 f
+  fetch/Instruction_Memory/c1/U137/Y (OAI21X1)            0.04       0.70 r
+  fetch/Instruction_Memory/c1/mem_dr/write (memc_Size1_2)
+                                                          0.00       0.70 r
+  fetch/Instruction_Memory/c1/mem_dr/U9/Y (INVX1)         0.03       0.74 f
+  fetch/Instruction_Memory/c1/mem_dr/U112/Y (NOR3X1)      0.02       0.76 r
+  fetch/Instruction_Memory/c1/mem_dr/U114/Y (AND2X2)      0.05       0.81 r
+  fetch/Instruction_Memory/c1/mem_dr/U137/Y (NAND3X1)     0.02       0.83 f
+  fetch/Instruction_Memory/c1/mem_dr/U15/Y (BUFX2)        0.05       0.88 f
+  fetch/Instruction_Memory/c1/mem_dr/U144/Y (OAI21X1)     0.04       0.92 r
+  fetch/Instruction_Memory/c1/mem_dr/U145/Y (OAI21X1)     0.02       0.94 f
+  fetch/Instruction_Memory/c1/mem_dr/mem_reg<11><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch/Instruction_Memory/c1/mem_dr/mem_reg<11><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: memory/pcCurrent_dff_reg/bit[3]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: memory/Data_Memory/cache_controller/statereg[1]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memory/pcCurrent_dff_reg/bit[3]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  memory/pcCurrent_dff_reg/bit[3]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  memory/pcCurrent_dff_reg/bit[3]/q (dff_830)             0.00       0.11 f
+  memory/pcCurrent_dff_reg/rdata<3> (reg16_19)            0.00       0.11 f
+  memory/Data_Memory/Addr<3> (mem_system_0)               0.00       0.11 f
+  memory/Data_Memory/c0/index<0> (cache_cache_id0_0)      0.00       0.11 f
+  memory/Data_Memory/c0/U86/Y (INVX1)                     0.01       0.12 r
+  memory/Data_Memory/c0/U87/Y (INVX1)                     0.02       0.14 f
+  memory/Data_Memory/c0/mem_vl/addr<0> (memv_1)           0.00       0.14 f
+  memory/Data_Memory/c0/mem_vl/U686/Y (INVX4)             0.03       0.16 r
+  memory/Data_Memory/c0/mem_vl/U895/Y (INVX8)             0.03       0.19 f
+  memory/Data_Memory/c0/mem_vl/U639/Y (AND2X2)            0.04       0.23 f
+  memory/Data_Memory/c0/mem_vl/U1182/Y (NAND2X1)          0.01       0.24 r
+  memory/Data_Memory/c0/mem_vl/U1208/Y (INVX1)            0.03       0.27 f
+  memory/Data_Memory/c0/mem_vl/U1207/Y (INVX2)            0.05       0.32 r
+  memory/Data_Memory/c0/mem_vl/U1035/Y (OR2X2)            0.05       0.37 r
+  memory/Data_Memory/c0/mem_vl/U1034/Y (OAI21X1)          0.02       0.38 f
+  memory/Data_Memory/c0/mem_vl/U1031/Y (NOR3X1)           0.05       0.43 r
+  memory/Data_Memory/c0/mem_vl/U1018/Y (AOI22X1)          0.04       0.47 f
+  memory/Data_Memory/c0/mem_vl/U689/Y (AND2X2)            0.04       0.51 f
+  memory/Data_Memory/c0/mem_vl/U690/Y (INVX1)             0.00       0.51 r
+  memory/Data_Memory/c0/mem_vl/U983/Y (MUX2X1)            0.02       0.53 f
+  memory/Data_Memory/c0/mem_vl/U916/Y (MUX2X1)            0.05       0.58 r
+  memory/Data_Memory/c0/mem_vl/U915/Y (MUX2X1)            0.03       0.61 f
+  memory/Data_Memory/c0/mem_vl/U1214/Y (NOR3X1)           0.02       0.63 r
+  memory/Data_Memory/c0/mem_vl/data_out (memv_1)          0.00       0.63 r
+  memory/Data_Memory/c0/U88/Y (AND2X2)                    0.04       0.67 r
+  memory/Data_Memory/c0/valid (cache_cache_id0_0)         0.00       0.67 r
+  memory/Data_Memory/U42/Y (INVX1)                        0.02       0.69 f
+  memory/Data_Memory/U93/Y (AOI21X1)                      0.02       0.71 r
+  memory/Data_Memory/U53/Y (BUFX2)                        0.04       0.75 r
+  memory/Data_Memory/U95/Y (OAI21X1)                      0.02       0.77 f
+  memory/Data_Memory/U41/Y (MUX2X1)                       0.04       0.81 r
+  memory/Data_Memory/cache_controller/valid (cache_controller_0)
+                                                          0.00       0.81 r
+  memory/Data_Memory/cache_controller/U71/Y (AND2X2)      0.04       0.84 r
+  memory/Data_Memory/cache_controller/U80/Y (NOR2X1)      0.01       0.86 f
+  memory/Data_Memory/cache_controller/U79/Y (INVX1)       0.00       0.85 r
+  memory/Data_Memory/cache_controller/U173/Y (NAND2X1)
+                                                          0.01       0.86 f
+  memory/Data_Memory/cache_controller/U77/Y (INVX1)       0.01       0.87 r
+  memory/Data_Memory/cache_controller/U21/Y (INVX1)       0.01       0.88 f
+  memory/Data_Memory/cache_controller/U75/Y (OR2X2)       0.05       0.93 f
+  memory/Data_Memory/cache_controller/U76/Y (INVX1)       0.00       0.93 r
+  memory/Data_Memory/cache_controller/U176/Y (NAND3X1)
+                                                          0.01       0.93 f
+  memory/Data_Memory/cache_controller/statereg[1]/d (dff_591)
+                                                          0.00       0.93 f
+  memory/Data_Memory/cache_controller/statereg[1]/U3/Y (INVX1)
+                                                          0.00       0.94 r
+  memory/Data_Memory/cache_controller/statereg[1]/U4/Y (NOR2X1)
+                                                          0.01       0.95 f
+  memory/Data_Memory/cache_controller/statereg[1]/state_reg/D (DFFPOSX1)
+                                                          0.00       0.95 f
+  data arrival time                                                  0.95
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  memory/Data_Memory/cache_controller/statereg[1]/state_reg/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -0.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch/Instruction_Memory/c1/mem_dr/mem_reg<2><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U143/Y (NAND3X1)
+                                                          0.02       0.23 f
+  fetch/Instruction_Memory/cache_controller/U131/Y (AND2X2)
+                                                          0.05       0.28 f
+  fetch/Instruction_Memory/cache_controller/U132/Y (INVX8)
+                                                          0.02       0.29 r
+  fetch/Instruction_Memory/cache_controller/comp (cache_controller_1)
+                                                          0.00       0.29 r
+  fetch/Instruction_Memory/c1/comp (cache_cache_id2_1)
+                                                          0.00       0.29 r
+  fetch/Instruction_Memory/c1/U128/Y (INVX1)              0.01       0.31 f
+  fetch/Instruction_Memory/c1/U25/Y (AND2X2)              0.04       0.35 f
+  fetch/Instruction_Memory/c1/U134/Y (NAND2X1)            0.02       0.37 r
+  fetch/Instruction_Memory/c1/U117/Y (INVX1)              0.03       0.40 f
+  fetch/Instruction_Memory/c1/mem_tg/write (memc_Size5_2)
+                                                          0.00       0.40 f
+  fetch/Instruction_Memory/c1/mem_tg/U547/Y (INVX1)       0.00       0.40 r
+  fetch/Instruction_Memory/c1/mem_tg/U456/Y (AND2X2)      0.04       0.44 r
+  fetch/Instruction_Memory/c1/mem_tg/U457/Y (INVX1)       0.02       0.45 f
+  fetch/Instruction_Memory/c1/mem_tg/U545/Y (INVX1)       0.01       0.46 r
+  fetch/Instruction_Memory/c1/mem_tg/U728/Y (AND2X2)      0.04       0.50 r
+  fetch/Instruction_Memory/c1/mem_tg/data_out<0> (memc_Size5_2)
+                                                          0.00       0.50 r
+  fetch/Instruction_Memory/c1/U79/Y (XNOR2X1)             0.03       0.53 f
+  fetch/Instruction_Memory/c1/U83/Y (NOR3X1)              0.03       0.56 r
+  fetch/Instruction_Memory/c1/U84/Y (INVX2)               0.02       0.58 f
+  fetch/Instruction_Memory/c1/U136/Y (NOR3X1)             0.02       0.61 r
+  fetch/Instruction_Memory/c1/U3/Y (AND2X2)               0.04       0.64 r
+  fetch/Instruction_Memory/c1/U100/Y (INVX1)              0.02       0.66 f
+  fetch/Instruction_Memory/c1/U137/Y (OAI21X1)            0.04       0.70 r
+  fetch/Instruction_Memory/c1/mem_dr/write (memc_Size1_2)
+                                                          0.00       0.70 r
+  fetch/Instruction_Memory/c1/mem_dr/U9/Y (INVX1)         0.03       0.74 f
+  fetch/Instruction_Memory/c1/mem_dr/U112/Y (NOR3X1)      0.02       0.76 r
+  fetch/Instruction_Memory/c1/mem_dr/U114/Y (AND2X2)      0.05       0.81 r
+  fetch/Instruction_Memory/c1/mem_dr/U115/Y (NAND3X1)     0.02       0.83 f
+  fetch/Instruction_Memory/c1/mem_dr/U14/Y (BUFX2)        0.05       0.88 f
+  fetch/Instruction_Memory/c1/mem_dr/U122/Y (OAI21X1)     0.04       0.92 r
+  fetch/Instruction_Memory/c1/mem_dr/U123/Y (OAI21X1)     0.02       0.94 f
+  fetch/Instruction_Memory/c1/mem_dr/mem_reg<2><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch/Instruction_Memory/c1/mem_dr/mem_reg<2><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch/Instruction_Memory/c1/mem_dr/mem_reg<3><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U143/Y (NAND3X1)
+                                                          0.02       0.23 f
+  fetch/Instruction_Memory/cache_controller/U131/Y (AND2X2)
+                                                          0.05       0.28 f
+  fetch/Instruction_Memory/cache_controller/U132/Y (INVX8)
+                                                          0.02       0.29 r
+  fetch/Instruction_Memory/cache_controller/comp (cache_controller_1)
+                                                          0.00       0.29 r
+  fetch/Instruction_Memory/c1/comp (cache_cache_id2_1)
+                                                          0.00       0.29 r
+  fetch/Instruction_Memory/c1/U128/Y (INVX1)              0.01       0.31 f
+  fetch/Instruction_Memory/c1/U25/Y (AND2X2)              0.04       0.35 f
+  fetch/Instruction_Memory/c1/U134/Y (NAND2X1)            0.02       0.37 r
+  fetch/Instruction_Memory/c1/U117/Y (INVX1)              0.03       0.40 f
+  fetch/Instruction_Memory/c1/mem_tg/write (memc_Size5_2)
+                                                          0.00       0.40 f
+  fetch/Instruction_Memory/c1/mem_tg/U547/Y (INVX1)       0.00       0.40 r
+  fetch/Instruction_Memory/c1/mem_tg/U456/Y (AND2X2)      0.04       0.44 r
+  fetch/Instruction_Memory/c1/mem_tg/U457/Y (INVX1)       0.02       0.45 f
+  fetch/Instruction_Memory/c1/mem_tg/U545/Y (INVX1)       0.01       0.46 r
+  fetch/Instruction_Memory/c1/mem_tg/U728/Y (AND2X2)      0.04       0.50 r
+  fetch/Instruction_Memory/c1/mem_tg/data_out<0> (memc_Size5_2)
+                                                          0.00       0.50 r
+  fetch/Instruction_Memory/c1/U79/Y (XNOR2X1)             0.03       0.53 f
+  fetch/Instruction_Memory/c1/U83/Y (NOR3X1)              0.03       0.56 r
+  fetch/Instruction_Memory/c1/U84/Y (INVX2)               0.02       0.58 f
+  fetch/Instruction_Memory/c1/U136/Y (NOR3X1)             0.02       0.61 r
+  fetch/Instruction_Memory/c1/U3/Y (AND2X2)               0.04       0.64 r
+  fetch/Instruction_Memory/c1/U100/Y (INVX1)              0.02       0.66 f
+  fetch/Instruction_Memory/c1/U137/Y (OAI21X1)            0.04       0.70 r
+  fetch/Instruction_Memory/c1/mem_dr/write (memc_Size1_2)
+                                                          0.00       0.70 r
+  fetch/Instruction_Memory/c1/mem_dr/U9/Y (INVX1)         0.03       0.74 f
+  fetch/Instruction_Memory/c1/mem_dr/U112/Y (NOR3X1)      0.02       0.76 r
+  fetch/Instruction_Memory/c1/mem_dr/U114/Y (AND2X2)      0.05       0.81 r
+  fetch/Instruction_Memory/c1/mem_dr/U115/Y (NAND3X1)     0.02       0.83 f
+  fetch/Instruction_Memory/c1/mem_dr/U14/Y (BUFX2)        0.05       0.88 f
+  fetch/Instruction_Memory/c1/mem_dr/U125/Y (OAI21X1)     0.04       0.92 r
+  fetch/Instruction_Memory/c1/mem_dr/U126/Y (OAI21X1)     0.02       0.94 f
+  fetch/Instruction_Memory/c1/mem_dr/mem_reg<3><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch/Instruction_Memory/c1/mem_dr/mem_reg<3><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: memory/pcCurrent_dff_reg/bit[5]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: memory/Data_Memory/c1/mem_dr/mem_reg<9><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  memory/pcCurrent_dff_reg/bit[5]/q (dff_832)             0.00       0.11 f
+  memory/pcCurrent_dff_reg/rdata<5> (reg16_19)            0.00       0.11 f
+  memory/Data_Memory/Addr<5> (mem_system_0)               0.00       0.11 f
+  memory/Data_Memory/c1/index<2> (cache_cache_id2_0)      0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/addr<2> (memc_Size5_0)     0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/U440/Y (BUFX2)             0.04       0.15 f
+  memory/Data_Memory/c1/mem_tg/U744/Y (NAND3X1)           0.04       0.19 r
+  memory/Data_Memory/c1/mem_tg/U525/Y (BUFX2)             0.05       0.24 r
+  memory/Data_Memory/c1/mem_tg/U161/Y (OR2X1)             0.05       0.28 r
+  memory/Data_Memory/c1/mem_tg/U475/Y (INVX1)             0.02       0.30 f
+  memory/Data_Memory/c1/mem_tg/U610/Y (NOR3X1)            0.05       0.35 r
+  memory/Data_Memory/c1/mem_tg/U402/Y (AND2X2)            0.03       0.39 r
+  memory/Data_Memory/c1/mem_tg/U448/Y (OR2X2)             0.04       0.42 r
+  memory/Data_Memory/c1/mem_tg/U449/Y (INVX1)             0.01       0.44 f
+  memory/Data_Memory/c1/mem_tg/U603/Y (NAND2X1)           0.01       0.45 r
+  memory/Data_Memory/c1/mem_tg/U763/Y (AND2X2)            0.04       0.49 r
+  memory/Data_Memory/c1/mem_tg/data_out<0> (memc_Size5_0)
+                                                          0.00       0.49 r
+  memory/Data_Memory/c1/U128/Y (XNOR2X1)                  0.04       0.53 r
+  memory/Data_Memory/c1/U130/Y (NAND3X1)                  0.02       0.54 f
+  memory/Data_Memory/c1/U96/Y (BUFX2)                     0.04       0.58 f
+  memory/Data_Memory/c1/U131/Y (NOR3X1)                   0.02       0.60 r
+  memory/Data_Memory/c1/U91/Y (AND2X2)                    0.03       0.63 r
+  memory/Data_Memory/c1/U94/Y (INVX1)                     0.02       0.65 f
+  memory/Data_Memory/c1/U132/Y (OAI21X1)                  0.05       0.70 r
+  memory/Data_Memory/c1/mem_dr/write (memc_Size1_0)       0.00       0.70 r
+  memory/Data_Memory/c1/mem_dr/U24/Y (INVX2)              0.03       0.72 f
+  memory/Data_Memory/c1/mem_dr/U23/Y (NOR3X1)             0.04       0.76 r
+  memory/Data_Memory/c1/mem_dr/U137/Y (AND2X2)            0.04       0.80 r
+  memory/Data_Memory/c1/mem_dr/U160/Y (NAND3X1)           0.01       0.81 f
+  memory/Data_Memory/c1/mem_dr/U27/Y (BUFX2)              0.04       0.85 f
+  memory/Data_Memory/c1/mem_dr/U78/Y (BUFX2)              0.04       0.89 f
+  memory/Data_Memory/c1/mem_dr/U163/Y (OAI21X1)           0.04       0.92 r
+  memory/Data_Memory/c1/mem_dr/U164/Y (OAI21X1)           0.02       0.94 f
+  memory/Data_Memory/c1/mem_dr/mem_reg<9><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  memory/Data_Memory/c1/mem_dr/mem_reg<9><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: memory/pcCurrent_dff_reg/bit[5]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: memory/Data_Memory/c1/mem_dr/mem_reg<10><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  memory/pcCurrent_dff_reg/bit[5]/q (dff_832)             0.00       0.11 f
+  memory/pcCurrent_dff_reg/rdata<5> (reg16_19)            0.00       0.11 f
+  memory/Data_Memory/Addr<5> (mem_system_0)               0.00       0.11 f
+  memory/Data_Memory/c1/index<2> (cache_cache_id2_0)      0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/addr<2> (memc_Size5_0)     0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/U440/Y (BUFX2)             0.04       0.15 f
+  memory/Data_Memory/c1/mem_tg/U744/Y (NAND3X1)           0.04       0.19 r
+  memory/Data_Memory/c1/mem_tg/U525/Y (BUFX2)             0.05       0.24 r
+  memory/Data_Memory/c1/mem_tg/U161/Y (OR2X1)             0.05       0.28 r
+  memory/Data_Memory/c1/mem_tg/U475/Y (INVX1)             0.02       0.30 f
+  memory/Data_Memory/c1/mem_tg/U610/Y (NOR3X1)            0.05       0.35 r
+  memory/Data_Memory/c1/mem_tg/U402/Y (AND2X2)            0.03       0.39 r
+  memory/Data_Memory/c1/mem_tg/U448/Y (OR2X2)             0.04       0.42 r
+  memory/Data_Memory/c1/mem_tg/U449/Y (INVX1)             0.01       0.44 f
+  memory/Data_Memory/c1/mem_tg/U603/Y (NAND2X1)           0.01       0.45 r
+  memory/Data_Memory/c1/mem_tg/U763/Y (AND2X2)            0.04       0.49 r
+  memory/Data_Memory/c1/mem_tg/data_out<0> (memc_Size5_0)
+                                                          0.00       0.49 r
+  memory/Data_Memory/c1/U128/Y (XNOR2X1)                  0.04       0.53 r
+  memory/Data_Memory/c1/U130/Y (NAND3X1)                  0.02       0.54 f
+  memory/Data_Memory/c1/U96/Y (BUFX2)                     0.04       0.58 f
+  memory/Data_Memory/c1/U131/Y (NOR3X1)                   0.02       0.60 r
+  memory/Data_Memory/c1/U91/Y (AND2X2)                    0.03       0.63 r
+  memory/Data_Memory/c1/U94/Y (INVX1)                     0.02       0.65 f
+  memory/Data_Memory/c1/U132/Y (OAI21X1)                  0.05       0.70 r
+  memory/Data_Memory/c1/mem_dr/write (memc_Size1_0)       0.00       0.70 r
+  memory/Data_Memory/c1/mem_dr/U24/Y (INVX2)              0.03       0.72 f
+  memory/Data_Memory/c1/mem_dr/U23/Y (NOR3X1)             0.04       0.76 r
+  memory/Data_Memory/c1/mem_dr/U137/Y (AND2X2)            0.04       0.80 r
+  memory/Data_Memory/c1/mem_dr/U160/Y (NAND3X1)           0.01       0.81 f
+  memory/Data_Memory/c1/mem_dr/U27/Y (BUFX2)              0.04       0.85 f
+  memory/Data_Memory/c1/mem_dr/U78/Y (BUFX2)              0.04       0.89 f
+  memory/Data_Memory/c1/mem_dr/U165/Y (OAI21X1)           0.04       0.92 r
+  memory/Data_Memory/c1/mem_dr/U166/Y (OAI21X1)           0.02       0.94 f
+  memory/Data_Memory/c1/mem_dr/mem_reg<10><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  memory/Data_Memory/c1/mem_dr/mem_reg<10><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: memory/pcCurrent_dff_reg/bit[5]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: memory/Data_Memory/c1/mem_dr/mem_reg<12><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  memory/pcCurrent_dff_reg/bit[5]/q (dff_832)             0.00       0.11 f
+  memory/pcCurrent_dff_reg/rdata<5> (reg16_19)            0.00       0.11 f
+  memory/Data_Memory/Addr<5> (mem_system_0)               0.00       0.11 f
+  memory/Data_Memory/c1/index<2> (cache_cache_id2_0)      0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/addr<2> (memc_Size5_0)     0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/U440/Y (BUFX2)             0.04       0.15 f
+  memory/Data_Memory/c1/mem_tg/U744/Y (NAND3X1)           0.04       0.19 r
+  memory/Data_Memory/c1/mem_tg/U525/Y (BUFX2)             0.05       0.24 r
+  memory/Data_Memory/c1/mem_tg/U161/Y (OR2X1)             0.05       0.28 r
+  memory/Data_Memory/c1/mem_tg/U475/Y (INVX1)             0.02       0.30 f
+  memory/Data_Memory/c1/mem_tg/U610/Y (NOR3X1)            0.05       0.35 r
+  memory/Data_Memory/c1/mem_tg/U402/Y (AND2X2)            0.03       0.39 r
+  memory/Data_Memory/c1/mem_tg/U448/Y (OR2X2)             0.04       0.42 r
+  memory/Data_Memory/c1/mem_tg/U449/Y (INVX1)             0.01       0.44 f
+  memory/Data_Memory/c1/mem_tg/U603/Y (NAND2X1)           0.01       0.45 r
+  memory/Data_Memory/c1/mem_tg/U763/Y (AND2X2)            0.04       0.49 r
+  memory/Data_Memory/c1/mem_tg/data_out<0> (memc_Size5_0)
+                                                          0.00       0.49 r
+  memory/Data_Memory/c1/U128/Y (XNOR2X1)                  0.04       0.53 r
+  memory/Data_Memory/c1/U130/Y (NAND3X1)                  0.02       0.54 f
+  memory/Data_Memory/c1/U96/Y (BUFX2)                     0.04       0.58 f
+  memory/Data_Memory/c1/U131/Y (NOR3X1)                   0.02       0.60 r
+  memory/Data_Memory/c1/U91/Y (AND2X2)                    0.03       0.63 r
+  memory/Data_Memory/c1/U94/Y (INVX1)                     0.02       0.65 f
+  memory/Data_Memory/c1/U132/Y (OAI21X1)                  0.05       0.70 r
+  memory/Data_Memory/c1/mem_dr/write (memc_Size1_0)       0.00       0.70 r
+  memory/Data_Memory/c1/mem_dr/U24/Y (INVX2)              0.03       0.72 f
+  memory/Data_Memory/c1/mem_dr/U23/Y (NOR3X1)             0.04       0.76 r
+  memory/Data_Memory/c1/mem_dr/U137/Y (AND2X2)            0.04       0.80 r
+  memory/Data_Memory/c1/mem_dr/U160/Y (NAND3X1)           0.01       0.81 f
+  memory/Data_Memory/c1/mem_dr/U27/Y (BUFX2)              0.04       0.85 f
+  memory/Data_Memory/c1/mem_dr/U15/Y (BUFX2)              0.04       0.89 f
+  memory/Data_Memory/c1/mem_dr/U169/Y (OAI21X1)           0.04       0.92 r
+  memory/Data_Memory/c1/mem_dr/U170/Y (OAI21X1)           0.02       0.94 f
+  memory/Data_Memory/c1/mem_dr/mem_reg<12><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  memory/Data_Memory/c1/mem_dr/mem_reg<12><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: memory/pcCurrent_dff_reg/bit[5]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: memory/Data_Memory/c1/mem_dr/mem_reg<13><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  memory/pcCurrent_dff_reg/bit[5]/q (dff_832)             0.00       0.11 f
+  memory/pcCurrent_dff_reg/rdata<5> (reg16_19)            0.00       0.11 f
+  memory/Data_Memory/Addr<5> (mem_system_0)               0.00       0.11 f
+  memory/Data_Memory/c1/index<2> (cache_cache_id2_0)      0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/addr<2> (memc_Size5_0)     0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/U440/Y (BUFX2)             0.04       0.15 f
+  memory/Data_Memory/c1/mem_tg/U744/Y (NAND3X1)           0.04       0.19 r
+  memory/Data_Memory/c1/mem_tg/U525/Y (BUFX2)             0.05       0.24 r
+  memory/Data_Memory/c1/mem_tg/U161/Y (OR2X1)             0.05       0.28 r
+  memory/Data_Memory/c1/mem_tg/U475/Y (INVX1)             0.02       0.30 f
+  memory/Data_Memory/c1/mem_tg/U610/Y (NOR3X1)            0.05       0.35 r
+  memory/Data_Memory/c1/mem_tg/U402/Y (AND2X2)            0.03       0.39 r
+  memory/Data_Memory/c1/mem_tg/U448/Y (OR2X2)             0.04       0.42 r
+  memory/Data_Memory/c1/mem_tg/U449/Y (INVX1)             0.01       0.44 f
+  memory/Data_Memory/c1/mem_tg/U603/Y (NAND2X1)           0.01       0.45 r
+  memory/Data_Memory/c1/mem_tg/U763/Y (AND2X2)            0.04       0.49 r
+  memory/Data_Memory/c1/mem_tg/data_out<0> (memc_Size5_0)
+                                                          0.00       0.49 r
+  memory/Data_Memory/c1/U128/Y (XNOR2X1)                  0.04       0.53 r
+  memory/Data_Memory/c1/U130/Y (NAND3X1)                  0.02       0.54 f
+  memory/Data_Memory/c1/U96/Y (BUFX2)                     0.04       0.58 f
+  memory/Data_Memory/c1/U131/Y (NOR3X1)                   0.02       0.60 r
+  memory/Data_Memory/c1/U91/Y (AND2X2)                    0.03       0.63 r
+  memory/Data_Memory/c1/U94/Y (INVX1)                     0.02       0.65 f
+  memory/Data_Memory/c1/U132/Y (OAI21X1)                  0.05       0.70 r
+  memory/Data_Memory/c1/mem_dr/write (memc_Size1_0)       0.00       0.70 r
+  memory/Data_Memory/c1/mem_dr/U24/Y (INVX2)              0.03       0.72 f
+  memory/Data_Memory/c1/mem_dr/U23/Y (NOR3X1)             0.04       0.76 r
+  memory/Data_Memory/c1/mem_dr/U137/Y (AND2X2)            0.04       0.80 r
+  memory/Data_Memory/c1/mem_dr/U160/Y (NAND3X1)           0.01       0.81 f
+  memory/Data_Memory/c1/mem_dr/U27/Y (BUFX2)              0.04       0.85 f
+  memory/Data_Memory/c1/mem_dr/U15/Y (BUFX2)              0.04       0.89 f
+  memory/Data_Memory/c1/mem_dr/U171/Y (OAI21X1)           0.04       0.92 r
+  memory/Data_Memory/c1/mem_dr/U172/Y (OAI21X1)           0.02       0.94 f
+  memory/Data_Memory/c1/mem_dr/mem_reg<13><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  memory/Data_Memory/c1/mem_dr/mem_reg<13><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: memory/pcCurrent_dff_reg/bit[5]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: memory/Data_Memory/c1/mem_dr/mem_reg<15><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  memory/pcCurrent_dff_reg/bit[5]/q (dff_832)             0.00       0.11 f
+  memory/pcCurrent_dff_reg/rdata<5> (reg16_19)            0.00       0.11 f
+  memory/Data_Memory/Addr<5> (mem_system_0)               0.00       0.11 f
+  memory/Data_Memory/c1/index<2> (cache_cache_id2_0)      0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/addr<2> (memc_Size5_0)     0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/U440/Y (BUFX2)             0.04       0.15 f
+  memory/Data_Memory/c1/mem_tg/U744/Y (NAND3X1)           0.04       0.19 r
+  memory/Data_Memory/c1/mem_tg/U525/Y (BUFX2)             0.05       0.24 r
+  memory/Data_Memory/c1/mem_tg/U161/Y (OR2X1)             0.05       0.28 r
+  memory/Data_Memory/c1/mem_tg/U475/Y (INVX1)             0.02       0.30 f
+  memory/Data_Memory/c1/mem_tg/U610/Y (NOR3X1)            0.05       0.35 r
+  memory/Data_Memory/c1/mem_tg/U402/Y (AND2X2)            0.03       0.39 r
+  memory/Data_Memory/c1/mem_tg/U448/Y (OR2X2)             0.04       0.42 r
+  memory/Data_Memory/c1/mem_tg/U449/Y (INVX1)             0.01       0.44 f
+  memory/Data_Memory/c1/mem_tg/U603/Y (NAND2X1)           0.01       0.45 r
+  memory/Data_Memory/c1/mem_tg/U763/Y (AND2X2)            0.04       0.49 r
+  memory/Data_Memory/c1/mem_tg/data_out<0> (memc_Size5_0)
+                                                          0.00       0.49 r
+  memory/Data_Memory/c1/U128/Y (XNOR2X1)                  0.04       0.53 r
+  memory/Data_Memory/c1/U130/Y (NAND3X1)                  0.02       0.54 f
+  memory/Data_Memory/c1/U96/Y (BUFX2)                     0.04       0.58 f
+  memory/Data_Memory/c1/U131/Y (NOR3X1)                   0.02       0.60 r
+  memory/Data_Memory/c1/U91/Y (AND2X2)                    0.03       0.63 r
+  memory/Data_Memory/c1/U94/Y (INVX1)                     0.02       0.65 f
+  memory/Data_Memory/c1/U132/Y (OAI21X1)                  0.05       0.70 r
+  memory/Data_Memory/c1/mem_dr/write (memc_Size1_0)       0.00       0.70 r
+  memory/Data_Memory/c1/mem_dr/U24/Y (INVX2)              0.03       0.72 f
+  memory/Data_Memory/c1/mem_dr/U23/Y (NOR3X1)             0.04       0.76 r
+  memory/Data_Memory/c1/mem_dr/U137/Y (AND2X2)            0.04       0.80 r
+  memory/Data_Memory/c1/mem_dr/U160/Y (NAND3X1)           0.01       0.81 f
+  memory/Data_Memory/c1/mem_dr/U27/Y (BUFX2)              0.04       0.85 f
+  memory/Data_Memory/c1/mem_dr/U15/Y (BUFX2)              0.04       0.89 f
+  memory/Data_Memory/c1/mem_dr/U175/Y (OAI21X1)           0.04       0.92 r
+  memory/Data_Memory/c1/mem_dr/U176/Y (OAI21X1)           0.02       0.94 f
+  memory/Data_Memory/c1/mem_dr/mem_reg<15><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  memory/Data_Memory/c1/mem_dr/mem_reg<15><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: memory/pcCurrent_dff_reg/bit[5]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: memory/Data_Memory/c1/mem_dr/mem_reg<8><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  memory/pcCurrent_dff_reg/bit[5]/q (dff_832)             0.00       0.11 f
+  memory/pcCurrent_dff_reg/rdata<5> (reg16_19)            0.00       0.11 f
+  memory/Data_Memory/Addr<5> (mem_system_0)               0.00       0.11 f
+  memory/Data_Memory/c1/index<2> (cache_cache_id2_0)      0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/addr<2> (memc_Size5_0)     0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/U440/Y (BUFX2)             0.04       0.15 f
+  memory/Data_Memory/c1/mem_tg/U744/Y (NAND3X1)           0.04       0.19 r
+  memory/Data_Memory/c1/mem_tg/U525/Y (BUFX2)             0.05       0.24 r
+  memory/Data_Memory/c1/mem_tg/U161/Y (OR2X1)             0.05       0.28 r
+  memory/Data_Memory/c1/mem_tg/U475/Y (INVX1)             0.02       0.30 f
+  memory/Data_Memory/c1/mem_tg/U610/Y (NOR3X1)            0.05       0.35 r
+  memory/Data_Memory/c1/mem_tg/U402/Y (AND2X2)            0.03       0.39 r
+  memory/Data_Memory/c1/mem_tg/U448/Y (OR2X2)             0.04       0.42 r
+  memory/Data_Memory/c1/mem_tg/U449/Y (INVX1)             0.01       0.44 f
+  memory/Data_Memory/c1/mem_tg/U603/Y (NAND2X1)           0.01       0.45 r
+  memory/Data_Memory/c1/mem_tg/U763/Y (AND2X2)            0.04       0.49 r
+  memory/Data_Memory/c1/mem_tg/data_out<0> (memc_Size5_0)
+                                                          0.00       0.49 r
+  memory/Data_Memory/c1/U128/Y (XNOR2X1)                  0.04       0.53 r
+  memory/Data_Memory/c1/U130/Y (NAND3X1)                  0.02       0.54 f
+  memory/Data_Memory/c1/U96/Y (BUFX2)                     0.04       0.58 f
+  memory/Data_Memory/c1/U131/Y (NOR3X1)                   0.02       0.60 r
+  memory/Data_Memory/c1/U91/Y (AND2X2)                    0.03       0.63 r
+  memory/Data_Memory/c1/U94/Y (INVX1)                     0.02       0.65 f
+  memory/Data_Memory/c1/U132/Y (OAI21X1)                  0.05       0.70 r
+  memory/Data_Memory/c1/mem_dr/write (memc_Size1_0)       0.00       0.70 r
+  memory/Data_Memory/c1/mem_dr/U24/Y (INVX2)              0.03       0.72 f
+  memory/Data_Memory/c1/mem_dr/U23/Y (NOR3X1)             0.04       0.76 r
+  memory/Data_Memory/c1/mem_dr/U137/Y (AND2X2)            0.04       0.80 r
+  memory/Data_Memory/c1/mem_dr/U160/Y (NAND3X1)           0.01       0.81 f
+  memory/Data_Memory/c1/mem_dr/U27/Y (BUFX2)              0.04       0.85 f
+  memory/Data_Memory/c1/mem_dr/U78/Y (BUFX2)              0.04       0.89 f
+  memory/Data_Memory/c1/mem_dr/U161/Y (OAI21X1)           0.04       0.92 r
+  memory/Data_Memory/c1/mem_dr/U162/Y (OAI21X1)           0.02       0.94 f
+  memory/Data_Memory/c1/mem_dr/mem_reg<8><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  memory/Data_Memory/c1/mem_dr/mem_reg<8><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/pcCurrent_dff_reg/bit[5]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch/Instruction_Memory/cache_controller/statereg[0]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/pcCurrent_dff_reg/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/pcCurrent_dff_reg/bit[5]/state_reg/Q (DFFPOSX1)
+                                                          0.07       0.07 r
+  fetch/pcCurrent_dff_reg/bit[5]/q (dff_1113)             0.00       0.07 r
+  fetch/pcCurrent_dff_reg/rdata<5> (reg16_34)             0.00       0.07 r
+  fetch/Instruction_Memory/Addr<5> (mem_system_1)         0.00       0.07 r
+  fetch/Instruction_Memory/c1/index<2> (cache_cache_id2_1)
+                                                          0.00       0.07 r
+  fetch/Instruction_Memory/c1/U126/Y (INVX4)              0.03       0.10 f
+  fetch/Instruction_Memory/c1/U132/Y (INVX8)              0.02       0.12 r
+  fetch/Instruction_Memory/c1/mem_vl/addr<2> (memv_2)     0.00       0.12 r
+  fetch/Instruction_Memory/c1/mem_vl/U881/Y (AND2X2)      0.03       0.15 r
+  fetch/Instruction_Memory/c1/mem_vl/U1639/Y (NAND2X1)
+                                                          0.01       0.17 f
+  fetch/Instruction_Memory/c1/mem_vl/U1174/Y (INVX1)      0.00       0.17 r
+  fetch/Instruction_Memory/c1/mem_vl/U1173/Y (INVX1)      0.02       0.19 f
+  fetch/Instruction_Memory/c1/mem_vl/U910/Y (INVX4)       0.02       0.21 r
+  fetch/Instruction_Memory/c1/mem_vl/U937/Y (INVX4)       0.03       0.25 f
+  fetch/Instruction_Memory/c1/mem_vl/U1555/Y (NOR2X1)     0.03       0.28 r
+  fetch/Instruction_Memory/c1/mem_vl/U913/Y (OR2X2)       0.05       0.32 r
+  fetch/Instruction_Memory/c1/mem_vl/U954/Y (NOR3X1)      0.02       0.35 f
+  fetch/Instruction_Memory/c1/mem_vl/U955/Y (INVX1)       0.01       0.35 r
+  fetch/Instruction_Memory/c1/mem_vl/U1076/Y (OR2X2)      0.03       0.39 r
+  fetch/Instruction_Memory/c1/mem_vl/U1077/Y (INVX1)      0.01       0.40 f
+  fetch/Instruction_Memory/c1/mem_vl/U1553/Y (AOI21X1)
+                                                          0.02       0.42 r
+  fetch/Instruction_Memory/c1/mem_vl/U1100/Y (AND2X2)     0.03       0.45 r
+  fetch/Instruction_Memory/c1/mem_vl/U1101/Y (INVX1)      0.02       0.47 f
+  fetch/Instruction_Memory/c1/mem_vl/U1523/Y (MUX2X1)     0.05       0.52 r
+  fetch/Instruction_Memory/c1/mem_vl/U1522/Y (MUX2X1)     0.03       0.55 f
+  fetch/Instruction_Memory/c1/mem_vl/U1381/Y (MUX2X1)     0.05       0.60 r
+  fetch/Instruction_Memory/c1/mem_vl/U1652/Y (NOR3X1)     0.03       0.63 f
+  fetch/Instruction_Memory/c1/mem_vl/data_out (memv_2)
+                                                          0.00       0.63 f
+  fetch/Instruction_Memory/c1/U138/Y (NAND3X1)            0.03       0.66 r
+  fetch/Instruction_Memory/c1/U120/Y (INVX1)              0.03       0.68 f
+  fetch/Instruction_Memory/c1/valid (cache_cache_id2_1)
+                                                          0.00       0.68 f
+  fetch/Instruction_Memory/U131/Y (AOI21X1)               0.03       0.71 r
+  fetch/Instruction_Memory/U50/Y (BUFX2)                  0.04       0.75 r
+  fetch/Instruction_Memory/U133/Y (OAI21X1)               0.02       0.78 f
+  fetch/Instruction_Memory/U122/Y (MUX2X1)                0.04       0.82 r
+  fetch/Instruction_Memory/cache_controller/valid (cache_controller_1)
+                                                          0.00       0.82 r
+  fetch/Instruction_Memory/cache_controller/U142/Y (NAND2X1)
+                                                          0.02       0.84 f
+  fetch/Instruction_Memory/cache_controller/U100/Y (INVX1)
+                                                          0.01       0.85 r
+  fetch/Instruction_Memory/cache_controller/U59/Y (NOR2X1)
+                                                          0.01       0.86 f
+  fetch/Instruction_Memory/cache_controller/U60/Y (INVX1)
+                                                          0.00       0.85 r
+  fetch/Instruction_Memory/cache_controller/U58/Y (NOR2X1)
+                                                          0.01       0.86 f
+  fetch/Instruction_Memory/cache_controller/U57/Y (INVX1)
+                                                          0.00       0.86 r
+  fetch/Instruction_Memory/cache_controller/U154/Y (NAND2X1)
+                                                          0.01       0.87 f
+  fetch/Instruction_Memory/cache_controller/U51/Y (INVX1)
+                                                          0.01       0.87 r
+  fetch/Instruction_Memory/cache_controller/U31/Y (INVX1)
+                                                          0.02       0.89 f
+  fetch/Instruction_Memory/cache_controller/U161/Y (NOR3X1)
+                                                          0.03       0.92 r
+  fetch/Instruction_Memory/cache_controller/U162/Y (NAND3X1)
+                                                          0.02       0.94 f
+  fetch/Instruction_Memory/cache_controller/statereg[0]/d (dff_401)
+                                                          0.00       0.94 f
+  fetch/Instruction_Memory/cache_controller/statereg[0]/U3/Y (INVX1)
+                                                          0.00       0.94 r
+  fetch/Instruction_Memory/cache_controller/statereg[0]/U4/Y (NOR2X1)
+                                                          0.01       0.95 f
+  fetch/Instruction_Memory/cache_controller/statereg[0]/state_reg/D (DFFPOSX1)
+                                                          0.00       0.95 f
+  data arrival time                                                  0.95
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch/Instruction_Memory/cache_controller/statereg[0]/state_reg/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -0.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: memory/pcCurrent_dff_reg/bit[5]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: memory/Data_Memory/c1/mem_dr/mem_reg<14><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  memory/pcCurrent_dff_reg/bit[5]/q (dff_832)             0.00       0.11 f
+  memory/pcCurrent_dff_reg/rdata<5> (reg16_19)            0.00       0.11 f
+  memory/Data_Memory/Addr<5> (mem_system_0)               0.00       0.11 f
+  memory/Data_Memory/c1/index<2> (cache_cache_id2_0)      0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/addr<2> (memc_Size5_0)     0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/U440/Y (BUFX2)             0.04       0.15 f
+  memory/Data_Memory/c1/mem_tg/U744/Y (NAND3X1)           0.04       0.19 r
+  memory/Data_Memory/c1/mem_tg/U525/Y (BUFX2)             0.05       0.24 r
+  memory/Data_Memory/c1/mem_tg/U161/Y (OR2X1)             0.05       0.28 r
+  memory/Data_Memory/c1/mem_tg/U475/Y (INVX1)             0.02       0.30 f
+  memory/Data_Memory/c1/mem_tg/U610/Y (NOR3X1)            0.05       0.35 r
+  memory/Data_Memory/c1/mem_tg/U402/Y (AND2X2)            0.03       0.39 r
+  memory/Data_Memory/c1/mem_tg/U448/Y (OR2X2)             0.04       0.42 r
+  memory/Data_Memory/c1/mem_tg/U449/Y (INVX1)             0.01       0.44 f
+  memory/Data_Memory/c1/mem_tg/U603/Y (NAND2X1)           0.01       0.45 r
+  memory/Data_Memory/c1/mem_tg/U763/Y (AND2X2)            0.04       0.49 r
+  memory/Data_Memory/c1/mem_tg/data_out<0> (memc_Size5_0)
+                                                          0.00       0.49 r
+  memory/Data_Memory/c1/U128/Y (XNOR2X1)                  0.03       0.52 f
+  memory/Data_Memory/c1/U130/Y (NAND3X1)                  0.03       0.55 r
+  memory/Data_Memory/c1/U96/Y (BUFX2)                     0.04       0.59 r
+  memory/Data_Memory/c1/U131/Y (NOR3X1)                   0.02       0.60 f
+  memory/Data_Memory/c1/U91/Y (AND2X2)                    0.04       0.64 f
+  memory/Data_Memory/c1/U94/Y (INVX1)                     0.00       0.64 r
+  memory/Data_Memory/c1/U132/Y (OAI21X1)                  0.02       0.66 f
+  memory/Data_Memory/c1/mem_dr/write (memc_Size1_0)       0.00       0.66 f
+  memory/Data_Memory/c1/mem_dr/U24/Y (INVX2)              0.02       0.68 r
+  memory/Data_Memory/c1/mem_dr/U23/Y (NOR3X1)             0.02       0.70 f
+  memory/Data_Memory/c1/mem_dr/U137/Y (AND2X2)            0.05       0.75 f
+  memory/Data_Memory/c1/mem_dr/U160/Y (NAND3X1)           0.03       0.77 r
+  memory/Data_Memory/c1/mem_dr/U27/Y (BUFX2)              0.04       0.81 r
+  memory/Data_Memory/c1/mem_dr/U21/Y (BUFX2)              0.04       0.85 r
+  memory/Data_Memory/c1/mem_dr/U85/Y (INVX1)              0.02       0.87 f
+  memory/Data_Memory/c1/mem_dr/U37/Y (AND2X2)             0.04       0.91 f
+  memory/Data_Memory/c1/mem_dr/U22/Y (INVX8)              0.02       0.93 r
+  memory/Data_Memory/c1/mem_dr/U174/Y (OAI21X1)           0.01       0.94 f
+  memory/Data_Memory/c1/mem_dr/mem_reg<14><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  memory/Data_Memory/c1/mem_dr/mem_reg<14><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: memory/pcCurrent_dff_reg/bit[5]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: memory/Data_Memory/c1/mem_dr/mem_reg<11><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  memory/pcCurrent_dff_reg/bit[5]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  memory/pcCurrent_dff_reg/bit[5]/q (dff_832)             0.00       0.11 f
+  memory/pcCurrent_dff_reg/rdata<5> (reg16_19)            0.00       0.11 f
+  memory/Data_Memory/Addr<5> (mem_system_0)               0.00       0.11 f
+  memory/Data_Memory/c1/index<2> (cache_cache_id2_0)      0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/addr<2> (memc_Size5_0)     0.00       0.11 f
+  memory/Data_Memory/c1/mem_tg/U440/Y (BUFX2)             0.04       0.15 f
+  memory/Data_Memory/c1/mem_tg/U744/Y (NAND3X1)           0.04       0.19 r
+  memory/Data_Memory/c1/mem_tg/U525/Y (BUFX2)             0.05       0.24 r
+  memory/Data_Memory/c1/mem_tg/U161/Y (OR2X1)             0.05       0.28 r
+  memory/Data_Memory/c1/mem_tg/U475/Y (INVX1)             0.02       0.30 f
+  memory/Data_Memory/c1/mem_tg/U610/Y (NOR3X1)            0.05       0.35 r
+  memory/Data_Memory/c1/mem_tg/U402/Y (AND2X2)            0.03       0.39 r
+  memory/Data_Memory/c1/mem_tg/U448/Y (OR2X2)             0.04       0.42 r
+  memory/Data_Memory/c1/mem_tg/U449/Y (INVX1)             0.01       0.44 f
+  memory/Data_Memory/c1/mem_tg/U603/Y (NAND2X1)           0.01       0.45 r
+  memory/Data_Memory/c1/mem_tg/U763/Y (AND2X2)            0.04       0.49 r
+  memory/Data_Memory/c1/mem_tg/data_out<0> (memc_Size5_0)
+                                                          0.00       0.49 r
+  memory/Data_Memory/c1/U128/Y (XNOR2X1)                  0.03       0.52 f
+  memory/Data_Memory/c1/U130/Y (NAND3X1)                  0.03       0.55 r
+  memory/Data_Memory/c1/U96/Y (BUFX2)                     0.04       0.59 r
+  memory/Data_Memory/c1/U131/Y (NOR3X1)                   0.02       0.60 f
+  memory/Data_Memory/c1/U91/Y (AND2X2)                    0.04       0.64 f
+  memory/Data_Memory/c1/U94/Y (INVX1)                     0.00       0.64 r
+  memory/Data_Memory/c1/U132/Y (OAI21X1)                  0.02       0.66 f
+  memory/Data_Memory/c1/mem_dr/write (memc_Size1_0)       0.00       0.66 f
+  memory/Data_Memory/c1/mem_dr/U24/Y (INVX2)              0.02       0.68 r
+  memory/Data_Memory/c1/mem_dr/U23/Y (NOR3X1)             0.02       0.70 f
+  memory/Data_Memory/c1/mem_dr/U137/Y (AND2X2)            0.05       0.75 f
+  memory/Data_Memory/c1/mem_dr/U160/Y (NAND3X1)           0.03       0.77 r
+  memory/Data_Memory/c1/mem_dr/U27/Y (BUFX2)              0.04       0.81 r
+  memory/Data_Memory/c1/mem_dr/U21/Y (BUFX2)              0.04       0.85 r
+  memory/Data_Memory/c1/mem_dr/U85/Y (INVX1)              0.02       0.87 f
+  memory/Data_Memory/c1/mem_dr/U37/Y (AND2X2)             0.04       0.91 f
+  memory/Data_Memory/c1/mem_dr/U22/Y (INVX8)              0.02       0.93 r
+  memory/Data_Memory/c1/mem_dr/U168/Y (OAI21X1)           0.01       0.94 f
+  memory/Data_Memory/c1/mem_dr/mem_reg<11><0>/D (DFFPOSX1)
+                                                          0.00       0.94 f
+  data arrival time                                                  0.94
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  memory/Data_Memory/c1/mem_dr/mem_reg<11><0>/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -0.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: IFID/reg_instruction/bit[3]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U122/Y (BUFX2)
+                                                          0.04       0.25 r
+  fetch/Instruction_Memory/cache_controller/U26/Y (AND2X2)
+                                                          0.03       0.28 r
+  fetch/Instruction_Memory/cache_controller/U78/Y (INVX1)
+                                                          0.02       0.30 f
+  fetch/Instruction_Memory/cache_controller/U169/Y (NAND3X1)
+                                                          0.03       0.32 r
+  fetch/Instruction_Memory/cache_controller/U88/Y (INVX1)
+                                                          0.02       0.35 f
+  fetch/Instruction_Memory/cache_controller/U21/Y (AND2X2)
+                                                          0.03       0.38 f
+  fetch/Instruction_Memory/cache_controller/U87/Y (INVX1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/cache_controller/mem_offset<1> (cache_controller_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/addr<1> (four_bank_mem_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/U22/Y (NAND2X1)            0.01       0.40 f
+  fetch/Instruction_Memory/mem/U118/Y (INVX1)             0.00       0.40 r
+  fetch/Instruction_Memory/mem/U119/Y (INVX1)             0.01       0.41 f
+  fetch/Instruction_Memory/mem/U21/Y (NOR3X1)             0.05       0.47 r
+  fetch/Instruction_Memory/mem/m3/enable (final_memory_4)
+                                                          0.00       0.47 r
+  fetch/Instruction_Memory/mem/m3/U1064/Y (AND2X2)        0.03       0.50 r
+  fetch/Instruction_Memory/mem/m3/U1257/Y (INVX1)         0.02       0.52 f
+  fetch/Instruction_Memory/mem/m3/U863/Y (AOI21X1)        0.02       0.54 r
+  fetch/Instruction_Memory/mem/m3/err (final_memory_4)
+                                                          0.00       0.54 r
+  fetch/Instruction_Memory/mem/U63/Y (BUFX2)              0.03       0.57 r
+  fetch/Instruction_Memory/mem/U121/Y (NOR2X1)            0.01       0.58 f
+  fetch/Instruction_Memory/mem/U122/Y (INVX1)             0.00       0.58 r
+  fetch/Instruction_Memory/mem/U72/Y (OR2X2)              0.04       0.62 r
+  fetch/Instruction_Memory/mem/U75/Y (INVX1)              0.02       0.64 f
+  fetch/Instruction_Memory/mem/U18/Y (AOI21X1)            0.03       0.66 r
+  fetch/Instruction_Memory/mem/err (four_bank_mem_1)      0.00       0.66 r
+  fetch/Instruction_Memory/U49/Y (BUFX2)                  0.03       0.70 r
+  fetch/Instruction_Memory/U47/Y (NOR2X1)                 0.01       0.71 f
+  fetch/Instruction_Memory/U54/Y (INVX1)                  0.00       0.71 r
+  fetch/Instruction_Memory/err (mem_system_1)             0.00       0.71 r
+  fetch/inst_mem_err (fetch)                              0.00       0.71 r
+  U58/Y (INVX1)                                           0.02       0.73 f
+  U60/Y (NAND2X1)                                         0.01       0.74 r
+  U62/Y (INVX1)                                           0.02       0.76 f
+  U61/Y (NAND2X1)                                         0.02       0.78 r
+  IFID/rst (IFID)                                         0.00       0.78 r
+  IFID/U39/Y (INVX1)                                      0.03       0.81 f
+  IFID/U3/Y (AND2X2)                                      0.04       0.85 f
+  IFID/U38/Y (INVX1)                                      0.00       0.85 r
+  IFID/U34/Y (INVX2)                                      0.03       0.88 f
+  IFID/U48/Y (NAND2X1)                                    0.01       0.89 r
+  IFID/U49/Y (OAI21X1)                                    0.02       0.91 f
+  IFID/reg_instruction/wdata<3> (reg16_33)                0.00       0.91 f
+  IFID/reg_instruction/U30/Y (INVX1)                      0.00       0.91 r
+  IFID/reg_instruction/U44/Y (MUX2X1)                     0.01       0.93 f
+  IFID/reg_instruction/bit[3]/d (dff_1092)                0.00       0.93 f
+  IFID/reg_instruction/bit[3]/U3/Y (INVX1)                0.01       0.94 r
+  IFID/reg_instruction/bit[3]/U4/Y (NOR2X1)               0.01       0.95 f
+  IFID/reg_instruction/bit[3]/state_reg/D (DFFPOSX1)      0.00       0.95 f
+  data arrival time                                                  0.95
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  IFID/reg_instruction/bit[3]/state_reg/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -0.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: IFID/reg_instruction/bit[4]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U122/Y (BUFX2)
+                                                          0.04       0.25 r
+  fetch/Instruction_Memory/cache_controller/U26/Y (AND2X2)
+                                                          0.03       0.28 r
+  fetch/Instruction_Memory/cache_controller/U78/Y (INVX1)
+                                                          0.02       0.30 f
+  fetch/Instruction_Memory/cache_controller/U169/Y (NAND3X1)
+                                                          0.03       0.32 r
+  fetch/Instruction_Memory/cache_controller/U88/Y (INVX1)
+                                                          0.02       0.35 f
+  fetch/Instruction_Memory/cache_controller/U21/Y (AND2X2)
+                                                          0.03       0.38 f
+  fetch/Instruction_Memory/cache_controller/U87/Y (INVX1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/cache_controller/mem_offset<1> (cache_controller_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/addr<1> (four_bank_mem_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/U22/Y (NAND2X1)            0.01       0.40 f
+  fetch/Instruction_Memory/mem/U118/Y (INVX1)             0.00       0.40 r
+  fetch/Instruction_Memory/mem/U119/Y (INVX1)             0.01       0.41 f
+  fetch/Instruction_Memory/mem/U21/Y (NOR3X1)             0.05       0.47 r
+  fetch/Instruction_Memory/mem/m3/enable (final_memory_4)
+                                                          0.00       0.47 r
+  fetch/Instruction_Memory/mem/m3/U1064/Y (AND2X2)        0.03       0.50 r
+  fetch/Instruction_Memory/mem/m3/U1257/Y (INVX1)         0.02       0.52 f
+  fetch/Instruction_Memory/mem/m3/U863/Y (AOI21X1)        0.02       0.54 r
+  fetch/Instruction_Memory/mem/m3/err (final_memory_4)
+                                                          0.00       0.54 r
+  fetch/Instruction_Memory/mem/U63/Y (BUFX2)              0.03       0.57 r
+  fetch/Instruction_Memory/mem/U121/Y (NOR2X1)            0.01       0.58 f
+  fetch/Instruction_Memory/mem/U122/Y (INVX1)             0.00       0.58 r
+  fetch/Instruction_Memory/mem/U72/Y (OR2X2)              0.04       0.62 r
+  fetch/Instruction_Memory/mem/U75/Y (INVX1)              0.02       0.64 f
+  fetch/Instruction_Memory/mem/U18/Y (AOI21X1)            0.03       0.66 r
+  fetch/Instruction_Memory/mem/err (four_bank_mem_1)      0.00       0.66 r
+  fetch/Instruction_Memory/U49/Y (BUFX2)                  0.03       0.70 r
+  fetch/Instruction_Memory/U47/Y (NOR2X1)                 0.01       0.71 f
+  fetch/Instruction_Memory/U54/Y (INVX1)                  0.00       0.71 r
+  fetch/Instruction_Memory/err (mem_system_1)             0.00       0.71 r
+  fetch/inst_mem_err (fetch)                              0.00       0.71 r
+  U58/Y (INVX1)                                           0.02       0.73 f
+  U60/Y (NAND2X1)                                         0.01       0.74 r
+  U62/Y (INVX1)                                           0.02       0.76 f
+  U61/Y (NAND2X1)                                         0.02       0.78 r
+  IFID/rst (IFID)                                         0.00       0.78 r
+  IFID/U39/Y (INVX1)                                      0.03       0.81 f
+  IFID/U3/Y (AND2X2)                                      0.04       0.85 f
+  IFID/U38/Y (INVX1)                                      0.00       0.85 r
+  IFID/U34/Y (INVX2)                                      0.03       0.88 f
+  IFID/U50/Y (NAND2X1)                                    0.01       0.89 r
+  IFID/U51/Y (OAI21X1)                                    0.02       0.91 f
+  IFID/reg_instruction/wdata<4> (reg16_33)                0.00       0.91 f
+  IFID/reg_instruction/U22/Y (INVX1)                      0.00       0.91 r
+  IFID/reg_instruction/U35/Y (MUX2X1)                     0.01       0.93 f
+  IFID/reg_instruction/bit[4]/d (dff_1093)                0.00       0.93 f
+  IFID/reg_instruction/bit[4]/U3/Y (INVX1)                0.01       0.94 r
+  IFID/reg_instruction/bit[4]/U4/Y (NOR2X1)               0.01       0.95 f
+  IFID/reg_instruction/bit[4]/state_reg/D (DFFPOSX1)      0.00       0.95 f
+  data arrival time                                                  0.95
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  IFID/reg_instruction/bit[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -0.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: IFID/reg_instruction/bit[5]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U122/Y (BUFX2)
+                                                          0.04       0.25 r
+  fetch/Instruction_Memory/cache_controller/U26/Y (AND2X2)
+                                                          0.03       0.28 r
+  fetch/Instruction_Memory/cache_controller/U78/Y (INVX1)
+                                                          0.02       0.30 f
+  fetch/Instruction_Memory/cache_controller/U169/Y (NAND3X1)
+                                                          0.03       0.32 r
+  fetch/Instruction_Memory/cache_controller/U88/Y (INVX1)
+                                                          0.02       0.35 f
+  fetch/Instruction_Memory/cache_controller/U21/Y (AND2X2)
+                                                          0.03       0.38 f
+  fetch/Instruction_Memory/cache_controller/U87/Y (INVX1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/cache_controller/mem_offset<1> (cache_controller_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/addr<1> (four_bank_mem_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/U22/Y (NAND2X1)            0.01       0.40 f
+  fetch/Instruction_Memory/mem/U118/Y (INVX1)             0.00       0.40 r
+  fetch/Instruction_Memory/mem/U119/Y (INVX1)             0.01       0.41 f
+  fetch/Instruction_Memory/mem/U21/Y (NOR3X1)             0.05       0.47 r
+  fetch/Instruction_Memory/mem/m3/enable (final_memory_4)
+                                                          0.00       0.47 r
+  fetch/Instruction_Memory/mem/m3/U1064/Y (AND2X2)        0.03       0.50 r
+  fetch/Instruction_Memory/mem/m3/U1257/Y (INVX1)         0.02       0.52 f
+  fetch/Instruction_Memory/mem/m3/U863/Y (AOI21X1)        0.02       0.54 r
+  fetch/Instruction_Memory/mem/m3/err (final_memory_4)
+                                                          0.00       0.54 r
+  fetch/Instruction_Memory/mem/U63/Y (BUFX2)              0.03       0.57 r
+  fetch/Instruction_Memory/mem/U121/Y (NOR2X1)            0.01       0.58 f
+  fetch/Instruction_Memory/mem/U122/Y (INVX1)             0.00       0.58 r
+  fetch/Instruction_Memory/mem/U72/Y (OR2X2)              0.04       0.62 r
+  fetch/Instruction_Memory/mem/U75/Y (INVX1)              0.02       0.64 f
+  fetch/Instruction_Memory/mem/U18/Y (AOI21X1)            0.03       0.66 r
+  fetch/Instruction_Memory/mem/err (four_bank_mem_1)      0.00       0.66 r
+  fetch/Instruction_Memory/U49/Y (BUFX2)                  0.03       0.70 r
+  fetch/Instruction_Memory/U47/Y (NOR2X1)                 0.01       0.71 f
+  fetch/Instruction_Memory/U54/Y (INVX1)                  0.00       0.71 r
+  fetch/Instruction_Memory/err (mem_system_1)             0.00       0.71 r
+  fetch/inst_mem_err (fetch)                              0.00       0.71 r
+  U58/Y (INVX1)                                           0.02       0.73 f
+  U60/Y (NAND2X1)                                         0.01       0.74 r
+  U62/Y (INVX1)                                           0.02       0.76 f
+  U61/Y (NAND2X1)                                         0.02       0.78 r
+  IFID/rst (IFID)                                         0.00       0.78 r
+  IFID/U39/Y (INVX1)                                      0.03       0.81 f
+  IFID/U3/Y (AND2X2)                                      0.04       0.85 f
+  IFID/U38/Y (INVX1)                                      0.00       0.85 r
+  IFID/U34/Y (INVX2)                                      0.03       0.88 f
+  IFID/U52/Y (NAND2X1)                                    0.01       0.89 r
+  IFID/U53/Y (OAI21X1)                                    0.02       0.91 f
+  IFID/reg_instruction/wdata<5> (reg16_33)                0.00       0.91 f
+  IFID/reg_instruction/U29/Y (INVX1)                      0.00       0.91 r
+  IFID/reg_instruction/U43/Y (MUX2X1)                     0.01       0.93 f
+  IFID/reg_instruction/bit[5]/d (dff_1094)                0.00       0.93 f
+  IFID/reg_instruction/bit[5]/U3/Y (INVX1)                0.01       0.94 r
+  IFID/reg_instruction/bit[5]/U4/Y (NOR2X1)               0.01       0.95 f
+  IFID/reg_instruction/bit[5]/state_reg/D (DFFPOSX1)      0.00       0.95 f
+  data arrival time                                                  0.95
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  IFID/reg_instruction/bit[5]/state_reg/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -0.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: IFID/reg_instruction/bit[6]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U122/Y (BUFX2)
+                                                          0.04       0.25 r
+  fetch/Instruction_Memory/cache_controller/U26/Y (AND2X2)
+                                                          0.03       0.28 r
+  fetch/Instruction_Memory/cache_controller/U78/Y (INVX1)
+                                                          0.02       0.30 f
+  fetch/Instruction_Memory/cache_controller/U169/Y (NAND3X1)
+                                                          0.03       0.32 r
+  fetch/Instruction_Memory/cache_controller/U88/Y (INVX1)
+                                                          0.02       0.35 f
+  fetch/Instruction_Memory/cache_controller/U21/Y (AND2X2)
+                                                          0.03       0.38 f
+  fetch/Instruction_Memory/cache_controller/U87/Y (INVX1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/cache_controller/mem_offset<1> (cache_controller_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/addr<1> (four_bank_mem_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/U22/Y (NAND2X1)            0.01       0.40 f
+  fetch/Instruction_Memory/mem/U118/Y (INVX1)             0.00       0.40 r
+  fetch/Instruction_Memory/mem/U119/Y (INVX1)             0.01       0.41 f
+  fetch/Instruction_Memory/mem/U21/Y (NOR3X1)             0.05       0.47 r
+  fetch/Instruction_Memory/mem/m3/enable (final_memory_4)
+                                                          0.00       0.47 r
+  fetch/Instruction_Memory/mem/m3/U1064/Y (AND2X2)        0.03       0.50 r
+  fetch/Instruction_Memory/mem/m3/U1257/Y (INVX1)         0.02       0.52 f
+  fetch/Instruction_Memory/mem/m3/U863/Y (AOI21X1)        0.02       0.54 r
+  fetch/Instruction_Memory/mem/m3/err (final_memory_4)
+                                                          0.00       0.54 r
+  fetch/Instruction_Memory/mem/U63/Y (BUFX2)              0.03       0.57 r
+  fetch/Instruction_Memory/mem/U121/Y (NOR2X1)            0.01       0.58 f
+  fetch/Instruction_Memory/mem/U122/Y (INVX1)             0.00       0.58 r
+  fetch/Instruction_Memory/mem/U72/Y (OR2X2)              0.04       0.62 r
+  fetch/Instruction_Memory/mem/U75/Y (INVX1)              0.02       0.64 f
+  fetch/Instruction_Memory/mem/U18/Y (AOI21X1)            0.03       0.66 r
+  fetch/Instruction_Memory/mem/err (four_bank_mem_1)      0.00       0.66 r
+  fetch/Instruction_Memory/U49/Y (BUFX2)                  0.03       0.70 r
+  fetch/Instruction_Memory/U47/Y (NOR2X1)                 0.01       0.71 f
+  fetch/Instruction_Memory/U54/Y (INVX1)                  0.00       0.71 r
+  fetch/Instruction_Memory/err (mem_system_1)             0.00       0.71 r
+  fetch/inst_mem_err (fetch)                              0.00       0.71 r
+  U58/Y (INVX1)                                           0.02       0.73 f
+  U60/Y (NAND2X1)                                         0.01       0.74 r
+  U62/Y (INVX1)                                           0.02       0.76 f
+  U61/Y (NAND2X1)                                         0.02       0.78 r
+  IFID/rst (IFID)                                         0.00       0.78 r
+  IFID/U39/Y (INVX1)                                      0.03       0.81 f
+  IFID/U3/Y (AND2X2)                                      0.04       0.85 f
+  IFID/U38/Y (INVX1)                                      0.00       0.85 r
+  IFID/U34/Y (INVX2)                                      0.03       0.88 f
+  IFID/U54/Y (NAND2X1)                                    0.01       0.89 r
+  IFID/U55/Y (OAI21X1)                                    0.02       0.91 f
+  IFID/reg_instruction/wdata<6> (reg16_33)                0.00       0.91 f
+  IFID/reg_instruction/U28/Y (INVX1)                      0.00       0.91 r
+  IFID/reg_instruction/U42/Y (MUX2X1)                     0.01       0.93 f
+  IFID/reg_instruction/bit[6]/d (dff_1095)                0.00       0.93 f
+  IFID/reg_instruction/bit[6]/U3/Y (INVX1)                0.01       0.94 r
+  IFID/reg_instruction/bit[6]/U4/Y (NOR2X1)               0.01       0.95 f
+  IFID/reg_instruction/bit[6]/state_reg/D (DFFPOSX1)      0.00       0.95 f
+  data arrival time                                                  0.95
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  IFID/reg_instruction/bit[6]/state_reg/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -0.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: IFID/reg_instruction/bit[7]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U122/Y (BUFX2)
+                                                          0.04       0.25 r
+  fetch/Instruction_Memory/cache_controller/U26/Y (AND2X2)
+                                                          0.03       0.28 r
+  fetch/Instruction_Memory/cache_controller/U78/Y (INVX1)
+                                                          0.02       0.30 f
+  fetch/Instruction_Memory/cache_controller/U169/Y (NAND3X1)
+                                                          0.03       0.32 r
+  fetch/Instruction_Memory/cache_controller/U88/Y (INVX1)
+                                                          0.02       0.35 f
+  fetch/Instruction_Memory/cache_controller/U21/Y (AND2X2)
+                                                          0.03       0.38 f
+  fetch/Instruction_Memory/cache_controller/U87/Y (INVX1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/cache_controller/mem_offset<1> (cache_controller_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/addr<1> (four_bank_mem_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/U22/Y (NAND2X1)            0.01       0.40 f
+  fetch/Instruction_Memory/mem/U118/Y (INVX1)             0.00       0.40 r
+  fetch/Instruction_Memory/mem/U119/Y (INVX1)             0.01       0.41 f
+  fetch/Instruction_Memory/mem/U21/Y (NOR3X1)             0.05       0.47 r
+  fetch/Instruction_Memory/mem/m3/enable (final_memory_4)
+                                                          0.00       0.47 r
+  fetch/Instruction_Memory/mem/m3/U1064/Y (AND2X2)        0.03       0.50 r
+  fetch/Instruction_Memory/mem/m3/U1257/Y (INVX1)         0.02       0.52 f
+  fetch/Instruction_Memory/mem/m3/U863/Y (AOI21X1)        0.02       0.54 r
+  fetch/Instruction_Memory/mem/m3/err (final_memory_4)
+                                                          0.00       0.54 r
+  fetch/Instruction_Memory/mem/U63/Y (BUFX2)              0.03       0.57 r
+  fetch/Instruction_Memory/mem/U121/Y (NOR2X1)            0.01       0.58 f
+  fetch/Instruction_Memory/mem/U122/Y (INVX1)             0.00       0.58 r
+  fetch/Instruction_Memory/mem/U72/Y (OR2X2)              0.04       0.62 r
+  fetch/Instruction_Memory/mem/U75/Y (INVX1)              0.02       0.64 f
+  fetch/Instruction_Memory/mem/U18/Y (AOI21X1)            0.03       0.66 r
+  fetch/Instruction_Memory/mem/err (four_bank_mem_1)      0.00       0.66 r
+  fetch/Instruction_Memory/U49/Y (BUFX2)                  0.03       0.70 r
+  fetch/Instruction_Memory/U47/Y (NOR2X1)                 0.01       0.71 f
+  fetch/Instruction_Memory/U54/Y (INVX1)                  0.00       0.71 r
+  fetch/Instruction_Memory/err (mem_system_1)             0.00       0.71 r
+  fetch/inst_mem_err (fetch)                              0.00       0.71 r
+  U58/Y (INVX1)                                           0.02       0.73 f
+  U60/Y (NAND2X1)                                         0.01       0.74 r
+  U62/Y (INVX1)                                           0.02       0.76 f
+  U61/Y (NAND2X1)                                         0.02       0.78 r
+  IFID/rst (IFID)                                         0.00       0.78 r
+  IFID/U39/Y (INVX1)                                      0.03       0.81 f
+  IFID/U3/Y (AND2X2)                                      0.04       0.85 f
+  IFID/U38/Y (INVX1)                                      0.00       0.85 r
+  IFID/U34/Y (INVX2)                                      0.03       0.88 f
+  IFID/U56/Y (NAND2X1)                                    0.01       0.89 r
+  IFID/U57/Y (OAI21X1)                                    0.02       0.91 f
+  IFID/reg_instruction/wdata<7> (reg16_33)                0.00       0.91 f
+  IFID/reg_instruction/U21/Y (INVX1)                      0.00       0.91 r
+  IFID/reg_instruction/U41/Y (MUX2X1)                     0.01       0.93 f
+  IFID/reg_instruction/bit[7]/d (dff_1096)                0.00       0.93 f
+  IFID/reg_instruction/bit[7]/U3/Y (INVX1)                0.01       0.94 r
+  IFID/reg_instruction/bit[7]/U4/Y (NOR2X1)               0.01       0.95 f
+  IFID/reg_instruction/bit[7]/state_reg/D (DFFPOSX1)      0.00       0.95 f
+  data arrival time                                                  0.95
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  IFID/reg_instruction/bit[7]/state_reg/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -0.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: IFID/reg_instruction/bit[8]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  fetch/Instruction_Memory/cache_controller/statereg[4]/state_reg/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  fetch/Instruction_Memory/cache_controller/statereg[4]/q (dff_405)
+                                                          0.00       0.11 f
+  fetch/Instruction_Memory/cache_controller/U124/Y (INVX1)
+                                                          0.02       0.13 r
+  fetch/Instruction_Memory/cache_controller/U24/Y (AND2X2)
+                                                          0.04       0.17 r
+  fetch/Instruction_Memory/cache_controller/U125/Y (AND2X2)
+                                                          0.04       0.21 r
+  fetch/Instruction_Memory/cache_controller/U122/Y (BUFX2)
+                                                          0.04       0.25 r
+  fetch/Instruction_Memory/cache_controller/U26/Y (AND2X2)
+                                                          0.03       0.28 r
+  fetch/Instruction_Memory/cache_controller/U78/Y (INVX1)
+                                                          0.02       0.30 f
+  fetch/Instruction_Memory/cache_controller/U169/Y (NAND3X1)
+                                                          0.03       0.32 r
+  fetch/Instruction_Memory/cache_controller/U88/Y (INVX1)
+                                                          0.02       0.35 f
+  fetch/Instruction_Memory/cache_controller/U21/Y (AND2X2)
+                                                          0.03       0.38 f
+  fetch/Instruction_Memory/cache_controller/U87/Y (INVX1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/cache_controller/mem_offset<1> (cache_controller_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/addr<1> (four_bank_mem_1)
+                                                          0.00       0.38 r
+  fetch/Instruction_Memory/mem/U22/Y (NAND2X1)            0.01       0.40 f
+  fetch/Instruction_Memory/mem/U118/Y (INVX1)             0.00       0.40 r
+  fetch/Instruction_Memory/mem/U119/Y (INVX1)             0.01       0.41 f
+  fetch/Instruction_Memory/mem/U21/Y (NOR3X1)             0.05       0.47 r
+  fetch/Instruction_Memory/mem/m3/enable (final_memory_4)
+                                                          0.00       0.47 r
+  fetch/Instruction_Memory/mem/m3/U1064/Y (AND2X2)        0.03       0.50 r
+  fetch/Instruction_Memory/mem/m3/U1257/Y (INVX1)         0.02       0.52 f
+  fetch/Instruction_Memory/mem/m3/U863/Y (AOI21X1)        0.02       0.54 r
+  fetch/Instruction_Memory/mem/m3/err (final_memory_4)
+                                                          0.00       0.54 r
+  fetch/Instruction_Memory/mem/U63/Y (BUFX2)              0.03       0.57 r
+  fetch/Instruction_Memory/mem/U121/Y (NOR2X1)            0.01       0.58 f
+  fetch/Instruction_Memory/mem/U122/Y (INVX1)             0.00       0.58 r
+  fetch/Instruction_Memory/mem/U72/Y (OR2X2)              0.04       0.62 r
+  fetch/Instruction_Memory/mem/U75/Y (INVX1)              0.02       0.64 f
+  fetch/Instruction_Memory/mem/U18/Y (AOI21X1)            0.03       0.66 r
+  fetch/Instruction_Memory/mem/err (four_bank_mem_1)      0.00       0.66 r
+  fetch/Instruction_Memory/U49/Y (BUFX2)                  0.03       0.70 r
+  fetch/Instruction_Memory/U47/Y (NOR2X1)                 0.01       0.71 f
+  fetch/Instruction_Memory/U54/Y (INVX1)                  0.00       0.71 r
+  fetch/Instruction_Memory/err (mem_system_1)             0.00       0.71 r
+  fetch/inst_mem_err (fetch)                              0.00       0.71 r
+  U58/Y (INVX1)                                           0.02       0.73 f
+  U60/Y (NAND2X1)                                         0.01       0.74 r
+  U62/Y (INVX1)                                           0.02       0.76 f
+  U61/Y (NAND2X1)                                         0.02       0.78 r
+  IFID/rst (IFID)                                         0.00       0.78 r
+  IFID/U39/Y (INVX1)                                      0.03       0.81 f
+  IFID/U3/Y (AND2X2)                                      0.04       0.85 f
+  IFID/U38/Y (INVX1)                                      0.00       0.85 r
+  IFID/U34/Y (INVX2)                                      0.03       0.88 f
+  IFID/U58/Y (NAND2X1)                                    0.01       0.89 r
+  IFID/U59/Y (OAI21X1)                                    0.02       0.91 f
+  IFID/reg_instruction/wdata<8> (reg16_33)                0.00       0.91 f
+  IFID/reg_instruction/U27/Y (INVX1)                      0.00       0.91 r
+  IFID/reg_instruction/U40/Y (MUX2X1)                     0.01       0.93 f
+  IFID/reg_instruction/bit[8]/d (dff_1097)                0.00       0.93 f
+  IFID/reg_instruction/bit[8]/U3/Y (INVX1)                0.01       0.94 r
+  IFID/reg_instruction/bit[8]/U4/Y (NOR2X1)               0.01       0.95 f
+  IFID/reg_instruction/bit[8]/state_reg/D (DFFPOSX1)      0.00       0.95 f
+  data arrival time                                                  0.95
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  IFID/reg_instruction/bit[8]/state_reg/CLK (DFFPOSX1)
+                                                          0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -0.95
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

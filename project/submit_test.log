@@ -26,7 +26,7 @@ Executing rm -rf __work dump.wlf dump.vcd diff.trace diff.ptrace archsim.trace a
 Executing vlib __work
 Executing vlog +define+RANDSEED=3 -work __work alu.v cache_controller.v cache.v cla_16b.v cla_4b.v clkrst.v control.v decode.v dff.v execute.v EXMEM.v fetch.v final_memory.v forwarding_unit.v four_bank_mem.v fullAdder_1b.v hazard_detection_unit.v IDEX.v IFID.v memc.v memory2c_align.v memory2c.v memory.v mem_system_hier.v mem_system_perfbench.v mem_system_randbench.v mem_system_ref.v mem_system.v memv.v MEMWB.v nand2.v proc_hier_pbench.v proc_hier.v proc.v reg16.v reg1.v reg3.v reg4.v regFile_bypass.v regFile.v shifter.v stallmem.v wb.v xor2.v
 Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
-Start time: 19:20:32 on May 01,2022
+Start time: 19:34:43 on May 01,2022
 vlog "+define+RANDSEED=3" -work __work alu.v cache_controller.v cache.v cla_16b.v cla_4b.v clkrst.v control.v decode.v dff.v execute.v EXMEM.v fetch.v final_memory.v forwarding_unit.v four_bank_mem.v fullAdder_1b.v hazard_detection_unit.v IDEX.v IFID.v memc.v memory2c_align.v memory2c.v memory.v mem_system_hier.v mem_system_perfbench.v mem_system_randbench.v mem_system_ref.v mem_system.v memv.v MEMWB.v nand2.v proc_hier_pbench.v proc_hier.v proc.v reg16.v reg1.v reg3.v reg4.v regFile_bypass.v regFile.v shifter.v stallmem.v wb.v xor2.v 
 -- Compiling module alu
 -- Compiling module cache_controller
@@ -80,7 +80,7 @@ Top level modules:
 	mem_system_randbench
 	proc_hier_pbench
 	stallmem
-End time: 19:20:32 on May 01,2022, Elapsed time: 0:00:00
+End time: 19:34:43 on May 01,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 -------------------------------------------------
 Step: 3
@@ -90,7 +90,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work -voptargs="+acc" -wlf dump.wlf -do "log -howmany -rec /* ; run -all" 
-# Start time: 19:20:35 on May 01,2022
+# Start time: 19:34:47 on May 01,2022
 # //  ModelSim DE 10.7c Aug 17 2018Linux 5.4.0-109-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -148,7 +148,7 @@ Reading pref.tcl
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3605 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 19:20:36 on May 01,2022, Elapsed time: 0:00:01
+# End time: 19:34:47 on May 01,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 -------------------------------------------------
 Step: 4

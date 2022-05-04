@@ -1,0 +1,88 @@
+ 
+****************************************
+Report : cell
+Design : proc
+Version: Q-2019.12-SP3
+Date   : Mon May  2 21:54:51 2022
+****************************************
+
+Attributes:
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+EXMEM                     EXMEM                           1328.588274
+                                                                    h, n
+FU                        forwarding_unit                 210.246394
+                                                                    h, n
+HDU                       hazard_detection_unit           76.495898 h
+IDEX                      IDEX                            2085.569161
+                                                                    h, n
+IFID                      IFID                            718.967588
+                                                                    h, n
+MEMWB                     MEMWB                           1323.895274
+                                                                    h, n
+U3                        OR2X2           gscl45nm        2.815800  
+U5                        OR2X2           gscl45nm        2.815800  
+U15                       NOR3X1          gscl45nm        2.815800  
+U16                       NOR3X1          gscl45nm        2.815800  
+U19                       NOR3X1          gscl45nm        2.815800  
+U25                       NOR3X1          gscl45nm        2.815800  
+U27                       AND2X2          gscl45nm        2.815800  
+U28                       INVX1           gscl45nm        1.407900  
+U29                       INVX1           gscl45nm        1.407900  
+U30                       INVX1           gscl45nm        1.407900  
+U31                       AND2X1          gscl45nm        2.346500  
+U32                       INVX1           gscl45nm        1.407900  
+U33                       INVX1           gscl45nm        1.407900  
+U34                       OR2X1           gscl45nm        2.346500  
+U35                       AND2X1          gscl45nm        2.346500  
+U36                       INVX1           gscl45nm        1.407900  
+U37                       AND2X1          gscl45nm        2.346500  
+U38                       INVX1           gscl45nm        1.407900  
+U39                       AND2X1          gscl45nm        2.346500  
+U40                       INVX2           gscl45nm        1.877200  
+U41                       AND2X2          gscl45nm        2.815800  
+U42                       INVX1           gscl45nm        1.407900  
+U43                       INVX1           gscl45nm        1.407900  
+U44                       INVX1           gscl45nm        1.407900  
+U45                       BUFX2           gscl45nm        2.346500  
+U46                       INVX1           gscl45nm        1.407900  
+U47                       BUFX2           gscl45nm        2.346500  
+U48                       OR2X2           gscl45nm        2.815800  
+U49                       INVX1           gscl45nm        1.407900  
+U50                       INVX1           gscl45nm        1.407900  
+U51                       INVX1           gscl45nm        1.407900  
+U52                       INVX1           gscl45nm        1.407900  
+U53                       OR2X1           gscl45nm        2.346500  
+U54                       INVX1           gscl45nm        1.407900  
+U55                       INVX1           gscl45nm        1.407900  
+U56                       AND2X2          gscl45nm        2.815800  
+U57                       INVX1           gscl45nm        1.407900  
+U58                       INVX1           gscl45nm        1.407900  
+U59                       INVX1           gscl45nm        1.407900  
+U60                       NAND2X1         gscl45nm        1.877200  
+U61                       NAND2X1         gscl45nm        1.877200  
+U62                       INVX1           gscl45nm        1.407900  
+U63                       INVX1           gscl45nm        1.407900  
+U65                       INVX2           gscl45nm        1.877200  
+U66                       INVX8           gscl45nm        3.285100  
+U67                       INVX8           gscl45nm        3.285100  
+U68                       NAND2X1         gscl45nm        1.877200  
+decode                    decode                          3729.057729
+                                                                    h, n
+execute                   execute                         5046.382801
+                                                                    h, n
+fetch                     fetch                           115842.948417
+                                                                    h, n
+memory                    memory                          113396.956864
+                                                                    h, n
+wb                        wb                              170.355898
+                                                                    h
+--------------------------------------------------------------------------------
+Total 58 cells                                            244023.324298
+1

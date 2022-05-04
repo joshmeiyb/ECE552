@@ -44,7 +44,6 @@ wire [15:0]    pcAdd2,        pcAdd2_IFID,      pcAdd2_IDEX,         pcAdd2_EXME
 
 wire [15:0]                                     branch_jump_pc;
 wire [15:0]                                     ALU_Out,             ALU_Out_EXMEM,       ALU_Out_MEMWB;
-wire                                            PCSrc;
 wire                          reg_to_pc,        reg_to_pc_IDEX;
 wire                          pc_to_reg,        pc_to_reg_IDEX,      pc_to_reg_EXMEM,     pc_to_reg_MEMWB;
 wire [15:0]                   read1Data,        read1Data_IDEX;
@@ -79,6 +78,8 @@ wire [15:0]                                                          mem_read_da
 
 
 //-----------------------------hazard_detection_unit & forwarding unit---------------------------------------//
+wire PCSrc;
+wire PCSrc_temp;
 wire stall;
 //wire R_format, R_format_IDEX;
 //wire I_format, I_format_IDEX;
