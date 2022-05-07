@@ -1,0 +1,47 @@
+ 
+****************************************
+Report : reference
+Design : proc
+Version: Q-2019.12-SP3
+Date   : Mon May  2 21:54:51 2022
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2X1             gscl45nm       2.346500       4      9.386000  
+AND2X2             gscl45nm       2.815800       3      8.447400  
+BUFX2              gscl45nm       2.346500       2      4.693000  
+EXMEM                          1328.588274       1   1328.588274  h, n
+IDEX                           2085.569161       1   2085.569161  h, n
+IFID                            718.967588       1    718.967588  h, n
+INVX1              gscl45nm       1.407900      22     30.973799  
+INVX2              gscl45nm       1.877200       2      3.754400  
+INVX8              gscl45nm       3.285100       2      6.570200  
+MEMWB                          1323.895274       1   1323.895274  h, n
+NAND2X1            gscl45nm       1.877200       3      5.631600  
+NOR3X1             gscl45nm       2.815800       4     11.263200  
+OR2X1              gscl45nm       2.346500       2      4.693000  
+OR2X2              gscl45nm       2.815800       3      8.447400  
+decode                         3729.057729       1   3729.057729  h, n
+execute                        5046.382801       1   5046.382801  h, n
+fetch                         115842.948417
+                                                 1  115842.948417 h, n
+forwarding_unit                 210.246394       1    210.246394  h, n
+hazard_detection_unit            76.495898       1     76.495898  h
+memory                        113396.956864
+                                                 1  113396.956864 h, n
+wb                              170.355898       1    170.355898  h
+-----------------------------------------------------------------------------
+Total 21 references                                 244023.324298
+1

@@ -1,0 +1,36 @@
+Warning: Design 'proc' has '13' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : area
+Design : proc
+Version: Q-2019.12-SP3
+Date   : Fri May  6 21:54:09 2022
+****************************************
+
+Information: Updating design information... (UID-85)
+Warning: Design 'proc' contains 34 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Library(s) Used:
+
+    gtech (File: /s/synopsys-2020_06_08/@sys/syn/Q-2019.12-SP3/libraries/syn/gtech.db)
+
+Number of ports:                         9144
+Number of nets:                         40891
+Number of cells:                        29308
+Number of combinational cells:          11872
+Number of sequential cells:             14383
+Number of macros/black boxes:               0
+Number of buf/inv:                       5091
+Number of references:                      14
+
+Combinational area:                  0.000000
+Buf/Inv area:                        0.000000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                     0.000000
+Total area:                 undefined
+
+Information: This design contains unmapped logic. (RPT-7)
+Information: This design contains black box (unknown) components. (RPT-8)
+1

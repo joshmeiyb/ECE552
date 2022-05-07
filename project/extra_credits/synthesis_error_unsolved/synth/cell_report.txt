@@ -1,0 +1,71 @@
+Warning: Design 'proc' has '13' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : cell
+Design : proc
+Version: Q-2019.12-SP3
+Date   : Fri May  6 21:54:11 2022
+****************************************
+
+Attributes:
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+C23                       GTECH_OR2       gtech           0.000000  u
+C26                       GTECH_OR2       gtech           0.000000  u
+C29                       GTECH_OR2       gtech           0.000000  u
+C30                       GTECH_OR2       gtech           0.000000  u
+C31                       GTECH_OR2       gtech           0.000000  u
+C32                       GTECH_OR2       gtech           0.000000  u
+C33                       GTECH_AND2      gtech           0.000000  u
+C36                       GTECH_AND2      gtech           0.000000  u
+C37                       GTECH_OR2       gtech           0.000000  u
+C38                       GTECH_OR2       gtech           0.000000  u
+C39                       GTECH_OR2       gtech           0.000000  u
+C40                       GTECH_AND2      gtech           0.000000  u
+C42                       GTECH_OR2       gtech           0.000000  u
+C43                       GTECH_OR2       gtech           0.000000  u
+C44                       GTECH_OR2       gtech           0.000000  u
+C45                       GTECH_OR2       gtech           0.000000  u
+C46                       GTECH_OR2       gtech           0.000000  u
+C47                       GTECH_AND2      gtech           0.000000  u
+C48                       GTECH_AND2      gtech           0.000000  u
+C51                       GTECH_AND2      gtech           0.000000  u
+C52                       GTECH_AND2      gtech           0.000000  u
+C53                       GTECH_OR2       gtech           0.000000  u
+C54                       GTECH_OR2       gtech           0.000000  u
+C55                       GTECH_OR2       gtech           0.000000  u
+C56                       GTECH_OR2       gtech           0.000000  u
+C57                       GTECH_AND2      gtech           0.000000  u
+C58                       GTECH_OR2       gtech           0.000000  u
+C60                       GTECH_OR2       gtech           0.000000  u
+C61                       GTECH_OR2       gtech           0.000000  u
+EXMEM                     EXMEM                           0.000000  h, n, u
+FU                        forwarding_unit                 0.000000  h, u
+HDU                       hazard_detection_unit           0.000000  h, u
+IDEX                      IDEX                            0.000000  h, n, u
+IFID                      IFID                            0.000000  h, n, u
+I_0                       GTECH_NOT       gtech           0.000000  u
+I_1                       GTECH_NOT       gtech           0.000000  u
+I_2                       GTECH_NOT       gtech           0.000000  u
+I_3                       GTECH_NOT       gtech           0.000000  u
+I_4                       GTECH_NOT       gtech           0.000000  u
+I_5                       GTECH_NOT       gtech           0.000000  u
+I_6                       GTECH_NOT       gtech           0.000000  u
+I_7                       GTECH_NOT       gtech           0.000000  u
+I_8                       GTECH_NOT       gtech           0.000000  u
+I_9                       GTECH_NOT       gtech           0.000000  u
+MEMWB                     MEMWB                           0.000000  h, n, u
+decode                    decode                          0.000000  b, h, n, u
+execute                   execute                         0.000000  b, h, u
+fetch                     fetch                           0.000000  b, h, n, u
+memory                    memory                          0.000000  h, n, u
+wb                        wb                              0.000000  h, u
+--------------------------------------------------------------------------------
+Total 50 cells                                            0.000000
+1

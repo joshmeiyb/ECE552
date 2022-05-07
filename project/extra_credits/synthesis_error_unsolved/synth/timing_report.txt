@@ -1,0 +1,738 @@
+Warning: Design 'proc' has '13' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 20
+Design : proc
+Version: Q-2019.12-SP3
+Date   : Fri May  6 21:54:11 2022
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: nom_pvt   Library: gtech
+Wire Load Model Mode: top
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_MemtoReg_IDEX/bit[0]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_MemtoReg_IDEX/rst (reg1_15)                   0.00       0.10 r
+  EXMEM/reg_MemtoReg_IDEX/bit[0]/rst (dff_694)            0.00       0.10 r
+  EXMEM/reg_MemtoReg_IDEX/bit[0]/B_0/Z (GTECH_BUF)        0.00       0.10 r
+  EXMEM/reg_MemtoReg_IDEX/bit[0]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_MemtoReg_IDEX/bit[0]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_MemtoReg_IDEX/bit[0]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_MemRead_IDEX/bit[0]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_MemRead_IDEX/rst (reg1_14)                    0.00       0.10 r
+  EXMEM/reg_MemRead_IDEX/bit[0]/rst (dff_693)             0.00       0.10 r
+  EXMEM/reg_MemRead_IDEX/bit[0]/B_0/Z (GTECH_BUF)         0.00       0.10 r
+  EXMEM/reg_MemRead_IDEX/bit[0]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_MemRead_IDEX/bit[0]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_MemRead_IDEX/bit[0]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_MemWrite_IDEX/bit[0]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_MemWrite_IDEX/rst (reg1_13)                   0.00       0.10 r
+  EXMEM/reg_MemWrite_IDEX/bit[0]/rst (dff_692)            0.00       0.10 r
+  EXMEM/reg_MemWrite_IDEX/bit[0]/B_0/Z (GTECH_BUF)        0.00       0.10 r
+  EXMEM/reg_MemWrite_IDEX/bit[0]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_MemWrite_IDEX/bit[0]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_MemWrite_IDEX/bit[0]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_Halt_IDEX/bit[0]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_Halt_IDEX/rst (reg1_11)                       0.00       0.10 r
+  EXMEM/reg_Halt_IDEX/bit[0]/rst (dff_690)                0.00       0.10 r
+  EXMEM/reg_Halt_IDEX/bit[0]/B_0/Z (GTECH_BUF)            0.00       0.10 r
+  EXMEM/reg_Halt_IDEX/bit[0]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_Halt_IDEX/bit[0]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_Halt_IDEX/bit[0]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[0]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[0]/rst (dff_715)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[0]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[0]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[0]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[0]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[1]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[1]/rst (dff_716)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[1]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[1]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[1]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[1]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[2]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[2]/rst (dff_717)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[2]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[2]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[2]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[2]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[3]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[3]/rst (dff_718)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[3]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[3]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[3]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[3]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[4]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[4]/rst (dff_719)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[4]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[4]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[4]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[4]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[5]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[5]/rst (dff_720)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[5]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[5]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[5]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[5]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[6]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[6]/rst (dff_721)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[6]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[6]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[6]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[6]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[7]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[7]/rst (dff_722)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[7]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[7]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[7]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[7]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[8]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[8]/rst (dff_723)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[8]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[8]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[8]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[8]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[9]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[9]/rst (dff_724)                  0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[9]/B_0/Z (GTECH_BUF)              0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[9]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[9]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[9]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[10]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[10]/rst (dff_725)                 0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[10]/B_0/Z (GTECH_BUF)             0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[10]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[10]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[10]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[11]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[11]/rst (dff_726)                 0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[11]/B_0/Z (GTECH_BUF)             0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[11]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[11]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[11]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[12]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[12]/rst (dff_727)                 0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[12]/B_0/Z (GTECH_BUF)             0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[12]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[12]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[12]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[13]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[13]/rst (dff_728)                 0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[13]/B_0/Z (GTECH_BUF)             0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[13]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[13]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[13]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[14]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[14]/rst (dff_729)                 0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[14]/B_0/Z (GTECH_BUF)             0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[14]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[14]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[14]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: EXMEM/reg_ALU_Out/bit[15]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  rst (in)                                                0.00 #     0.10 r
+  C60/Z (GTECH_OR2)                                       0.00 #     0.10 r
+  EXMEM/rst (EXMEM)                                       0.00       0.10 r
+  EXMEM/reg_ALU_Out/rst (reg16_14)                        0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[15]/rst (dff_730)                 0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[15]/B_0/Z (GTECH_BUF)             0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[15]/C11/Z_0 (*SELECT_OP_2.1_2.1_1)
+                                                          0.00       0.10 r
+  EXMEM/reg_ALU_Out/bit[15]/state_reg/next_state (**SEQGEN**)
+                                                          0.00       0.10 r
+  data arrival time                                                  0.10
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  EXMEM/reg_ALU_Out/bit[15]/state_reg/clocked_on (**SEQGEN**)
+                                                          0.00       1.00 r
+  library setup time                                      0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -0.10
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.90
+
+
+1

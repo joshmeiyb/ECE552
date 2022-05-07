@@ -1,0 +1,55 @@
+Warning: Main library 'gtech' does not specify the following unit required for power: 'Leakage Power'. (PWR-424)
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+Warning: Design has unannotated black box outputs. (PWR-428)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : proc
+Version: Q-2019.12-SP3
+Date   : Fri May  6 21:54:12 2022
+****************************************
+
+
+Library(s) Used:
+
+    gtech (File: /s/synopsys-2020_06_08/@sys/syn/Q-2019.12-SP3/libraries/syn/gtech.db)
+
+
+Operating Conditions: nom_pvt   Library: gtech
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 0.100000ff
+    Time Units = 1ns
+    Dynamic Power Units = 100nW    (derived from V,C,T units)
+    Leakage Power Units = Unitless
+
+
+  Cell Internal Power  =   0.0000 nW        
+  Net Switching Power  =   0.0000 nW        
+                         ---------
+Total Dynamic Power    =   0.0000 nW        
+
+Cell Leakage Power     =   0.0000 
+
+Error: Either dynamic power or leakage power, in the library, is unitless. Unable to display complete power group summary. (PWR-799)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000               NA   (     N/A)
+memory             0.0000            0.0000            0.0000               NA   (     N/A)
+black_box          0.0000            0.0000            0.0000               NA   (     N/A)
+clock_network      0.0000            0.0000            0.0000               NA   (     N/A)
+register           0.0000            0.0000            0.0000               NA   (     N/A)
+sequential         0.0000            0.0000            0.0000               NA   (     N/A)
+combinational      0.0000            0.0000            0.0000               NA   (     N/A)
+--------------------------------------------------------------------------------------------------
+Total              0.0000 nW         0.0000 nW         0.0000               NA        
+1

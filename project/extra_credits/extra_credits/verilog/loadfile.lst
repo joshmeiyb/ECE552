@@ -1,0 +1,14 @@
+0000 200c j .realstart
+0002 c100 lbi r1, 0
+0004 c402 lbi r4, 0x02
+0006 8ca0 ld  r5, r4, 0
+0008 c7bd lbi r7, 0xBD
+000a 1800 rti
+000c 0000 halt
+          
+000e      .realstart:
+000e c100 lbi r1,0
+0010 1600 siic r6
+0012 c42c lbi r4, 44
+0014 0000 halt
+          

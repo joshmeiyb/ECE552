@@ -1,0 +1,10 @@
+Line 56: Bad keyword integer
+Line 57: Bad keyword integer
+Line 67: Bad keyword initial
+Line 68: begin without always/case
+Line 77: Bad keyword posedge
+Line 78: Bad keyword if
+Line 86: Bad keyword else
+Line 87: Bad keyword if
+Line 77: Always without case(x)
+End of file /afs/cs.wisc.edu/u/j/m/jmei/ece552/project/extra_credits/demo3/verilog/memory2c_align.syn.v. Hash = 2112709892

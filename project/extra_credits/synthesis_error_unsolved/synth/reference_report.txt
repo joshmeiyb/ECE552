@@ -1,0 +1,39 @@
+Warning: Design 'proc' has '13' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : reference
+Design : proc
+Version: Q-2019.12-SP3
+Date   : Fri May  6 21:54:09 2022
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+EXMEM                             0.000000       1      0.000000  h, n, u
+GTECH_AND2         gtech          0.000000       8      0.000000  u
+GTECH_NOT          gtech          0.000000      10      0.000000  u
+GTECH_OR2          gtech          0.000000      21      0.000000  u
+IDEX                              0.000000       1      0.000000  h, n, u
+IFID                              0.000000       1      0.000000  h, n, u
+MEMWB                             0.000000       1      0.000000  h, n, u
+decode                            0.000000       1      0.000000  b, h, n, u
+execute                           0.000000       1      0.000000  b, h, u
+fetch                             0.000000       1      0.000000  b, h, n, u
+forwarding_unit                   0.000000       1      0.000000  h, u
+hazard_detection_unit             0.000000       1      0.000000  h, u
+memory                            0.000000       1      0.000000  h, n, u
+wb                                0.000000       1      0.000000  h, u
+-----------------------------------------------------------------------------
+Total 14 references                                     0.000000
+1

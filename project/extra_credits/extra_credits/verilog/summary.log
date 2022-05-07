@@ -1,0 +1,6 @@
+/u/j/m/jmei/ece552/project/extra_credits/demo3/verification/mytests/branch_jump_test.asm SUCCESS CPI:7.4 CYCLES:52 ICOUNT:7 IHITRATE: 0 DHITRATE: 0
+/u/j/m/jmei/ece552/project/extra_credits/demo3/verification/mytests/exception_test.asm SUCCESS CPI:9.6 CYCLES:67 ICOUNT:7 IHITRATE: 133.3 DHITRATE: 0
+/u/j/m/jmei/ece552/project/extra_credits/demo3/verification/mytests/jump_0.asm SUCCESS CPI:11.6 CYCLES:70 ICOUNT:6 IHITRATE: 0 DHITRATE: 0
+/u/j/m/jmei/ece552/project/extra_credits/demo3/verification/mytests/p1_1.asm SUCCESS CPI:6.2 CYCLES:37 ICOUNT:6 IHITRATE: 0 DHITRATE: 0
+/u/j/m/jmei/ece552/project/extra_credits/demo3/verification/mytests/p1_2.asm SUCCESS CPI:8.6 CYCLES:43 ICOUNT:5 IHITRATE: 77.8 DHITRATE: 0
+/u/j/m/jmei/ece552/project/extra_credits/demo3/verification/mytests/p1_3.asm SUCCESS CPI:6.7 CYCLES:40 ICOUNT:6 IHITRATE: 66.7 DHITRATE: 0
